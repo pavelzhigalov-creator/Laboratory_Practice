@@ -1,0 +1,440 @@
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccsbBR4h.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/main.c"
+  20              		.section	.text.main,"ax",%progbits
+  21              		.align	1
+  22              		.global	main
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	main:
+  28              	.LFB130:
+   1:Core/Src/main.c **** #include "stdint.h"
+   2:Core/Src/main.c **** #include "stm32f4xx.h"
+   3:Core/Src/main.c **** #include "stm32f411xe.h"
+   4:Core/Src/main.c **** 
+   5:Core/Src/main.c **** int main(void)
+   6:Core/Src/main.c **** {
+  29              		.loc 1 6 1 view -0
+  30              		.cfi_startproc
+  31              		@ Volatile: function does not return.
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+   7:Core/Src/main.c ****     // Включаем тактирование GPIOA (бит 0 в RCC->AHB1ENR)
+   8:Core/Src/main.c ****     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN;
+  35              		.loc 1 8 5 view .LVU1
+  36              		.loc 1 8 8 is_stmt 0 view .LVU2
+  37 0000 4B4A     		ldr	r2, .L6
+  38 0002 136B     		ldr	r3, [r2, #48]
+  39              		.loc 1 8 18 view .LVU3
+  40 0004 43F00303 		orr	r3, r3, #3
+  41 0008 1363     		str	r3, [r2, #48]
+   9:Core/Src/main.c **** 
+  10:Core/Src/main.c ****     /////////////////////////////////////////////////////////////////////
+  11:Core/Src/main.c **** 
+  12:Core/Src/main.c ****     // Настройка PB8 как вход с подтяжкой вверх (кнопка)
+  13:Core/Src/main.c ****     GPIOB->MODER &= ~(0x3 << (8 * 2));  
+  42              		.loc 1 13 5 is_stmt 1 view .LVU4
+  43              		.loc 1 13 10 is_stmt 0 view .LVU5
+  44 000a 4A4B     		ldr	r3, .L6+4
+  45 000c 1A68     		ldr	r2, [r3]
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccsbBR4h.s 			page 2
+
+
+  46              		.loc 1 13 18 view .LVU6
+  47 000e 22F44032 		bic	r2, r2, #196608
+  48 0012 1A60     		str	r2, [r3]
+  14:Core/Src/main.c ****     GPIOB->PUPDR &= ~(0x3 << (8 * 2));  
+  49              		.loc 1 14 5 is_stmt 1 view .LVU7
+  50              		.loc 1 14 10 is_stmt 0 view .LVU8
+  51 0014 DA68     		ldr	r2, [r3, #12]
+  52              		.loc 1 14 18 view .LVU9
+  53 0016 22F44032 		bic	r2, r2, #196608
+  54 001a DA60     		str	r2, [r3, #12]
+  15:Core/Src/main.c ****     GPIOB->PUPDR |= (0x1 << (8 * 2));   // режим подтяжки вверх
+  55              		.loc 1 15 5 is_stmt 1 view .LVU10
+  56              		.loc 1 15 10 is_stmt 0 view .LVU11
+  57 001c DA68     		ldr	r2, [r3, #12]
+  58              		.loc 1 15 18 view .LVU12
+  59 001e 42F48032 		orr	r2, r2, #65536
+  60 0022 DA60     		str	r2, [r3, #12]
+  16:Core/Src/main.c **** 
+  17:Core/Src/main.c ****     /////////////////////////////////////////////////////////////////////
+  18:Core/Src/main.c **** 
+  19:Core/Src/main.c ****     // Настройка PB1 как вход с подтяжкой вверх (кнопка)
+  20:Core/Src/main.c ****     GPIOB->MODER &= ~(0x3 << (1 * 2));  
+  61              		.loc 1 20 5 is_stmt 1 view .LVU13
+  62              		.loc 1 20 10 is_stmt 0 view .LVU14
+  63 0024 1A68     		ldr	r2, [r3]
+  64              		.loc 1 20 18 view .LVU15
+  65 0026 22F00C02 		bic	r2, r2, #12
+  66 002a 1A60     		str	r2, [r3]
+  21:Core/Src/main.c ****     GPIOB->PUPDR &= ~(0x3 << (1 * 2));  
+  67              		.loc 1 21 5 is_stmt 1 view .LVU16
+  68              		.loc 1 21 10 is_stmt 0 view .LVU17
+  69 002c DA68     		ldr	r2, [r3, #12]
+  70              		.loc 1 21 18 view .LVU18
+  71 002e 22F00C02 		bic	r2, r2, #12
+  72 0032 DA60     		str	r2, [r3, #12]
+  22:Core/Src/main.c ****     GPIOB->PUPDR |= (0x1 << (1 * 2));   // режим подтяжки вверх
+  73              		.loc 1 22 5 is_stmt 1 view .LVU19
+  74              		.loc 1 22 10 is_stmt 0 view .LVU20
+  75 0034 DA68     		ldr	r2, [r3, #12]
+  76              		.loc 1 22 18 view .LVU21
+  77 0036 42F00402 		orr	r2, r2, #4
+  78 003a DA60     		str	r2, [r3, #12]
+  23:Core/Src/main.c **** 
+  24:Core/Src/main.c ****     /////////////////////////////////////////////////////////////////////
+  25:Core/Src/main.c **** 
+  26:Core/Src/main.c ****     /////////////////////////////////////////////////////////////////////
+  27:Core/Src/main.c **** 
+  28:Core/Src/main.c ****     // Настройка PB2 как вход с подтяжкой вверх (кнопка)
+  29:Core/Src/main.c ****     GPIOB->MODER &= ~(0x3 << (2 * 2));  
+  79              		.loc 1 29 5 is_stmt 1 view .LVU22
+  80              		.loc 1 29 10 is_stmt 0 view .LVU23
+  81 003c 1A68     		ldr	r2, [r3]
+  82              		.loc 1 29 18 view .LVU24
+  83 003e 22F03002 		bic	r2, r2, #48
+  84 0042 1A60     		str	r2, [r3]
+  30:Core/Src/main.c ****     GPIOB->PUPDR &= ~(0x3 << (2 * 2));  
+  85              		.loc 1 30 5 is_stmt 1 view .LVU25
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccsbBR4h.s 			page 3
+
+
+  86              		.loc 1 30 10 is_stmt 0 view .LVU26
+  87 0044 DA68     		ldr	r2, [r3, #12]
+  88              		.loc 1 30 18 view .LVU27
+  89 0046 22F03002 		bic	r2, r2, #48
+  90 004a DA60     		str	r2, [r3, #12]
+  31:Core/Src/main.c ****     GPIOB->PUPDR |= (0x1 << (2 * 2));   // режим подтяжки вверх
+  91              		.loc 1 31 5 is_stmt 1 view .LVU28
+  92              		.loc 1 31 10 is_stmt 0 view .LVU29
+  93 004c DA68     		ldr	r2, [r3, #12]
+  94              		.loc 1 31 18 view .LVU30
+  95 004e 42F01002 		orr	r2, r2, #16
+  96 0052 DA60     		str	r2, [r3, #12]
+  32:Core/Src/main.c **** 
+  33:Core/Src/main.c ****     /////////////////////////////////////////////////////////////////////
+  34:Core/Src/main.c **** 
+  35:Core/Src/main.c ****     // Настраиваем PA5 как выход (MODER5[1:0] = 01)
+  36:Core/Src/main.c ****     GPIOA->MODER &= ~(0x3 << (5 * 2)); // Сбрасываем биты MODER5
+  97              		.loc 1 36 5 is_stmt 1 view .LVU31
+  98              		.loc 1 36 10 is_stmt 0 view .LVU32
+  99 0054 384A     		ldr	r2, .L6+8
+ 100 0056 1168     		ldr	r1, [r2]
+ 101              		.loc 1 36 18 view .LVU33
+ 102 0058 21F44061 		bic	r1, r1, #3072
+ 103 005c 1160     		str	r1, [r2]
+  37:Core/Src/main.c ****     GPIOA->MODER |=  (0x1 << (5 * 2)); // Устанавливаем режим Output
+ 104              		.loc 1 37 5 is_stmt 1 view .LVU34
+ 105              		.loc 1 37 10 is_stmt 0 view .LVU35
+ 106 005e 1168     		ldr	r1, [r2]
+ 107              		.loc 1 37 18 view .LVU36
+ 108 0060 41F48061 		orr	r1, r1, #1024
+ 109 0064 1160     		str	r1, [r2]
+  38:Core/Src/main.c **** 
+  39:Core/Src/main.c ****     /////////////////////////////////////////////////////////////////////
+  40:Core/Src/main.c **** 
+  41:Core/Src/main.c ****     // A11
+  42:Core/Src/main.c **** 
+  43:Core/Src/main.c ****     // Настраиваем PA11 как выход (MODER11[1:0] = 01)
+  44:Core/Src/main.c ****     GPIOA->MODER &= ~(0x3 << (11 * 2)); // Сбрасываем биты MODER11
+ 110              		.loc 1 44 5 is_stmt 1 view .LVU37
+ 111              		.loc 1 44 10 is_stmt 0 view .LVU38
+ 112 0066 1168     		ldr	r1, [r2]
+ 113              		.loc 1 44 18 view .LVU39
+ 114 0068 21F44001 		bic	r1, r1, #12582912
+ 115 006c 1160     		str	r1, [r2]
+  45:Core/Src/main.c ****     GPIOA->MODER |=  (0x1 << (11 * 2)); // Устанавливаем режим Output
+ 116              		.loc 1 45 5 is_stmt 1 view .LVU40
+ 117              		.loc 1 45 10 is_stmt 0 view .LVU41
+ 118 006e 1168     		ldr	r1, [r2]
+ 119              		.loc 1 45 18 view .LVU42
+ 120 0070 41F48001 		orr	r1, r1, #4194304
+ 121 0074 1160     		str	r1, [r2]
+  46:Core/Src/main.c **** 
+  47:Core/Src/main.c ****     // Настраиваем тип выхода - push-pull (OTYPER1 = 0)
+  48:Core/Src/main.c ****     GPIOA->OTYPER &= ~(1 << 11);
+ 122              		.loc 1 48 5 is_stmt 1 view .LVU43
+ 123              		.loc 1 48 10 is_stmt 0 view .LVU44
+ 124 0076 5168     		ldr	r1, [r2, #4]
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccsbBR4h.s 			page 4
+
+
+ 125              		.loc 1 48 19 view .LVU45
+ 126 0078 21F40061 		bic	r1, r1, #2048
+ 127 007c 5160     		str	r1, [r2, #4]
+  49:Core/Src/main.c **** 
+  50:Core/Src/main.c ****     // Настраиваем скорость вывода как высокую (OSPEEDR1 = 10)
+  51:Core/Src/main.c ****     GPIOA->OSPEEDR &= ~(0x3 << (11 * 2));
+ 128              		.loc 1 51 5 is_stmt 1 view .LVU46
+ 129              		.loc 1 51 10 is_stmt 0 view .LVU47
+ 130 007e 9168     		ldr	r1, [r2, #8]
+ 131              		.loc 1 51 20 view .LVU48
+ 132 0080 21F44001 		bic	r1, r1, #12582912
+ 133 0084 9160     		str	r1, [r2, #8]
+  52:Core/Src/main.c ****     GPIOA->OSPEEDR |= (0x2 << (11 * 2));
+ 134              		.loc 1 52 5 is_stmt 1 view .LVU49
+ 135              		.loc 1 52 10 is_stmt 0 view .LVU50
+ 136 0086 9168     		ldr	r1, [r2, #8]
+ 137              		.loc 1 52 20 view .LVU51
+ 138 0088 41F40001 		orr	r1, r1, #8388608
+ 139 008c 9160     		str	r1, [r2, #8]
+  53:Core/Src/main.c **** 
+  54:Core/Src/main.c ****     // Без подтягивающего резистора (PUPDR11 = 00)
+  55:Core/Src/main.c ****     GPIOA->PUPDR &= ~(0x3 << (11 * 2));
+ 140              		.loc 1 55 5 is_stmt 1 view .LVU52
+ 141              		.loc 1 55 10 is_stmt 0 view .LVU53
+ 142 008e D168     		ldr	r1, [r2, #12]
+ 143              		.loc 1 55 18 view .LVU54
+ 144 0090 21F44001 		bic	r1, r1, #12582912
+ 145 0094 D160     		str	r1, [r2, #12]
+  56:Core/Src/main.c **** 
+  57:Core/Src/main.c ****     /////////////////////////////////////////////////////////////////////
+  58:Core/Src/main.c **** 
+  59:Core/Src/main.c ****     // B9
+  60:Core/Src/main.c **** 
+  61:Core/Src/main.c ****     // Настраиваем PB9 как выход (MODER3[1:0] = 01)
+  62:Core/Src/main.c ****     GPIOB->MODER &= ~(0x3 << (9 * 2)); // Сбрасываем биты MODER3
+ 146              		.loc 1 62 5 is_stmt 1 view .LVU55
+ 147              		.loc 1 62 10 is_stmt 0 view .LVU56
+ 148 0096 1968     		ldr	r1, [r3]
+ 149              		.loc 1 62 18 view .LVU57
+ 150 0098 21F44021 		bic	r1, r1, #786432
+ 151 009c 1960     		str	r1, [r3]
+  63:Core/Src/main.c ****     GPIOB->MODER |=  (0x1 << (9 * 2)); // Устанавливаем режим Output    
+ 152              		.loc 1 63 5 is_stmt 1 view .LVU58
+ 153              		.loc 1 63 10 is_stmt 0 view .LVU59
+ 154 009e 1968     		ldr	r1, [r3]
+ 155              		.loc 1 63 18 view .LVU60
+ 156 00a0 41F48021 		orr	r1, r1, #262144
+ 157 00a4 1960     		str	r1, [r3]
+  64:Core/Src/main.c ****     
+  65:Core/Src/main.c ****     // Настраиваем тип выхода - push-pull (OTYPER9 = 0)
+  66:Core/Src/main.c ****     GPIOB->OTYPER &= ~(1 << 9);
+ 158              		.loc 1 66 5 is_stmt 1 view .LVU61
+ 159              		.loc 1 66 10 is_stmt 0 view .LVU62
+ 160 00a6 5968     		ldr	r1, [r3, #4]
+ 161              		.loc 1 66 19 view .LVU63
+ 162 00a8 21F40071 		bic	r1, r1, #512
+ 163 00ac 5960     		str	r1, [r3, #4]
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccsbBR4h.s 			page 5
+
+
+  67:Core/Src/main.c **** 
+  68:Core/Src/main.c ****     // Настраиваем скорость вывода как высокую (OSPEEDR9 = 10)
+  69:Core/Src/main.c ****     GPIOB->OSPEEDR &= ~(0x3 << (9 * 2));
+ 164              		.loc 1 69 5 is_stmt 1 view .LVU64
+ 165              		.loc 1 69 10 is_stmt 0 view .LVU65
+ 166 00ae 9968     		ldr	r1, [r3, #8]
+ 167              		.loc 1 69 20 view .LVU66
+ 168 00b0 21F44021 		bic	r1, r1, #786432
+ 169 00b4 9960     		str	r1, [r3, #8]
+  70:Core/Src/main.c ****     GPIOB->OSPEEDR |= (0x2 << (9 * 2));
+ 170              		.loc 1 70 5 is_stmt 1 view .LVU67
+ 171              		.loc 1 70 10 is_stmt 0 view .LVU68
+ 172 00b6 9968     		ldr	r1, [r3, #8]
+ 173              		.loc 1 70 20 view .LVU69
+ 174 00b8 41F40021 		orr	r1, r1, #524288
+ 175 00bc 9960     		str	r1, [r3, #8]
+  71:Core/Src/main.c **** 
+  72:Core/Src/main.c ****     // Без подтягивающего резистора (PUPDR9 = 00)
+  73:Core/Src/main.c ****     GPIOB->PUPDR &= ~(0x3 << (9 * 2));
+ 176              		.loc 1 73 5 is_stmt 1 view .LVU70
+ 177              		.loc 1 73 10 is_stmt 0 view .LVU71
+ 178 00be D968     		ldr	r1, [r3, #12]
+ 179              		.loc 1 73 18 view .LVU72
+ 180 00c0 21F44021 		bic	r1, r1, #786432
+ 181 00c4 D960     		str	r1, [r3, #12]
+  74:Core/Src/main.c **** 
+  75:Core/Src/main.c ****     /////////////////////////////////////////////////////////////////////
+  76:Core/Src/main.c **** 
+  77:Core/Src/main.c ****     /////////////////////////////////////////////////////////////////////
+  78:Core/Src/main.c **** 
+  79:Core/Src/main.c ****     // A10
+  80:Core/Src/main.c **** 
+  81:Core/Src/main.c ****     // Настраиваем PA3 как выход (MODER3[1:0] = 01)
+  82:Core/Src/main.c ****     GPIOA->MODER &= ~(0x3 << (10 * 2)); // Сбрасываем биты MODER3
+ 182              		.loc 1 82 5 is_stmt 1 view .LVU73
+ 183              		.loc 1 82 10 is_stmt 0 view .LVU74
+ 184 00c6 1368     		ldr	r3, [r2]
+ 185              		.loc 1 82 18 view .LVU75
+ 186 00c8 23F44013 		bic	r3, r3, #3145728
+ 187 00cc 1360     		str	r3, [r2]
+  83:Core/Src/main.c ****     GPIOA->MODER |=  (0x1 << (10 * 2)); // Устанавливаем режим Output
+ 188              		.loc 1 83 5 is_stmt 1 view .LVU76
+ 189              		.loc 1 83 10 is_stmt 0 view .LVU77
+ 190 00ce 1368     		ldr	r3, [r2]
+ 191              		.loc 1 83 18 view .LVU78
+ 192 00d0 43F48013 		orr	r3, r3, #1048576
+ 193 00d4 1360     		str	r3, [r2]
+  84:Core/Src/main.c **** 
+  85:Core/Src/main.c ****     // Настраиваем тип выхода - push-pull (OTYPER1 = 0)
+  86:Core/Src/main.c ****     GPIOA->OTYPER &= ~(1 << 10);
+ 194              		.loc 1 86 5 is_stmt 1 view .LVU79
+ 195              		.loc 1 86 10 is_stmt 0 view .LVU80
+ 196 00d6 5368     		ldr	r3, [r2, #4]
+ 197              		.loc 1 86 19 view .LVU81
+ 198 00d8 23F48063 		bic	r3, r3, #1024
+ 199 00dc 5360     		str	r3, [r2, #4]
+  87:Core/Src/main.c **** 
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccsbBR4h.s 			page 6
+
+
+  88:Core/Src/main.c ****     // Настраиваем скорость вывода как высокую (OSPEEDR1 = 10)
+  89:Core/Src/main.c ****     GPIOA->OSPEEDR &= ~(0x3 << (10 * 2));
+ 200              		.loc 1 89 5 is_stmt 1 view .LVU82
+ 201              		.loc 1 89 10 is_stmt 0 view .LVU83
+ 202 00de 9368     		ldr	r3, [r2, #8]
+ 203              		.loc 1 89 20 view .LVU84
+ 204 00e0 23F44013 		bic	r3, r3, #3145728
+ 205 00e4 9360     		str	r3, [r2, #8]
+  90:Core/Src/main.c ****     GPIOA->OSPEEDR |= (0x2 << (10 * 2));
+ 206              		.loc 1 90 5 is_stmt 1 view .LVU85
+ 207              		.loc 1 90 10 is_stmt 0 view .LVU86
+ 208 00e6 9368     		ldr	r3, [r2, #8]
+ 209              		.loc 1 90 20 view .LVU87
+ 210 00e8 43F40013 		orr	r3, r3, #2097152
+ 211 00ec 9360     		str	r3, [r2, #8]
+  91:Core/Src/main.c **** 
+  92:Core/Src/main.c ****     // Без подтягивающего резистора (PUPDR3 = 00)
+  93:Core/Src/main.c ****     GPIOA->PUPDR &= ~(0x3 << (10 * 2));
+ 212              		.loc 1 93 5 is_stmt 1 view .LVU88
+ 213              		.loc 1 93 10 is_stmt 0 view .LVU89
+ 214 00ee D368     		ldr	r3, [r2, #12]
+ 215              		.loc 1 93 18 view .LVU90
+ 216 00f0 23F44013 		bic	r3, r3, #3145728
+ 217 00f4 D360     		str	r3, [r2, #12]
+ 218 00f6 0AE0     		b	.L4
+ 219              	.L5:
+  94:Core/Src/main.c **** 
+  95:Core/Src/main.c ****     /////////////////////////////////////////////////////////////////////
+  96:Core/Src/main.c **** 
+  97:Core/Src/main.c **** 
+  98:Core/Src/main.c ****     while(1) {
+  99:Core/Src/main.c ****         // Проверяем состояние кнопки
+ 100:Core/Src/main.c ****         if ((GPIOB->IDR & (1 << 8)) == 0)
+ 101:Core/Src/main.c ****         {   // кнопка нажата (LOW)
+ 102:Core/Src/main.c ****             GPIOA->BSRR = (1 << 5);          // зажечь светодиод (установит
+ 220              		.loc 1 102 13 is_stmt 1 view .LVU91
+ 221              		.loc 1 102 25 is_stmt 0 view .LVU92
+ 222 00f8 0F4B     		ldr	r3, .L6+8
+ 223 00fa 2022     		movs	r2, #32
+ 224 00fc 9A61     		str	r2, [r3, #24]
+ 103:Core/Src/main.c ****             GPIOA->BSRR = (1 << 11);          // зажечь светодиод (установи�
+ 225              		.loc 1 103 13 is_stmt 1 view .LVU93
+ 226              		.loc 1 103 25 is_stmt 0 view .LVU94
+ 227 00fe 4FF40062 		mov	r2, #2048
+ 228 0102 9A61     		str	r2, [r3, #24]
+ 104:Core/Src/main.c ****             GPIOA->BSRR = (1 << 10);          // зажечь светодиод (установи�
+ 229              		.loc 1 104 13 is_stmt 1 view .LVU95
+ 230              		.loc 1 104 25 is_stmt 0 view .LVU96
+ 231 0104 4FF48062 		mov	r2, #1024
+ 232 0108 9A61     		str	r2, [r3, #24]
+ 233              	.L3:
+ 105:Core/Src/main.c ****         } 
+ 106:Core/Src/main.c ****         else
+ 107:Core/Src/main.c ****         {
+ 108:Core/Src/main.c ****          GPIOA->BSRR = (1 << (5 + 16));   // погасить светодиод (сброс PA5)
+ 109:Core/Src/main.c ****          GPIOA->BSRR = (1 << (11 + 16));   // погасить светодиод (сброс PA11)
+ 110:Core/Src/main.c ****          GPIOA->BSRR = (1 << (10 + 16));   // погасить светодиод (сброс PA10)
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccsbBR4h.s 			page 7
+
+
+ 111:Core/Src/main.c ****         }
+ 112:Core/Src/main.c **** 
+ 113:Core/Src/main.c ****         if ((GPIOB->IDR & (1 << 1)) == 0)
+ 234              		.loc 1 113 9 is_stmt 1 view .LVU97
+ 235              		.loc 1 113 19 is_stmt 0 view .LVU98
+ 236 010a 0A4B     		ldr	r3, .L6+4
+ 237 010c 1B69     		ldr	r3, [r3, #16]
+ 114:Core/Src/main.c ****         {   // кнопка нажата (LOW)
+ 115:Core/Src/main.c ****            // GPIOA->BSRR = (1 << 10);          // зажечь светодиод (установ�
+ 116:Core/Src/main.c ****         } 
+ 238              		.loc 1 116 9 is_stmt 1 view .LVU99
+ 117:Core/Src/main.c ****         else
+ 118:Core/Src/main.c ****         {
+ 119:Core/Src/main.c ****            // GPIOA->BSRR = (1 << (10 + 16));   // погасить светодиод (сброс 
+ 120:Core/Src/main.c ****         }
+ 239              		.loc 1 120 9 view .LVU100
+  98:Core/Src/main.c ****         // Проверяем состояние кнопки
+ 240              		.loc 1 98 10 view .LVU101
+ 241              	.L4:
+  98:Core/Src/main.c ****         // Проверяем состояние кнопки
+ 242              		.loc 1 98 5 view .LVU102
+ 100:Core/Src/main.c ****         {   // кнопка нажата (LOW)
+ 243              		.loc 1 100 9 view .LVU103
+ 100:Core/Src/main.c ****         {   // кнопка нажата (LOW)
+ 244              		.loc 1 100 19 is_stmt 0 view .LVU104
+ 245 010e 094B     		ldr	r3, .L6+4
+ 246 0110 1B69     		ldr	r3, [r3, #16]
+ 100:Core/Src/main.c ****         {   // кнопка нажата (LOW)
+ 247              		.loc 1 100 12 view .LVU105
+ 248 0112 13F4807F 		tst	r3, #256
+ 249 0116 EFD0     		beq	.L5
+ 108:Core/Src/main.c ****          GPIOA->BSRR = (1 << (11 + 16));   // погасить светодиод (сброс PA11)
+ 250              		.loc 1 108 10 is_stmt 1 view .LVU106
+ 108:Core/Src/main.c ****          GPIOA->BSRR = (1 << (11 + 16));   // погасить светодиод (сброс PA11)
+ 251              		.loc 1 108 22 is_stmt 0 view .LVU107
+ 252 0118 074B     		ldr	r3, .L6+8
+ 253 011a 4FF40012 		mov	r2, #2097152
+ 254 011e 9A61     		str	r2, [r3, #24]
+ 109:Core/Src/main.c ****          GPIOA->BSRR = (1 << (10 + 16));   // погасить светодиод (сброс PA10)
+ 255              		.loc 1 109 10 is_stmt 1 view .LVU108
+ 109:Core/Src/main.c ****          GPIOA->BSRR = (1 << (10 + 16));   // погасить светодиод (сброс PA10)
+ 256              		.loc 1 109 22 is_stmt 0 view .LVU109
+ 257 0120 4FF00062 		mov	r2, #134217728
+ 258 0124 9A61     		str	r2, [r3, #24]
+ 110:Core/Src/main.c ****         }
+ 259              		.loc 1 110 10 is_stmt 1 view .LVU110
+ 110:Core/Src/main.c ****         }
+ 260              		.loc 1 110 22 is_stmt 0 view .LVU111
+ 261 0126 4FF08062 		mov	r2, #67108864
+ 262 012a 9A61     		str	r2, [r3, #24]
+ 263 012c EDE7     		b	.L3
+ 264              	.L7:
+ 265 012e 00BF     		.align	2
+ 266              	.L6:
+ 267 0130 00380240 		.word	1073887232
+ 268 0134 00040240 		.word	1073873920
+ 269 0138 00000240 		.word	1073872896
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccsbBR4h.s 			page 8
+
+
+ 270              		.cfi_endproc
+ 271              	.LFE130:
+ 273              		.text
+ 274              	.Letext0:
+ 275              		.file 2 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 276              		.file 3 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 277              		.file 4 "CMSIS/Devices/STM32F4xx/Inc/STM32F411xE/stm32f411xe.h"
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccsbBR4h.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\pashk\AppData\Local\Temp\ccsbBR4h.s:21     .text.main:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccsbBR4h.s:27     .text.main:00000000 main
+C:\Users\pashk\AppData\Local\Temp\ccsbBR4h.s:267    .text.main:00000130 $d
+
+NO UNDEFINED SYMBOLS
