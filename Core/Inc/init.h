@@ -4,6 +4,9 @@
 void delay(volatile uint32_t count);
 void GPIO_Init_with_CMSIS(void);
 void GPIO_Init_with_my_macro(void);
+void ITR_Init(void);
+void EXTI15_10_IRQHandler(void);
+
 
 // ВКЛЮЧЕНИЕ ТАКТИРОВАНИЯ
 #define RCC_GPIO (*(uint32_t*)(0x40023800UL + 0x30UL)) // обращение к регистру AHB1ENR
@@ -16,7 +19,13 @@ void GPIO_Init_with_my_macro(void);
 #define READ_GPIO_B3 (*(uint32_t*)(0x40020400 + 0x10UL) & 0x8) // чтение PB3
 #define READ_GPIO_B8 (*(uint32_t*)(0x40020400 + 0x10UL) & 0x100) // чтение PB8
 
-// ИЗМЕНЕНИЕ БИТОВ
+// ЧТЕНИЕ СОСТОЯНИЯ ПИНА
+// ЕСЛИ ВЕРНЁТСЯ 0 - РЕЖИМ ВХОДА, 1 - РЕЖИМ ВЫХОДА, 2 - АЛЬТЕРНАТИВНАЯ ФУНКЦИЯ, 3 - АНАЛОГОВЫЙ РЕЖИМ
+#define READ_CONDITION_PORT_B1 ((GPIOB->MODER >> (1 * 2)) & 0x3) // чтение состояния пина PB1
+#define READ_CONDITION_PORT_B2 ((GPIOB->MODER >> (2 * 2)) & 0x3) // чтение состояния пина PB2
+#define READ_CONDITION_PORT_B3 ((GPIOB->MODER >> (3 * 2)) & 0x3) // чтение состояния пина PB3
+
+// ИЗМЕНЕНИЕ БИТОВ СВЕТОДИОДОВ
 #define SET_GPIO_A5 (*(uint32_t*)(0x40020000 + 0x18UL) = 0x20) // установка бита PA5
 #define SET_GPIO_A10 (*(uint32_t*)(0x40020000 + 0x18UL) = 0x400) // установка бита PA10
 #define SET_GPIO_A11 (*(uint32_t*)(0x40020000 + 0x18UL) = 0x800) // установка бита PA11
@@ -24,9 +33,22 @@ void GPIO_Init_with_my_macro(void);
 #define RESET_GPIO_A10 (*(uint32_t*)(0x40020000 + 0x18UL) = 0x4000000) // снятие бита PA10
 #define RESET_GPIO_A11 (*(uint32_t*)(0x40020000 + 0x18UL) = 0x8000000) // снятие бита PA11
 
-// НАСТРОЙКА ДЛЯ КНОПОК
+// ИЗМЕНЕНИЕ БИТОВ КНОПОК
+#define SET_GPIO_B1 (*(uint32_t*)(0x40020400 + 0x18UL) = 0x2) // установка бита PB1
+#define SET_GPIO_B2 (*(uint32_t*)(0x40020400 + 0x18UL) = 0x4) // установка бита PB2
+#define SET_GPIO_B3 (*(uint32_t*)(0x40020400 + 0x18UL) = 0x8) // установка бита PB3
+#define RESET_GPIO_B1 (*(uint32_t*)(0x40020400 + 0x18UL) = 0x20000) // снятие бита PB1
+#define RESET_GPIO_B2 (*(uint32_t*)(0x40020400 + 0x18UL) = 0x40000) // снятие бита PB2
+#define RESET_GPIO_B3 (*(uint32_t*)(0x40020400 + 0x18UL) = 0x80000) // снятие бита PB3
+
+// НАСТРОЙКА ДЛЯ КНОПОК В СОСТОЯНИИ ВХОДА
 #define GPIOB_MODER (*(uint32_t*)(0x40020400UL + 0x00UL)) // определение режима работы
-#define GPIOB_MODER_CLEAR (*(uint32_t*)(0x40020400UL + 0x00UL))
+#define GPIOB_PUPDR (*(uint32_t*)(0x40020400UL + 0x0CUL)) // подтягивающий резистор
+
+// НАСТРОЙКА ДЛЯ КНОПОК В СОСТОЯНИИ ВЫХОДА
+#define GPIOB_MODER (*(uint32_t*)(0x40020400UL + 0x00UL)) // определение режима работы
+#define GPIOB_OTYPER (*(uint32_t*)(0x40020400UL + 0x04UL)) // выбираем тип выхода 
+#define GPIOB_OSPEEDR (*(uint32_t*)(0x40020400UL + 0x08UL)) // выбираем скорость работы
 #define GPIOB_PUPDR (*(uint32_t*)(0x40020400UL + 0x0CUL)) // подтягивающий резистор
 
 // НАСТРОЙКА ДЛЯ СВЕТОДИОДОВ
@@ -36,10 +58,21 @@ void GPIO_Init_with_my_macro(void);
 #define GPIOA_PUPDR (*(uint32_t*)(0x40020000UL + 0x0CUL)) // подтягивающий резистор
 
 // КОНКРЕТНЫЕ БИТЫ ДЛЯ КНОПОК
-#define GPIOB_MODE_PIN1_OUT 0x4UL // PB1 на вход
-#define GPIOB_MODE_PIN2_OUT 0x10UL // PB2 на вход
-#define GPIOB_MODE_PIN3_OUT 0x40UL // PB3 на вход
-#define GPIOB_MODE_PIN8_OUT 0x10000UL // PB8 на вход
+/* #define GPIOB_MODE_PIN1_OUT 0x4UL // PB1 на выход
+#define GPIOB_MODE_PIN2_OUT 0x10UL // PB2 на выход
+#define GPIOB_MODE_PIN3_OUT 0x40UL // PB3 на выход
+#define GPIOB_MODE_PIN8_OUT 0x10000UL // PB8 на выход */
+
+#define GPIOB_MODE_PIN1_OUT (GPIOB->MODER |= (0x1 << (1 * 2))) // PB8 на выход
+#define GPIOB_MODE_PIN2_OUT (GPIOB->MODER |= (0x1 << (2 * 2))) // PB8 на выход
+#define GPIOB_MODE_PIN3_OUT (GPIOB->MODER |= (0x1 << (3 * 2))) // PB8 на выход
+#define GPIOB_MODE_PIN8_OUT (GPIOB->MODER |= (0x1 << (8 * 2))) // PB8 на выход
+
+#define GPIOB_MODE_PIN1_IN (GPIOB->MODER &= ~(0x3 << (1 * 2))) // PB1 на вход
+#define GPIOB_MODE_PIN2_IN (GPIOB->MODER &= ~(0x3 << (2 * 2))) // PB2 на вход
+#define GPIOB_MODE_PIN3_IN (GPIOB->MODER &= ~(0x3 << (3 * 2))) // PB3 на вход
+#define GPIOB_MODE_PIN8_IN (GPIOB->MODER &= ~(0x3 << (8 * 2))) // PB8 на вход
+
 
 #define GPIOB_PUPD_PIN1_PULL_UP 0x4UL // PB1 pull-up
 #define GPIOB_PUPD_PIN2_PULL_UP 0x10UL // PB2 pull-up
@@ -61,4 +94,4 @@ void GPIO_Init_with_my_macro(void);
 #define GPIOA_PUPD_PIN10_NOPUPD 0x0000UL // PA10 без подтягивающего резистора
 #define GPIOA_PUPD_PIN11_NOPUPD 0x0000UL // PA11 без подтягивающего резистора
 
-// КОМАНДА ДЛЯ ТЕСТА
+

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccotRKW0.s 			page 1
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccQdFWxb.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -29,47 +29,150 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccotRKW0.s 			page 1
   27              	main:
   28              	.LFB130:
    1:Core/Src/main.c **** #include "init.h"
-   2:Core/Src/main.c **** 
-   3:Core/Src/main.c **** int main(void)
-   4:Core/Src/main.c **** {
-  29              		.loc 1 4 1 view -0
+   2:Core/Src/main.c **** #include "it_handlers.h"
+   3:Core/Src/main.c **** 
+   4:Core/Src/main.c **** uint8_t LedState;
+   5:Core/Src/main.c **** 
+   6:Core/Src/main.c **** int counter8 = -1; // счётчик для главной кнопки
+   7:Core/Src/main.c **** int counter1 = -1; // счётчик для первой кнопки
+   8:Core/Src/main.c **** int counter2 = -1; // счётчик для второй кнопки
+   9:Core/Src/main.c **** int counter3 = -1; // счётчик для третьей кнопки
+  10:Core/Src/main.c **** uint32_t time = 0; // счётчик длительности удержания кнопки
+  11:Core/Src/main.c **** int main(void)
+  12:Core/Src/main.c **** {
+  29              		.loc 1 12 1 view -0
   30              		.cfi_startproc
-  31              		@ Volatile: function does not return.
-  32              		@ args = 0, pretend = 0, frame = 0
-  33              		@ frame_needed = 0, uses_anonymous_args = 0
-  34              		@ link register save eliminated.
-  35              	.L2:
-   5:Core/Src/main.c ****     while (1)
-  36              		.loc 1 5 5 view .LVU1
-   6:Core/Src/main.c ****     {
-   7:Core/Src/main.c ****         SET_GPIO_A5;
-  37              		.loc 1 7 9 discriminator 1 view .LVU2
-  38 0000 014B     		ldr	r3, .L3
-  39 0002 2022     		movs	r2, #32
-  40 0004 9A61     		str	r2, [r3, #24]
-   5:Core/Src/main.c ****     while (1)
-  41              		.loc 1 5 11 view .LVU3
-  42 0006 FBE7     		b	.L2
-  43              	.L4:
-  44              		.align	2
-  45              	.L3:
-  46 0008 00000240 		.word	1073872896
-  47              		.cfi_endproc
-  48              	.LFE130:
-  50              		.text
-  51              	.Letext0:
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccotRKW0.s 			page 2
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 08B5     		push	{r3, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 3, -8
+  37              		.cfi_offset 14, -4
+  13:Core/Src/main.c ****     ITR_Init();
+  38              		.loc 1 13 5 view .LVU1
+  39 0002 FFF7FEFF 		bl	ITR_Init
+  40              	.LVL0:
+  14:Core/Src/main.c ****     uint8_t check_status8 = 1; // 0 - кнопка не нажата, 1 - кнопка нажата
+  41              		.loc 1 14 5 view .LVU2
+  15:Core/Src/main.c ****     uint8_t check_status1 = 0;
+  42              		.loc 1 15 5 view .LVU3
+  16:Core/Src/main.c ****     uint8_t check_status2 = 0;
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccQdFWxb.s 			page 2
 
 
-  52              		.file 2 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
-  53              		.file 3 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccotRKW0.s 			page 3
+  43              		.loc 1 16 5 view .LVU4
+  17:Core/Src/main.c ****     uint8_t check_status3 = 0;
+  44              		.loc 1 17 5 view .LVU5
+  18:Core/Src/main.c ****     GPIO_Init_with_my_macro();
+  45              		.loc 1 18 5 view .LVU6
+  46 0006 FFF7FEFF 		bl	GPIO_Init_with_my_macro
+  47              	.LVL1:
+  19:Core/Src/main.c ****     EXTI15_10_IRQHandler();
+  48              		.loc 1 19 5 view .LVU7
+  49 000a FFF7FEFF 		bl	EXTI15_10_IRQHandler
+  50              	.LVL2:
+  51 000e 03E0     		b	.L2
+  52              	.L6:
+  20:Core/Src/main.c ****     while (1)
+  21:Core/Src/main.c ****     {
+  22:Core/Src/main.c ****         if(LedState)
+  23:Core/Src/main.c ****         {
+  24:Core/Src/main.c ****             SET_GPIO_A10;
+  53              		.loc 1 24 13 view .LVU8
+  54 0010 064B     		ldr	r3, .L7
+  55 0012 4FF48062 		mov	r2, #1024
+  56 0016 9A61     		str	r2, [r3, #24]
+  57              	.L2:
+  20:Core/Src/main.c ****     while (1)
+  58              		.loc 1 20 5 view .LVU9
+  22:Core/Src/main.c ****         {
+  59              		.loc 1 22 9 view .LVU10
+  22:Core/Src/main.c ****         {
+  60              		.loc 1 22 12 is_stmt 0 view .LVU11
+  61 0018 054B     		ldr	r3, .L7+4
+  62 001a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  22:Core/Src/main.c ****         {
+  63              		.loc 1 22 11 view .LVU12
+  64 001c 002B     		cmp	r3, #0
+  65 001e F7D1     		bne	.L6
+  25:Core/Src/main.c ****         }
+  26:Core/Src/main.c ****         
+  27:Core/Src/main.c ****         else
+  28:Core/Src/main.c ****         {
+  29:Core/Src/main.c ****             RESET_GPIO_A10;
+  66              		.loc 1 29 13 is_stmt 1 view .LVU13
+  67 0020 024B     		ldr	r3, .L7
+  68 0022 4FF08062 		mov	r2, #67108864
+  69 0026 9A61     		str	r2, [r3, #24]
+  70 0028 F6E7     		b	.L2
+  71              	.L8:
+  72 002a 00BF     		.align	2
+  73              	.L7:
+  74 002c 00000240 		.word	1073872896
+  75 0030 00000000 		.word	LedState
+  76              		.cfi_endproc
+  77              	.LFE130:
+  79              		.global	time
+  80              		.section	.bss.time,"aw",%nobits
+  81              		.align	2
+  84              	time:
+  85 0000 00000000 		.space	4
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccQdFWxb.s 			page 3
+
+
+  86              		.global	counter3
+  87              		.section	.data.counter3,"aw"
+  88              		.align	2
+  91              	counter3:
+  92 0000 FFFFFFFF 		.word	-1
+  93              		.global	counter2
+  94              		.section	.data.counter2,"aw"
+  95              		.align	2
+  98              	counter2:
+  99 0000 FFFFFFFF 		.word	-1
+ 100              		.global	counter1
+ 101              		.section	.data.counter1,"aw"
+ 102              		.align	2
+ 105              	counter1:
+ 106 0000 FFFFFFFF 		.word	-1
+ 107              		.global	counter8
+ 108              		.section	.data.counter8,"aw"
+ 109              		.align	2
+ 112              	counter8:
+ 113 0000 FFFFFFFF 		.word	-1
+ 114              		.global	LedState
+ 115              		.section	.bss.LedState,"aw",%nobits
+ 118              	LedState:
+ 119 0000 00       		.space	1
+ 120              		.text
+ 121              	.Letext0:
+ 122              		.file 2 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 123              		.file 3 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 124              		.file 4 "Core/Inc/it_handlers.h"
+ 125              		.file 5 "Core/Inc/init.h"
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccQdFWxb.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\pashk\AppData\Local\Temp\ccotRKW0.s:21     .text.main:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccotRKW0.s:27     .text.main:00000000 main
-C:\Users\pashk\AppData\Local\Temp\ccotRKW0.s:46     .text.main:00000008 $d
+C:\Users\pashk\AppData\Local\Temp\ccQdFWxb.s:21     .text.main:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccQdFWxb.s:27     .text.main:00000000 main
+C:\Users\pashk\AppData\Local\Temp\ccQdFWxb.s:74     .text.main:0000002c $d
+C:\Users\pashk\AppData\Local\Temp\ccQdFWxb.s:118    .bss.LedState:00000000 LedState
+C:\Users\pashk\AppData\Local\Temp\ccQdFWxb.s:84     .bss.time:00000000 time
+C:\Users\pashk\AppData\Local\Temp\ccQdFWxb.s:81     .bss.time:00000000 $d
+C:\Users\pashk\AppData\Local\Temp\ccQdFWxb.s:91     .data.counter3:00000000 counter3
+C:\Users\pashk\AppData\Local\Temp\ccQdFWxb.s:88     .data.counter3:00000000 $d
+C:\Users\pashk\AppData\Local\Temp\ccQdFWxb.s:98     .data.counter2:00000000 counter2
+C:\Users\pashk\AppData\Local\Temp\ccQdFWxb.s:95     .data.counter2:00000000 $d
+C:\Users\pashk\AppData\Local\Temp\ccQdFWxb.s:105    .data.counter1:00000000 counter1
+C:\Users\pashk\AppData\Local\Temp\ccQdFWxb.s:102    .data.counter1:00000000 $d
+C:\Users\pashk\AppData\Local\Temp\ccQdFWxb.s:112    .data.counter8:00000000 counter8
+C:\Users\pashk\AppData\Local\Temp\ccQdFWxb.s:109    .data.counter8:00000000 $d
+C:\Users\pashk\AppData\Local\Temp\ccQdFWxb.s:119    .bss.LedState:00000000 $d
 
-NO UNDEFINED SYMBOLS
+UNDEFINED SYMBOLS
+ITR_Init
+GPIO_Init_with_my_macro
+EXTI15_10_IRQHandler

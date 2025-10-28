@@ -1,4 +1,4 @@
-build_F411RE/main.o: Core/Src/main.c Core/Inc/init.h \
+build_F411RE/it_handlers.o: Core/Src/it_handlers.c Core/Inc/init.h \
  CMSIS/Devices/STM32F4xx/Inc/stm32f4xx.h \
  CMSIS/Devices/STM32F4xx/Inc/STM32F411xE/stm32f411xe.h \
  CMSIS/Include/core_cm4.h CMSIS/Include/cmsis_version.h \
