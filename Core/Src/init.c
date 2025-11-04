@@ -1,11 +1,24 @@
 #include "init.h"
 
+void GPIO_Init(void)
+{
+    // настройка порта PC9 в качестве MCO2
+    SET_BIT(GPIOC->MODER,GPIO_MODER_MODER9_1); // настраиваем пин на альтернативный режим
+    SET_BIT(GPIOC->OSPEEDR, GPIO_OSPEEDR_OSPEED9); // настраиваем пин на максимальную скорость работы
+    MODIFY_REG(GPIOC->AFR[1], GPIO_AFRH_AFSEL9_Msk, 0x00UL); // выбираем тип альтернативной функции
+
+    // настройка порта PA8 в качестве MCO1
+    SET_BIT(GPIOA->MODER,GPIO_MODER_MODER8_1); // настраиваем пин на альтернативный режим
+    SET_BIT(GPIOA->OSPEEDR, GPIO_OSPEEDR_OSPEED8); // настраиваем пин на максимальную скорость работы
+    CLEAR_BIT(GPIOA->AFR[1], GPIO_AFRH_AFSEL8); // выбираем тип альтернативной функции
+}
+
 void GPIO_Init_with_CMSIS(void)
 {
     /////////////////////////////////////////////////////////////////////
 
     // Включаем тактирование GPIOA и GPIOB (бит 0 в RCC->AHB1ENR)
-    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN;
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN | RCC_AHB1ENR_GPIOCEN;
 
     /////////////////////////////////////////////////////////////////////
 
@@ -38,10 +51,12 @@ void GPIO_Init_with_CMSIS(void)
 
     /////////////////////////////////////////////////////////////////////
 
-    // Настройка PB8 как вход с подтяжкой вверх (кнопка)
-    GPIOB->MODER &= ~(0x3 << (8 * 2));  
-    GPIOB->PUPDR &= ~(0x3 << (8 * 2));  
-    GPIOB->PUPDR |= (0x1 << (8 * 2));   // режим подтяжки вверх
+    // Настройка PC10 как вход с подтяжкой вверх (кнопка)
+    GPIOC->MODER &= ~(0x3 << (10 * 2));  
+    GPIOC->PUPDR &= ~(0x3 << (10 * 2));  
+    GPIOC->PUPDR |= (0x1 << (10 * 2));   // режим подтяжки вверх
+
+    /////////////////////////////////////////////////////////////////////
 
     /////////////////////////////////////////////////////////////////////
 
@@ -96,7 +111,7 @@ void GPIO_Init_with_my_macro(void)
 {
     /////////////////////////////////////////////////////////////////////
     
-    RCC_GPIO |= RCC_GPIOA_ON | RCC_GPIOB_ON; // включение тактирования портов GPIOA и GPIOB
+    RCC_GPIO |= RCC_GPIOA_ON | RCC_GPIOB_ON | RCC_GPIOC_ON; // включение тактирования портов GPIOA, GPIOB и GPIOC
 
     /////////////////////////////////////////////////////////////////////
 
@@ -105,13 +120,15 @@ void GPIO_Init_with_my_macro(void)
     GPIOB_MODER = (GPIOB_MODER & ~(0x3UL << (1 * 2)));
     GPIOB_MODER = (GPIOB_MODER & ~(0x3UL << (2 * 2)));
     GPIOB_MODER = (GPIOB_MODER & ~(0x3UL << (3 * 2)));
-    GPIOB_MODER = (GPIOB_MODER & ~(0x3UL << (8 * 2)));
-    GPIOB_MODER |= GPIOB_MODE_PIN1_IN | GPIOB_MODE_PIN2_IN | GPIOB_MODE_PIN3_IN | GPIOB_MODE_PIN8_IN; // изначально режим входа на пинах
+    GPIOC_MODER = (GPIOC_MODER & ~(0x3UL << (10 * 2)));
+    GPIOB_MODER |= GPIOB_MODE_PIN1_IN | GPIOB_MODE_PIN2_IN | GPIOB_MODE_PIN3_IN; // изначально режим входа на пинах
+    GPIOC_MODER |= GPIOC_MODE_PIN10_IN; // изначально режим входа на пинах
     GPIOB_PUPDR = (GPIOB_PUPDR & ~(0x3UL << (1 * 2)));
     GPIOB_PUPDR = (GPIOB_PUPDR & ~(0x3UL << (2 * 2)));
     GPIOB_PUPDR = (GPIOB_PUPDR & ~(0x3UL << (3 * 2)));
-    GPIOB_PUPDR = (GPIOB_PUPDR & ~(0x3UL << (8 * 2)));
-    GPIOB_PUPDR |= GPIOB_PUPD_PIN1_PULL_UP | GPIOB_PUPD_PIN2_PULL_UP | GPIOB_PUPD_PIN3_PULL_UP | GPIOB_PUPD_PIN8_PULL_UP;
+    GPIOC_PUPDR = (GPIOC_PUPDR & ~(0x3UL << (10 * 2)));
+    GPIOB_PUPDR |= GPIOB_PUPD_PIN1_PULL_UP | GPIOB_PUPD_PIN2_PULL_UP | GPIOB_PUPD_PIN3_PULL_UP;
+    GPIOC_PUPDR |= GPIOC_PUPD_PIN10_PULL_UP;
 
     /////////////////////////////////////////////////////////////////////
 
@@ -137,74 +154,6 @@ void delay(volatile uint32_t count)
     }
 }
 
-void PB1_IN(void) // настройка на вход
-{
-    GPIOB_MODER = (GPIOB_MODER & ~(0x3UL << (1 * 2)));
-    GPIOB_OTYPER = (GPIOB_OTYPER & ~(0x3UL << (1 * 2)));
-    GPIOB_OSPEEDR = (GPIOB_OSPEEDR & ~(0x3UL << (1 * 2)));
-    GPIOB_PUPDR = (GPIOB_PUPDR & ~(0x3UL << (1 * 2)));
-    GPIOB_MODER |= GPIOB_MODE_PIN1_IN;
-    GPIOB_PUPDR |= GPIOB_PUPD_PIN1_PULL_UP;
-}
-
-void PB2_IN(void) // настройка на вход
-{
-    GPIOB_MODER = (GPIOB_MODER & ~(0x3UL << (2 * 2)));
-    GPIOB_OTYPER = (GPIOB_OTYPER & ~(0x3UL << (2 * 2)));
-    GPIOB_OSPEEDR = (GPIOB_OSPEEDR & ~(0x3UL << (2 * 2)));
-    GPIOB_PUPDR = (GPIOB_PUPDR & ~(0x3UL << (2 * 2)));
-    GPIOB_MODER |= GPIOB_MODE_PIN2_IN;
-    GPIOB_PUPDR |= GPIOB_PUPD_PIN2_PULL_UP;
-}
-
-void PB3_IN(void) // настройка на вход
-{
-    GPIOB_MODER = (GPIOB_MODER & ~(0x3UL << (3 * 2)));
-    GPIOB_OTYPER = (GPIOB_OTYPER & ~(0x3UL << (3 * 2)));
-    GPIOB_OSPEEDR = (GPIOB_OSPEEDR & ~(0x3UL << (3 * 2)));
-    GPIOB_PUPDR = (GPIOB_PUPDR & ~(0x3UL << (3 * 2)));
-    GPIOB_MODER |= GPIOB_MODE_PIN3_IN;
-    GPIOB_PUPDR |= GPIOB_PUPD_PIN3_PULL_UP;
-}
-
-/////////////////////////////////////////////////////////////////////
-
-void PB1_OUT(void) // настройка на выход
-{
-    GPIOB_MODER = (GPIOB_MODER & ~(0x3UL << (1 * 2)));
-    GPIOB_OTYPER = (GPIOB_OTYPER & ~(0x3UL << (1 * 2)));
-    GPIOB_OSPEEDR = (GPIOB_OSPEEDR & ~(0x3UL << (1 * 2)));
-    GPIOB_PUPDR =(GPIOB_PUPDR & ~(0x3UL << (1 * 2)));
-
-    GPIOB_MODER |= GPIOB_MODE_PIN1_OUT;
-    GPIOB->OTYPER &= ~(1 << 1);
-    GPIOB->OSPEEDR |= (0x2 << (1 * 2));
-}
-
-void PB2_OUT(void) // настройка на выход
-{
-    GPIOB_MODER = (GPIOB_MODER & ~(0x3UL << (2 * 2)));
-    GPIOB_OTYPER = (GPIOB_OTYPER & ~(0x3UL << (2 * 2)));
-    GPIOB_OSPEEDR = (GPIOB_OSPEEDR & ~(0x3UL << (2 * 2)));
-    GPIOB_PUPDR =(GPIOB_PUPDR & ~(0x3UL << (2 * 2)));
-
-    GPIOB_MODER |= GPIOB_MODE_PIN2_OUT;
-    GPIOB->OTYPER &= ~(1 << 2);
-    GPIOB->OSPEEDR |= (0x2 << (2 * 2));
-}
-
-void PB3_OUT(void) // настройка на выход
-{
-    GPIOB_MODER = (GPIOB_MODER & ~(0x3UL << (3 * 2)));
-    GPIOB_OTYPER = (GPIOB_OTYPER & ~(0x3UL << (3 * 2)));
-    GPIOB_OSPEEDR = (GPIOB_OSPEEDR & ~(0x3UL << (3 * 2)));
-    GPIOB_PUPDR =(GPIOB_PUPDR & ~(0x3UL << (3 * 2)));
-
-    GPIOB_MODER |= GPIOB_MODE_PIN3_OUT;
-    GPIOB->OTYPER &= ~(1 << 3);
-    GPIOB->OSPEEDR |= (0x2 << (3 * 2));
-}
-
 void ITR_Init(void)
 {
     // Благодаря этому при нажатии и отпускании кнопки подключённой к пину PB1 будет вызываться функция обработчика прерывания
@@ -219,26 +168,4 @@ void ITR_Init(void)
     // прерывание будет срабатывать при переходе сигнала с высокого уровня на низкий
     NVIC_SetPriority(EXTI1_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0)); // задаём приоритет
     NVIC_EnableIRQ(EXTI1_IRQn); // разрешаем прерывания
-
 }
-
-
-
-/* 
-// A11
-
-    // Настраиваем PA11 как выход (MODER11[1:0] = 01)
-    GPIOA->MODER &= ~(0x3 << (11 * 2)); // Сбрасываем биты MODER3
-    GPIOA->MODER |=  (0x1 << (11 * 2)); // Устанавливаем режим Output
-
-    // Настраиваем тип выхода - push-pull (OTYPER11 = 0)
-    GPIOA->OTYPER &= ~(1 << 11);
-
-    // Настраиваем скорость вывода как высокую (OSPEEDR11 = 10)
-    GPIOA->OSPEEDR &= ~(0x3 << (11 * 2));
-    GPIOA->OSPEEDR |= (0x2 << (11 * 2));
-
-    // Без подтягивающего резистора (PUPDR11 = 00)
-    GPIOA->PUPDR &= ~(0x3 << (11 * 2));
-
-*/
