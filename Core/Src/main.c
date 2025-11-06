@@ -1,6 +1,6 @@
 #include "init.h"
 #include "it_handlers.h"
-
+//
     int counter = -1;
     uint8_t check_status10 = 1; // 0 - кнопка не нажата, 1 - кнопка нажата
     uint8_t check_status1 = 0;
