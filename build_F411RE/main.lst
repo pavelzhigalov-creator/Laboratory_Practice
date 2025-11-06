@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s 			page 1
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -31,984 +31,1037 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s 			page 1
    1:Core/Src/main.c **** #include "init.h"
    2:Core/Src/main.c **** #include "it_handlers.h"
    3:Core/Src/main.c **** 
-   4:Core/Src/main.c **** int main(void) // ОСНОВНОЕ ЗАДАНИЕ
-   5:Core/Src/main.c **** {
-  29              		.loc 1 5 1 view -0
+   4:Core/Src/main.c ****     int counter = -1;
+   5:Core/Src/main.c ****     uint8_t check_status10 = 1; // 0 - кнопка не нажата, 1 - кнопка нажат�
+   6:Core/Src/main.c ****     uint8_t check_status1 = 0;
+   7:Core/Src/main.c ****     uint8_t check_status2 = 0;
+   8:Core/Src/main.c ****     uint8_t check_status3 = 0;
+   9:Core/Src/main.c ****     uint8_t flag = 0;
+  10:Core/Src/main.c **** 
+  11:Core/Src/main.c **** int main(void) // ОСНОВНОЕ ЗАДАНИЕ
+  12:Core/Src/main.c **** {
+  29              		.loc 1 12 1 view -0
   30              		.cfi_startproc
-  31              		@ args = 0, pretend = 0, frame = 0
-  32              		@ frame_needed = 0, uses_anonymous_args = 0
-  33 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
-  34              	.LCFI0:
-  35              		.cfi_def_cfa_offset 32
-  36              		.cfi_offset 4, -32
-  37              		.cfi_offset 5, -28
-  38              		.cfi_offset 6, -24
-  39              		.cfi_offset 7, -20
-  40              		.cfi_offset 8, -16
-  41              		.cfi_offset 9, -12
-  42              		.cfi_offset 10, -8
-  43              		.cfi_offset 14, -4
-   6:Core/Src/main.c ****     int counter = -1;
-  44              		.loc 1 6 5 view .LVU1
-  45              	.LVL0:
-   7:Core/Src/main.c ****     uint8_t check_status10 = 1; // 0 - кнопка не нажата, 1 - кнопка нажат�
-  46              		.loc 1 7 5 view .LVU2
-   8:Core/Src/main.c ****     uint8_t check_status1 = 0;
-  47              		.loc 1 8 5 view .LVU3
-   9:Core/Src/main.c ****     uint8_t check_status2 = 0;
-  48              		.loc 1 9 5 view .LVU4
-  10:Core/Src/main.c ****     uint8_t check_status3 = 0;
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s 			page 2
+  31              		@ Volatile: function does not return.
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34 0000 08B5     		push	{r3, lr}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 8
+  37              		.cfi_offset 3, -8
+  38              		.cfi_offset 14, -4
+  13:Core/Src/main.c ****     /* int counter = -1;
+  14:Core/Src/main.c ****     uint8_t check_status10 = 1; // 0 - кнопка не нажата, 1 - кнопка нажат�
+  15:Core/Src/main.c ****     uint8_t check_status1 = 0;
+  16:Core/Src/main.c ****     uint8_t check_status2 = 0;
+  17:Core/Src/main.c ****     uint8_t check_status3 = 0;
+  18:Core/Src/main.c ****     uint8_t flag = 0; */
+  19:Core/Src/main.c ****     GPIO_Init_with_CMSIS();
+  39              		.loc 1 19 5 view .LVU1
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s 			page 2
 
 
-  49              		.loc 1 10 5 view .LVU5
-  11:Core/Src/main.c ****     uint8_t flag = 0;
-  50              		.loc 1 11 5 view .LVU6
-  12:Core/Src/main.c ****     GPIO_Init_with_CMSIS();
-  51              		.loc 1 12 5 view .LVU7
-  52 0004 FFF7FEFF 		bl	GPIO_Init_with_CMSIS
-  53              	.LVL1:
-  13:Core/Src/main.c ****     GPIO_Init_with_my_macro();
-  54              		.loc 1 13 5 view .LVU8
-  55 0008 FFF7FEFF 		bl	GPIO_Init_with_my_macro
-  56              	.LVL2:
-  11:Core/Src/main.c ****     uint8_t flag = 0;
-  57              		.loc 1 11 13 is_stmt 0 view .LVU9
-  58 000c 0026     		movs	r6, #0
-  10:Core/Src/main.c ****     uint8_t flag = 0;
-  59              		.loc 1 10 13 view .LVU10
-  60 000e B146     		mov	r9, r6
-   9:Core/Src/main.c ****     uint8_t check_status3 = 0;
-  61              		.loc 1 9 13 view .LVU11
-  62 0010 3546     		mov	r5, r6
-   8:Core/Src/main.c ****     uint8_t check_status2 = 0;
-  63              		.loc 1 8 13 view .LVU12
-  64 0012 3746     		mov	r7, r6
-   7:Core/Src/main.c ****     uint8_t check_status1 = 0;
-  65              		.loc 1 7 13 view .LVU13
-  66 0014 4FF00108 		mov	r8, #1
-   6:Core/Src/main.c ****     uint8_t check_status10 = 1; // 0 - кнопка не нажата, 1 - кнопка нажат�
-  67              		.loc 1 6 9 view .LVU14
-  68 0018 4FF0FF34 		mov	r4, #-1
-  69 001c 59E1     		b	.L2
-  70              	.LVL3:
-  71              	.L45:
-  14:Core/Src/main.c ****     while (1)
-  15:Core/Src/main.c ****     {
-  16:Core/Src/main.c ****         if ((*(uint32_t*)(0x40020800 + 0x10UL) & 0x400) != 0) // если главная кнопк
-  17:Core/Src/main.c ****         {
-  18:Core/Src/main.c ****             delay(300000);
-  72              		.loc 1 18 13 is_stmt 1 view .LVU15
-  73 001e A348     		ldr	r0, .L46
-  74 0020 FFF7FEFF 		bl	delay
-  75              	.LVL4:
-  19:Core/Src/main.c ****             if((READ_GPIO_C10 != 0) && (check_status10 == 0)) // если главная кнопк
-  76              		.loc 1 19 13 view .LVU16
-  77              		.loc 1 19 17 is_stmt 0 view .LVU17
-  78 0024 A24B     		ldr	r3, .L46+4
-  79 0026 D3F81038 		ldr	r3, [r3, #2064]
-  80              		.loc 1 19 15 view .LVU18
-  81 002a 13F4806F 		tst	r3, #1024
-  82 002e 00F05981 		beq	.L3
-  83              		.loc 1 19 37 discriminator 1 view .LVU19
-  84 0032 B8F1000F 		cmp	r8, #0
-  85 0036 40F05581 		bne	.L3
-  20:Core/Src/main.c ****             {
-  21:Core/Src/main.c ****                 counter = (counter + 1) % 5; // 5 значений -- 0 1 2 3 4
-  86              		.loc 1 21 17 is_stmt 1 view .LVU20
-  87              		.loc 1 21 36 is_stmt 0 view .LVU21
-  88 003a 631C     		adds	r3, r4, #1
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s 			page 3
+  40 0002 FFF7FEFF 		bl	GPIO_Init_with_CMSIS
+  41              	.LVL0:
+  20:Core/Src/main.c ****     GPIO_Init_with_my_macro();
+  42              		.loc 1 20 5 view .LVU2
+  43 0006 FFF7FEFF 		bl	GPIO_Init_with_my_macro
+  44              	.LVL1:
+  21:Core/Src/main.c ****     Init_with_memory_for_led3();
+  45              		.loc 1 21 5 view .LVU3
+  46 000a FFF7FEFF 		bl	Init_with_memory_for_led3
+  47              	.LVL2:
+  48 000e 85E1     		b	.L32
+  49              	.L43:
+  22:Core/Src/main.c ****     while (1)
+  23:Core/Src/main.c ****     {
+  24:Core/Src/main.c ****         if ((*(uint32_t*)(0x40020800 + 0x10UL) & 0x400) != 0) // если главная кнопк
+  25:Core/Src/main.c ****         {
+  26:Core/Src/main.c ****             delay(300000);
+  50              		.loc 1 26 13 view .LVU4
+  51 0010 9C48     		ldr	r0, .L44
+  52 0012 FFF7FEFF 		bl	delay
+  53              	.LVL3:
+  27:Core/Src/main.c ****             if((READ_GPIO_C10 != 0) && (check_status10 == 0)) // если главная кнопк
+  54              		.loc 1 27 13 view .LVU5
+  55              		.loc 1 27 17 is_stmt 0 view .LVU6
+  56 0016 9C4B     		ldr	r3, .L44+4
+  57 0018 D3F81038 		ldr	r3, [r3, #2064]
+  58              		.loc 1 27 15 view .LVU7
+  59 001c 13F4806F 		tst	r3, #1024
+  60 0020 00F08681 		beq	.L4
+  61              		.loc 1 27 56 discriminator 1 view .LVU8
+  62 0024 994B     		ldr	r3, .L44+8
+  63 0026 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  64              		.loc 1 27 37 discriminator 1 view .LVU9
+  65 0028 002B     		cmp	r3, #0
+  66 002a 40F08181 		bne	.L4
+  28:Core/Src/main.c ****             {
+  29:Core/Src/main.c ****                 counter = (counter + 1) % 5; // 5 значений -- 0 1 2 3 4
+  67              		.loc 1 29 17 is_stmt 1 view .LVU10
+  68              		.loc 1 29 36 is_stmt 0 view .LVU11
+  69 002e 9848     		ldr	r0, .L44+12
+  70 0030 0268     		ldr	r2, [r0]
+  71 0032 0132     		adds	r2, r2, #1
+  72              		.loc 1 29 41 view .LVU12
+  73 0034 9749     		ldr	r1, .L44+16
+  74 0036 81FB0231 		smull	r3, r1, r1, r2
+  75 003a D317     		asrs	r3, r2, #31
+  76 003c C3EB6103 		rsb	r3, r3, r1, asr #1
+  77 0040 03EB8303 		add	r3, r3, r3, lsl #2
+  78 0044 D31A     		subs	r3, r2, r3
+  79              		.loc 1 29 25 view .LVU13
+  80 0046 0360     		str	r3, [r0]
+  30:Core/Src/main.c ****                 check_status10 = 1;
+  81              		.loc 1 30 17 is_stmt 1 view .LVU14
+  82              		.loc 1 30 32 is_stmt 0 view .LVU15
+  83 0048 904B     		ldr	r3, .L44+8
+  84 004a 0122     		movs	r2, #1
+  85 004c 1A70     		strb	r2, [r3]
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s 			page 3
 
 
-  89              		.loc 1 21 25 view .LVU22
-  90 003c 9D4A     		ldr	r2, .L46+8
-  91 003e 82FB0312 		smull	r1, r2, r2, r3
-  92 0042 DC17     		asrs	r4, r3, #31
-  93              	.LVL5:
-  94              		.loc 1 21 25 view .LVU23
-  95 0044 C4EB6204 		rsb	r4, r4, r2, asr #1
-  96 0048 04EB8404 		add	r4, r4, r4, lsl #2
-  97 004c 1C1B     		subs	r4, r3, r4
-  98              	.LVL6:
-  22:Core/Src/main.c ****                 check_status10 = 1;
-  99              		.loc 1 22 17 is_stmt 1 view .LVU24
- 100              		.loc 1 22 32 is_stmt 0 view .LVU25
- 101 004e 4FF00108 		mov	r8, #1
- 102 0052 47E1     		b	.L3
- 103              	.LVL7:
- 104              	.L11:
-  23:Core/Src/main.c ****             }
-  24:Core/Src/main.c ****         }
-  25:Core/Src/main.c ****         else
-  26:Core/Src/main.c ****         {
-  27:Core/Src/main.c ****             check_status10 = 0; // сброс счётчика
-  28:Core/Src/main.c ****         }
-  29:Core/Src/main.c **** 
-  30:Core/Src/main.c ****         /////////////////////////////////////////////////////////////////////
-  31:Core/Src/main.c **** 
-  32:Core/Src/main.c ****         if (flag == 0)
-  33:Core/Src/main.c ****         {
-  34:Core/Src/main.c ****             switch (counter)
-  35:Core/Src/main.c ****         {
-  36:Core/Src/main.c ****         case 0: // первое нажатие
-  37:Core/Src/main.c ****             GPIOB_MODE_PIN1_OUT; // переводим PB1 в состояние выхода
- 105              		.loc 1 37 13 is_stmt 1 view .LVU26
- 106 0054 984A     		ldr	r2, .L46+12
- 107 0056 1368     		ldr	r3, [r2]
- 108 0058 43F00403 		orr	r3, r3, #4
- 109 005c 1360     		str	r3, [r2]
-  38:Core/Src/main.c ****             break;
- 110              		.loc 1 38 13 view .LVU27
- 111              	.L5:
-  39:Core/Src/main.c ****         case 1: // второе нажатие
-  40:Core/Src/main.c ****             GPIOB_MODE_PIN2_OUT; // переводим PB2 в состояние выхода
-  41:Core/Src/main.c ****             break;
-  42:Core/Src/main.c ****         case 2: // третье нажатие
-  43:Core/Src/main.c ****             GPIOB_MODE_PIN3_OUT; // переводим PB3 в состояние выхода
-  44:Core/Src/main.c ****             break;
-  45:Core/Src/main.c ****         case 3: // четвёртое нажатие
-  46:Core/Src/main.c ****             GPIOB_MODE_PIN1_IN; // переводим PB1 в состояние входа
-  47:Core/Src/main.c ****             GPIOB_MODE_PIN2_IN; // переводим PB2 в состояние входа
-  48:Core/Src/main.c ****             GPIOB_MODE_PIN3_IN; // переводим PB3 в состояние входа
-  49:Core/Src/main.c ****             break;
-  50:Core/Src/main.c ****         case 4: // пятое нажатие
-  51:Core/Src/main.c ****             GPIOB_MODE_PIN1_OUT; // переводим PB1 в состояние выхода
-  52:Core/Src/main.c ****             GPIOB_MODE_PIN2_OUT; // переводим PB2 в состояние выхода
-  53:Core/Src/main.c ****             GPIOB_MODE_PIN3_OUT; // переводим PB3 в состояние выхода
-  54:Core/Src/main.c ****             flag++;
-  55:Core/Src/main.c ****             break;
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s 			page 4
-
-
-  56:Core/Src/main.c ****         default:
-  57:Core/Src/main.c ****             break;
-  58:Core/Src/main.c ****         }
-  59:Core/Src/main.c ****         }
-  60:Core/Src/main.c ****         else
-  61:Core/Src/main.c ****         {
-  62:Core/Src/main.c ****             switch (counter)
-  63:Core/Src/main.c ****         {
-  64:Core/Src/main.c ****         case 0: // первое нажатие
-  65:Core/Src/main.c ****             GPIOB_MODE_PIN1_IN; // переводим PB1 в состояние выхода
-  66:Core/Src/main.c ****             break;
-  67:Core/Src/main.c ****         case 1: // второе нажатие
-  68:Core/Src/main.c ****             GPIOB_MODE_PIN2_IN; // переводим PB2 в состояние выхода
-  69:Core/Src/main.c ****             break;
-  70:Core/Src/main.c ****         case 2: // третье нажатие
-  71:Core/Src/main.c ****             GPIOB_MODE_PIN3_IN; // переводим PB3 в состояние выхода
-  72:Core/Src/main.c ****             break;
-  73:Core/Src/main.c ****         case 3: // четвёртое нажатие
-  74:Core/Src/main.c ****             GPIOB_MODE_PIN1_IN; // переводим PB1 в состояние входа
-  75:Core/Src/main.c ****             GPIOB_MODE_PIN2_IN; // переводим PB2 в состояние входа
-  76:Core/Src/main.c ****             GPIOB_MODE_PIN3_IN; // переводим PB3 в состояние входа
-  77:Core/Src/main.c ****             break;
-  78:Core/Src/main.c ****         case 4: // пятое нажатие
-  79:Core/Src/main.c ****             GPIOB_MODE_PIN1_OUT; // переводим PB1 в состояние выхода
-  80:Core/Src/main.c ****             GPIOB_MODE_PIN2_OUT; // переводим PB2 в состояние выхода
-  81:Core/Src/main.c ****             GPIOB_MODE_PIN3_OUT; // переводим PB3 в состояние выхода
-  82:Core/Src/main.c ****             break;
-  83:Core/Src/main.c ****         default:
-  84:Core/Src/main.c ****             break;
-  85:Core/Src/main.c ****         }
-  86:Core/Src/main.c ****         }
-  87:Core/Src/main.c **** 
-  88:Core/Src/main.c ****         /////////////////////////////////////////////////////////////////////
-  89:Core/Src/main.c **** 
-  90:Core/Src/main.c ****         // ПЕРВАЯ КНОПКА РЕЖИМ ВХОДА
-  91:Core/Src/main.c **** 
-  92:Core/Src/main.c ****         if (READ_CONDITION_PORT_B1 == 0) // если пин работает в режиме вхо
- 112              		.loc 1 92 9 view .LVU28
- 113              		.loc 1 92 13 is_stmt 0 view .LVU29
- 114 005e 964B     		ldr	r3, .L46+12
- 115 0060 1B68     		ldr	r3, [r3]
- 116              		.loc 1 92 12 view .LVU30
- 117 0062 13F00C0F 		tst	r3, #12
- 118 0066 7DD1     		bne	.L18
-  93:Core/Src/main.c ****         {
-  94:Core/Src/main.c ****             if (READ_GPIO_B1 != 0) // если кнопка нажата
- 119              		.loc 1 94 13 is_stmt 1 view .LVU31
- 120              		.loc 1 94 17 is_stmt 0 view .LVU32
- 121 0068 914B     		ldr	r3, .L46+4
- 122 006a D3F81034 		ldr	r3, [r3, #1040]
- 123              		.loc 1 94 16 view .LVU33
- 124 006e 13F0020F 		tst	r3, #2
- 125 0072 7CD0     		beq	.L19
-  95:Core/Src/main.c ****             {
-  96:Core/Src/main.c ****                 SET_GPIO_A5; // типо жёлтый
- 126              		.loc 1 96 17 is_stmt 1 view .LVU34
- 127 0074 DFF838A2 		ldr	r10, .L46+4
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s 			page 5
-
-
- 128 0078 2023     		movs	r3, #32
- 129 007a CAF81830 		str	r3, [r10, #24]
-  97:Core/Src/main.c ****                 delay(300000);
- 130              		.loc 1 97 17 view .LVU35
- 131 007e 8B48     		ldr	r0, .L46
- 132 0080 FFF7FEFF 		bl	delay
- 133              	.LVL8:
-  98:Core/Src/main.c ****                 RESET_GPIO_B1;
- 134              		.loc 1 98 17 view .LVU36
- 135 0084 4FF40033 		mov	r3, #131072
- 136 0088 CAF81834 		str	r3, [r10, #1048]
-  99:Core/Src/main.c ****             if((READ_GPIO_B1 != 0) && (check_status1 == 0)) // если кнопка нажата �
- 137              		.loc 1 99 13 view .LVU37
- 138              		.loc 1 99 17 is_stmt 0 view .LVU38
- 139 008c DAF81034 		ldr	r3, [r10, #1040]
- 140              		.loc 1 99 15 view .LVU39
- 141 0090 13F0020F 		tst	r3, #2
- 142 0094 02D0     		beq	.L20
- 143              		.loc 1 99 36 discriminator 1 view .LVU40
- 144 0096 002F     		cmp	r7, #0
- 145 0098 00F09380 		beq	.L34
- 146              	.L20:
- 100:Core/Src/main.c ****             { 
- 101:Core/Src/main.c ****                 check_status1 = 1;
- 102:Core/Src/main.c ****                 RESET_GPIO_B1;
- 103:Core/Src/main.c ****             }
- 104:Core/Src/main.c ****             else
- 105:Core/Src/main.c ****             {
- 106:Core/Src/main.c ****                 RESET_GPIO_A5;
- 147              		.loc 1 106 17 is_stmt 1 view .LVU41
- 148 009c 844B     		ldr	r3, .L46+4
- 149 009e 4FF40012 		mov	r2, #2097152
- 150 00a2 9A61     		str	r2, [r3, #24]
- 151 00a4 63E0     		b	.L19
- 152              	.L10:
-  40:Core/Src/main.c ****             break;
- 153              		.loc 1 40 13 view .LVU42
- 154 00a6 844A     		ldr	r2, .L46+12
- 155 00a8 1368     		ldr	r3, [r2]
- 156 00aa 43F01003 		orr	r3, r3, #16
- 157 00ae 1360     		str	r3, [r2]
-  41:Core/Src/main.c ****         case 2: // третье нажатие
- 158              		.loc 1 41 13 view .LVU43
- 159 00b0 D5E7     		b	.L5
- 160              	.L9:
-  43:Core/Src/main.c ****             break;
- 161              		.loc 1 43 13 view .LVU44
- 162 00b2 814A     		ldr	r2, .L46+12
- 163 00b4 1368     		ldr	r3, [r2]
- 164 00b6 43F04003 		orr	r3, r3, #64
- 165 00ba 1360     		str	r3, [r2]
-  44:Core/Src/main.c ****         case 3: // четвёртое нажатие
- 166              		.loc 1 44 13 view .LVU45
- 167 00bc CFE7     		b	.L5
- 168              	.L8:
-  46:Core/Src/main.c ****             GPIOB_MODE_PIN2_IN; // переводим PB2 в состояние входа
- 169              		.loc 1 46 13 view .LVU46
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s 			page 6
-
-
- 170 00be 7E4B     		ldr	r3, .L46+12
- 171 00c0 1A68     		ldr	r2, [r3]
- 172 00c2 22F00C02 		bic	r2, r2, #12
- 173 00c6 1A60     		str	r2, [r3]
-  47:Core/Src/main.c ****             GPIOB_MODE_PIN3_IN; // переводим PB3 в состояние входа
- 174              		.loc 1 47 13 view .LVU47
- 175 00c8 1A68     		ldr	r2, [r3]
- 176 00ca 22F03002 		bic	r2, r2, #48
- 177 00ce 1A60     		str	r2, [r3]
-  48:Core/Src/main.c ****             break;
- 178              		.loc 1 48 13 view .LVU48
- 179 00d0 1A68     		ldr	r2, [r3]
- 180 00d2 22F0C002 		bic	r2, r2, #192
- 181 00d6 1A60     		str	r2, [r3]
-  49:Core/Src/main.c ****         case 4: // пятое нажатие
- 182              		.loc 1 49 13 view .LVU49
- 183 00d8 C1E7     		b	.L5
- 184              	.L6:
-  51:Core/Src/main.c ****             GPIOB_MODE_PIN2_OUT; // переводим PB2 в состояние выхода
- 185              		.loc 1 51 13 view .LVU50
- 186 00da 774B     		ldr	r3, .L46+12
- 187 00dc 1A68     		ldr	r2, [r3]
- 188 00de 42F00402 		orr	r2, r2, #4
- 189 00e2 1A60     		str	r2, [r3]
-  52:Core/Src/main.c ****             GPIOB_MODE_PIN3_OUT; // переводим PB3 в состояние выхода
- 190              		.loc 1 52 13 view .LVU51
- 191 00e4 1A68     		ldr	r2, [r3]
- 192 00e6 42F01002 		orr	r2, r2, #16
- 193 00ea 1A60     		str	r2, [r3]
-  53:Core/Src/main.c ****             flag++;
- 194              		.loc 1 53 13 view .LVU52
- 195 00ec 1A68     		ldr	r2, [r3]
- 196 00ee 42F04002 		orr	r2, r2, #64
- 197 00f2 1A60     		str	r2, [r3]
-  54:Core/Src/main.c ****             break;
- 198              		.loc 1 54 13 view .LVU53
-  54:Core/Src/main.c ****             break;
- 199              		.loc 1 54 17 is_stmt 0 view .LVU54
- 200 00f4 0136     		adds	r6, r6, #1
- 201              	.LVL9:
-  54:Core/Src/main.c ****             break;
- 202              		.loc 1 54 17 view .LVU55
- 203 00f6 F6B2     		uxtb	r6, r6
- 204              	.LVL10:
-  55:Core/Src/main.c ****         default:
- 205              		.loc 1 55 13 is_stmt 1 view .LVU56
- 206 00f8 B1E7     		b	.L5
- 207              	.L4:
-  62:Core/Src/main.c ****         {
- 208              		.loc 1 62 13 view .LVU57
- 209 00fa 042C     		cmp	r4, #4
- 210 00fc AFD8     		bhi	.L5
- 211 00fe DFE804F0 		tbb	[pc, r4]
- 212              	.L13:
- 213 0102 03       		.byte	(.L17-.L13)/2
- 214 0103 09       		.byte	(.L16-.L13)/2
- 215 0104 0F       		.byte	(.L15-.L13)/2
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s 			page 7
-
-
- 216 0105 15       		.byte	(.L14-.L13)/2
- 217 0106 23       		.byte	(.L12-.L13)/2
- 218 0107 00       		.p2align 1
- 219              	.L17:
-  65:Core/Src/main.c ****             break;
- 220              		.loc 1 65 13 view .LVU58
- 221 0108 6B4A     		ldr	r2, .L46+12
- 222 010a 1368     		ldr	r3, [r2]
- 223 010c 23F00C03 		bic	r3, r3, #12
- 224 0110 1360     		str	r3, [r2]
-  66:Core/Src/main.c ****         case 1: // второе нажатие
- 225              		.loc 1 66 13 view .LVU59
- 226 0112 A4E7     		b	.L5
- 227              	.L16:
-  68:Core/Src/main.c ****             break;
- 228              		.loc 1 68 13 view .LVU60
- 229 0114 684A     		ldr	r2, .L46+12
- 230 0116 1368     		ldr	r3, [r2]
- 231 0118 23F03003 		bic	r3, r3, #48
- 232 011c 1360     		str	r3, [r2]
-  69:Core/Src/main.c ****         case 2: // третье нажатие
- 233              		.loc 1 69 13 view .LVU61
- 234 011e 9EE7     		b	.L5
- 235              	.L15:
-  71:Core/Src/main.c ****             break;
- 236              		.loc 1 71 13 view .LVU62
- 237 0120 654A     		ldr	r2, .L46+12
- 238 0122 1368     		ldr	r3, [r2]
- 239 0124 23F0C003 		bic	r3, r3, #192
- 240 0128 1360     		str	r3, [r2]
-  72:Core/Src/main.c ****         case 3: // четвёртое нажатие
- 241              		.loc 1 72 13 view .LVU63
- 242 012a 98E7     		b	.L5
- 243              	.L14:
-  74:Core/Src/main.c ****             GPIOB_MODE_PIN2_IN; // переводим PB2 в состояние входа
- 244              		.loc 1 74 13 view .LVU64
- 245 012c 624B     		ldr	r3, .L46+12
- 246 012e 1A68     		ldr	r2, [r3]
- 247 0130 22F00C02 		bic	r2, r2, #12
- 248 0134 1A60     		str	r2, [r3]
-  75:Core/Src/main.c ****             GPIOB_MODE_PIN3_IN; // переводим PB3 в состояние входа
- 249              		.loc 1 75 13 view .LVU65
- 250 0136 1A68     		ldr	r2, [r3]
- 251 0138 22F03002 		bic	r2, r2, #48
- 252 013c 1A60     		str	r2, [r3]
-  76:Core/Src/main.c ****             break;
- 253              		.loc 1 76 13 view .LVU66
- 254 013e 1A68     		ldr	r2, [r3]
- 255 0140 22F0C002 		bic	r2, r2, #192
- 256 0144 1A60     		str	r2, [r3]
-  77:Core/Src/main.c ****         case 4: // пятое нажатие
- 257              		.loc 1 77 13 view .LVU67
- 258 0146 8AE7     		b	.L5
- 259              	.L12:
-  79:Core/Src/main.c ****             GPIOB_MODE_PIN2_OUT; // переводим PB2 в состояние выхода
- 260              		.loc 1 79 13 view .LVU68
- 261 0148 5B4B     		ldr	r3, .L46+12
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s 			page 8
-
-
- 262 014a 1A68     		ldr	r2, [r3]
- 263 014c 42F00402 		orr	r2, r2, #4
- 264 0150 1A60     		str	r2, [r3]
-  80:Core/Src/main.c ****             GPIOB_MODE_PIN3_OUT; // переводим PB3 в состояние выхода
- 265              		.loc 1 80 13 view .LVU69
- 266 0152 1A68     		ldr	r2, [r3]
- 267 0154 42F01002 		orr	r2, r2, #16
- 268 0158 1A60     		str	r2, [r3]
-  81:Core/Src/main.c ****             break;
- 269              		.loc 1 81 13 view .LVU70
- 270 015a 1A68     		ldr	r2, [r3]
- 271 015c 42F04002 		orr	r2, r2, #64
- 272 0160 1A60     		str	r2, [r3]
-  82:Core/Src/main.c ****         default:
- 273              		.loc 1 82 13 view .LVU71
- 274 0162 7CE7     		b	.L5
- 275              	.L18:
- 107:Core/Src/main.c ****             }
- 108:Core/Src/main.c ****             }
- 109:Core/Src/main.c ****         }
- 110:Core/Src/main.c ****         else
- 111:Core/Src/main.c ****         {
- 112:Core/Src/main.c ****             check_status1 = 0; // сброс счётчика
- 276              		.loc 1 112 13 view .LVU72
- 277              	.LVL11:
- 113:Core/Src/main.c ****             RESET_GPIO_A5;
- 278              		.loc 1 113 13 view .LVU73
- 279 0164 524B     		ldr	r3, .L46+4
- 280 0166 4FF40012 		mov	r2, #2097152
- 281 016a 9A61     		str	r2, [r3, #24]
- 112:Core/Src/main.c ****             RESET_GPIO_A5;
- 282              		.loc 1 112 27 is_stmt 0 view .LVU74
- 283 016c 0027     		movs	r7, #0
- 284              	.LVL12:
- 285              	.L19:
- 114:Core/Src/main.c ****         }
- 115:Core/Src/main.c **** 
- 116:Core/Src/main.c ****         ///////
- 117:Core/Src/main.c **** 
- 118:Core/Src/main.c ****         // ПЕРВАЯ КНОПКА РЕЖИМ ВЫХОДА
- 119:Core/Src/main.c **** 
- 120:Core/Src/main.c ****         if (READ_CONDITION_PORT_B1 == 1)  // если пин работает в режиме вы�
- 286              		.loc 1 120 9 is_stmt 1 view .LVU75
- 287              		.loc 1 120 13 is_stmt 0 view .LVU76
- 288 016e 524B     		ldr	r3, .L46+12
- 289 0170 1B68     		ldr	r3, [r3]
- 290              		.loc 1 120 12 view .LVU77
- 291 0172 03F00C03 		and	r3, r3, #12
- 292 0176 042B     		cmp	r3, #4
- 293 0178 25D0     		beq	.L40
- 294              	.LVL13:
- 295              	.L21:
- 121:Core/Src/main.c ****         {
- 122:Core/Src/main.c ****             SET_GPIO_B1;
- 123:Core/Src/main.c ****             if (READ_GPIO_B1 != 0) // если кнопка нажата
- 124:Core/Src/main.c ****             {
- 125:Core/Src/main.c ****                 delay(300000);
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s 			page 9
-
-
- 126:Core/Src/main.c ****             if((READ_GPIO_B1 != 0) && (check_status1 == 0)) // если кнопка нажата �
- 127:Core/Src/main.c ****             {
- 128:Core/Src/main.c ****                 check_status1 = 1;
- 129:Core/Src/main.c ****                 SET_GPIO_B1;
- 130:Core/Src/main.c ****             }
- 131:Core/Src/main.c ****             }
- 132:Core/Src/main.c ****             else
- 133:Core/Src/main.c ****             {
- 134:Core/Src/main.c ****                 check_status1 = 0; // сброс счётчика
- 135:Core/Src/main.c ****                 RESET_GPIO_A5;
- 136:Core/Src/main.c ****             }
- 137:Core/Src/main.c ****         }
- 138:Core/Src/main.c **** 
- 139:Core/Src/main.c ****         /////////////////////////////////////////////////////////////////////
- 140:Core/Src/main.c **** 
- 141:Core/Src/main.c ****         // ВТОРАЯ КНОПКА РЕЖИМ ВХОДА
- 142:Core/Src/main.c **** 
- 143:Core/Src/main.c ****         if (READ_CONDITION_PORT_B2 == 0) // если пин работает в режиме вхо
- 296              		.loc 1 143 9 is_stmt 1 view .LVU78
- 297              		.loc 1 143 13 is_stmt 0 view .LVU79
- 298 017a 4F4B     		ldr	r3, .L46+12
- 299 017c 1B68     		ldr	r3, [r3]
- 300              		.loc 1 143 12 view .LVU80
- 301 017e 13F0300F 		tst	r3, #48
- 302 0182 40D1     		bne	.L23
- 144:Core/Src/main.c ****         {
- 145:Core/Src/main.c ****             if (READ_GPIO_B2 != 0) // если кнопка нажата
- 303              		.loc 1 145 13 is_stmt 1 view .LVU81
- 304              		.loc 1 145 17 is_stmt 0 view .LVU82
- 305 0184 4A4B     		ldr	r3, .L46+4
- 306 0186 D3F81034 		ldr	r3, [r3, #1040]
- 307              		.loc 1 145 16 view .LVU83
- 308 018a 13F0040F 		tst	r3, #4
- 309 018e 3FD0     		beq	.L24
- 146:Core/Src/main.c ****             {
- 147:Core/Src/main.c ****                 SET_GPIO_A10; // типо синий
- 310              		.loc 1 147 17 is_stmt 1 view .LVU84
- 311 0190 DFF81CA1 		ldr	r10, .L46+4
- 312 0194 4FF48063 		mov	r3, #1024
- 313 0198 CAF81830 		str	r3, [r10, #24]
- 148:Core/Src/main.c ****                 delay(300000);
- 314              		.loc 1 148 17 view .LVU85
- 315 019c 4348     		ldr	r0, .L46
- 316 019e FFF7FEFF 		bl	delay
- 317              	.LVL14:
- 149:Core/Src/main.c ****                 RESET_GPIO_B2;
- 318              		.loc 1 149 17 view .LVU86
- 319 01a2 4FF48023 		mov	r3, #262144
- 320 01a6 CAF81834 		str	r3, [r10, #1048]
- 150:Core/Src/main.c ****             if((READ_GPIO_B2 != 0) && (check_status2 == 0)) // если кнопка нажата �
- 321              		.loc 1 150 13 view .LVU87
- 322              		.loc 1 150 17 is_stmt 0 view .LVU88
- 323 01aa DAF81034 		ldr	r3, [r10, #1040]
- 324              		.loc 1 150 15 view .LVU89
- 325 01ae 13F0040F 		tst	r3, #4
- 326 01b2 01D0     		beq	.L25
- 327              		.loc 1 150 36 discriminator 1 view .LVU90
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s 			page 10
-
-
- 328 01b4 002D     		cmp	r5, #0
- 329 01b6 56D0     		beq	.L35
- 330              	.L25:
- 151:Core/Src/main.c ****             { 
- 152:Core/Src/main.c ****                 check_status2 = 1;
- 153:Core/Src/main.c ****                 RESET_GPIO_B2;
- 154:Core/Src/main.c ****             }
- 155:Core/Src/main.c ****             else
- 156:Core/Src/main.c ****             {
- 157:Core/Src/main.c ****                 RESET_GPIO_A10;
- 331              		.loc 1 157 17 is_stmt 1 view .LVU91
- 332 01b8 3D4B     		ldr	r3, .L46+4
- 333 01ba 4FF08062 		mov	r2, #67108864
- 334 01be 9A61     		str	r2, [r3, #24]
- 335 01c0 26E0     		b	.L24
- 336              	.L34:
- 101:Core/Src/main.c ****                 RESET_GPIO_B1;
- 337              		.loc 1 101 31 is_stmt 0 view .LVU92
- 338 01c2 0127     		movs	r7, #1
- 339              	.LVL15:
- 101:Core/Src/main.c ****                 RESET_GPIO_B1;
- 340              		.loc 1 101 31 view .LVU93
- 341 01c4 D3E7     		b	.L19
- 342              	.LVL16:
- 343              	.L40:
- 122:Core/Src/main.c ****             if (READ_GPIO_B1 != 0) // если кнопка нажата
- 344              		.loc 1 122 13 is_stmt 1 view .LVU94
- 345 01c6 3A4B     		ldr	r3, .L46+4
- 346 01c8 0222     		movs	r2, #2
- 347 01ca C3F81824 		str	r2, [r3, #1048]
- 123:Core/Src/main.c ****             {
- 348              		.loc 1 123 13 view .LVU95
- 123:Core/Src/main.c ****             {
- 349              		.loc 1 123 17 is_stmt 0 view .LVU96
- 350 01ce D3F81034 		ldr	r3, [r3, #1040]
- 123:Core/Src/main.c ****             {
- 351              		.loc 1 123 16 view .LVU97
- 352 01d2 13F0020F 		tst	r3, #2
- 353 01d6 05D1     		bne	.L41
- 134:Core/Src/main.c ****                 RESET_GPIO_A5;
- 354              		.loc 1 134 17 is_stmt 1 view .LVU98
- 355              	.LVL17:
- 135:Core/Src/main.c ****             }
- 356              		.loc 1 135 17 view .LVU99
- 357 01d8 354B     		ldr	r3, .L46+4
- 358 01da 4FF40012 		mov	r2, #2097152
- 359 01de 9A61     		str	r2, [r3, #24]
- 134:Core/Src/main.c ****                 RESET_GPIO_A5;
- 360              		.loc 1 134 31 is_stmt 0 view .LVU100
- 361 01e0 0027     		movs	r7, #0
- 362 01e2 CAE7     		b	.L21
- 363              	.LVL18:
- 364              	.L41:
- 125:Core/Src/main.c ****             if((READ_GPIO_B1 != 0) && (check_status1 == 0)) // если кнопка нажата �
- 365              		.loc 1 125 17 is_stmt 1 view .LVU101
- 366 01e4 3148     		ldr	r0, .L46
- 367 01e6 FFF7FEFF 		bl	delay
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s 			page 11
-
-
- 368              	.LVL19:
- 126:Core/Src/main.c ****             {
- 369              		.loc 1 126 13 view .LVU102
- 126:Core/Src/main.c ****             {
- 370              		.loc 1 126 17 is_stmt 0 view .LVU103
- 371 01ea 314B     		ldr	r3, .L46+4
- 372 01ec D3F81034 		ldr	r3, [r3, #1040]
- 126:Core/Src/main.c ****             {
- 373              		.loc 1 126 15 view .LVU104
- 374 01f0 13F0020F 		tst	r3, #2
- 375 01f4 C1D0     		beq	.L21
- 126:Core/Src/main.c ****             {
- 376              		.loc 1 126 36 discriminator 1 view .LVU105
- 377 01f6 002F     		cmp	r7, #0
- 378 01f8 BFD1     		bne	.L21
- 128:Core/Src/main.c ****                 SET_GPIO_B1;
- 379              		.loc 1 128 17 is_stmt 1 view .LVU106
- 380              	.LVL20:
- 129:Core/Src/main.c ****             }
- 381              		.loc 1 129 17 view .LVU107
- 382 01fa 2D4B     		ldr	r3, .L46+4
- 383 01fc 0222     		movs	r2, #2
- 384 01fe C3F81824 		str	r2, [r3, #1048]
- 128:Core/Src/main.c ****                 SET_GPIO_B1;
- 385              		.loc 1 128 31 is_stmt 0 view .LVU108
- 386 0202 0127     		movs	r7, #1
- 387 0204 B9E7     		b	.L21
- 388              	.LVL21:
- 389              	.L23:
- 158:Core/Src/main.c ****             }
- 159:Core/Src/main.c ****             }
- 160:Core/Src/main.c ****         }
- 161:Core/Src/main.c ****         else
- 162:Core/Src/main.c ****         {
- 163:Core/Src/main.c ****             check_status2 = 0; // сброс счётчика
- 390              		.loc 1 163 13 is_stmt 1 view .LVU109
- 164:Core/Src/main.c ****             RESET_GPIO_A10;
- 391              		.loc 1 164 13 view .LVU110
- 392 0206 2A4B     		ldr	r3, .L46+4
- 393 0208 4FF08062 		mov	r2, #67108864
- 394 020c 9A61     		str	r2, [r3, #24]
- 163:Core/Src/main.c ****             RESET_GPIO_A10;
- 395              		.loc 1 163 27 is_stmt 0 view .LVU111
- 396 020e 0025     		movs	r5, #0
- 397              	.LVL22:
- 398              	.L24:
- 165:Core/Src/main.c ****         }
- 166:Core/Src/main.c **** 
- 167:Core/Src/main.c ****         ///////
- 168:Core/Src/main.c **** 
- 169:Core/Src/main.c ****         // ВТОРАЯ КНОПКА РЕЖИМ ВЫХОДА
- 170:Core/Src/main.c **** 
- 171:Core/Src/main.c ****         if (READ_CONDITION_PORT_B2 == 1)  // если пин работает в режиме вы�
- 399              		.loc 1 171 9 is_stmt 1 view .LVU112
- 400              		.loc 1 171 13 is_stmt 0 view .LVU113
- 401 0210 294B     		ldr	r3, .L46+12
- 402 0212 1B68     		ldr	r3, [r3]
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s 			page 12
-
-
- 403              		.loc 1 171 12 view .LVU114
- 404 0214 03F03003 		and	r3, r3, #48
- 405 0218 102B     		cmp	r3, #16
- 406 021a 26D0     		beq	.L42
- 407              	.LVL23:
- 408              	.L26:
- 172:Core/Src/main.c ****         {
- 173:Core/Src/main.c ****             SET_GPIO_B2;
- 174:Core/Src/main.c ****             if (READ_GPIO_B2 != 0) // если кнопка нажата
- 175:Core/Src/main.c ****             {
- 176:Core/Src/main.c ****                 delay(300000);
- 177:Core/Src/main.c ****             if((READ_GPIO_B2 != 0) && (check_status2 == 0)) // если кнопка нажата �
- 178:Core/Src/main.c ****             {
- 179:Core/Src/main.c ****                 check_status2 = 1;
- 180:Core/Src/main.c ****                 SET_GPIO_B2;
- 181:Core/Src/main.c ****             }
- 182:Core/Src/main.c ****             }
- 183:Core/Src/main.c ****             else
- 184:Core/Src/main.c ****             {
- 185:Core/Src/main.c ****                 check_status2 = 0; // сброс счётчика
- 186:Core/Src/main.c ****                 RESET_GPIO_A10;
- 187:Core/Src/main.c ****             }
- 188:Core/Src/main.c ****         }
- 189:Core/Src/main.c ****         
- 190:Core/Src/main.c ****         /////////////////////////////////////////////////////////////////////
- 191:Core/Src/main.c **** 
- 192:Core/Src/main.c ****         // ТРЕТЬЯ КНОПКА РЕЖИМ ВХОДА
- 193:Core/Src/main.c **** 
- 194:Core/Src/main.c ****         if (READ_CONDITION_PORT_B3 == 0) // если пин работает в режиме вхо
- 409              		.loc 1 194 9 is_stmt 1 view .LVU115
- 410              		.loc 1 194 13 is_stmt 0 view .LVU116
- 411 021c 264B     		ldr	r3, .L46+12
- 412 021e 1B68     		ldr	r3, [r3]
- 413              		.loc 1 194 12 view .LVU117
- 414 0220 13F0C00F 		tst	r3, #192
- 415 0224 4AD1     		bne	.L28
- 195:Core/Src/main.c ****         {
- 196:Core/Src/main.c ****             if (READ_GPIO_B3 != 0) // если кнопка нажата
- 416              		.loc 1 196 13 is_stmt 1 view .LVU118
- 417              		.loc 1 196 17 is_stmt 0 view .LVU119
- 418 0226 224B     		ldr	r3, .L46+4
- 419 0228 D3F81034 		ldr	r3, [r3, #1040]
- 420              		.loc 1 196 16 view .LVU120
- 421 022c 13F0080F 		tst	r3, #8
- 422 0230 49D0     		beq	.L29
- 197:Core/Src/main.c ****             {
- 198:Core/Src/main.c ****                 SET_GPIO_A11; // типо синий
- 423              		.loc 1 198 17 is_stmt 1 view .LVU121
- 424 0232 DFF87CA0 		ldr	r10, .L46+4
- 425 0236 4FF40063 		mov	r3, #2048
- 426 023a CAF81830 		str	r3, [r10, #24]
- 199:Core/Src/main.c ****                 delay(300000);
- 427              		.loc 1 199 17 view .LVU122
- 428 023e 1B48     		ldr	r0, .L46
- 429 0240 FFF7FEFF 		bl	delay
- 430              	.LVL24:
- 200:Core/Src/main.c ****                 RESET_GPIO_B3;
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s 			page 13
-
-
- 431              		.loc 1 200 17 view .LVU123
- 432 0244 4FF40023 		mov	r3, #524288
- 433 0248 CAF81834 		str	r3, [r10, #1048]
- 201:Core/Src/main.c ****             if((READ_GPIO_B3 != 0) && (check_status3 == 0)) // если кнопка нажата �
- 434              		.loc 1 201 13 view .LVU124
- 435              		.loc 1 201 17 is_stmt 0 view .LVU125
- 436 024c DAF81034 		ldr	r3, [r10, #1040]
- 437              		.loc 1 201 15 view .LVU126
- 438 0250 13F0080F 		tst	r3, #8
- 439 0254 02D0     		beq	.L30
- 440              		.loc 1 201 36 discriminator 1 view .LVU127
- 441 0256 B9F1000F 		cmp	r9, #0
- 442 025a 57D0     		beq	.L36
- 443              	.L30:
- 202:Core/Src/main.c ****             { 
- 203:Core/Src/main.c ****                 check_status3 = 1;
- 204:Core/Src/main.c ****                 RESET_GPIO_B3;
- 205:Core/Src/main.c ****             }
- 206:Core/Src/main.c ****             else
- 207:Core/Src/main.c ****             {
- 208:Core/Src/main.c ****                 RESET_GPIO_A11;
- 444              		.loc 1 208 17 is_stmt 1 view .LVU128
- 445 025c 144B     		ldr	r3, .L46+4
- 446 025e 4FF00062 		mov	r2, #134217728
- 447 0262 9A61     		str	r2, [r3, #24]
- 448 0264 2FE0     		b	.L29
- 449              	.L35:
- 152:Core/Src/main.c ****                 RESET_GPIO_B2;
- 450              		.loc 1 152 31 is_stmt 0 view .LVU129
- 451 0266 0125     		movs	r5, #1
- 452              	.LVL25:
- 152:Core/Src/main.c ****                 RESET_GPIO_B2;
- 453              		.loc 1 152 31 view .LVU130
- 454 0268 D2E7     		b	.L24
- 455              	.LVL26:
- 456              	.L42:
- 173:Core/Src/main.c ****             if (READ_GPIO_B2 != 0) // если кнопка нажата
- 457              		.loc 1 173 13 is_stmt 1 view .LVU131
- 458 026a 114B     		ldr	r3, .L46+4
- 459 026c 0422     		movs	r2, #4
- 460 026e C3F81824 		str	r2, [r3, #1048]
- 174:Core/Src/main.c ****             {
- 461              		.loc 1 174 13 view .LVU132
- 174:Core/Src/main.c ****             {
- 462              		.loc 1 174 17 is_stmt 0 view .LVU133
- 463 0272 D3F81034 		ldr	r3, [r3, #1040]
- 174:Core/Src/main.c ****             {
- 464              		.loc 1 174 16 view .LVU134
- 465 0276 13F0040F 		tst	r3, #4
- 466 027a 05D1     		bne	.L43
- 185:Core/Src/main.c ****                 RESET_GPIO_A10;
- 467              		.loc 1 185 17 is_stmt 1 view .LVU135
- 468              	.LVL27:
- 186:Core/Src/main.c ****             }
- 469              		.loc 1 186 17 view .LVU136
- 470 027c 0C4B     		ldr	r3, .L46+4
- 471 027e 4FF08062 		mov	r2, #67108864
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s 			page 14
-
-
- 472 0282 9A61     		str	r2, [r3, #24]
- 185:Core/Src/main.c ****                 RESET_GPIO_A10;
- 473              		.loc 1 185 31 is_stmt 0 view .LVU137
- 474 0284 0025     		movs	r5, #0
- 475 0286 C9E7     		b	.L26
- 476              	.LVL28:
- 477              	.L43:
- 176:Core/Src/main.c ****             if((READ_GPIO_B2 != 0) && (check_status2 == 0)) // если кнопка нажата �
- 478              		.loc 1 176 17 is_stmt 1 view .LVU138
- 479 0288 0848     		ldr	r0, .L46
- 480 028a FFF7FEFF 		bl	delay
- 481              	.LVL29:
- 177:Core/Src/main.c ****             {
- 482              		.loc 1 177 13 view .LVU139
- 177:Core/Src/main.c ****             {
- 483              		.loc 1 177 17 is_stmt 0 view .LVU140
- 484 028e 084B     		ldr	r3, .L46+4
- 485 0290 D3F81034 		ldr	r3, [r3, #1040]
- 177:Core/Src/main.c ****             {
- 486              		.loc 1 177 15 view .LVU141
- 487 0294 13F0040F 		tst	r3, #4
- 488 0298 C0D0     		beq	.L26
- 177:Core/Src/main.c ****             {
- 489              		.loc 1 177 36 discriminator 1 view .LVU142
- 490 029a 002D     		cmp	r5, #0
- 491 029c BED1     		bne	.L26
- 179:Core/Src/main.c ****                 SET_GPIO_B2;
- 492              		.loc 1 179 17 is_stmt 1 view .LVU143
- 493              	.LVL30:
- 180:Core/Src/main.c ****             }
- 494              		.loc 1 180 17 view .LVU144
- 495 029e 044B     		ldr	r3, .L46+4
- 496 02a0 0422     		movs	r2, #4
- 497 02a2 C3F81824 		str	r2, [r3, #1048]
- 179:Core/Src/main.c ****                 SET_GPIO_B2;
- 498              		.loc 1 179 31 is_stmt 0 view .LVU145
- 499 02a6 0125     		movs	r5, #1
- 500 02a8 B8E7     		b	.L26
- 501              	.L47:
- 502 02aa 00BF     		.align	2
- 503              	.L46:
- 504 02ac E0930400 		.word	300000
- 505 02b0 00000240 		.word	1073872896
- 506 02b4 67666666 		.word	1717986919
- 507 02b8 00040240 		.word	1073873920
- 508              	.LVL31:
- 509              	.L28:
- 209:Core/Src/main.c ****             }
- 210:Core/Src/main.c ****             }
- 211:Core/Src/main.c ****         }
- 212:Core/Src/main.c ****         else
- 213:Core/Src/main.c ****         {
- 214:Core/Src/main.c ****             check_status2 = 0; // сброс счётчика
- 510              		.loc 1 214 13 is_stmt 1 view .LVU146
- 215:Core/Src/main.c ****             RESET_GPIO_A11;
- 511              		.loc 1 215 13 view .LVU147
- 512 02bc 264B     		ldr	r3, .L48
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s 			page 15
-
-
- 513 02be 4FF00062 		mov	r2, #134217728
- 514 02c2 9A61     		str	r2, [r3, #24]
- 214:Core/Src/main.c ****             RESET_GPIO_A11;
- 515              		.loc 1 214 27 is_stmt 0 view .LVU148
- 516 02c4 0025     		movs	r5, #0
- 517              	.LVL32:
- 518              	.L29:
- 216:Core/Src/main.c ****         }
- 217:Core/Src/main.c **** 
- 218:Core/Src/main.c ****         ///////
- 219:Core/Src/main.c **** 
- 220:Core/Src/main.c ****         // ТРЕТЬЯ КНОПКА РЕЖИМ ВЫХОДА
- 221:Core/Src/main.c **** 
- 222:Core/Src/main.c ****         if (READ_CONDITION_PORT_B3 == 1)  // если пин работает в режиме вы�
- 519              		.loc 1 222 9 is_stmt 1 view .LVU149
- 520              		.loc 1 222 13 is_stmt 0 view .LVU150
- 521 02c6 254B     		ldr	r3, .L48+4
- 522 02c8 1B68     		ldr	r3, [r3]
- 523              		.loc 1 222 12 view .LVU151
- 524 02ca 03F0C003 		and	r3, r3, #192
- 525 02ce 402B     		cmp	r3, #64
- 526 02d0 1FD0     		beq	.L44
- 527              	.LVL33:
- 528              	.L2:
-  14:Core/Src/main.c ****     {
- 529              		.loc 1 14 5 is_stmt 1 view .LVU152
-  16:Core/Src/main.c ****         {
- 530              		.loc 1 16 9 view .LVU153
-  16:Core/Src/main.c ****         {
- 531              		.loc 1 16 14 is_stmt 0 view .LVU154
- 532 02d2 214B     		ldr	r3, .L48
- 533 02d4 D3F81038 		ldr	r3, [r3, #2064]
-  16:Core/Src/main.c ****         {
- 534              		.loc 1 16 12 view .LVU155
- 535 02d8 13F4806F 		tst	r3, #1024
- 536 02dc 7FF49FAE 		bne	.L45
-  27:Core/Src/main.c ****         }
- 537              		.loc 1 27 28 view .LVU156
- 538 02e0 4FF00008 		mov	r8, #0
- 539              	.LVL34:
- 540              	.L3:
-  32:Core/Src/main.c ****         {
- 541              		.loc 1 32 9 is_stmt 1 view .LVU157
-  32:Core/Src/main.c ****         {
- 542              		.loc 1 32 12 is_stmt 0 view .LVU158
- 543 02e4 002E     		cmp	r6, #0
- 544 02e6 7FF408AF 		bne	.L4
+  86 004e 6FE1     		b	.L4
+  87              	.L12:
+  31:Core/Src/main.c ****             }
+  32:Core/Src/main.c ****         }
+  33:Core/Src/main.c ****         else
   34:Core/Src/main.c ****         {
- 545              		.loc 1 34 13 is_stmt 1 view .LVU159
- 546 02ea 042C     		cmp	r4, #4
- 547 02ec 3FF6B7AE 		bhi	.L5
- 548 02f0 01A3     		adr	r3, .L7
- 549 02f2 53F824F0 		ldr	pc, [r3, r4, lsl #2]
- 550 02f6 00BF     		.p2align 2
- 551              	.L7:
- 552 02f8 55000000 		.word	.L11+1
- 553 02fc A7000000 		.word	.L10+1
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s 			page 16
+  35:Core/Src/main.c ****             check_status10 = 0; // сброс счётчика
+  36:Core/Src/main.c ****         }
+  37:Core/Src/main.c **** 
+  38:Core/Src/main.c ****         /////////////////////////////////////////////////////////////////////
+  39:Core/Src/main.c **** 
+  40:Core/Src/main.c ****         if (flag == 0)
+  41:Core/Src/main.c ****         {
+  42:Core/Src/main.c ****             switch (counter)
+  43:Core/Src/main.c ****         {
+  44:Core/Src/main.c ****         case 0: // первое нажатие
+  45:Core/Src/main.c ****             GPIOB_MODE_PIN1_OUT; // переводим PB1 в состояние выхода
+  88              		.loc 1 45 13 is_stmt 1 view .LVU16
+  89 0050 914A     		ldr	r2, .L44+20
+  90 0052 1368     		ldr	r3, [r2]
+  91 0054 43F00403 		orr	r3, r3, #4
+  92 0058 1360     		str	r3, [r2]
+  46:Core/Src/main.c ****             break;
+  93              		.loc 1 46 13 view .LVU17
+  94              	.L6:
+  47:Core/Src/main.c ****         case 1: // второе нажатие
+  48:Core/Src/main.c ****             GPIOB_MODE_PIN2_OUT; // переводим PB2 в состояние выхода
+  49:Core/Src/main.c ****             break;
+  50:Core/Src/main.c ****         case 2: // третье нажатие
+  51:Core/Src/main.c ****             GPIOB_MODE_PIN3_OUT; // переводим PB3 в состояние выхода
+  52:Core/Src/main.c ****             break;
+  53:Core/Src/main.c ****         case 3: // четвёртое нажатие
+  54:Core/Src/main.c ****             GPIOB_MODE_PIN1_IN; // переводим PB1 в состояние входа
+  55:Core/Src/main.c ****             GPIOB_MODE_PIN2_IN; // переводим PB2 в состояние входа
+  56:Core/Src/main.c ****             GPIOB_MODE_PIN3_IN; // переводим PB3 в состояние входа
+  57:Core/Src/main.c ****             break;
+  58:Core/Src/main.c ****         case 4: // пятое нажатие
+  59:Core/Src/main.c ****             GPIOB_MODE_PIN1_OUT; // переводим PB1 в состояние выхода
+  60:Core/Src/main.c ****             GPIOB_MODE_PIN2_OUT; // переводим PB2 в состояние выхода
+  61:Core/Src/main.c ****             GPIOB_MODE_PIN3_OUT; // переводим PB3 в состояние выхода
+  62:Core/Src/main.c ****             flag++;
+  63:Core/Src/main.c ****             break;
+  64:Core/Src/main.c ****         default:
+  65:Core/Src/main.c ****             break;
+  66:Core/Src/main.c ****         }
+  67:Core/Src/main.c ****         }
+  68:Core/Src/main.c ****         else
+  69:Core/Src/main.c ****         {
+  70:Core/Src/main.c ****             switch (counter)
+  71:Core/Src/main.c ****         {
+  72:Core/Src/main.c ****         case 0: // первое нажатие
+  73:Core/Src/main.c ****             GPIOB_MODE_PIN1_IN; // переводим PB1 в состояние выхода
+  74:Core/Src/main.c ****             break;
+  75:Core/Src/main.c ****         case 1: // второе нажатие
+  76:Core/Src/main.c ****             GPIOB_MODE_PIN2_IN; // переводим PB2 в состояние выхода
+  77:Core/Src/main.c ****             break;
+  78:Core/Src/main.c ****         case 2: // третье нажатие
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s 			page 4
 
 
- 554 0300 B3000000 		.word	.L9+1
- 555 0304 BF000000 		.word	.L8+1
- 556 0308 DB000000 		.word	.L6+1
- 557              		.p2align 1
- 558              	.L36:
- 203:Core/Src/main.c ****                 RESET_GPIO_B3;
- 559              		.loc 1 203 31 is_stmt 0 view .LVU160
- 560 030c 4FF00109 		mov	r9, #1
- 561              	.LVL35:
- 203:Core/Src/main.c ****                 RESET_GPIO_B3;
- 562              		.loc 1 203 31 view .LVU161
- 563 0310 D9E7     		b	.L29
- 564              	.LVL36:
- 565              	.L44:
- 223:Core/Src/main.c ****         {
- 224:Core/Src/main.c ****             SET_GPIO_B3;
- 566              		.loc 1 224 13 is_stmt 1 view .LVU162
- 567 0312 114B     		ldr	r3, .L48
- 568 0314 0822     		movs	r2, #8
- 569 0316 C3F81824 		str	r2, [r3, #1048]
- 225:Core/Src/main.c ****             if (READ_GPIO_B3 != 0) // если кнопка нажата
- 570              		.loc 1 225 13 view .LVU163
- 571              		.loc 1 225 17 is_stmt 0 view .LVU164
- 572 031a D3F81034 		ldr	r3, [r3, #1040]
- 573              		.loc 1 225 16 view .LVU165
- 574 031e 13F0080F 		tst	r3, #8
- 575 0322 12D0     		beq	.L32
- 226:Core/Src/main.c ****             {
- 227:Core/Src/main.c ****                 delay(300000);
- 576              		.loc 1 227 17 is_stmt 1 view .LVU166
- 577 0324 0E48     		ldr	r0, .L48+8
- 578 0326 FFF7FEFF 		bl	delay
- 579              	.LVL37:
- 228:Core/Src/main.c ****             if((READ_GPIO_B3 != 0) && (check_status3 == 0)) // если кнопка нажата �
- 580              		.loc 1 228 13 view .LVU167
- 581              		.loc 1 228 17 is_stmt 0 view .LVU168
- 582 032a 0B4B     		ldr	r3, .L48
- 583 032c D3F81034 		ldr	r3, [r3, #1040]
- 584              		.loc 1 228 15 view .LVU169
- 585 0330 13F0080F 		tst	r3, #8
- 586 0334 CDD0     		beq	.L2
- 587              		.loc 1 228 36 discriminator 1 view .LVU170
- 588 0336 B9F1000F 		cmp	r9, #0
- 589 033a CAD1     		bne	.L2
- 229:Core/Src/main.c ****             {
- 230:Core/Src/main.c ****                 check_status3 = 1;
- 590              		.loc 1 230 17 is_stmt 1 view .LVU171
- 591              	.LVL38:
- 231:Core/Src/main.c ****                 SET_GPIO_B3;
- 592              		.loc 1 231 17 view .LVU172
- 593 033c 064B     		ldr	r3, .L48
- 594 033e 0822     		movs	r2, #8
- 595 0340 C3F81824 		str	r2, [r3, #1048]
- 230:Core/Src/main.c ****                 SET_GPIO_B3;
- 596              		.loc 1 230 31 is_stmt 0 view .LVU173
- 597 0344 4FF00109 		mov	r9, #1
- 598 0348 C3E7     		b	.L2
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s 			page 17
+  79:Core/Src/main.c ****             GPIOB_MODE_PIN3_IN; // переводим PB3 в состояние выхода
+  80:Core/Src/main.c ****             break;
+  81:Core/Src/main.c ****         case 3: // четвёртое нажатие
+  82:Core/Src/main.c ****             GPIOB_MODE_PIN1_IN; // переводим PB1 в состояние входа
+  83:Core/Src/main.c ****             GPIOB_MODE_PIN2_IN; // переводим PB2 в состояние входа
+  84:Core/Src/main.c ****             GPIOB_MODE_PIN3_IN; // переводим PB3 в состояние входа
+  85:Core/Src/main.c ****             break;
+  86:Core/Src/main.c ****         case 4: // пятое нажатие
+  87:Core/Src/main.c ****             GPIOB_MODE_PIN1_OUT; // переводим PB1 в состояние выхода
+  88:Core/Src/main.c ****             GPIOB_MODE_PIN2_OUT; // переводим PB2 в состояние выхода
+  89:Core/Src/main.c ****             GPIOB_MODE_PIN3_OUT; // переводим PB3 в состояние выхода
+  90:Core/Src/main.c ****             break;
+  91:Core/Src/main.c ****         default:
+  92:Core/Src/main.c ****             break;
+  93:Core/Src/main.c ****         }
+  94:Core/Src/main.c ****         }
+  95:Core/Src/main.c **** 
+  96:Core/Src/main.c ****         /////////////////////////////////////////////////////////////////////
+  97:Core/Src/main.c **** 
+  98:Core/Src/main.c ****         // ПЕРВАЯ КНОПКА РЕЖИМ ВХОДА
+  99:Core/Src/main.c **** 
+ 100:Core/Src/main.c ****         if (READ_CONDITION_PORT_B1 == 0) // если пин работает в режиме вхо
+  95              		.loc 1 100 9 view .LVU18
+  96              		.loc 1 100 13 is_stmt 0 view .LVU19
+  97 005a 8F4B     		ldr	r3, .L44+20
+  98 005c 1B68     		ldr	r3, [r3]
+  99              		.loc 1 100 12 view .LVU20
+ 100 005e 13F00C0F 		tst	r3, #12
+ 101 0062 40F08580 		bne	.L19
+ 101:Core/Src/main.c ****         {
+ 102:Core/Src/main.c ****             if (READ_GPIO_B1 != 0) // если кнопка нажата
+ 102              		.loc 1 102 13 is_stmt 1 view .LVU21
+ 103              		.loc 1 102 17 is_stmt 0 view .LVU22
+ 104 0066 884B     		ldr	r3, .L44+4
+ 105 0068 D3F81034 		ldr	r3, [r3, #1040]
+ 106              		.loc 1 102 16 view .LVU23
+ 107 006c 13F0020F 		tst	r3, #2
+ 108 0070 00F08580 		beq	.L20
+ 103:Core/Src/main.c ****             {
+ 104:Core/Src/main.c ****                 SET_GPIO_A5; // типо жёлтый
+ 109              		.loc 1 104 17 is_stmt 1 view .LVU24
+ 110 0074 844C     		ldr	r4, .L44+4
+ 111 0076 2023     		movs	r3, #32
+ 112 0078 A361     		str	r3, [r4, #24]
+ 105:Core/Src/main.c ****                 delay(300000);
+ 113              		.loc 1 105 17 view .LVU25
+ 114 007a 8248     		ldr	r0, .L44
+ 115 007c FFF7FEFF 		bl	delay
+ 116              	.LVL4:
+ 106:Core/Src/main.c ****                 RESET_GPIO_B1;
+ 117              		.loc 1 106 17 view .LVU26
+ 118 0080 4FF40033 		mov	r3, #131072
+ 119 0084 C4F81834 		str	r3, [r4, #1048]
+ 107:Core/Src/main.c ****             if((READ_GPIO_B1 != 0) && (check_status1 == 0)) // если кнопка нажата �
+ 120              		.loc 1 107 13 view .LVU27
+ 121              		.loc 1 107 17 is_stmt 0 view .LVU28
+ 122 0088 D4F81034 		ldr	r3, [r4, #1040]
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s 			page 5
 
 
- 599              	.LVL39:
- 600              	.L32:
- 232:Core/Src/main.c ****             }
- 233:Core/Src/main.c ****             }
- 234:Core/Src/main.c ****             else
- 235:Core/Src/main.c ****             {
- 236:Core/Src/main.c ****                 check_status3 = 0; // сброс счётчика
- 601              		.loc 1 236 17 is_stmt 1 view .LVU174
- 237:Core/Src/main.c ****                 RESET_GPIO_A11;
- 602              		.loc 1 237 17 view .LVU175
- 603 034a 034B     		ldr	r3, .L48
- 604 034c 4FF00062 		mov	r2, #134217728
- 605 0350 9A61     		str	r2, [r3, #24]
- 236:Core/Src/main.c ****                 RESET_GPIO_A11;
- 606              		.loc 1 236 31 is_stmt 0 view .LVU176
- 607 0352 4FF00009 		mov	r9, #0
- 608 0356 BCE7     		b	.L2
- 609              	.L49:
- 610              		.align	2
- 611              	.L48:
- 612 0358 00000240 		.word	1073872896
- 613 035c 00040240 		.word	1073873920
- 614 0360 E0930400 		.word	300000
- 615              		.cfi_endproc
- 616              	.LFE130:
- 618              		.text
- 619              	.Letext0:
- 620              		.file 2 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
- 621              		.file 3 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
- 622              		.file 4 "CMSIS/Devices/STM32F4xx/Inc/STM32F411xE/stm32f411xe.h"
- 623              		.file 5 "Core/Inc/init.h"
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s 			page 18
+ 123              		.loc 1 107 15 view .LVU29
+ 124 008c 13F0020F 		tst	r3, #2
+ 125 0090 69D0     		beq	.L21
+ 126              		.loc 1 107 54 discriminator 1 view .LVU30
+ 127 0092 824B     		ldr	r3, .L44+24
+ 128 0094 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 129              		.loc 1 107 36 discriminator 1 view .LVU31
+ 130 0096 002B     		cmp	r3, #0
+ 131 0098 65D1     		bne	.L21
+ 108:Core/Src/main.c ****             { 
+ 109:Core/Src/main.c ****                 check_status1 = 1;
+ 132              		.loc 1 109 17 is_stmt 1 view .LVU32
+ 133              		.loc 1 109 31 is_stmt 0 view .LVU33
+ 134 009a 804B     		ldr	r3, .L44+24
+ 135 009c 0122     		movs	r2, #1
+ 136 009e 1A70     		strb	r2, [r3]
+ 110:Core/Src/main.c ****                 RESET_GPIO_B1;
+ 137              		.loc 1 110 17 is_stmt 1 view .LVU34
+ 138 00a0 6DE0     		b	.L20
+ 139              	.L11:
+  48:Core/Src/main.c ****             break;
+ 140              		.loc 1 48 13 view .LVU35
+ 141 00a2 7D4A     		ldr	r2, .L44+20
+ 142 00a4 1368     		ldr	r3, [r2]
+ 143 00a6 43F01003 		orr	r3, r3, #16
+ 144 00aa 1360     		str	r3, [r2]
+  49:Core/Src/main.c ****         case 2: // третье нажатие
+ 145              		.loc 1 49 13 view .LVU36
+ 146 00ac D5E7     		b	.L6
+ 147              	.L10:
+  51:Core/Src/main.c ****             break;
+ 148              		.loc 1 51 13 view .LVU37
+ 149 00ae 7A4A     		ldr	r2, .L44+20
+ 150 00b0 1368     		ldr	r3, [r2]
+ 151 00b2 43F04003 		orr	r3, r3, #64
+ 152 00b6 1360     		str	r3, [r2]
+  52:Core/Src/main.c ****         case 3: // четвёртое нажатие
+ 153              		.loc 1 52 13 view .LVU38
+ 154 00b8 CFE7     		b	.L6
+ 155              	.L9:
+  54:Core/Src/main.c ****             GPIOB_MODE_PIN2_IN; // переводим PB2 в состояние входа
+ 156              		.loc 1 54 13 view .LVU39
+ 157 00ba 774B     		ldr	r3, .L44+20
+ 158 00bc 1A68     		ldr	r2, [r3]
+ 159 00be 22F00C02 		bic	r2, r2, #12
+ 160 00c2 1A60     		str	r2, [r3]
+  55:Core/Src/main.c ****             GPIOB_MODE_PIN3_IN; // переводим PB3 в состояние входа
+ 161              		.loc 1 55 13 view .LVU40
+ 162 00c4 1A68     		ldr	r2, [r3]
+ 163 00c6 22F03002 		bic	r2, r2, #48
+ 164 00ca 1A60     		str	r2, [r3]
+  56:Core/Src/main.c ****             break;
+ 165              		.loc 1 56 13 view .LVU41
+ 166 00cc 1A68     		ldr	r2, [r3]
+ 167 00ce 22F0C002 		bic	r2, r2, #192
+ 168 00d2 1A60     		str	r2, [r3]
+  57:Core/Src/main.c ****         case 4: // пятое нажатие
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s 			page 6
+
+
+ 169              		.loc 1 57 13 view .LVU42
+ 170 00d4 C1E7     		b	.L6
+ 171              	.L7:
+  59:Core/Src/main.c ****             GPIOB_MODE_PIN2_OUT; // переводим PB2 в состояние выхода
+ 172              		.loc 1 59 13 view .LVU43
+ 173 00d6 704A     		ldr	r2, .L44+20
+ 174 00d8 1168     		ldr	r1, [r2]
+ 175 00da 41F00401 		orr	r1, r1, #4
+ 176 00de 1160     		str	r1, [r2]
+  60:Core/Src/main.c ****             GPIOB_MODE_PIN3_OUT; // переводим PB3 в состояние выхода
+ 177              		.loc 1 60 13 view .LVU44
+ 178 00e0 1168     		ldr	r1, [r2]
+ 179 00e2 41F01001 		orr	r1, r1, #16
+ 180 00e6 1160     		str	r1, [r2]
+  61:Core/Src/main.c ****             flag++;
+ 181              		.loc 1 61 13 view .LVU45
+ 182 00e8 1168     		ldr	r1, [r2]
+ 183 00ea 41F04001 		orr	r1, r1, #64
+ 184 00ee 1160     		str	r1, [r2]
+  62:Core/Src/main.c ****             break;
+ 185              		.loc 1 62 13 view .LVU46
+  62:Core/Src/main.c ****             break;
+ 186              		.loc 1 62 17 is_stmt 0 view .LVU47
+ 187 00f0 0133     		adds	r3, r3, #1
+ 188 00f2 6B4A     		ldr	r2, .L44+28
+ 189 00f4 1370     		strb	r3, [r2]
+  63:Core/Src/main.c ****         default:
+ 190              		.loc 1 63 13 is_stmt 1 view .LVU48
+ 191 00f6 B0E7     		b	.L6
+ 192              	.L5:
+  70:Core/Src/main.c ****         {
+ 193              		.loc 1 70 13 view .LVU49
+ 194 00f8 654B     		ldr	r3, .L44+12
+ 195 00fa 1B68     		ldr	r3, [r3]
+ 196 00fc 042B     		cmp	r3, #4
+ 197 00fe ACD8     		bhi	.L6
+ 198 0100 DFE803F0 		tbb	[pc, r3]
+ 199              	.L14:
+ 200 0104 03       		.byte	(.L18-.L14)/2
+ 201 0105 09       		.byte	(.L17-.L14)/2
+ 202 0106 0F       		.byte	(.L16-.L14)/2
+ 203 0107 15       		.byte	(.L15-.L14)/2
+ 204 0108 23       		.byte	(.L13-.L14)/2
+ 205 0109 00       		.p2align 1
+ 206              	.L18:
+  73:Core/Src/main.c ****             break;
+ 207              		.loc 1 73 13 view .LVU50
+ 208 010a 634A     		ldr	r2, .L44+20
+ 209 010c 1368     		ldr	r3, [r2]
+ 210 010e 23F00C03 		bic	r3, r3, #12
+ 211 0112 1360     		str	r3, [r2]
+  74:Core/Src/main.c ****         case 1: // второе нажатие
+ 212              		.loc 1 74 13 view .LVU51
+ 213 0114 A1E7     		b	.L6
+ 214              	.L17:
+  76:Core/Src/main.c ****             break;
+ 215              		.loc 1 76 13 view .LVU52
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s 			page 7
+
+
+ 216 0116 604A     		ldr	r2, .L44+20
+ 217 0118 1368     		ldr	r3, [r2]
+ 218 011a 23F03003 		bic	r3, r3, #48
+ 219 011e 1360     		str	r3, [r2]
+  77:Core/Src/main.c ****         case 2: // третье нажатие
+ 220              		.loc 1 77 13 view .LVU53
+ 221 0120 9BE7     		b	.L6
+ 222              	.L16:
+  79:Core/Src/main.c ****             break;
+ 223              		.loc 1 79 13 view .LVU54
+ 224 0122 5D4A     		ldr	r2, .L44+20
+ 225 0124 1368     		ldr	r3, [r2]
+ 226 0126 23F0C003 		bic	r3, r3, #192
+ 227 012a 1360     		str	r3, [r2]
+  80:Core/Src/main.c ****         case 3: // четвёртое нажатие
+ 228              		.loc 1 80 13 view .LVU55
+ 229 012c 95E7     		b	.L6
+ 230              	.L15:
+  82:Core/Src/main.c ****             GPIOB_MODE_PIN2_IN; // переводим PB2 в состояние входа
+ 231              		.loc 1 82 13 view .LVU56
+ 232 012e 5A4B     		ldr	r3, .L44+20
+ 233 0130 1A68     		ldr	r2, [r3]
+ 234 0132 22F00C02 		bic	r2, r2, #12
+ 235 0136 1A60     		str	r2, [r3]
+  83:Core/Src/main.c ****             GPIOB_MODE_PIN3_IN; // переводим PB3 в состояние входа
+ 236              		.loc 1 83 13 view .LVU57
+ 237 0138 1A68     		ldr	r2, [r3]
+ 238 013a 22F03002 		bic	r2, r2, #48
+ 239 013e 1A60     		str	r2, [r3]
+  84:Core/Src/main.c ****             break;
+ 240              		.loc 1 84 13 view .LVU58
+ 241 0140 1A68     		ldr	r2, [r3]
+ 242 0142 22F0C002 		bic	r2, r2, #192
+ 243 0146 1A60     		str	r2, [r3]
+  85:Core/Src/main.c ****         case 4: // пятое нажатие
+ 244              		.loc 1 85 13 view .LVU59
+ 245 0148 87E7     		b	.L6
+ 246              	.L13:
+  87:Core/Src/main.c ****             GPIOB_MODE_PIN2_OUT; // переводим PB2 в состояние выхода
+ 247              		.loc 1 87 13 view .LVU60
+ 248 014a 534B     		ldr	r3, .L44+20
+ 249 014c 1A68     		ldr	r2, [r3]
+ 250 014e 42F00402 		orr	r2, r2, #4
+ 251 0152 1A60     		str	r2, [r3]
+  88:Core/Src/main.c ****             GPIOB_MODE_PIN3_OUT; // переводим PB3 в состояние выхода
+ 252              		.loc 1 88 13 view .LVU61
+ 253 0154 1A68     		ldr	r2, [r3]
+ 254 0156 42F01002 		orr	r2, r2, #16
+ 255 015a 1A60     		str	r2, [r3]
+  89:Core/Src/main.c ****             break;
+ 256              		.loc 1 89 13 view .LVU62
+ 257 015c 1A68     		ldr	r2, [r3]
+ 258 015e 42F04002 		orr	r2, r2, #64
+ 259 0162 1A60     		str	r2, [r3]
+  90:Core/Src/main.c ****         default:
+ 260              		.loc 1 90 13 view .LVU63
+ 261 0164 79E7     		b	.L6
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s 			page 8
+
+
+ 262              	.L21:
+ 111:Core/Src/main.c ****             }
+ 112:Core/Src/main.c ****             else
+ 113:Core/Src/main.c ****             {
+ 114:Core/Src/main.c ****                 RESET_GPIO_A5;
+ 263              		.loc 1 114 17 view .LVU64
+ 264 0166 484B     		ldr	r3, .L44+4
+ 265 0168 4FF40012 		mov	r2, #2097152
+ 266 016c 9A61     		str	r2, [r3, #24]
+ 267 016e 06E0     		b	.L20
+ 268              	.L19:
+ 115:Core/Src/main.c ****             }
+ 116:Core/Src/main.c ****             }
+ 117:Core/Src/main.c ****         }
+ 118:Core/Src/main.c ****         else
+ 119:Core/Src/main.c ****         {
+ 120:Core/Src/main.c ****             check_status1 = 0; // сброс счётчика
+ 269              		.loc 1 120 13 view .LVU65
+ 270              		.loc 1 120 27 is_stmt 0 view .LVU66
+ 271 0170 4A4B     		ldr	r3, .L44+24
+ 272 0172 0022     		movs	r2, #0
+ 273 0174 1A70     		strb	r2, [r3]
+ 121:Core/Src/main.c ****             RESET_GPIO_A5;
+ 274              		.loc 1 121 13 is_stmt 1 view .LVU67
+ 275 0176 444B     		ldr	r3, .L44+4
+ 276 0178 4FF40012 		mov	r2, #2097152
+ 277 017c 9A61     		str	r2, [r3, #24]
+ 278              	.L20:
+ 122:Core/Src/main.c ****         }
+ 123:Core/Src/main.c **** 
+ 124:Core/Src/main.c ****         ///////
+ 125:Core/Src/main.c **** 
+ 126:Core/Src/main.c ****         // ПЕРВАЯ КНОПКА РЕЖИМ ВЫХОДА
+ 127:Core/Src/main.c **** 
+ 128:Core/Src/main.c ****         if (READ_CONDITION_PORT_B1 == 1)  // если пин работает в режиме вы�
+ 279              		.loc 1 128 9 view .LVU68
+ 280              		.loc 1 128 13 is_stmt 0 view .LVU69
+ 281 017e 464B     		ldr	r3, .L44+20
+ 282 0180 1B68     		ldr	r3, [r3]
+ 283              		.loc 1 128 12 view .LVU70
+ 284 0182 03F00C03 		and	r3, r3, #12
+ 285 0186 042B     		cmp	r3, #4
+ 286 0188 21D0     		beq	.L38
+ 287              	.L22:
+ 129:Core/Src/main.c ****         {
+ 130:Core/Src/main.c ****             SET_GPIO_B1;
+ 131:Core/Src/main.c ****             if (READ_GPIO_B1 != 0) // если кнопка нажата
+ 132:Core/Src/main.c ****             {
+ 133:Core/Src/main.c ****                 delay(300000);
+ 134:Core/Src/main.c ****             if((READ_GPIO_B1 != 0) && (check_status1 == 0)) // если кнопка нажата �
+ 135:Core/Src/main.c ****             {
+ 136:Core/Src/main.c ****                 check_status1 = 1;
+ 137:Core/Src/main.c ****                 SET_GPIO_B1;
+ 138:Core/Src/main.c ****             }
+ 139:Core/Src/main.c ****             }
+ 140:Core/Src/main.c ****             else
+ 141:Core/Src/main.c ****             {
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s 			page 9
+
+
+ 142:Core/Src/main.c ****                 check_status1 = 0; // сброс счётчика
+ 143:Core/Src/main.c ****                 RESET_GPIO_A5;
+ 144:Core/Src/main.c ****             }
+ 145:Core/Src/main.c ****         }
+ 146:Core/Src/main.c **** 
+ 147:Core/Src/main.c ****         /////////////////////////////////////////////////////////////////////
+ 148:Core/Src/main.c **** 
+ 149:Core/Src/main.c ****         // ВТОРАЯ КНОПКА РЕЖИМ ВХОДА
+ 150:Core/Src/main.c **** 
+ 151:Core/Src/main.c ****         if (READ_CONDITION_PORT_B2 == 0) // если пин работает в режиме вхо
+ 288              		.loc 1 151 9 is_stmt 1 view .LVU71
+ 289              		.loc 1 151 13 is_stmt 0 view .LVU72
+ 290 018a 434B     		ldr	r3, .L44+20
+ 291 018c 1B68     		ldr	r3, [r3]
+ 292              		.loc 1 151 12 view .LVU73
+ 293 018e 13F0300F 		tst	r3, #48
+ 294 0192 47D1     		bne	.L24
+ 152:Core/Src/main.c ****         {
+ 153:Core/Src/main.c ****             if (READ_GPIO_B2 != 0) // если кнопка нажата
+ 295              		.loc 1 153 13 is_stmt 1 view .LVU74
+ 296              		.loc 1 153 17 is_stmt 0 view .LVU75
+ 297 0194 3C4B     		ldr	r3, .L44+4
+ 298 0196 D3F81034 		ldr	r3, [r3, #1040]
+ 299              		.loc 1 153 16 view .LVU76
+ 300 019a 13F0040F 		tst	r3, #4
+ 301 019e 48D0     		beq	.L25
+ 154:Core/Src/main.c ****             {
+ 155:Core/Src/main.c ****                 SET_GPIO_A10; // типо синий
+ 302              		.loc 1 155 17 is_stmt 1 view .LVU77
+ 303 01a0 394C     		ldr	r4, .L44+4
+ 304 01a2 4FF48063 		mov	r3, #1024
+ 305 01a6 A361     		str	r3, [r4, #24]
+ 156:Core/Src/main.c ****                 delay(300000);
+ 306              		.loc 1 156 17 view .LVU78
+ 307 01a8 3648     		ldr	r0, .L44
+ 308 01aa FFF7FEFF 		bl	delay
+ 309              	.LVL5:
+ 157:Core/Src/main.c ****                 RESET_GPIO_B2;
+ 310              		.loc 1 157 17 view .LVU79
+ 311 01ae 4FF48023 		mov	r3, #262144
+ 312 01b2 C4F81834 		str	r3, [r4, #1048]
+ 158:Core/Src/main.c ****             if((READ_GPIO_B2 != 0) && (check_status2 == 0)) // если кнопка нажата �
+ 313              		.loc 1 158 13 view .LVU80
+ 314              		.loc 1 158 17 is_stmt 0 view .LVU81
+ 315 01b6 D4F81034 		ldr	r3, [r4, #1040]
+ 316              		.loc 1 158 15 view .LVU82
+ 317 01ba 13F0040F 		tst	r3, #4
+ 318 01be 2CD0     		beq	.L26
+ 319              		.loc 1 158 54 discriminator 1 view .LVU83
+ 320 01c0 384B     		ldr	r3, .L44+32
+ 321 01c2 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 322              		.loc 1 158 36 discriminator 1 view .LVU84
+ 323 01c4 4BBB     		cbnz	r3, .L26
+ 159:Core/Src/main.c ****             { 
+ 160:Core/Src/main.c ****                 check_status2 = 1;
+ 324              		.loc 1 160 17 is_stmt 1 view .LVU85
+ 325              		.loc 1 160 31 is_stmt 0 view .LVU86
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s 			page 10
+
+
+ 326 01c6 374B     		ldr	r3, .L44+32
+ 327 01c8 0122     		movs	r2, #1
+ 328 01ca 1A70     		strb	r2, [r3]
+ 161:Core/Src/main.c ****                 RESET_GPIO_B2;
+ 329              		.loc 1 161 17 is_stmt 1 view .LVU87
+ 330 01cc 31E0     		b	.L25
+ 331              	.L38:
+ 130:Core/Src/main.c ****             if (READ_GPIO_B1 != 0) // если кнопка нажата
+ 332              		.loc 1 130 13 view .LVU88
+ 333 01ce 2E4B     		ldr	r3, .L44+4
+ 334 01d0 0222     		movs	r2, #2
+ 335 01d2 C3F81824 		str	r2, [r3, #1048]
+ 131:Core/Src/main.c ****             {
+ 336              		.loc 1 131 13 view .LVU89
+ 131:Core/Src/main.c ****             {
+ 337              		.loc 1 131 17 is_stmt 0 view .LVU90
+ 338 01d6 D3F81034 		ldr	r3, [r3, #1040]
+ 131:Core/Src/main.c ****             {
+ 339              		.loc 1 131 16 view .LVU91
+ 340 01da 13F0020F 		tst	r3, #2
+ 341 01de 07D1     		bne	.L39
+ 142:Core/Src/main.c ****                 RESET_GPIO_A5;
+ 342              		.loc 1 142 17 is_stmt 1 view .LVU92
+ 142:Core/Src/main.c ****                 RESET_GPIO_A5;
+ 343              		.loc 1 142 31 is_stmt 0 view .LVU93
+ 344 01e0 2E4B     		ldr	r3, .L44+24
+ 345 01e2 0022     		movs	r2, #0
+ 346 01e4 1A70     		strb	r2, [r3]
+ 143:Core/Src/main.c ****             }
+ 347              		.loc 1 143 17 is_stmt 1 view .LVU94
+ 348 01e6 284B     		ldr	r3, .L44+4
+ 349 01e8 4FF40012 		mov	r2, #2097152
+ 350 01ec 9A61     		str	r2, [r3, #24]
+ 351 01ee CCE7     		b	.L22
+ 352              	.L39:
+ 133:Core/Src/main.c ****             if((READ_GPIO_B1 != 0) && (check_status1 == 0)) // если кнопка нажата �
+ 353              		.loc 1 133 17 view .LVU95
+ 354 01f0 2448     		ldr	r0, .L44
+ 355 01f2 FFF7FEFF 		bl	delay
+ 356              	.LVL6:
+ 134:Core/Src/main.c ****             {
+ 357              		.loc 1 134 13 view .LVU96
+ 134:Core/Src/main.c ****             {
+ 358              		.loc 1 134 17 is_stmt 0 view .LVU97
+ 359 01f6 244B     		ldr	r3, .L44+4
+ 360 01f8 D3F81034 		ldr	r3, [r3, #1040]
+ 134:Core/Src/main.c ****             {
+ 361              		.loc 1 134 15 view .LVU98
+ 362 01fc 13F0020F 		tst	r3, #2
+ 363 0200 C3D0     		beq	.L22
+ 134:Core/Src/main.c ****             {
+ 364              		.loc 1 134 54 discriminator 1 view .LVU99
+ 365 0202 264B     		ldr	r3, .L44+24
+ 366 0204 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 134:Core/Src/main.c ****             {
+ 367              		.loc 1 134 36 discriminator 1 view .LVU100
+ 368 0206 002B     		cmp	r3, #0
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s 			page 11
+
+
+ 369 0208 BFD1     		bne	.L22
+ 136:Core/Src/main.c ****                 SET_GPIO_B1;
+ 370              		.loc 1 136 17 is_stmt 1 view .LVU101
+ 136:Core/Src/main.c ****                 SET_GPIO_B1;
+ 371              		.loc 1 136 31 is_stmt 0 view .LVU102
+ 372 020a 244B     		ldr	r3, .L44+24
+ 373 020c 0122     		movs	r2, #1
+ 374 020e 1A70     		strb	r2, [r3]
+ 137:Core/Src/main.c ****             }
+ 375              		.loc 1 137 17 is_stmt 1 view .LVU103
+ 376 0210 1D4B     		ldr	r3, .L44+4
+ 377 0212 0222     		movs	r2, #2
+ 378 0214 C3F81824 		str	r2, [r3, #1048]
+ 379 0218 B7E7     		b	.L22
+ 380              	.L26:
+ 162:Core/Src/main.c ****             }
+ 163:Core/Src/main.c ****             else
+ 164:Core/Src/main.c ****             {
+ 165:Core/Src/main.c ****                 RESET_GPIO_A10;
+ 381              		.loc 1 165 17 view .LVU104
+ 382 021a 1B4B     		ldr	r3, .L44+4
+ 383 021c 4FF08062 		mov	r2, #67108864
+ 384 0220 9A61     		str	r2, [r3, #24]
+ 385 0222 06E0     		b	.L25
+ 386              	.L24:
+ 166:Core/Src/main.c ****             }
+ 167:Core/Src/main.c ****             }
+ 168:Core/Src/main.c ****         }
+ 169:Core/Src/main.c ****         else
+ 170:Core/Src/main.c ****         {
+ 171:Core/Src/main.c ****             check_status2 = 0; // сброс счётчика
+ 387              		.loc 1 171 13 view .LVU105
+ 388              		.loc 1 171 27 is_stmt 0 view .LVU106
+ 389 0224 1F4B     		ldr	r3, .L44+32
+ 390 0226 0022     		movs	r2, #0
+ 391 0228 1A70     		strb	r2, [r3]
+ 172:Core/Src/main.c ****             RESET_GPIO_A10;
+ 392              		.loc 1 172 13 is_stmt 1 view .LVU107
+ 393 022a 174B     		ldr	r3, .L44+4
+ 394 022c 4FF08062 		mov	r2, #67108864
+ 395 0230 9A61     		str	r2, [r3, #24]
+ 396              	.L25:
+ 173:Core/Src/main.c ****         }
+ 174:Core/Src/main.c **** 
+ 175:Core/Src/main.c ****         ///////
+ 176:Core/Src/main.c **** 
+ 177:Core/Src/main.c ****         // ВТОРАЯ КНОПКА РЕЖИМ ВЫХОДА
+ 178:Core/Src/main.c **** 
+ 179:Core/Src/main.c ****         if (READ_CONDITION_PORT_B2 == 1)  // если пин работает в режиме вы�
+ 397              		.loc 1 179 9 view .LVU108
+ 398              		.loc 1 179 13 is_stmt 0 view .LVU109
+ 399 0232 194B     		ldr	r3, .L44+20
+ 400 0234 1B68     		ldr	r3, [r3]
+ 401              		.loc 1 179 12 view .LVU110
+ 402 0236 03F03003 		and	r3, r3, #48
+ 403 023a 102B     		cmp	r3, #16
+ 404 023c 36D0     		beq	.L40
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s 			page 12
+
+
+ 405              	.L27:
+ 180:Core/Src/main.c ****         {
+ 181:Core/Src/main.c ****             SET_GPIO_B2;
+ 182:Core/Src/main.c ****             if (READ_GPIO_B2 != 0) // если кнопка нажата
+ 183:Core/Src/main.c ****             {
+ 184:Core/Src/main.c ****                 delay(300000);
+ 185:Core/Src/main.c ****             if((READ_GPIO_B2 != 0) && (check_status2 == 0)) // если кнопка нажата �
+ 186:Core/Src/main.c ****             {
+ 187:Core/Src/main.c ****                 check_status2 = 1;
+ 188:Core/Src/main.c ****                 SET_GPIO_B2;
+ 189:Core/Src/main.c ****             }
+ 190:Core/Src/main.c ****             }
+ 191:Core/Src/main.c ****             else
+ 192:Core/Src/main.c ****             {
+ 193:Core/Src/main.c ****                 check_status2 = 0; // сброс счётчика
+ 194:Core/Src/main.c ****                 RESET_GPIO_A10;
+ 195:Core/Src/main.c ****             }
+ 196:Core/Src/main.c ****         }
+ 197:Core/Src/main.c ****         
+ 198:Core/Src/main.c ****         /////////////////////////////////////////////////////////////////////
+ 199:Core/Src/main.c **** 
+ 200:Core/Src/main.c ****         // ТРЕТЬЯ КНОПКА РЕЖИМ ВХОДА
+ 201:Core/Src/main.c **** 
+ 202:Core/Src/main.c ****         if (READ_CONDITION_PORT_B3 == 0) // если пин работает в режиме вхо
+ 406              		.loc 1 202 9 is_stmt 1 view .LVU111
+ 407              		.loc 1 202 13 is_stmt 0 view .LVU112
+ 408 023e 164B     		ldr	r3, .L44+20
+ 409 0240 1B68     		ldr	r3, [r3]
+ 410              		.loc 1 202 12 view .LVU113
+ 411 0242 13F0C00F 		tst	r3, #192
+ 412 0246 5CD1     		bne	.L29
+ 203:Core/Src/main.c ****         {
+ 204:Core/Src/main.c ****             if (READ_GPIO_B3 != 0) // если кнопка нажата
+ 413              		.loc 1 204 13 is_stmt 1 view .LVU114
+ 414              		.loc 1 204 17 is_stmt 0 view .LVU115
+ 415 0248 0F4B     		ldr	r3, .L44+4
+ 416 024a D3F81034 		ldr	r3, [r3, #1040]
+ 417              		.loc 1 204 16 view .LVU116
+ 418 024e 13F0080F 		tst	r3, #8
+ 419 0252 5DD0     		beq	.L30
+ 205:Core/Src/main.c ****             {
+ 206:Core/Src/main.c ****                 SET_GPIO_A11; // типо синий
+ 420              		.loc 1 206 17 is_stmt 1 view .LVU117
+ 421 0254 0C4C     		ldr	r4, .L44+4
+ 422 0256 4FF40063 		mov	r3, #2048
+ 423 025a A361     		str	r3, [r4, #24]
+ 207:Core/Src/main.c ****                 delay(300000);
+ 424              		.loc 1 207 17 view .LVU118
+ 425 025c 0948     		ldr	r0, .L44
+ 426 025e FFF7FEFF 		bl	delay
+ 427              	.LVL7:
+ 208:Core/Src/main.c ****                 RESET_GPIO_B3;
+ 428              		.loc 1 208 17 view .LVU119
+ 429 0262 4FF40023 		mov	r3, #524288
+ 430 0266 C4F81834 		str	r3, [r4, #1048]
+ 209:Core/Src/main.c ****             if((READ_GPIO_B3 != 0) && (check_status3 == 0)) // если кнопка нажата �
+ 431              		.loc 1 209 13 view .LVU120
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s 			page 13
+
+
+ 432              		.loc 1 209 17 is_stmt 0 view .LVU121
+ 433 026a D4F81034 		ldr	r3, [r4, #1040]
+ 434              		.loc 1 209 15 view .LVU122
+ 435 026e 13F0080F 		tst	r3, #8
+ 436 0272 41D0     		beq	.L31
+ 437              		.loc 1 209 54 discriminator 1 view .LVU123
+ 438 0274 0C4B     		ldr	r3, .L44+36
+ 439 0276 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 440              		.loc 1 209 36 discriminator 1 view .LVU124
+ 441 0278 002B     		cmp	r3, #0
+ 442 027a 3DD1     		bne	.L31
+ 210:Core/Src/main.c ****             { 
+ 211:Core/Src/main.c ****                 check_status3 = 1;
+ 443              		.loc 1 211 17 is_stmt 1 view .LVU125
+ 444              		.loc 1 211 31 is_stmt 0 view .LVU126
+ 445 027c 0A4B     		ldr	r3, .L44+36
+ 446 027e 0122     		movs	r2, #1
+ 447 0280 1A70     		strb	r2, [r3]
+ 212:Core/Src/main.c ****                 RESET_GPIO_B3;
+ 448              		.loc 1 212 17 is_stmt 1 view .LVU127
+ 449 0282 45E0     		b	.L30
+ 450              	.L45:
+ 451              		.align	2
+ 452              	.L44:
+ 453 0284 E0930400 		.word	300000
+ 454 0288 00000240 		.word	1073872896
+ 455 028c 00000000 		.word	check_status10
+ 456 0290 00000000 		.word	counter
+ 457 0294 67666666 		.word	1717986919
+ 458 0298 00040240 		.word	1073873920
+ 459 029c 00000000 		.word	check_status1
+ 460 02a0 00000000 		.word	flag
+ 461 02a4 00000000 		.word	check_status2
+ 462 02a8 00000000 		.word	check_status3
+ 463              	.L40:
+ 181:Core/Src/main.c ****             if (READ_GPIO_B2 != 0) // если кнопка нажата
+ 464              		.loc 1 181 13 view .LVU128
+ 465 02ac 3F4B     		ldr	r3, .L46
+ 466 02ae 0422     		movs	r2, #4
+ 467 02b0 C3F81824 		str	r2, [r3, #1048]
+ 182:Core/Src/main.c ****             {
+ 468              		.loc 1 182 13 view .LVU129
+ 182:Core/Src/main.c ****             {
+ 469              		.loc 1 182 17 is_stmt 0 view .LVU130
+ 470 02b4 D3F81034 		ldr	r3, [r3, #1040]
+ 182:Core/Src/main.c ****             {
+ 471              		.loc 1 182 16 view .LVU131
+ 472 02b8 13F0040F 		tst	r3, #4
+ 473 02bc 07D1     		bne	.L41
+ 193:Core/Src/main.c ****                 RESET_GPIO_A10;
+ 474              		.loc 1 193 17 is_stmt 1 view .LVU132
+ 193:Core/Src/main.c ****                 RESET_GPIO_A10;
+ 475              		.loc 1 193 31 is_stmt 0 view .LVU133
+ 476 02be 3C4B     		ldr	r3, .L46+4
+ 477 02c0 0022     		movs	r2, #0
+ 478 02c2 1A70     		strb	r2, [r3]
+ 194:Core/Src/main.c ****             }
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s 			page 14
+
+
+ 479              		.loc 1 194 17 is_stmt 1 view .LVU134
+ 480 02c4 394B     		ldr	r3, .L46
+ 481 02c6 4FF08062 		mov	r2, #67108864
+ 482 02ca 9A61     		str	r2, [r3, #24]
+ 483 02cc B7E7     		b	.L27
+ 484              	.L41:
+ 184:Core/Src/main.c ****             if((READ_GPIO_B2 != 0) && (check_status2 == 0)) // если кнопка нажата �
+ 485              		.loc 1 184 17 view .LVU135
+ 486 02ce 3948     		ldr	r0, .L46+8
+ 487 02d0 FFF7FEFF 		bl	delay
+ 488              	.LVL8:
+ 185:Core/Src/main.c ****             {
+ 489              		.loc 1 185 13 view .LVU136
+ 185:Core/Src/main.c ****             {
+ 490              		.loc 1 185 17 is_stmt 0 view .LVU137
+ 491 02d4 354B     		ldr	r3, .L46
+ 492 02d6 D3F81034 		ldr	r3, [r3, #1040]
+ 185:Core/Src/main.c ****             {
+ 493              		.loc 1 185 15 view .LVU138
+ 494 02da 13F0040F 		tst	r3, #4
+ 495 02de AED0     		beq	.L27
+ 185:Core/Src/main.c ****             {
+ 496              		.loc 1 185 54 discriminator 1 view .LVU139
+ 497 02e0 334B     		ldr	r3, .L46+4
+ 498 02e2 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 185:Core/Src/main.c ****             {
+ 499              		.loc 1 185 36 discriminator 1 view .LVU140
+ 500 02e4 002B     		cmp	r3, #0
+ 501 02e6 AAD1     		bne	.L27
+ 187:Core/Src/main.c ****                 SET_GPIO_B2;
+ 502              		.loc 1 187 17 is_stmt 1 view .LVU141
+ 187:Core/Src/main.c ****                 SET_GPIO_B2;
+ 503              		.loc 1 187 31 is_stmt 0 view .LVU142
+ 504 02e8 314B     		ldr	r3, .L46+4
+ 505 02ea 0122     		movs	r2, #1
+ 506 02ec 1A70     		strb	r2, [r3]
+ 188:Core/Src/main.c ****             }
+ 507              		.loc 1 188 17 is_stmt 1 view .LVU143
+ 508 02ee 2F4B     		ldr	r3, .L46
+ 509 02f0 0422     		movs	r2, #4
+ 510 02f2 C3F81824 		str	r2, [r3, #1048]
+ 511 02f6 A2E7     		b	.L27
+ 512              	.L31:
+ 213:Core/Src/main.c ****             }
+ 214:Core/Src/main.c ****             else
+ 215:Core/Src/main.c ****             {
+ 216:Core/Src/main.c ****                 RESET_GPIO_A11;
+ 513              		.loc 1 216 17 view .LVU144
+ 514 02f8 2C4B     		ldr	r3, .L46
+ 515 02fa 4FF00062 		mov	r2, #134217728
+ 516 02fe 9A61     		str	r2, [r3, #24]
+ 517 0300 06E0     		b	.L30
+ 518              	.L29:
+ 217:Core/Src/main.c ****             }
+ 218:Core/Src/main.c ****             }
+ 219:Core/Src/main.c ****         }
+ 220:Core/Src/main.c ****         else
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s 			page 15
+
+
+ 221:Core/Src/main.c ****         {
+ 222:Core/Src/main.c ****             check_status2 = 0; // сброс счётчика
+ 519              		.loc 1 222 13 view .LVU145
+ 520              		.loc 1 222 27 is_stmt 0 view .LVU146
+ 521 0302 2B4B     		ldr	r3, .L46+4
+ 522 0304 0022     		movs	r2, #0
+ 523 0306 1A70     		strb	r2, [r3]
+ 223:Core/Src/main.c ****             RESET_GPIO_A11;
+ 524              		.loc 1 223 13 is_stmt 1 view .LVU147
+ 525 0308 284B     		ldr	r3, .L46
+ 526 030a 4FF00062 		mov	r2, #134217728
+ 527 030e 9A61     		str	r2, [r3, #24]
+ 528              	.L30:
+ 224:Core/Src/main.c ****         }
+ 225:Core/Src/main.c **** 
+ 226:Core/Src/main.c ****         ///////
+ 227:Core/Src/main.c **** 
+ 228:Core/Src/main.c ****         // ТРЕТЬЯ КНОПКА РЕЖИМ ВЫХОДА
+ 229:Core/Src/main.c **** 
+ 230:Core/Src/main.c ****         if (READ_CONDITION_PORT_B3 == 1)  // если пин работает в режиме вы�
+ 529              		.loc 1 230 9 view .LVU148
+ 530              		.loc 1 230 13 is_stmt 0 view .LVU149
+ 531 0310 294B     		ldr	r3, .L46+12
+ 532 0312 1B68     		ldr	r3, [r3]
+ 533              		.loc 1 230 12 view .LVU150
+ 534 0314 03F0C003 		and	r3, r3, #192
+ 535 0318 402B     		cmp	r3, #64
+ 536 031a 21D0     		beq	.L42
+ 537              	.L32:
+  22:Core/Src/main.c ****     {
+ 538              		.loc 1 22 5 is_stmt 1 view .LVU151
+  24:Core/Src/main.c ****         {
+ 539              		.loc 1 24 9 view .LVU152
+  24:Core/Src/main.c ****         {
+ 540              		.loc 1 24 14 is_stmt 0 view .LVU153
+ 541 031c 234B     		ldr	r3, .L46
+ 542 031e D3F81038 		ldr	r3, [r3, #2064]
+  24:Core/Src/main.c ****         {
+ 543              		.loc 1 24 12 view .LVU154
+ 544 0322 13F4806F 		tst	r3, #1024
+ 545 0326 7FF473AE 		bne	.L43
+  35:Core/Src/main.c ****         }
+ 546              		.loc 1 35 13 is_stmt 1 view .LVU155
+  35:Core/Src/main.c ****         }
+ 547              		.loc 1 35 28 is_stmt 0 view .LVU156
+ 548 032a 244B     		ldr	r3, .L46+16
+ 549 032c 0022     		movs	r2, #0
+ 550 032e 1A70     		strb	r2, [r3]
+ 551              	.L4:
+  40:Core/Src/main.c ****         {
+ 552              		.loc 1 40 9 is_stmt 1 view .LVU157
+  40:Core/Src/main.c ****         {
+ 553              		.loc 1 40 18 is_stmt 0 view .LVU158
+ 554 0330 234B     		ldr	r3, .L46+20
+ 555 0332 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  40:Core/Src/main.c ****         {
+ 556              		.loc 1 40 12 view .LVU159
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s 			page 16
+
+
+ 557 0334 002B     		cmp	r3, #0
+ 558 0336 7FF4DFAE 		bne	.L5
+  42:Core/Src/main.c ****         {
+ 559              		.loc 1 42 13 is_stmt 1 view .LVU160
+ 560 033a 224A     		ldr	r2, .L46+24
+ 561 033c 1268     		ldr	r2, [r2]
+ 562 033e 042A     		cmp	r2, #4
+ 563 0340 3FF68BAE 		bhi	.L6
+ 564 0344 01A1     		adr	r1, .L8
+ 565 0346 51F822F0 		ldr	pc, [r1, r2, lsl #2]
+ 566 034a 00BF     		.p2align 2
+ 567              	.L8:
+ 568 034c 51000000 		.word	.L12+1
+ 569 0350 A3000000 		.word	.L11+1
+ 570 0354 AF000000 		.word	.L10+1
+ 571 0358 BB000000 		.word	.L9+1
+ 572 035c D7000000 		.word	.L7+1
+ 573              		.p2align 1
+ 574              	.L42:
+ 231:Core/Src/main.c ****         {
+ 232:Core/Src/main.c ****             SET_GPIO_B3;
+ 575              		.loc 1 232 13 view .LVU161
+ 576 0360 124B     		ldr	r3, .L46
+ 577 0362 0822     		movs	r2, #8
+ 578 0364 C3F81824 		str	r2, [r3, #1048]
+ 233:Core/Src/main.c ****             if (READ_GPIO_B3 != 0) // если кнопка нажата
+ 579              		.loc 1 233 13 view .LVU162
+ 580              		.loc 1 233 17 is_stmt 0 view .LVU163
+ 581 0368 D3F81034 		ldr	r3, [r3, #1040]
+ 582              		.loc 1 233 16 view .LVU164
+ 583 036c 13F0080F 		tst	r3, #8
+ 584 0370 14D0     		beq	.L33
+ 234:Core/Src/main.c ****             {
+ 235:Core/Src/main.c ****                 delay(300000);
+ 585              		.loc 1 235 17 is_stmt 1 view .LVU165
+ 586 0372 1048     		ldr	r0, .L46+8
+ 587 0374 FFF7FEFF 		bl	delay
+ 588              	.LVL9:
+ 236:Core/Src/main.c ****             if((READ_GPIO_B3 != 0) && (check_status3 == 0)) // если кнопка нажата �
+ 589              		.loc 1 236 13 view .LVU166
+ 590              		.loc 1 236 17 is_stmt 0 view .LVU167
+ 591 0378 0C4B     		ldr	r3, .L46
+ 592 037a D3F81034 		ldr	r3, [r3, #1040]
+ 593              		.loc 1 236 15 view .LVU168
+ 594 037e 13F0080F 		tst	r3, #8
+ 595 0382 CBD0     		beq	.L32
+ 596              		.loc 1 236 54 discriminator 1 view .LVU169
+ 597 0384 104B     		ldr	r3, .L46+28
+ 598 0386 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 599              		.loc 1 236 36 discriminator 1 view .LVU170
+ 600 0388 002B     		cmp	r3, #0
+ 601 038a C7D1     		bne	.L32
+ 237:Core/Src/main.c ****             {
+ 238:Core/Src/main.c ****                 check_status3 = 1;
+ 602              		.loc 1 238 17 is_stmt 1 view .LVU171
+ 603              		.loc 1 238 31 is_stmt 0 view .LVU172
+ 604 038c 0E4B     		ldr	r3, .L46+28
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s 			page 17
+
+
+ 605 038e 0122     		movs	r2, #1
+ 606 0390 1A70     		strb	r2, [r3]
+ 239:Core/Src/main.c ****                 SET_GPIO_B3;
+ 607              		.loc 1 239 17 is_stmt 1 view .LVU173
+ 608 0392 064B     		ldr	r3, .L46
+ 609 0394 0822     		movs	r2, #8
+ 610 0396 C3F81824 		str	r2, [r3, #1048]
+ 611 039a BFE7     		b	.L32
+ 612              	.L33:
+ 240:Core/Src/main.c ****             }
+ 241:Core/Src/main.c ****             }
+ 242:Core/Src/main.c ****             else
+ 243:Core/Src/main.c ****             {
+ 244:Core/Src/main.c ****                 check_status3 = 0; // сброс счётчика
+ 613              		.loc 1 244 17 view .LVU174
+ 614              		.loc 1 244 31 is_stmt 0 view .LVU175
+ 615 039c 0A4B     		ldr	r3, .L46+28
+ 616 039e 0022     		movs	r2, #0
+ 617 03a0 1A70     		strb	r2, [r3]
+ 245:Core/Src/main.c ****                 RESET_GPIO_A11;
+ 618              		.loc 1 245 17 is_stmt 1 view .LVU176
+ 619 03a2 024B     		ldr	r3, .L46
+ 620 03a4 4FF00062 		mov	r2, #134217728
+ 621 03a8 9A61     		str	r2, [r3, #24]
+ 622 03aa B7E7     		b	.L32
+ 623              	.L47:
+ 624              		.align	2
+ 625              	.L46:
+ 626 03ac 00000240 		.word	1073872896
+ 627 03b0 00000000 		.word	check_status2
+ 628 03b4 E0930400 		.word	300000
+ 629 03b8 00040240 		.word	1073873920
+ 630 03bc 00000000 		.word	check_status10
+ 631 03c0 00000000 		.word	flag
+ 632 03c4 00000000 		.word	counter
+ 633 03c8 00000000 		.word	check_status3
+ 634              		.cfi_endproc
+ 635              	.LFE130:
+ 637              		.global	flag
+ 638              		.section	.bss.flag,"aw",%nobits
+ 641              	flag:
+ 642 0000 00       		.space	1
+ 643              		.global	check_status3
+ 644              		.section	.bss.check_status3,"aw",%nobits
+ 647              	check_status3:
+ 648 0000 00       		.space	1
+ 649              		.global	check_status2
+ 650              		.section	.bss.check_status2,"aw",%nobits
+ 653              	check_status2:
+ 654 0000 00       		.space	1
+ 655              		.global	check_status1
+ 656              		.section	.bss.check_status1,"aw",%nobits
+ 659              	check_status1:
+ 660 0000 00       		.space	1
+ 661              		.global	check_status10
+ 662              		.section	.data.check_status10,"aw"
+ 665              	check_status10:
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s 			page 18
+
+
+ 666 0000 01       		.byte	1
+ 667              		.global	counter
+ 668              		.section	.data.counter,"aw"
+ 669              		.align	2
+ 672              	counter:
+ 673 0000 FFFFFFFF 		.word	-1
+ 674              		.text
+ 675              	.Letext0:
+ 676              		.file 2 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 677              		.file 3 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 678              		.file 4 "CMSIS/Devices/STM32F4xx/Inc/STM32F411xE/stm32f411xe.h"
+ 679              		.file 5 "Core/Inc/init.h"
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s 			page 19
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s:21     .text.main:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s:27     .text.main:00000000 main
-C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s:213    .text.main:00000102 $d
-C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s:504    .text.main:000002ac $d
-C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s:512    .text.main:000002bc $t
-C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s:552    .text.main:000002f8 $d
-C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s:557    .text.main:0000030c $t
-C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s:612    .text.main:00000358 $d
-C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s:218    .text.main:00000107 $d
-C:\Users\pashk\AppData\Local\Temp\ccHpVYzS.s:218    .text.main:00000108 $t
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:21     .text.main:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:27     .text.main:00000000 main
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:200    .text.main:00000104 $d
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:453    .text.main:00000284 $d
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:665    .data.check_status10:00000000 check_status10
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:672    .data.counter:00000000 counter
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:659    .bss.check_status1:00000000 check_status1
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:641    .bss.flag:00000000 flag
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:653    .bss.check_status2:00000000 check_status2
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:647    .bss.check_status3:00000000 check_status3
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:465    .text.main:000002ac $t
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:568    .text.main:0000034c $d
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:573    .text.main:00000360 $t
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:626    .text.main:000003ac $d
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:642    .bss.flag:00000000 $d
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:648    .bss.check_status3:00000000 $d
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:654    .bss.check_status2:00000000 $d
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:660    .bss.check_status1:00000000 $d
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:669    .data.counter:00000000 $d
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:205    .text.main:00000109 $d
+C:\Users\pashk\AppData\Local\Temp\ccNx7EzN.s:205    .text.main:0000010a $t
 
 UNDEFINED SYMBOLS
 GPIO_Init_with_CMSIS
 GPIO_Init_with_my_macro
+Init_with_memory_for_led3
 delay

@@ -1,21 +1,24 @@
 #include "init.h"
 #include "it_handlers.h"
 
-int main(void)
-{
-    
-}
-
-/* int main(void) // ОСНОВНОЕ ЗАДАНИЕ
-{
     int counter = -1;
     uint8_t check_status10 = 1; // 0 - кнопка не нажата, 1 - кнопка нажата
     uint8_t check_status1 = 0;
     uint8_t check_status2 = 0;
     uint8_t check_status3 = 0;
     uint8_t flag = 0;
+
+int main(void) // ОСНОВНОЕ ЗАДАНИЕ
+{
+    /* int counter = -1;
+    uint8_t check_status10 = 1; // 0 - кнопка не нажата, 1 - кнопка нажата
+    uint8_t check_status1 = 0;
+    uint8_t check_status2 = 0;
+    uint8_t check_status3 = 0;
+    uint8_t flag = 0; */
     GPIO_Init_with_CMSIS();
     GPIO_Init_with_my_macro();
+    Init_with_memory_for_led3();
     while (1)
     {
         if ((*(uint32_t*)(0x40020800 + 0x10UL) & 0x400) != 0) // если главная кнопка нажата
@@ -243,7 +246,7 @@ int main(void)
             }
         }
     }
-} */
+}
 
 /* int main(void) // ДОПОЛНИТЕЛЬНОЕ ЗАДАНИЕ
 {

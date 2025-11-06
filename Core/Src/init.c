@@ -1,5 +1,13 @@
 #include "init.h"
 
+void Init_with_memory_for_led3(void)
+{
+    *(uint32_t*)(0x40020000UL + 0x00UL) |= 0x400000UL; // определение режима работы
+    *(uint32_t*)(0x40020000UL + 0x04UL) |= 0x0000UL; // выбираем тип выхода 
+    *(uint32_t*)(0x40020000UL + 0x08UL) |= 0xC00000UL; // выбираем скорость работы
+    *(uint32_t*)(0x40020000UL + 0x0CUL) |= 0x0000UL; // подтягивающий резистор
+}
+
 void GPIO_Init(void)
 {
     // настройка порта PC9 в качестве MCO2
@@ -65,46 +73,6 @@ void GPIO_Init_with_CMSIS(void)
     GPIOA->MODER |=  (0x1 << (5 * 2)); // Устанавливаем режим Output
 
     /////////////////////////////////////////////////////////////////////
-
-    /////////////////////////////////////////////////////////////////////
-
-    // A10
-
-    // Настраиваем PA10 как выход (MODER10[1:0] = 01)
-    GPIOA->MODER &= ~(0x3 << (10 * 2)); // Сбрасываем биты MODER10
-    GPIOA->MODER |=  (0x1 << (10 * 2)); // Устанавливаем режим Output
-
-    // Настраиваем тип выхода - push-pull (OTYPER10 = 0)
-    GPIOA->OTYPER &= ~(1 << 10);
-
-    // Настраиваем скорость вывода как высокую (OSPEEDR10 = 10)
-    GPIOA->OSPEEDR &= ~(0x3 << (10 * 2));
-    GPIOA->OSPEEDR |= (0x2 << (10 * 2));
-
-    // Без подтягивающего резистора (PUPDR10 = 00)
-    GPIOA->PUPDR &= ~(0x3 << (10 * 2));
-
-    /////////////////////////////////////////////////////////////////////
-
-    /////////////////////////////////////////////////////////////////////
-
-    // A11
-
-    // Настраиваем PA11 как выход (MODER11[1:0] = 01)
-    GPIOA->MODER &= ~(0x3 << (11 * 2)); // Сбрасываем биты MODER3
-    GPIOA->MODER |=  (0x1 << (11 * 2)); // Устанавливаем режим Output
-
-    // Настраиваем тип выхода - push-pull (OTYPER11 = 0)
-    GPIOA->OTYPER &= ~(1 << 11);
-
-    // Настраиваем скорость вывода как высокую (OSPEEDR11 = 10)
-    GPIOA->OSPEEDR &= ~(0x3 << (11 * 2));
-    GPIOA->OSPEEDR |= (0x2 << (11 * 2));
-
-    // Без подтягивающего резистора (PUPDR11 = 00)
-    GPIOA->PUPDR &= ~(0x3 << (11 * 2));
-
-    /////////////////////////////////////////////////////////////////////
 }
 
 void GPIO_Init_with_my_macro(void)
@@ -132,16 +100,12 @@ void GPIO_Init_with_my_macro(void)
 
     /////////////////////////////////////////////////////////////////////
 
-    // Настройка пользовательского светодиода
+    // Настройка портов для внешнего светодиода
 
-    GPIOA_MODER |= GPIOA_MODE_PIN5_OUT;
-
-    // Настройка портов для внешних светодиодов
-
-    GPIOA_MODER |= GPIOA_MODE_PIN10_OUT | GPIOA_MODE_PIN11_OUT;
-    GPIOA_OTYPER |= GPIOA_OTYPE_PIN10_PP | GPIOA_OTYPE_PIN11_PP;
-    GPIOA_OSPEEDR |= GPIOA_OSPEED_PIN10_HS | GPIOA_OSPEED_PIN11_HS;
-    GPIOA_PUPDR |= GPIOA_PUPD_PIN10_NOPUPD | GPIOA_PUPD_PIN11_NOPUPD;
+    GPIOA_MODER |= GPIOA_MODE_PIN10_OUT;
+    GPIOA_OTYPER |= GPIOA_OTYPE_PIN10_PP;
+    GPIOA_OSPEEDR |= GPIOA_OSPEED_PIN10_HS;
+    GPIOA_PUPDR |= GPIOA_PUPD_PIN10_NOPUPD;
 
     /////////////////////////////////////////////////////////////////////
 }

@@ -3,6 +3,7 @@
 #include "stm32f411xe.h"
 
 void delay(volatile uint32_t count);
+void Init_with_memory_for_led3(void);
 void GPIO_Init_with_CMSIS(void);
 void GPIO_Init_with_my_macro(void);
 

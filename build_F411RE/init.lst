@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
   27:CMSIS/Include/core_cm4.h **** #elif defined (__clang__)
   28:CMSIS/Include/core_cm4.h ****   #pragma clang system_header   /* treat file as system include file */
   29:CMSIS/Include/core_cm4.h **** #endif
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 2
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 2
 
 
   30:CMSIS/Include/core_cm4.h **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
   84:CMSIS/Include/core_cm4.h ****   #else
   85:CMSIS/Include/core_cm4.h ****     #define __FPU_USED         0U
   86:CMSIS/Include/core_cm4.h ****   #endif
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 3
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 3
 
 
   87:CMSIS/Include/core_cm4.h **** 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
  141:CMSIS/Include/core_cm4.h ****       #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)
  142:CMSIS/Include/core_cm4.h ****       #define __FPU_USED       0U
  143:CMSIS/Include/core_cm4.h ****     #endif
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 4
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 4
 
 
  144:CMSIS/Include/core_cm4.h ****   #else
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
  198:CMSIS/Include/core_cm4.h ****     #define __NVIC_PRIO_BITS          3U
  199:CMSIS/Include/core_cm4.h ****     #warning "__NVIC_PRIO_BITS not defined in device header file; using default!"
  200:CMSIS/Include/core_cm4.h ****   #endif
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 5
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 5
 
 
  201:CMSIS/Include/core_cm4.h **** 
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
  255:CMSIS/Include/core_cm4.h **** 
  256:CMSIS/Include/core_cm4.h **** /**
  257:CMSIS/Include/core_cm4.h ****   \brief  Union type to access the Application Program Status Register (APSR).
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 6
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 6
 
 
  258:CMSIS/Include/core_cm4.h ****  */
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
  312:CMSIS/Include/core_cm4.h **** 
  313:CMSIS/Include/core_cm4.h **** /**
  314:CMSIS/Include/core_cm4.h ****   \brief  Union type to access the Special-Purpose Program Status Registers (xPSR).
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 7
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 7
 
 
  315:CMSIS/Include/core_cm4.h ****  */
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
  369:CMSIS/Include/core_cm4.h ****   \brief  Union type to access the Control Registers (CONTROL).
  370:CMSIS/Include/core_cm4.h ****  */
  371:CMSIS/Include/core_cm4.h **** typedef union
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 8
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 8
 
 
  372:CMSIS/Include/core_cm4.h **** {
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
  426:CMSIS/Include/core_cm4.h **** 
  427:CMSIS/Include/core_cm4.h **** /*@} end of group CMSIS_NVIC */
  428:CMSIS/Include/core_cm4.h **** 
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 9
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 9
 
 
  429:CMSIS/Include/core_cm4.h **** 
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
  483:CMSIS/Include/core_cm4.h **** #define SCB_ICSR_NMIPENDSET_Msk            (1UL << SCB_ICSR_NMIPENDSET_Pos)               /*!< SCB 
  484:CMSIS/Include/core_cm4.h **** 
  485:CMSIS/Include/core_cm4.h **** #define SCB_ICSR_PENDSVSET_Pos             28U                                            /*!< SCB 
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 10
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 10
 
 
  486:CMSIS/Include/core_cm4.h **** #define SCB_ICSR_PENDSVSET_Msk             (1UL << SCB_ICSR_PENDSVSET_Pos)                /*!< SCB 
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
  540:CMSIS/Include/core_cm4.h **** #define SCB_SCR_SEVONPEND_Msk              (1UL << SCB_SCR_SEVONPEND_Pos)                 /*!< SCB 
  541:CMSIS/Include/core_cm4.h **** 
  542:CMSIS/Include/core_cm4.h **** #define SCB_SCR_SLEEPDEEP_Pos               2U                                            /*!< SCB 
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 11
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 11
 
 
  543:CMSIS/Include/core_cm4.h **** #define SCB_SCR_SLEEPDEEP_Msk              (1UL << SCB_SCR_SLEEPDEEP_Pos)                 /*!< SCB 
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
  597:CMSIS/Include/core_cm4.h **** 
  598:CMSIS/Include/core_cm4.h **** #define SCB_SHCSR_SVCALLACT_Pos             7U                                            /*!< SCB 
  599:CMSIS/Include/core_cm4.h **** #define SCB_SHCSR_SVCALLACT_Msk            (1UL << SCB_SHCSR_SVCALLACT_Pos)               /*!< SCB 
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 12
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 12
 
 
  600:CMSIS/Include/core_cm4.h **** 
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
  654:CMSIS/Include/core_cm4.h **** 
  655:CMSIS/Include/core_cm4.h **** #define SCB_CFSR_PRECISERR_Pos            (SCB_CFSR_BUSFAULTSR_Pos + 1U)                  /*!< SCB 
  656:CMSIS/Include/core_cm4.h **** #define SCB_CFSR_PRECISERR_Msk            (1UL << SCB_CFSR_PRECISERR_Pos)                 /*!< SCB 
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 13
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 13
 
 
  657:CMSIS/Include/core_cm4.h **** 
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
  711:CMSIS/Include/core_cm4.h ****   \defgroup CMSIS_SCnSCB System Controls not in SCB (SCnSCB)
  712:CMSIS/Include/core_cm4.h ****   \brief    Type definitions for the System Control and ID Register not in the SCB
  713:CMSIS/Include/core_cm4.h ****   @{
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 14
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 14
 
 
  714:CMSIS/Include/core_cm4.h ****  */
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
  768:CMSIS/Include/core_cm4.h **** #define SysTick_CTRL_COUNTFLAG_Pos         16U                                            /*!< SysT
  769:CMSIS/Include/core_cm4.h **** #define SysTick_CTRL_COUNTFLAG_Msk         (1UL << SysTick_CTRL_COUNTFLAG_Pos)            /*!< SysT
  770:CMSIS/Include/core_cm4.h **** 
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 15
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 15
 
 
  771:CMSIS/Include/core_cm4.h **** #define SysTick_CTRL_CLKSOURCE_Pos          2U                                            /*!< SysT
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
  825:CMSIS/Include/core_cm4.h ****         uint32_t RESERVED3[29U];
  826:CMSIS/Include/core_cm4.h ****   __OM  uint32_t IWR;                    /*!< Offset: 0xEF8 ( /W)  ITM Integration Write Register *
  827:CMSIS/Include/core_cm4.h ****   __IM  uint32_t IRR;                    /*!< Offset: 0xEFC (R/ )  ITM Integration Read Register */
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 16
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 16
 
 
  828:CMSIS/Include/core_cm4.h ****   __IOM uint32_t IMCR;                   /*!< Offset: 0xF00 (R/W)  ITM Integration Mode Control Reg
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
  882:CMSIS/Include/core_cm4.h **** 
  883:CMSIS/Include/core_cm4.h **** /* ITM Integration Read Register Definitions */
  884:CMSIS/Include/core_cm4.h **** #define ITM_IRR_ATREADYM_Pos                0U                                            /*!< ITM 
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 17
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 17
 
 
  885:CMSIS/Include/core_cm4.h **** #define ITM_IRR_ATREADYM_Msk               (1UL /*<< ITM_IRR_ATREADYM_Pos*/)              /*!< ITM 
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
  939:CMSIS/Include/core_cm4.h **** } DWT_Type;
  940:CMSIS/Include/core_cm4.h **** 
  941:CMSIS/Include/core_cm4.h **** /* DWT Control Register Definitions */
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 18
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 18
 
 
  942:CMSIS/Include/core_cm4.h **** #define DWT_CTRL_NUMCOMP_Pos               28U                                         /*!< DWT CTR
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
  996:CMSIS/Include/core_cm4.h **** /* DWT CPI Count Register Definitions */
  997:CMSIS/Include/core_cm4.h **** #define DWT_CPICNT_CPICNT_Pos               0U                                         /*!< DWT CPI
  998:CMSIS/Include/core_cm4.h **** #define DWT_CPICNT_CPICNT_Msk              (0xFFUL /*<< DWT_CPICNT_CPICNT_Pos*/)       /*!< DWT CPI
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 19
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 19
 
 
  999:CMSIS/Include/core_cm4.h **** 
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
 1053:CMSIS/Include/core_cm4.h ****   \defgroup CMSIS_TPI     Trace Port Interface (TPI)
 1054:CMSIS/Include/core_cm4.h ****   \brief    Type definitions for the Trace Port Interface (TPI)
 1055:CMSIS/Include/core_cm4.h ****   @{
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 20
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 20
 
 
 1056:CMSIS/Include/core_cm4.h ****  */
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
 1110:CMSIS/Include/core_cm4.h **** /* TPI Formatter and Flush Control Register Definitions */
 1111:CMSIS/Include/core_cm4.h **** #define TPI_FFCR_TrigIn_Pos                 8U                                         /*!< TPI FFC
 1112:CMSIS/Include/core_cm4.h **** #define TPI_FFCR_TrigIn_Msk                (0x1UL << TPI_FFCR_TrigIn_Pos)              /*!< TPI FFC
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 21
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 21
 
 
 1113:CMSIS/Include/core_cm4.h **** 
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
 1167:CMSIS/Include/core_cm4.h **** #define TPI_FIFO1_ITM1_Msk                 (0xFFUL << TPI_FIFO1_ITM1_Pos)              /*!< TPI FIF
 1168:CMSIS/Include/core_cm4.h **** 
 1169:CMSIS/Include/core_cm4.h **** #define TPI_FIFO1_ITM0_Pos                  0U                                         /*!< TPI FIF
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 22
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 22
 
 
 1170:CMSIS/Include/core_cm4.h **** #define TPI_FIFO1_ITM0_Msk                 (0xFFUL /*<< TPI_FIFO1_ITM0_Pos*/)          /*!< TPI FIF
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
 1224:CMSIS/Include/core_cm4.h **** {
 1225:CMSIS/Include/core_cm4.h ****   __IM  uint32_t TYPE;                   /*!< Offset: 0x000 (R/ )  MPU Type Register */
 1226:CMSIS/Include/core_cm4.h ****   __IOM uint32_t CTRL;                   /*!< Offset: 0x004 (R/W)  MPU Control Register */
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 23
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 23
 
 
 1227:CMSIS/Include/core_cm4.h ****   __IOM uint32_t RNR;                    /*!< Offset: 0x008 (R/W)  MPU Region RNRber Register */
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
 1281:CMSIS/Include/core_cm4.h **** #define MPU_RASR_AP_Pos                    24U                                            /*!< MPU 
 1282:CMSIS/Include/core_cm4.h **** #define MPU_RASR_AP_Msk                    (0x7UL << MPU_RASR_AP_Pos)                     /*!< MPU 
 1283:CMSIS/Include/core_cm4.h **** 
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 24
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 24
 
 
 1284:CMSIS/Include/core_cm4.h **** #define MPU_RASR_TEX_Pos                   19U                                            /*!< MPU 
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
 1338:CMSIS/Include/core_cm4.h **** 
 1339:CMSIS/Include/core_cm4.h **** #define FPU_FPCCR_BFRDY_Pos                 6U                                            /*!< FPCC
 1340:CMSIS/Include/core_cm4.h **** #define FPU_FPCCR_BFRDY_Msk                (1UL << FPU_FPCCR_BFRDY_Pos)                   /*!< FPCC
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 25
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 25
 
 
 1341:CMSIS/Include/core_cm4.h **** 
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
 1395:CMSIS/Include/core_cm4.h **** 
 1396:CMSIS/Include/core_cm4.h **** #define FPU_MVFR0_A_SIMD_registers_Pos      0U                                            /*!< MVFR
 1397:CMSIS/Include/core_cm4.h **** #define FPU_MVFR0_A_SIMD_registers_Msk     (0xFUL /*<< FPU_MVFR0_A_SIMD_registers_Pos*/)  /*!< MVFR
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 26
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 26
 
 
 1398:CMSIS/Include/core_cm4.h **** 
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
 1452:CMSIS/Include/core_cm4.h **** #define CoreDebug_DHCSR_S_REGRDY_Pos       16U                                            /*!< Core
 1453:CMSIS/Include/core_cm4.h **** #define CoreDebug_DHCSR_S_REGRDY_Msk       (1UL << CoreDebug_DHCSR_S_REGRDY_Pos)          /*!< Core
 1454:CMSIS/Include/core_cm4.h **** 
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 27
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 27
 
 
 1455:CMSIS/Include/core_cm4.h **** #define CoreDebug_DHCSR_C_SNAPSTALL_Pos     5U                                            /*!< Core
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
 1509:CMSIS/Include/core_cm4.h **** #define CoreDebug_DEMCR_VC_NOCPERR_Msk     (1UL << CoreDebug_DEMCR_VC_NOCPERR_Pos)        /*!< Core
 1510:CMSIS/Include/core_cm4.h **** 
 1511:CMSIS/Include/core_cm4.h **** #define CoreDebug_DEMCR_VC_MMERR_Pos        4U                                            /*!< Core
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 28
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 28
 
 
 1512:CMSIS/Include/core_cm4.h **** #define CoreDebug_DEMCR_VC_MMERR_Msk       (1UL << CoreDebug_DEMCR_VC_MMERR_Pos)          /*!< Core
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
 1566:CMSIS/Include/core_cm4.h **** #define NVIC                ((NVIC_Type      *)     NVIC_BASE     )   /*!< NVIC configuration struc
 1567:CMSIS/Include/core_cm4.h **** #define ITM                 ((ITM_Type       *)     ITM_BASE      )   /*!< ITM configuration struct
 1568:CMSIS/Include/core_cm4.h **** #define DWT                 ((DWT_Type       *)     DWT_BASE      )   /*!< DWT configuration struct
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 29
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 29
 
 
 1569:CMSIS/Include/core_cm4.h **** #define TPI                 ((TPI_Type       *)     TPI_BASE      )   /*!< TPI configuration struct
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
 1623:CMSIS/Include/core_cm4.h ****   #define NVIC_SystemReset            __NVIC_SystemReset
 1624:CMSIS/Include/core_cm4.h **** #endif /* CMSIS_NVIC_VIRTUAL */
 1625:CMSIS/Include/core_cm4.h **** 
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 30
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 30
 
 
 1626:CMSIS/Include/core_cm4.h **** #ifdef CMSIS_VECTAB_VIRTUAL
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
 1680:CMSIS/Include/core_cm4.h **** 
 1681:CMSIS/Include/core_cm4.h **** 
 1682:CMSIS/Include/core_cm4.h **** /**
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 31
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 31
 
 
 1683:CMSIS/Include/core_cm4.h ****   \brief   Enable Interrupt
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
 1737:CMSIS/Include/core_cm4.h ****   \details Reads the NVIC pending register and returns the pending bit for the specified device spe
 1738:CMSIS/Include/core_cm4.h ****   \param [in]      IRQn  Device specific interrupt number.
 1739:CMSIS/Include/core_cm4.h ****   \return             0  Interrupt status is not pending.
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 32
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 32
 
 
 1740:CMSIS/Include/core_cm4.h ****   \return             1  Interrupt status is pending.
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
 1794:CMSIS/Include/core_cm4.h **** __STATIC_INLINE uint32_t __NVIC_GetActive(IRQn_Type IRQn)
 1795:CMSIS/Include/core_cm4.h **** {
 1796:CMSIS/Include/core_cm4.h ****   if ((int32_t)(IRQn) >= 0)
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 33
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 33
 
 
 1797:CMSIS/Include/core_cm4.h ****   {
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
 1851:CMSIS/Include/core_cm4.h **** 
 1852:CMSIS/Include/core_cm4.h **** /**
 1853:CMSIS/Include/core_cm4.h ****   \brief   Encode Priority
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 34
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 34
 
 
 1854:CMSIS/Include/core_cm4.h ****   \details Encodes the priority for an interrupt with the given priority group,
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
   64              		.loc 2 1873 30 is_stmt 0 view .LVU14
   65 001c 4FF0FF3E 		mov	lr, #-1
   66 0020 0EFA0CF0 		lsl	r0, lr, ip
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 35
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 35
 
 
   67              	.LVL4:
@@ -2065,760 +2065,681 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 1
   84 003c EEE7     		b	.L2
   85              		.cfi_endproc
   86              	.LFE113:
-  88              		.section	.text.GPIO_Init,"ax",%progbits
+  88              		.section	.text.Init_with_memory_for_led3,"ax",%progbits
   89              		.align	1
-  90              		.global	GPIO_Init
+  90              		.global	Init_with_memory_for_led3
   91              		.syntax unified
   92              		.thumb
   93              		.thumb_func
-  95              	GPIO_Init:
+  95              	Init_with_memory_for_led3:
   96              	.LFB130:
    1:Core/Src/init.c **** #include "init.h"
    2:Core/Src/init.c **** 
-   3:Core/Src/init.c **** void GPIO_Init(void)
+   3:Core/Src/init.c **** void Init_with_memory_for_led3(void)
    4:Core/Src/init.c **** {
   97              		.loc 1 4 1 is_stmt 1 view -0
   98              		.cfi_startproc
   99              		@ args = 0, pretend = 0, frame = 0
  100              		@ frame_needed = 0, uses_anonymous_args = 0
  101              		@ link register save eliminated.
-   5:Core/Src/init.c ****     // настройка порта PC9 в качестве MCO2
-   6:Core/Src/init.c ****     SET_BIT(GPIOC->MODER,GPIO_MODER_MODER9_1); // настраиваем пин на альтерн
- 102              		.loc 1 6 5 view .LVU21
- 103 0000 0D4B     		ldr	r3, .L6
+   5:Core/Src/init.c ****     *(uint32_t*)(0x40020000UL + 0x00UL) |= 0x400000UL; // определение режима ра�
+ 102              		.loc 1 5 5 view .LVU21
+ 103 0000 044B     		ldr	r3, .L6
  104 0002 1A68     		ldr	r2, [r3]
- 105 0004 42F40022 		orr	r2, r2, #524288
- 106 0008 1A60     		str	r2, [r3]
-   7:Core/Src/init.c ****     SET_BIT(GPIOC->OSPEEDR, GPIO_OSPEEDR_OSPEED9); // настраиваем пин на макси
- 107              		.loc 1 7 5 view .LVU22
- 108 000a 9A68     		ldr	r2, [r3, #8]
- 109 000c 42F44022 		orr	r2, r2, #786432
- 110 0010 9A60     		str	r2, [r3, #8]
-   8:Core/Src/init.c ****     MODIFY_REG(GPIOC->AFR[1], GPIO_AFRH_AFSEL9_Msk, 0x00UL); // выбираем тип альте�
- 111              		.loc 1 8 5 view .LVU23
- 112 0012 5A6A     		ldr	r2, [r3, #36]
- 113 0014 22F0F002 		bic	r2, r2, #240
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 36
+ 105              		.loc 1 5 41 is_stmt 0 view .LVU22
+ 106 0004 42F48002 		orr	r2, r2, #4194304
+ 107 0008 1A60     		str	r2, [r3]
+   6:Core/Src/init.c ****     *(uint32_t*)(0x40020000UL + 0x04UL) |= 0x0000UL; // выбираем тип выхода 
+ 108              		.loc 1 6 5 is_stmt 1 view .LVU23
+   7:Core/Src/init.c ****     *(uint32_t*)(0x40020000UL + 0x08UL) |= 0xC00000UL; // выбираем скорость раб�
+ 109              		.loc 1 7 5 view .LVU24
+ 110 000a 9A68     		ldr	r2, [r3, #8]
+ 111              		.loc 1 7 41 is_stmt 0 view .LVU25
+ 112 000c 42F44002 		orr	r2, r2, #12582912
+ 113 0010 9A60     		str	r2, [r3, #8]
+   8:Core/Src/init.c ****     *(uint32_t*)(0x40020000UL + 0x0CUL) |= 0x0000UL; // подтягивающий резистор
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 36
 
 
- 114 0018 5A62     		str	r2, [r3, #36]
-   9:Core/Src/init.c **** 
-  10:Core/Src/init.c ****     // настройка порта PA8 в качестве MCO1
-  11:Core/Src/init.c ****     SET_BIT(GPIOA->MODER,GPIO_MODER_MODER8_1); // настраиваем пин на альтерн
- 115              		.loc 1 11 5 view .LVU24
- 116 001a A3F50063 		sub	r3, r3, #2048
- 117 001e 1A68     		ldr	r2, [r3]
- 118 0020 42F40032 		orr	r2, r2, #131072
- 119 0024 1A60     		str	r2, [r3]
-  12:Core/Src/init.c ****     SET_BIT(GPIOA->OSPEEDR, GPIO_OSPEEDR_OSPEED8); // настраиваем пин на макси
- 120              		.loc 1 12 5 view .LVU25
- 121 0026 9A68     		ldr	r2, [r3, #8]
- 122 0028 42F44032 		orr	r2, r2, #196608
- 123 002c 9A60     		str	r2, [r3, #8]
-  13:Core/Src/init.c ****     CLEAR_BIT(GPIOA->AFR[1], GPIO_AFRH_AFSEL8); // выбираем тип альтернативн
- 124              		.loc 1 13 5 view .LVU26
- 125 002e 5A6A     		ldr	r2, [r3, #36]
- 126 0030 22F00F02 		bic	r2, r2, #15
- 127 0034 5A62     		str	r2, [r3, #36]
-  14:Core/Src/init.c **** }
- 128              		.loc 1 14 1 is_stmt 0 view .LVU27
- 129 0036 7047     		bx	lr
- 130              	.L7:
- 131              		.align	2
- 132              	.L6:
- 133 0038 00080240 		.word	1073874944
- 134              		.cfi_endproc
- 135              	.LFE130:
- 137              		.section	.text.GPIO_Init_with_CMSIS,"ax",%progbits
- 138              		.align	1
- 139              		.global	GPIO_Init_with_CMSIS
- 140              		.syntax unified
- 141              		.thumb
- 142              		.thumb_func
- 144              	GPIO_Init_with_CMSIS:
- 145              	.LFB131:
-  15:Core/Src/init.c **** 
-  16:Core/Src/init.c **** void GPIO_Init_with_CMSIS(void)
-  17:Core/Src/init.c **** {
- 146              		.loc 1 17 1 is_stmt 1 view -0
- 147              		.cfi_startproc
- 148              		@ args = 0, pretend = 0, frame = 0
- 149              		@ frame_needed = 0, uses_anonymous_args = 0
- 150              		@ link register save eliminated.
-  18:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
-  19:Core/Src/init.c **** 
-  20:Core/Src/init.c ****     // Включаем тактирование GPIOA и GPIOB (бит 0 в RCC->AHB1ENR)
-  21:Core/Src/init.c ****     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN | RCC_AHB1ENR_GPIOCEN;
- 151              		.loc 1 21 5 view .LVU29
- 152              		.loc 1 21 8 is_stmt 0 view .LVU30
- 153 0000 394A     		ldr	r2, .L9
- 154 0002 136B     		ldr	r3, [r2, #48]
- 155              		.loc 1 21 18 view .LVU31
- 156 0004 43F00703 		orr	r3, r3, #7
- 157 0008 1363     		str	r3, [r2, #48]
-  22:Core/Src/init.c **** 
-  23:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 37
+ 114              		.loc 1 8 5 is_stmt 1 view .LVU26
+   9:Core/Src/init.c **** }
+ 115              		.loc 1 9 1 is_stmt 0 view .LVU27
+ 116 0012 7047     		bx	lr
+ 117              	.L7:
+ 118              		.align	2
+ 119              	.L6:
+ 120 0014 00000240 		.word	1073872896
+ 121              		.cfi_endproc
+ 122              	.LFE130:
+ 124              		.section	.text.GPIO_Init,"ax",%progbits
+ 125              		.align	1
+ 126              		.global	GPIO_Init
+ 127              		.syntax unified
+ 128              		.thumb
+ 129              		.thumb_func
+ 131              	GPIO_Init:
+ 132              	.LFB131:
+  10:Core/Src/init.c **** 
+  11:Core/Src/init.c **** void GPIO_Init(void)
+  12:Core/Src/init.c **** {
+ 133              		.loc 1 12 1 is_stmt 1 view -0
+ 134              		.cfi_startproc
+ 135              		@ args = 0, pretend = 0, frame = 0
+ 136              		@ frame_needed = 0, uses_anonymous_args = 0
+ 137              		@ link register save eliminated.
+  13:Core/Src/init.c ****     // настройка порта PC9 в качестве MCO2
+  14:Core/Src/init.c ****     SET_BIT(GPIOC->MODER,GPIO_MODER_MODER9_1); // настраиваем пин на альтерн
+ 138              		.loc 1 14 5 view .LVU29
+ 139 0000 0D4B     		ldr	r3, .L9
+ 140 0002 1A68     		ldr	r2, [r3]
+ 141 0004 42F40022 		orr	r2, r2, #524288
+ 142 0008 1A60     		str	r2, [r3]
+  15:Core/Src/init.c ****     SET_BIT(GPIOC->OSPEEDR, GPIO_OSPEEDR_OSPEED9); // настраиваем пин на макси
+ 143              		.loc 1 15 5 view .LVU30
+ 144 000a 9A68     		ldr	r2, [r3, #8]
+ 145 000c 42F44022 		orr	r2, r2, #786432
+ 146 0010 9A60     		str	r2, [r3, #8]
+  16:Core/Src/init.c ****     MODIFY_REG(GPIOC->AFR[1], GPIO_AFRH_AFSEL9_Msk, 0x00UL); // выбираем тип альте�
+ 147              		.loc 1 16 5 view .LVU31
+ 148 0012 5A6A     		ldr	r2, [r3, #36]
+ 149 0014 22F0F002 		bic	r2, r2, #240
+ 150 0018 5A62     		str	r2, [r3, #36]
+  17:Core/Src/init.c **** 
+  18:Core/Src/init.c ****     // настройка порта PA8 в качестве MCO1
+  19:Core/Src/init.c ****     SET_BIT(GPIOA->MODER,GPIO_MODER_MODER8_1); // настраиваем пин на альтерн
+ 151              		.loc 1 19 5 view .LVU32
+ 152 001a A3F50063 		sub	r3, r3, #2048
+ 153 001e 1A68     		ldr	r2, [r3]
+ 154 0020 42F40032 		orr	r2, r2, #131072
+ 155 0024 1A60     		str	r2, [r3]
+  20:Core/Src/init.c ****     SET_BIT(GPIOA->OSPEEDR, GPIO_OSPEEDR_OSPEED8); // настраиваем пин на макси
+ 156              		.loc 1 20 5 view .LVU33
+ 157 0026 9A68     		ldr	r2, [r3, #8]
+ 158 0028 42F44032 		orr	r2, r2, #196608
+ 159 002c 9A60     		str	r2, [r3, #8]
+  21:Core/Src/init.c ****     CLEAR_BIT(GPIOA->AFR[1], GPIO_AFRH_AFSEL8); // выбираем тип альтернативн
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 37
 
 
-  24:Core/Src/init.c **** 
-  25:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
-  26:Core/Src/init.c **** 
-  27:Core/Src/init.c ****     // Настройка PB1 как вход с подтяжкой вверх (кнопка)
-  28:Core/Src/init.c ****     GPIOB->MODER &= ~(0x3 << (1 * 2));  
- 158              		.loc 1 28 5 is_stmt 1 view .LVU32
- 159              		.loc 1 28 10 is_stmt 0 view .LVU33
- 160 000a 384B     		ldr	r3, .L9+4
- 161 000c 1A68     		ldr	r2, [r3]
- 162              		.loc 1 28 18 view .LVU34
- 163 000e 22F00C02 		bic	r2, r2, #12
- 164 0012 1A60     		str	r2, [r3]
-  29:Core/Src/init.c ****     GPIOB->PUPDR &= ~(0x3 << (1 * 2));  
- 165              		.loc 1 29 5 is_stmt 1 view .LVU35
- 166              		.loc 1 29 10 is_stmt 0 view .LVU36
- 167 0014 DA68     		ldr	r2, [r3, #12]
- 168              		.loc 1 29 18 view .LVU37
- 169 0016 22F00C02 		bic	r2, r2, #12
- 170 001a DA60     		str	r2, [r3, #12]
-  30:Core/Src/init.c ****     GPIOB->PUPDR |= (0x1 << (1 * 2));   // режим подтяжки вверх
- 171              		.loc 1 30 5 is_stmt 1 view .LVU38
- 172              		.loc 1 30 10 is_stmt 0 view .LVU39
- 173 001c DA68     		ldr	r2, [r3, #12]
- 174              		.loc 1 30 18 view .LVU40
- 175 001e 42F00402 		orr	r2, r2, #4
- 176 0022 DA60     		str	r2, [r3, #12]
-  31:Core/Src/init.c **** 
-  32:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
-  33:Core/Src/init.c **** 
-  34:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
-  35:Core/Src/init.c **** 
-  36:Core/Src/init.c ****     // Настройка PB2 как вход с подтяжкой вверх (кнопка)
-  37:Core/Src/init.c ****     GPIOB->MODER &= ~(0x3 << (2 * 2));  
- 177              		.loc 1 37 5 is_stmt 1 view .LVU41
- 178              		.loc 1 37 10 is_stmt 0 view .LVU42
- 179 0024 1A68     		ldr	r2, [r3]
- 180              		.loc 1 37 18 view .LVU43
- 181 0026 22F03002 		bic	r2, r2, #48
- 182 002a 1A60     		str	r2, [r3]
-  38:Core/Src/init.c ****     GPIOB->PUPDR &= ~(0x3 << (2 * 2));  
- 183              		.loc 1 38 5 is_stmt 1 view .LVU44
- 184              		.loc 1 38 10 is_stmt 0 view .LVU45
- 185 002c DA68     		ldr	r2, [r3, #12]
- 186              		.loc 1 38 18 view .LVU46
- 187 002e 22F03002 		bic	r2, r2, #48
- 188 0032 DA60     		str	r2, [r3, #12]
-  39:Core/Src/init.c ****     GPIOB->PUPDR |= (0x1 << (2 * 2));   // режим подтяжки вверх
- 189              		.loc 1 39 5 is_stmt 1 view .LVU47
- 190              		.loc 1 39 10 is_stmt 0 view .LVU48
- 191 0034 DA68     		ldr	r2, [r3, #12]
- 192              		.loc 1 39 18 view .LVU49
- 193 0036 42F01002 		orr	r2, r2, #16
- 194 003a DA60     		str	r2, [r3, #12]
-  40:Core/Src/init.c **** 
-  41:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
-  42:Core/Src/init.c **** 
-  43:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 38
+ 160              		.loc 1 21 5 view .LVU34
+ 161 002e 5A6A     		ldr	r2, [r3, #36]
+ 162 0030 22F00F02 		bic	r2, r2, #15
+ 163 0034 5A62     		str	r2, [r3, #36]
+  22:Core/Src/init.c **** }
+ 164              		.loc 1 22 1 is_stmt 0 view .LVU35
+ 165 0036 7047     		bx	lr
+ 166              	.L10:
+ 167              		.align	2
+ 168              	.L9:
+ 169 0038 00080240 		.word	1073874944
+ 170              		.cfi_endproc
+ 171              	.LFE131:
+ 173              		.section	.text.GPIO_Init_with_CMSIS,"ax",%progbits
+ 174              		.align	1
+ 175              		.global	GPIO_Init_with_CMSIS
+ 176              		.syntax unified
+ 177              		.thumb
+ 178              		.thumb_func
+ 180              	GPIO_Init_with_CMSIS:
+ 181              	.LFB132:
+  23:Core/Src/init.c **** 
+  24:Core/Src/init.c **** void GPIO_Init_with_CMSIS(void)
+  25:Core/Src/init.c **** {
+ 182              		.loc 1 25 1 is_stmt 1 view -0
+ 183              		.cfi_startproc
+ 184              		@ args = 0, pretend = 0, frame = 0
+ 185              		@ frame_needed = 0, uses_anonymous_args = 0
+ 186              		@ link register save eliminated.
+  26:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
+  27:Core/Src/init.c **** 
+  28:Core/Src/init.c ****     // Включаем тактирование GPIOA и GPIOB (бит 0 в RCC->AHB1ENR)
+  29:Core/Src/init.c ****     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN | RCC_AHB1ENR_GPIOCEN;
+ 187              		.loc 1 29 5 view .LVU37
+ 188              		.loc 1 29 8 is_stmt 0 view .LVU38
+ 189 0000 214A     		ldr	r2, .L12
+ 190 0002 136B     		ldr	r3, [r2, #48]
+ 191              		.loc 1 29 18 view .LVU39
+ 192 0004 43F00703 		orr	r3, r3, #7
+ 193 0008 1363     		str	r3, [r2, #48]
+  30:Core/Src/init.c **** 
+  31:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
+  32:Core/Src/init.c **** 
+  33:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
+  34:Core/Src/init.c **** 
+  35:Core/Src/init.c ****     // Настройка PB1 как вход с подтяжкой вверх (кнопка)
+  36:Core/Src/init.c ****     GPIOB->MODER &= ~(0x3 << (1 * 2));  
+ 194              		.loc 1 36 5 is_stmt 1 view .LVU40
+ 195              		.loc 1 36 10 is_stmt 0 view .LVU41
+ 196 000a 204B     		ldr	r3, .L12+4
+ 197 000c 1A68     		ldr	r2, [r3]
+ 198              		.loc 1 36 18 view .LVU42
+ 199 000e 22F00C02 		bic	r2, r2, #12
+ 200 0012 1A60     		str	r2, [r3]
+  37:Core/Src/init.c ****     GPIOB->PUPDR &= ~(0x3 << (1 * 2));  
+ 201              		.loc 1 37 5 is_stmt 1 view .LVU43
+ 202              		.loc 1 37 10 is_stmt 0 view .LVU44
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 38
 
 
-  44:Core/Src/init.c **** 
-  45:Core/Src/init.c ****     // Настройка PB3 как вход с подтяжкой вверх (кнопка)
-  46:Core/Src/init.c ****     GPIOB->MODER &= ~(0x3 << (3 * 2));  
- 195              		.loc 1 46 5 is_stmt 1 view .LVU50
- 196              		.loc 1 46 10 is_stmt 0 view .LVU51
- 197 003c 1A68     		ldr	r2, [r3]
- 198              		.loc 1 46 18 view .LVU52
- 199 003e 22F0C002 		bic	r2, r2, #192
- 200 0042 1A60     		str	r2, [r3]
-  47:Core/Src/init.c ****     GPIOB->PUPDR &= ~(0x3 << (3 * 2));  
- 201              		.loc 1 47 5 is_stmt 1 view .LVU53
- 202              		.loc 1 47 10 is_stmt 0 view .LVU54
- 203 0044 DA68     		ldr	r2, [r3, #12]
- 204              		.loc 1 47 18 view .LVU55
- 205 0046 22F0C002 		bic	r2, r2, #192
- 206 004a DA60     		str	r2, [r3, #12]
-  48:Core/Src/init.c ****     GPIOB->PUPDR |= (0x1 << (3 * 2));   // режим подтяжки вверх
- 207              		.loc 1 48 5 is_stmt 1 view .LVU56
- 208              		.loc 1 48 10 is_stmt 0 view .LVU57
- 209 004c DA68     		ldr	r2, [r3, #12]
- 210              		.loc 1 48 18 view .LVU58
- 211 004e 42F04002 		orr	r2, r2, #64
- 212 0052 DA60     		str	r2, [r3, #12]
-  49:Core/Src/init.c **** 
-  50:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
-  51:Core/Src/init.c **** 
-  52:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
-  53:Core/Src/init.c **** 
-  54:Core/Src/init.c ****     // Настройка PC10 как вход с подтяжкой вверх (кнопка)
-  55:Core/Src/init.c ****     GPIOC->MODER &= ~(0x3 << (10 * 2));  
- 213              		.loc 1 55 5 is_stmt 1 view .LVU59
- 214              		.loc 1 55 10 is_stmt 0 view .LVU60
- 215 0054 03F58063 		add	r3, r3, #1024
- 216 0058 1A68     		ldr	r2, [r3]
- 217              		.loc 1 55 18 view .LVU61
- 218 005a 22F44012 		bic	r2, r2, #3145728
- 219 005e 1A60     		str	r2, [r3]
-  56:Core/Src/init.c ****     GPIOC->PUPDR &= ~(0x3 << (10 * 2));  
- 220              		.loc 1 56 5 is_stmt 1 view .LVU62
- 221              		.loc 1 56 10 is_stmt 0 view .LVU63
- 222 0060 DA68     		ldr	r2, [r3, #12]
- 223              		.loc 1 56 18 view .LVU64
- 224 0062 22F44012 		bic	r2, r2, #3145728
- 225 0066 DA60     		str	r2, [r3, #12]
-  57:Core/Src/init.c ****     GPIOC->PUPDR |= (0x1 << (10 * 2));   // режим подтяжки вверх
- 226              		.loc 1 57 5 is_stmt 1 view .LVU65
- 227              		.loc 1 57 10 is_stmt 0 view .LVU66
- 228 0068 DA68     		ldr	r2, [r3, #12]
- 229              		.loc 1 57 18 view .LVU67
- 230 006a 42F48012 		orr	r2, r2, #1048576
- 231 006e DA60     		str	r2, [r3, #12]
-  58:Core/Src/init.c **** 
-  59:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
-  60:Core/Src/init.c **** 
-  61:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
-  62:Core/Src/init.c **** 
-  63:Core/Src/init.c ****     // Настраиваем PA5 как выход (MODER5[1:0] = 01)
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 39
+ 203 0014 DA68     		ldr	r2, [r3, #12]
+ 204              		.loc 1 37 18 view .LVU45
+ 205 0016 22F00C02 		bic	r2, r2, #12
+ 206 001a DA60     		str	r2, [r3, #12]
+  38:Core/Src/init.c ****     GPIOB->PUPDR |= (0x1 << (1 * 2));   // режим подтяжки вверх
+ 207              		.loc 1 38 5 is_stmt 1 view .LVU46
+ 208              		.loc 1 38 10 is_stmt 0 view .LVU47
+ 209 001c DA68     		ldr	r2, [r3, #12]
+ 210              		.loc 1 38 18 view .LVU48
+ 211 001e 42F00402 		orr	r2, r2, #4
+ 212 0022 DA60     		str	r2, [r3, #12]
+  39:Core/Src/init.c **** 
+  40:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
+  41:Core/Src/init.c **** 
+  42:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
+  43:Core/Src/init.c **** 
+  44:Core/Src/init.c ****     // Настройка PB2 как вход с подтяжкой вверх (кнопка)
+  45:Core/Src/init.c ****     GPIOB->MODER &= ~(0x3 << (2 * 2));  
+ 213              		.loc 1 45 5 is_stmt 1 view .LVU49
+ 214              		.loc 1 45 10 is_stmt 0 view .LVU50
+ 215 0024 1A68     		ldr	r2, [r3]
+ 216              		.loc 1 45 18 view .LVU51
+ 217 0026 22F03002 		bic	r2, r2, #48
+ 218 002a 1A60     		str	r2, [r3]
+  46:Core/Src/init.c ****     GPIOB->PUPDR &= ~(0x3 << (2 * 2));  
+ 219              		.loc 1 46 5 is_stmt 1 view .LVU52
+ 220              		.loc 1 46 10 is_stmt 0 view .LVU53
+ 221 002c DA68     		ldr	r2, [r3, #12]
+ 222              		.loc 1 46 18 view .LVU54
+ 223 002e 22F03002 		bic	r2, r2, #48
+ 224 0032 DA60     		str	r2, [r3, #12]
+  47:Core/Src/init.c ****     GPIOB->PUPDR |= (0x1 << (2 * 2));   // режим подтяжки вверх
+ 225              		.loc 1 47 5 is_stmt 1 view .LVU55
+ 226              		.loc 1 47 10 is_stmt 0 view .LVU56
+ 227 0034 DA68     		ldr	r2, [r3, #12]
+ 228              		.loc 1 47 18 view .LVU57
+ 229 0036 42F01002 		orr	r2, r2, #16
+ 230 003a DA60     		str	r2, [r3, #12]
+  48:Core/Src/init.c **** 
+  49:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
+  50:Core/Src/init.c **** 
+  51:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
+  52:Core/Src/init.c **** 
+  53:Core/Src/init.c ****     // Настройка PB3 как вход с подтяжкой вверх (кнопка)
+  54:Core/Src/init.c ****     GPIOB->MODER &= ~(0x3 << (3 * 2));  
+ 231              		.loc 1 54 5 is_stmt 1 view .LVU58
+ 232              		.loc 1 54 10 is_stmt 0 view .LVU59
+ 233 003c 1A68     		ldr	r2, [r3]
+ 234              		.loc 1 54 18 view .LVU60
+ 235 003e 22F0C002 		bic	r2, r2, #192
+ 236 0042 1A60     		str	r2, [r3]
+  55:Core/Src/init.c ****     GPIOB->PUPDR &= ~(0x3 << (3 * 2));  
+ 237              		.loc 1 55 5 is_stmt 1 view .LVU61
+ 238              		.loc 1 55 10 is_stmt 0 view .LVU62
+ 239 0044 DA68     		ldr	r2, [r3, #12]
+ 240              		.loc 1 55 18 view .LVU63
+ 241 0046 22F0C002 		bic	r2, r2, #192
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 39
 
 
-  64:Core/Src/init.c ****     GPIOA->MODER &= ~(0x3 << (5 * 2)); // Сбрасываем биты MODER5
- 232              		.loc 1 64 5 is_stmt 1 view .LVU68
- 233              		.loc 1 64 10 is_stmt 0 view .LVU69
- 234 0070 A3F50063 		sub	r3, r3, #2048
- 235 0074 1A68     		ldr	r2, [r3]
- 236              		.loc 1 64 18 view .LVU70
- 237 0076 22F44062 		bic	r2, r2, #3072
- 238 007a 1A60     		str	r2, [r3]
-  65:Core/Src/init.c ****     GPIOA->MODER |=  (0x1 << (5 * 2)); // Устанавливаем режим Output
- 239              		.loc 1 65 5 is_stmt 1 view .LVU71
- 240              		.loc 1 65 10 is_stmt 0 view .LVU72
- 241 007c 1A68     		ldr	r2, [r3]
- 242              		.loc 1 65 18 view .LVU73
- 243 007e 42F48062 		orr	r2, r2, #1024
- 244 0082 1A60     		str	r2, [r3]
+ 242 004a DA60     		str	r2, [r3, #12]
+  56:Core/Src/init.c ****     GPIOB->PUPDR |= (0x1 << (3 * 2));   // режим подтяжки вверх
+ 243              		.loc 1 56 5 is_stmt 1 view .LVU64
+ 244              		.loc 1 56 10 is_stmt 0 view .LVU65
+ 245 004c DA68     		ldr	r2, [r3, #12]
+ 246              		.loc 1 56 18 view .LVU66
+ 247 004e 42F04002 		orr	r2, r2, #64
+ 248 0052 DA60     		str	r2, [r3, #12]
+  57:Core/Src/init.c **** 
+  58:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
+  59:Core/Src/init.c **** 
+  60:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
+  61:Core/Src/init.c **** 
+  62:Core/Src/init.c ****     // Настройка PC10 как вход с подтяжкой вверх (кнопка)
+  63:Core/Src/init.c ****     GPIOC->MODER &= ~(0x3 << (10 * 2));  
+ 249              		.loc 1 63 5 is_stmt 1 view .LVU67
+ 250              		.loc 1 63 10 is_stmt 0 view .LVU68
+ 251 0054 03F58063 		add	r3, r3, #1024
+ 252 0058 1A68     		ldr	r2, [r3]
+ 253              		.loc 1 63 18 view .LVU69
+ 254 005a 22F44012 		bic	r2, r2, #3145728
+ 255 005e 1A60     		str	r2, [r3]
+  64:Core/Src/init.c ****     GPIOC->PUPDR &= ~(0x3 << (10 * 2));  
+ 256              		.loc 1 64 5 is_stmt 1 view .LVU70
+ 257              		.loc 1 64 10 is_stmt 0 view .LVU71
+ 258 0060 DA68     		ldr	r2, [r3, #12]
+ 259              		.loc 1 64 18 view .LVU72
+ 260 0062 22F44012 		bic	r2, r2, #3145728
+ 261 0066 DA60     		str	r2, [r3, #12]
+  65:Core/Src/init.c ****     GPIOC->PUPDR |= (0x1 << (10 * 2));   // режим подтяжки вверх
+ 262              		.loc 1 65 5 is_stmt 1 view .LVU73
+ 263              		.loc 1 65 10 is_stmt 0 view .LVU74
+ 264 0068 DA68     		ldr	r2, [r3, #12]
+ 265              		.loc 1 65 18 view .LVU75
+ 266 006a 42F48012 		orr	r2, r2, #1048576
+ 267 006e DA60     		str	r2, [r3, #12]
   66:Core/Src/init.c **** 
   67:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
   68:Core/Src/init.c **** 
   69:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
   70:Core/Src/init.c **** 
-  71:Core/Src/init.c ****     // A10
-  72:Core/Src/init.c **** 
-  73:Core/Src/init.c ****     // Настраиваем PA10 как выход (MODER10[1:0] = 01)
-  74:Core/Src/init.c ****     GPIOA->MODER &= ~(0x3 << (10 * 2)); // Сбрасываем биты MODER10
- 245              		.loc 1 74 5 is_stmt 1 view .LVU74
- 246              		.loc 1 74 10 is_stmt 0 view .LVU75
- 247 0084 1A68     		ldr	r2, [r3]
- 248              		.loc 1 74 18 view .LVU76
- 249 0086 22F44012 		bic	r2, r2, #3145728
- 250 008a 1A60     		str	r2, [r3]
-  75:Core/Src/init.c ****     GPIOA->MODER |=  (0x1 << (10 * 2)); // Устанавливаем режим Output
- 251              		.loc 1 75 5 is_stmt 1 view .LVU77
- 252              		.loc 1 75 10 is_stmt 0 view .LVU78
- 253 008c 1A68     		ldr	r2, [r3]
- 254              		.loc 1 75 18 view .LVU79
- 255 008e 42F48012 		orr	r2, r2, #1048576
- 256 0092 1A60     		str	r2, [r3]
-  76:Core/Src/init.c **** 
-  77:Core/Src/init.c ****     // Настраиваем тип выхода - push-pull (OTYPER10 = 0)
-  78:Core/Src/init.c ****     GPIOA->OTYPER &= ~(1 << 10);
- 257              		.loc 1 78 5 is_stmt 1 view .LVU80
- 258              		.loc 1 78 10 is_stmt 0 view .LVU81
- 259 0094 5A68     		ldr	r2, [r3, #4]
- 260              		.loc 1 78 19 view .LVU82
- 261 0096 22F48062 		bic	r2, r2, #1024
- 262 009a 5A60     		str	r2, [r3, #4]
-  79:Core/Src/init.c **** 
-  80:Core/Src/init.c ****     // Настраиваем скорость вывода как высокую (OSPEEDR10 = 10)
-  81:Core/Src/init.c ****     GPIOA->OSPEEDR &= ~(0x3 << (10 * 2));
- 263              		.loc 1 81 5 is_stmt 1 view .LVU83
- 264              		.loc 1 81 10 is_stmt 0 view .LVU84
- 265 009c 9A68     		ldr	r2, [r3, #8]
- 266              		.loc 1 81 20 view .LVU85
- 267 009e 22F44012 		bic	r2, r2, #3145728
- 268 00a2 9A60     		str	r2, [r3, #8]
-  82:Core/Src/init.c ****     GPIOA->OSPEEDR |= (0x2 << (10 * 2));
- 269              		.loc 1 82 5 is_stmt 1 view .LVU86
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 40
+  71:Core/Src/init.c ****     // Настраиваем PA5 как выход (MODER5[1:0] = 01)
+  72:Core/Src/init.c ****     GPIOA->MODER &= ~(0x3 << (5 * 2)); // Сбрасываем биты MODER5
+ 268              		.loc 1 72 5 is_stmt 1 view .LVU76
+ 269              		.loc 1 72 10 is_stmt 0 view .LVU77
+ 270 0070 A3F50063 		sub	r3, r3, #2048
+ 271 0074 1A68     		ldr	r2, [r3]
+ 272              		.loc 1 72 18 view .LVU78
+ 273 0076 22F44062 		bic	r2, r2, #3072
+ 274 007a 1A60     		str	r2, [r3]
+  73:Core/Src/init.c ****     GPIOA->MODER |=  (0x1 << (5 * 2)); // Устанавливаем режим Output
+ 275              		.loc 1 73 5 is_stmt 1 view .LVU79
+ 276              		.loc 1 73 10 is_stmt 0 view .LVU80
+ 277 007c 1A68     		ldr	r2, [r3]
+ 278              		.loc 1 73 18 view .LVU81
+ 279 007e 42F48062 		orr	r2, r2, #1024
+ 280 0082 1A60     		str	r2, [r3]
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 40
 
 
- 270              		.loc 1 82 10 is_stmt 0 view .LVU87
- 271 00a4 9A68     		ldr	r2, [r3, #8]
- 272              		.loc 1 82 20 view .LVU88
- 273 00a6 42F40012 		orr	r2, r2, #2097152
- 274 00aa 9A60     		str	r2, [r3, #8]
+  74:Core/Src/init.c **** 
+  75:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
+  76:Core/Src/init.c **** }
+ 281              		.loc 1 76 1 view .LVU82
+ 282 0084 7047     		bx	lr
+ 283              	.L13:
+ 284 0086 00BF     		.align	2
+ 285              	.L12:
+ 286 0088 00380240 		.word	1073887232
+ 287 008c 00040240 		.word	1073873920
+ 288              		.cfi_endproc
+ 289              	.LFE132:
+ 291              		.section	.text.GPIO_Init_with_my_macro,"ax",%progbits
+ 292              		.align	1
+ 293              		.global	GPIO_Init_with_my_macro
+ 294              		.syntax unified
+ 295              		.thumb
+ 296              		.thumb_func
+ 298              	GPIO_Init_with_my_macro:
+ 299              	.LFB133:
+  77:Core/Src/init.c **** 
+  78:Core/Src/init.c **** void GPIO_Init_with_my_macro(void)
+  79:Core/Src/init.c **** {
+ 300              		.loc 1 79 1 is_stmt 1 view -0
+ 301              		.cfi_startproc
+ 302              		@ args = 0, pretend = 0, frame = 0
+ 303              		@ frame_needed = 0, uses_anonymous_args = 0
+ 304              		@ link register save eliminated.
+  80:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
+  81:Core/Src/init.c ****     
+  82:Core/Src/init.c ****     RCC_GPIO |= RCC_GPIOA_ON | RCC_GPIOB_ON | RCC_GPIOC_ON; // включение тактиров�
+ 305              		.loc 1 82 5 view .LVU84
+ 306 0000 2B4A     		ldr	r2, .L15
+ 307 0002 D2F83038 		ldr	r3, [r2, #2096]
+ 308              		.loc 1 82 14 is_stmt 0 view .LVU85
+ 309 0006 43F00703 		orr	r3, r3, #7
+ 310 000a C2F83038 		str	r3, [r2, #2096]
   83:Core/Src/init.c **** 
-  84:Core/Src/init.c ****     // Без подтягивающего резистора (PUPDR10 = 00)
-  85:Core/Src/init.c ****     GPIOA->PUPDR &= ~(0x3 << (10 * 2));
- 275              		.loc 1 85 5 is_stmt 1 view .LVU89
- 276              		.loc 1 85 10 is_stmt 0 view .LVU90
- 277 00ac DA68     		ldr	r2, [r3, #12]
- 278              		.loc 1 85 18 view .LVU91
- 279 00ae 22F44012 		bic	r2, r2, #3145728
- 280 00b2 DA60     		str	r2, [r3, #12]
-  86:Core/Src/init.c **** 
-  87:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
-  88:Core/Src/init.c **** 
-  89:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
-  90:Core/Src/init.c **** 
-  91:Core/Src/init.c ****     // A11
-  92:Core/Src/init.c **** 
-  93:Core/Src/init.c ****     // Настраиваем PA11 как выход (MODER11[1:0] = 01)
-  94:Core/Src/init.c ****     GPIOA->MODER &= ~(0x3 << (11 * 2)); // Сбрасываем биты MODER3
- 281              		.loc 1 94 5 is_stmt 1 view .LVU92
- 282              		.loc 1 94 10 is_stmt 0 view .LVU93
- 283 00b4 1A68     		ldr	r2, [r3]
- 284              		.loc 1 94 18 view .LVU94
- 285 00b6 22F44002 		bic	r2, r2, #12582912
- 286 00ba 1A60     		str	r2, [r3]
-  95:Core/Src/init.c ****     GPIOA->MODER |=  (0x1 << (11 * 2)); // Устанавливаем режим Output
- 287              		.loc 1 95 5 is_stmt 1 view .LVU95
- 288              		.loc 1 95 10 is_stmt 0 view .LVU96
- 289 00bc 1A68     		ldr	r2, [r3]
- 290              		.loc 1 95 18 view .LVU97
- 291 00be 42F48002 		orr	r2, r2, #4194304
- 292 00c2 1A60     		str	r2, [r3]
-  96:Core/Src/init.c **** 
-  97:Core/Src/init.c ****     // Настраиваем тип выхода - push-pull (OTYPER11 = 0)
-  98:Core/Src/init.c ****     GPIOA->OTYPER &= ~(1 << 11);
- 293              		.loc 1 98 5 is_stmt 1 view .LVU98
- 294              		.loc 1 98 10 is_stmt 0 view .LVU99
- 295 00c4 5A68     		ldr	r2, [r3, #4]
- 296              		.loc 1 98 19 view .LVU100
- 297 00c6 22F40062 		bic	r2, r2, #2048
- 298 00ca 5A60     		str	r2, [r3, #4]
-  99:Core/Src/init.c **** 
- 100:Core/Src/init.c ****     // Настраиваем скорость вывода как высокую (OSPEEDR11 = 10)
- 101:Core/Src/init.c ****     GPIOA->OSPEEDR &= ~(0x3 << (11 * 2));
- 299              		.loc 1 101 5 is_stmt 1 view .LVU101
- 300              		.loc 1 101 10 is_stmt 0 view .LVU102
- 301 00cc 9A68     		ldr	r2, [r3, #8]
- 302              		.loc 1 101 20 view .LVU103
- 303 00ce 22F44002 		bic	r2, r2, #12582912
- 304 00d2 9A60     		str	r2, [r3, #8]
- 102:Core/Src/init.c ****     GPIOA->OSPEEDR |= (0x2 << (11 * 2));
- 305              		.loc 1 102 5 is_stmt 1 view .LVU104
- 306              		.loc 1 102 10 is_stmt 0 view .LVU105
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 41
+  84:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
+  85:Core/Src/init.c **** 
+  86:Core/Src/init.c ****     // Настройка всех кнопок
+  87:Core/Src/init.c **** 
+  88:Core/Src/init.c ****     GPIOB_MODER = (GPIOB_MODER & ~(0x3UL << (1 * 2)));
+ 311              		.loc 1 88 5 is_stmt 1 view .LVU86
+ 312              		.loc 1 88 20 is_stmt 0 view .LVU87
+ 313 000e 294B     		ldr	r3, .L15+4
+ 314 0010 D3F80024 		ldr	r2, [r3, #1024]
+ 315              		.loc 1 88 32 view .LVU88
+ 316 0014 22F00C01 		bic	r1, r2, #12
+ 317              		.loc 1 88 17 view .LVU89
+ 318 0018 C3F80014 		str	r1, [r3, #1024]
+  89:Core/Src/init.c ****     GPIOB_MODER = (GPIOB_MODER & ~(0x3UL << (2 * 2)));
+ 319              		.loc 1 89 5 is_stmt 1 view .LVU90
+ 320              		.loc 1 89 32 is_stmt 0 view .LVU91
+ 321 001c 22F03C01 		bic	r1, r2, #60
+ 322              		.loc 1 89 17 view .LVU92
+ 323 0020 C3F80014 		str	r1, [r3, #1024]
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 41
 
 
- 307 00d4 9A68     		ldr	r2, [r3, #8]
- 308              		.loc 1 102 20 view .LVU106
- 309 00d6 42F40002 		orr	r2, r2, #8388608
- 310 00da 9A60     		str	r2, [r3, #8]
- 103:Core/Src/init.c **** 
- 104:Core/Src/init.c ****     // Без подтягивающего резистора (PUPDR11 = 00)
- 105:Core/Src/init.c ****     GPIOA->PUPDR &= ~(0x3 << (11 * 2));
- 311              		.loc 1 105 5 is_stmt 1 view .LVU107
- 312              		.loc 1 105 10 is_stmt 0 view .LVU108
- 313 00dc DA68     		ldr	r2, [r3, #12]
- 314              		.loc 1 105 18 view .LVU109
- 315 00de 22F44002 		bic	r2, r2, #12582912
- 316 00e2 DA60     		str	r2, [r3, #12]
- 106:Core/Src/init.c **** 
- 107:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
- 108:Core/Src/init.c **** }
- 317              		.loc 1 108 1 view .LVU110
- 318 00e4 7047     		bx	lr
- 319              	.L10:
- 320 00e6 00BF     		.align	2
- 321              	.L9:
- 322 00e8 00380240 		.word	1073887232
- 323 00ec 00040240 		.word	1073873920
- 324              		.cfi_endproc
- 325              	.LFE131:
- 327              		.section	.text.GPIO_Init_with_my_macro,"ax",%progbits
- 328              		.align	1
- 329              		.global	GPIO_Init_with_my_macro
- 330              		.syntax unified
- 331              		.thumb
- 332              		.thumb_func
- 334              	GPIO_Init_with_my_macro:
- 335              	.LFB132:
+  90:Core/Src/init.c ****     GPIOB_MODER = (GPIOB_MODER & ~(0x3UL << (3 * 2)));
+ 324              		.loc 1 90 5 is_stmt 1 view .LVU93
+ 325              		.loc 1 90 32 is_stmt 0 view .LVU94
+ 326 0024 22F0FC02 		bic	r2, r2, #252
+ 327              		.loc 1 90 17 view .LVU95
+ 328 0028 C3F80024 		str	r2, [r3, #1024]
+  91:Core/Src/init.c ****     GPIOC_MODER = (GPIOC_MODER & ~(0x3UL << (10 * 2)));
+ 329              		.loc 1 91 5 is_stmt 1 view .LVU96
+ 330              		.loc 1 91 20 is_stmt 0 view .LVU97
+ 331 002c D3F80028 		ldr	r2, [r3, #2048]
+ 332              		.loc 1 91 32 view .LVU98
+ 333 0030 22F44012 		bic	r2, r2, #3145728
+ 334              		.loc 1 91 17 view .LVU99
+ 335 0034 C3F80028 		str	r2, [r3, #2048]
+  92:Core/Src/init.c ****     GPIOB_MODER |= GPIOB_MODE_PIN1_IN | GPIOB_MODE_PIN2_IN | GPIOB_MODE_PIN3_IN; // изначал�
+ 336              		.loc 1 92 5 is_stmt 1 view .LVU100
+ 337              		.loc 1 92 20 is_stmt 0 view .LVU101
+ 338 0038 1F49     		ldr	r1, .L15+8
+ 339 003a 0A68     		ldr	r2, [r1]
+ 340 003c 22F00C02 		bic	r2, r2, #12
+ 341 0040 0A60     		str	r2, [r1]
+ 342              		.loc 1 92 41 view .LVU102
+ 343 0042 0868     		ldr	r0, [r1]
+ 344 0044 20F03000 		bic	r0, r0, #48
+ 345 0048 0860     		str	r0, [r1]
+ 346              		.loc 1 92 39 view .LVU103
+ 347 004a 0243     		orrs	r2, r2, r0
+ 348              		.loc 1 92 62 view .LVU104
+ 349 004c 0868     		ldr	r0, [r1]
+ 350 004e 20F0C000 		bic	r0, r0, #192
+ 351 0052 0860     		str	r0, [r1]
+ 352              		.loc 1 92 60 view .LVU105
+ 353 0054 0243     		orrs	r2, r2, r0
+ 354              		.loc 1 92 17 view .LVU106
+ 355 0056 C3F80024 		str	r2, [r3, #1024]
+  93:Core/Src/init.c ****     GPIOC_MODER |= GPIOC_MODE_PIN10_IN; // изначально режим входа на пина
+ 356              		.loc 1 93 5 is_stmt 1 view .LVU107
+ 357              		.loc 1 93 20 is_stmt 0 view .LVU108
+ 358 005a 01F58061 		add	r1, r1, #1024
+ 359 005e 0A68     		ldr	r2, [r1]
+ 360 0060 22F44012 		bic	r2, r2, #3145728
+ 361 0064 0A60     		str	r2, [r1]
+  94:Core/Src/init.c ****     GPIOB_PUPDR = (GPIOB_PUPDR & ~(0x3UL << (1 * 2)));
+ 362              		.loc 1 94 5 is_stmt 1 view .LVU109
+ 363              		.loc 1 94 20 is_stmt 0 view .LVU110
+ 364 0066 D3F80C24 		ldr	r2, [r3, #1036]
+ 365              		.loc 1 94 32 view .LVU111
+ 366 006a 22F00C01 		bic	r1, r2, #12
+ 367              		.loc 1 94 17 view .LVU112
+ 368 006e C3F80C14 		str	r1, [r3, #1036]
+  95:Core/Src/init.c ****     GPIOB_PUPDR = (GPIOB_PUPDR & ~(0x3UL << (2 * 2)));
+ 369              		.loc 1 95 5 is_stmt 1 view .LVU113
+ 370              		.loc 1 95 32 is_stmt 0 view .LVU114
+ 371 0072 22F03C01 		bic	r1, r2, #60
+ 372              		.loc 1 95 17 view .LVU115
+ 373 0076 C3F80C14 		str	r1, [r3, #1036]
+  96:Core/Src/init.c ****     GPIOB_PUPDR = (GPIOB_PUPDR & ~(0x3UL << (3 * 2)));
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 42
+
+
+ 374              		.loc 1 96 5 is_stmt 1 view .LVU116
+ 375              		.loc 1 96 32 is_stmt 0 view .LVU117
+ 376 007a 22F0FC02 		bic	r2, r2, #252
+ 377              		.loc 1 96 17 view .LVU118
+ 378 007e C3F80C24 		str	r2, [r3, #1036]
+  97:Core/Src/init.c ****     GPIOC_PUPDR = (GPIOC_PUPDR & ~(0x3UL << (10 * 2)));
+ 379              		.loc 1 97 5 is_stmt 1 view .LVU119
+ 380              		.loc 1 97 20 is_stmt 0 view .LVU120
+ 381 0082 D3F80C18 		ldr	r1, [r3, #2060]
+ 382              		.loc 1 97 32 view .LVU121
+ 383 0086 21F44011 		bic	r1, r1, #3145728
+ 384              		.loc 1 97 17 view .LVU122
+ 385 008a C3F80C18 		str	r1, [r3, #2060]
+  98:Core/Src/init.c ****     GPIOB_PUPDR |= GPIOB_PUPD_PIN1_PULL_UP | GPIOB_PUPD_PIN2_PULL_UP | GPIOB_PUPD_PIN3_PULL_UP;
+ 386              		.loc 1 98 5 is_stmt 1 view .LVU123
+ 387              		.loc 1 98 17 is_stmt 0 view .LVU124
+ 388 008e 42F05402 		orr	r2, r2, #84
+ 389 0092 C3F80C24 		str	r2, [r3, #1036]
+  99:Core/Src/init.c ****     GPIOC_PUPDR |= GPIOC_PUPD_PIN10_PULL_UP;
+ 390              		.loc 1 99 5 is_stmt 1 view .LVU125
+ 391              		.loc 1 99 17 is_stmt 0 view .LVU126
+ 392 0096 41F48011 		orr	r1, r1, #1048576
+ 393 009a C3F80C18 		str	r1, [r3, #2060]
+ 100:Core/Src/init.c **** 
+ 101:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
+ 102:Core/Src/init.c **** 
+ 103:Core/Src/init.c ****     // Настройка портов для внешнего светодиода
+ 104:Core/Src/init.c **** 
+ 105:Core/Src/init.c ****     GPIOA_MODER |= GPIOA_MODE_PIN10_OUT;
+ 394              		.loc 1 105 5 is_stmt 1 view .LVU127
+ 395 009e 1A68     		ldr	r2, [r3]
+ 396              		.loc 1 105 17 is_stmt 0 view .LVU128
+ 397 00a0 42F48012 		orr	r2, r2, #1048576
+ 398 00a4 1A60     		str	r2, [r3]
+ 106:Core/Src/init.c ****     GPIOA_OTYPER |= GPIOA_OTYPE_PIN10_PP;
+ 399              		.loc 1 106 5 is_stmt 1 view .LVU129
+ 107:Core/Src/init.c ****     GPIOA_OSPEEDR |= GPIOA_OSPEED_PIN10_HS;
+ 400              		.loc 1 107 5 view .LVU130
+ 401 00a6 9A68     		ldr	r2, [r3, #8]
+ 402              		.loc 1 107 19 is_stmt 0 view .LVU131
+ 403 00a8 42F44012 		orr	r2, r2, #3145728
+ 404 00ac 9A60     		str	r2, [r3, #8]
+ 108:Core/Src/init.c ****     GPIOA_PUPDR |= GPIOA_PUPD_PIN10_NOPUPD;
+ 405              		.loc 1 108 5 is_stmt 1 view .LVU132
  109:Core/Src/init.c **** 
- 110:Core/Src/init.c **** void GPIO_Init_with_my_macro(void)
- 111:Core/Src/init.c **** {
- 336              		.loc 1 111 1 is_stmt 1 view -0
- 337              		.cfi_startproc
- 338              		@ args = 0, pretend = 0, frame = 0
- 339              		@ frame_needed = 0, uses_anonymous_args = 0
- 340              		@ link register save eliminated.
- 112:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
- 113:Core/Src/init.c ****     
- 114:Core/Src/init.c ****     RCC_GPIO |= RCC_GPIOA_ON | RCC_GPIOB_ON | RCC_GPIOC_ON; // включение тактиров�
- 341              		.loc 1 114 5 view .LVU112
- 342 0000 2E4A     		ldr	r2, .L12
- 343 0002 D2F83038 		ldr	r3, [r2, #2096]
- 344              		.loc 1 114 14 is_stmt 0 view .LVU113
- 345 0006 43F00703 		orr	r3, r3, #7
- 346 000a C2F83038 		str	r3, [r2, #2096]
- 115:Core/Src/init.c **** 
- 116:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
- 117:Core/Src/init.c **** 
- 118:Core/Src/init.c ****     // Настройка всех кнопок
- 119:Core/Src/init.c **** 
- 120:Core/Src/init.c ****     GPIOB_MODER = (GPIOB_MODER & ~(0x3UL << (1 * 2)));
- 347              		.loc 1 120 5 is_stmt 1 view .LVU114
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 42
+ 110:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
+ 111:Core/Src/init.c **** }
+ 406              		.loc 1 111 1 is_stmt 0 view .LVU133
+ 407 00ae 7047     		bx	lr
+ 408              	.L16:
+ 409              		.align	2
+ 410              	.L15:
+ 411 00b0 00300240 		.word	1073885184
+ 412 00b4 00000240 		.word	1073872896
+ 413 00b8 00040240 		.word	1073873920
+ 414              		.cfi_endproc
+ 415              	.LFE133:
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 43
 
 
- 348              		.loc 1 120 20 is_stmt 0 view .LVU115
- 349 000e 2C4B     		ldr	r3, .L12+4
- 350 0010 D3F80024 		ldr	r2, [r3, #1024]
- 351              		.loc 1 120 32 view .LVU116
- 352 0014 22F00C01 		bic	r1, r2, #12
- 353              		.loc 1 120 17 view .LVU117
- 354 0018 C3F80014 		str	r1, [r3, #1024]
- 121:Core/Src/init.c ****     GPIOB_MODER = (GPIOB_MODER & ~(0x3UL << (2 * 2)));
- 355              		.loc 1 121 5 is_stmt 1 view .LVU118
- 356              		.loc 1 121 32 is_stmt 0 view .LVU119
- 357 001c 22F03C01 		bic	r1, r2, #60
- 358              		.loc 1 121 17 view .LVU120
- 359 0020 C3F80014 		str	r1, [r3, #1024]
- 122:Core/Src/init.c ****     GPIOB_MODER = (GPIOB_MODER & ~(0x3UL << (3 * 2)));
- 360              		.loc 1 122 5 is_stmt 1 view .LVU121
- 361              		.loc 1 122 32 is_stmt 0 view .LVU122
- 362 0024 22F0FC02 		bic	r2, r2, #252
- 363              		.loc 1 122 17 view .LVU123
- 364 0028 C3F80024 		str	r2, [r3, #1024]
- 123:Core/Src/init.c ****     GPIOC_MODER = (GPIOC_MODER & ~(0x3UL << (10 * 2)));
- 365              		.loc 1 123 5 is_stmt 1 view .LVU124
- 366              		.loc 1 123 20 is_stmt 0 view .LVU125
- 367 002c D3F80028 		ldr	r2, [r3, #2048]
- 368              		.loc 1 123 32 view .LVU126
- 369 0030 22F44012 		bic	r2, r2, #3145728
- 370              		.loc 1 123 17 view .LVU127
- 371 0034 C3F80028 		str	r2, [r3, #2048]
- 124:Core/Src/init.c ****     GPIOB_MODER |= GPIOB_MODE_PIN1_IN | GPIOB_MODE_PIN2_IN | GPIOB_MODE_PIN3_IN; // изначал�
- 372              		.loc 1 124 5 is_stmt 1 view .LVU128
- 373              		.loc 1 124 20 is_stmt 0 view .LVU129
- 374 0038 2249     		ldr	r1, .L12+8
- 375 003a 0A68     		ldr	r2, [r1]
- 376 003c 22F00C02 		bic	r2, r2, #12
- 377 0040 0A60     		str	r2, [r1]
- 378              		.loc 1 124 41 view .LVU130
- 379 0042 0868     		ldr	r0, [r1]
- 380 0044 20F03000 		bic	r0, r0, #48
- 381 0048 0860     		str	r0, [r1]
- 382              		.loc 1 124 39 view .LVU131
- 383 004a 0243     		orrs	r2, r2, r0
- 384              		.loc 1 124 62 view .LVU132
- 385 004c 0868     		ldr	r0, [r1]
- 386 004e 20F0C000 		bic	r0, r0, #192
- 387 0052 0860     		str	r0, [r1]
- 388              		.loc 1 124 60 view .LVU133
- 389 0054 0243     		orrs	r2, r2, r0
- 390              		.loc 1 124 17 view .LVU134
- 391 0056 C3F80024 		str	r2, [r3, #1024]
- 125:Core/Src/init.c ****     GPIOC_MODER |= GPIOC_MODE_PIN10_IN; // изначально режим входа на пина
- 392              		.loc 1 125 5 is_stmt 1 view .LVU135
- 393              		.loc 1 125 20 is_stmt 0 view .LVU136
- 394 005a 01F58061 		add	r1, r1, #1024
- 395 005e 0A68     		ldr	r2, [r1]
- 396 0060 22F44012 		bic	r2, r2, #3145728
- 397 0064 0A60     		str	r2, [r1]
- 126:Core/Src/init.c ****     GPIOB_PUPDR = (GPIOB_PUPDR & ~(0x3UL << (1 * 2)));
- 398              		.loc 1 126 5 is_stmt 1 view .LVU137
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 43
+ 417              		.section	.text.delay,"ax",%progbits
+ 418              		.align	1
+ 419              		.global	delay
+ 420              		.syntax unified
+ 421              		.thumb
+ 422              		.thumb_func
+ 424              	delay:
+ 425              	.LVL8:
+ 426              	.LFB134:
+ 112:Core/Src/init.c **** 
+ 113:Core/Src/init.c **** void delay(volatile uint32_t count)
+ 114:Core/Src/init.c **** {
+ 427              		.loc 1 114 1 is_stmt 1 view -0
+ 428              		.cfi_startproc
+ 429              		@ args = 0, pretend = 0, frame = 8
+ 430              		@ frame_needed = 0, uses_anonymous_args = 0
+ 431              		@ link register save eliminated.
+ 432              		.loc 1 114 1 is_stmt 0 view .LVU135
+ 433 0000 82B0     		sub	sp, sp, #8
+ 434              	.LCFI1:
+ 435              		.cfi_def_cfa_offset 8
+ 436 0002 0190     		str	r0, [sp, #4]
+ 115:Core/Src/init.c ****     for (; count > 0; count--)
+ 437              		.loc 1 115 5 is_stmt 1 view .LVU136
+ 438 0004 02E0     		b	.L18
+ 439              	.L19:
+ 116:Core/Src/init.c ****     {
+ 117:Core/Src/init.c ****         // пустая итерация
+ 118:Core/Src/init.c ****     }
+ 440              		.loc 1 118 5 view .LVU137
+ 115:Core/Src/init.c ****     for (; count > 0; count--)
+ 441              		.loc 1 115 28 discriminator 2 view .LVU138
+ 442 0006 019B     		ldr	r3, [sp, #4]
+ 443 0008 013B     		subs	r3, r3, #1
+ 444 000a 0193     		str	r3, [sp, #4]
+ 445              	.L18:
+ 115:Core/Src/init.c ****     for (; count > 0; count--)
+ 446              		.loc 1 115 18 discriminator 1 view .LVU139
+ 447 000c 019B     		ldr	r3, [sp, #4]
+ 448 000e 002B     		cmp	r3, #0
+ 449 0010 F9D1     		bne	.L19
+ 119:Core/Src/init.c **** }
+ 450              		.loc 1 119 1 is_stmt 0 view .LVU140
+ 451 0012 02B0     		add	sp, sp, #8
+ 452              	.LCFI2:
+ 453              		.cfi_def_cfa_offset 0
+ 454              		@ sp needed
+ 455 0014 7047     		bx	lr
+ 456              		.cfi_endproc
+ 457              	.LFE134:
+ 459              		.section	.text.ITR_Init,"ax",%progbits
+ 460              		.align	1
+ 461              		.global	ITR_Init
+ 462              		.syntax unified
+ 463              		.thumb
+ 464              		.thumb_func
+ 466              	ITR_Init:
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 44
 
 
- 399              		.loc 1 126 20 is_stmt 0 view .LVU138
- 400 0066 D3F80C24 		ldr	r2, [r3, #1036]
- 401              		.loc 1 126 32 view .LVU139
- 402 006a 22F00C01 		bic	r1, r2, #12
- 403              		.loc 1 126 17 view .LVU140
- 404 006e C3F80C14 		str	r1, [r3, #1036]
- 127:Core/Src/init.c ****     GPIOB_PUPDR = (GPIOB_PUPDR & ~(0x3UL << (2 * 2)));
- 405              		.loc 1 127 5 is_stmt 1 view .LVU141
- 406              		.loc 1 127 32 is_stmt 0 view .LVU142
- 407 0072 22F03C01 		bic	r1, r2, #60
- 408              		.loc 1 127 17 view .LVU143
- 409 0076 C3F80C14 		str	r1, [r3, #1036]
- 128:Core/Src/init.c ****     GPIOB_PUPDR = (GPIOB_PUPDR & ~(0x3UL << (3 * 2)));
- 410              		.loc 1 128 5 is_stmt 1 view .LVU144
- 411              		.loc 1 128 32 is_stmt 0 view .LVU145
- 412 007a 22F0FC02 		bic	r2, r2, #252
- 413              		.loc 1 128 17 view .LVU146
- 414 007e C3F80C24 		str	r2, [r3, #1036]
- 129:Core/Src/init.c ****     GPIOC_PUPDR = (GPIOC_PUPDR & ~(0x3UL << (10 * 2)));
- 415              		.loc 1 129 5 is_stmt 1 view .LVU147
- 416              		.loc 1 129 20 is_stmt 0 view .LVU148
- 417 0082 D3F80C18 		ldr	r1, [r3, #2060]
- 418              		.loc 1 129 32 view .LVU149
- 419 0086 21F44011 		bic	r1, r1, #3145728
- 420              		.loc 1 129 17 view .LVU150
- 421 008a C3F80C18 		str	r1, [r3, #2060]
- 130:Core/Src/init.c ****     GPIOB_PUPDR |= GPIOB_PUPD_PIN1_PULL_UP | GPIOB_PUPD_PIN2_PULL_UP | GPIOB_PUPD_PIN3_PULL_UP;
- 422              		.loc 1 130 5 is_stmt 1 view .LVU151
- 423              		.loc 1 130 17 is_stmt 0 view .LVU152
- 424 008e 42F05402 		orr	r2, r2, #84
- 425 0092 C3F80C24 		str	r2, [r3, #1036]
- 131:Core/Src/init.c ****     GPIOC_PUPDR |= GPIOC_PUPD_PIN10_PULL_UP;
- 426              		.loc 1 131 5 is_stmt 1 view .LVU153
- 427              		.loc 1 131 17 is_stmt 0 view .LVU154
- 428 0096 41F48011 		orr	r1, r1, #1048576
- 429 009a C3F80C18 		str	r1, [r3, #2060]
- 132:Core/Src/init.c **** 
- 133:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
- 134:Core/Src/init.c **** 
- 135:Core/Src/init.c ****     // Настройка пользовательского светодиода
- 136:Core/Src/init.c **** 
- 137:Core/Src/init.c ****     GPIOA_MODER |= GPIOA_MODE_PIN5_OUT;
- 430              		.loc 1 137 5 is_stmt 1 view .LVU155
- 431 009e 1A68     		ldr	r2, [r3]
- 432              		.loc 1 137 17 is_stmt 0 view .LVU156
- 433 00a0 42F48061 		orr	r1, r2, #1024
- 434 00a4 1960     		str	r1, [r3]
- 138:Core/Src/init.c **** 
- 139:Core/Src/init.c ****     // Настройка портов для внешних светодиодов
- 140:Core/Src/init.c **** 
- 141:Core/Src/init.c ****     GPIOA_MODER |= GPIOA_MODE_PIN10_OUT | GPIOA_MODE_PIN11_OUT;
- 435              		.loc 1 141 5 is_stmt 1 view .LVU157
- 436              		.loc 1 141 17 is_stmt 0 view .LVU158
- 437 00a6 42F4A002 		orr	r2, r2, #5242880
- 438 00aa 42F48062 		orr	r2, r2, #1024
- 439 00ae 1A60     		str	r2, [r3]
- 142:Core/Src/init.c ****     GPIOA_OTYPER |= GPIOA_OTYPE_PIN10_PP | GPIOA_OTYPE_PIN11_PP;
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 44
-
-
- 440              		.loc 1 142 5 is_stmt 1 view .LVU159
- 143:Core/Src/init.c ****     GPIOA_OSPEEDR |= GPIOA_OSPEED_PIN10_HS | GPIOA_OSPEED_PIN11_HS;
- 441              		.loc 1 143 5 view .LVU160
- 442 00b0 9A68     		ldr	r2, [r3, #8]
- 443              		.loc 1 143 19 is_stmt 0 view .LVU161
- 444 00b2 42F47002 		orr	r2, r2, #15728640
- 445 00b6 9A60     		str	r2, [r3, #8]
- 144:Core/Src/init.c ****     GPIOA_PUPDR |= GPIOA_PUPD_PIN10_NOPUPD | GPIOA_PUPD_PIN11_NOPUPD;
- 446              		.loc 1 144 5 is_stmt 1 view .LVU162
- 145:Core/Src/init.c **** 
- 146:Core/Src/init.c ****     /////////////////////////////////////////////////////////////////////
- 147:Core/Src/init.c **** }
- 447              		.loc 1 147 1 is_stmt 0 view .LVU163
- 448 00b8 7047     		bx	lr
- 449              	.L13:
- 450 00ba 00BF     		.align	2
- 451              	.L12:
- 452 00bc 00300240 		.word	1073885184
- 453 00c0 00000240 		.word	1073872896
- 454 00c4 00040240 		.word	1073873920
- 455              		.cfi_endproc
- 456              	.LFE132:
- 458              		.section	.text.delay,"ax",%progbits
- 459              		.align	1
- 460              		.global	delay
- 461              		.syntax unified
- 462              		.thumb
- 463              		.thumb_func
- 465              	delay:
- 466              	.LVL8:
- 467              	.LFB133:
- 148:Core/Src/init.c **** 
- 149:Core/Src/init.c **** void delay(volatile uint32_t count)
- 150:Core/Src/init.c **** {
- 468              		.loc 1 150 1 is_stmt 1 view -0
+ 467              	.LFB135:
+ 120:Core/Src/init.c **** 
+ 121:Core/Src/init.c **** void ITR_Init(void)
+ 122:Core/Src/init.c **** {
+ 468              		.loc 1 122 1 is_stmt 1 view -0
  469              		.cfi_startproc
- 470              		@ args = 0, pretend = 0, frame = 8
+ 470              		@ args = 0, pretend = 0, frame = 0
  471              		@ frame_needed = 0, uses_anonymous_args = 0
- 472              		@ link register save eliminated.
- 473              		.loc 1 150 1 is_stmt 0 view .LVU165
- 474 0000 82B0     		sub	sp, sp, #8
- 475              	.LCFI1:
- 476              		.cfi_def_cfa_offset 8
- 477 0002 0190     		str	r0, [sp, #4]
- 151:Core/Src/init.c ****     for (; count > 0; count--)
- 478              		.loc 1 151 5 is_stmt 1 view .LVU166
- 479 0004 02E0     		b	.L15
- 480              	.L16:
- 152:Core/Src/init.c ****     {
- 153:Core/Src/init.c ****         // пустая итерация
- 154:Core/Src/init.c ****     }
- 481              		.loc 1 154 5 view .LVU167
- 151:Core/Src/init.c ****     for (; count > 0; count--)
- 482              		.loc 1 151 28 discriminator 2 view .LVU168
- 483 0006 019B     		ldr	r3, [sp, #4]
- 484 0008 013B     		subs	r3, r3, #1
- 485 000a 0193     		str	r3, [sp, #4]
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 45
-
-
- 486              	.L15:
- 151:Core/Src/init.c ****     for (; count > 0; count--)
- 487              		.loc 1 151 18 discriminator 1 view .LVU169
- 488 000c 019B     		ldr	r3, [sp, #4]
- 489 000e 002B     		cmp	r3, #0
- 490 0010 F9D1     		bne	.L16
- 155:Core/Src/init.c **** }
- 491              		.loc 1 155 1 is_stmt 0 view .LVU170
- 492 0012 02B0     		add	sp, sp, #8
- 493              	.LCFI2:
- 494              		.cfi_def_cfa_offset 0
- 495              		@ sp needed
- 496 0014 7047     		bx	lr
- 497              		.cfi_endproc
- 498              	.LFE133:
- 500              		.section	.text.ITR_Init,"ax",%progbits
- 501              		.align	1
- 502              		.global	ITR_Init
- 503              		.syntax unified
- 504              		.thumb
- 505              		.thumb_func
- 507              	ITR_Init:
- 508              	.LFB134:
- 156:Core/Src/init.c **** 
- 157:Core/Src/init.c **** void ITR_Init(void)
- 158:Core/Src/init.c **** {
- 509              		.loc 1 158 1 is_stmt 1 view -0
- 510              		.cfi_startproc
- 511              		@ args = 0, pretend = 0, frame = 0
- 512              		@ frame_needed = 0, uses_anonymous_args = 0
- 513 0000 08B5     		push	{r3, lr}
- 514              	.LCFI3:
- 515              		.cfi_def_cfa_offset 8
- 516              		.cfi_offset 3, -8
- 517              		.cfi_offset 14, -4
- 159:Core/Src/init.c ****     // Благодаря этому при нажатии и отпускании кнопки п�
- 160:Core/Src/init.c ****     // и будет происходить то что в ней написано
- 161:Core/Src/init.c ****     
- 162:Core/Src/init.c ****     SET_BIT(RCC->APB2ENR,RCC_APB2ENR_SYSCFGEN); // включение тактирования пе
- 518              		.loc 1 162 5 view .LVU172
- 519 0002 154A     		ldr	r2, .L20
- 520 0004 536C     		ldr	r3, [r2, #68]
- 521 0006 43F48043 		orr	r3, r3, #16384
- 522 000a 5364     		str	r3, [r2, #68]
- 163:Core/Src/init.c ****     MODIFY_REG(SYSCFG->EXTICR[0], SYSCFG_EXTICR1_EXTI1_Msk, SYSCFG_EXTICR1_EXTI1_PB); // настр
- 523              		.loc 1 163 5 view .LVU173
- 524 000c A2F58032 		sub	r2, r2, #65536
- 525 0010 9368     		ldr	r3, [r2, #8]
- 526 0012 23F0F003 		bic	r3, r3, #240
- 527 0016 43F01003 		orr	r3, r3, #16
- 528 001a 9360     		str	r3, [r2, #8]
- 164:Core/Src/init.c ****     SET_BIT(EXTI->IMR, EXTI_IMR_MR1); // настройка маскирования 1 линии
- 529              		.loc 1 164 5 view .LVU174
- 530 001c 0F4B     		ldr	r3, .L20+4
- 531 001e 1A68     		ldr	r2, [r3]
- 532 0020 42F00202 		orr	r2, r2, #2
- 533 0024 1A60     		str	r2, [r3]
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 46
-
-
- 165:Core/Src/init.c ****     SET_BIT(EXTI->RTSR, EXTI_RTSR_TR1); // включаем генерацию прерываний
- 534              		.loc 1 165 5 view .LVU175
- 535 0026 9A68     		ldr	r2, [r3, #8]
- 536 0028 42F00202 		orr	r2, r2, #2
- 537 002c 9A60     		str	r2, [r3, #8]
- 166:Core/Src/init.c ****     // прерывание будет срабатывать при переходе сигнал�
- 167:Core/Src/init.c ****     SET_BIT(EXTI->FTSR, EXTI_FTSR_TR1); // включаем генерацию прерываний
- 538              		.loc 1 167 5 view .LVU176
- 539 002e DA68     		ldr	r2, [r3, #12]
- 540 0030 42F00202 		orr	r2, r2, #2
- 541 0034 DA60     		str	r2, [r3, #12]
- 168:Core/Src/init.c ****     // прерывание будет срабатывать при переходе сигнал�
- 169:Core/Src/init.c ****     NVIC_SetPriority(EXTI1_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0)); // зад�
- 542              		.loc 1 169 5 view .LVU177
- 543              	.LBB8:
- 544              	.LBI8:
+ 472 0000 08B5     		push	{r3, lr}
+ 473              	.LCFI3:
+ 474              		.cfi_def_cfa_offset 8
+ 475              		.cfi_offset 3, -8
+ 476              		.cfi_offset 14, -4
+ 123:Core/Src/init.c ****     // Благодаря этому при нажатии и отпускании кнопки п�
+ 124:Core/Src/init.c ****     // и будет происходить то что в ней написано
+ 125:Core/Src/init.c ****     
+ 126:Core/Src/init.c ****     SET_BIT(RCC->APB2ENR,RCC_APB2ENR_SYSCFGEN); // включение тактирования пе
+ 477              		.loc 1 126 5 view .LVU142
+ 478 0002 154A     		ldr	r2, .L23
+ 479 0004 536C     		ldr	r3, [r2, #68]
+ 480 0006 43F48043 		orr	r3, r3, #16384
+ 481 000a 5364     		str	r3, [r2, #68]
+ 127:Core/Src/init.c ****     MODIFY_REG(SYSCFG->EXTICR[0], SYSCFG_EXTICR1_EXTI1_Msk, SYSCFG_EXTICR1_EXTI1_PB); // настр
+ 482              		.loc 1 127 5 view .LVU143
+ 483 000c A2F58032 		sub	r2, r2, #65536
+ 484 0010 9368     		ldr	r3, [r2, #8]
+ 485 0012 23F0F003 		bic	r3, r3, #240
+ 486 0016 43F01003 		orr	r3, r3, #16
+ 487 001a 9360     		str	r3, [r2, #8]
+ 128:Core/Src/init.c ****     SET_BIT(EXTI->IMR, EXTI_IMR_MR1); // настройка маскирования 1 линии
+ 488              		.loc 1 128 5 view .LVU144
+ 489 001c 0F4B     		ldr	r3, .L23+4
+ 490 001e 1A68     		ldr	r2, [r3]
+ 491 0020 42F00202 		orr	r2, r2, #2
+ 492 0024 1A60     		str	r2, [r3]
+ 129:Core/Src/init.c ****     SET_BIT(EXTI->RTSR, EXTI_RTSR_TR1); // включаем генерацию прерываний
+ 493              		.loc 1 129 5 view .LVU145
+ 494 0026 9A68     		ldr	r2, [r3, #8]
+ 495 0028 42F00202 		orr	r2, r2, #2
+ 496 002c 9A60     		str	r2, [r3, #8]
+ 130:Core/Src/init.c ****     // прерывание будет срабатывать при переходе сигнал�
+ 131:Core/Src/init.c ****     SET_BIT(EXTI->FTSR, EXTI_FTSR_TR1); // включаем генерацию прерываний
+ 497              		.loc 1 131 5 view .LVU146
+ 498 002e DA68     		ldr	r2, [r3, #12]
+ 499 0030 42F00202 		orr	r2, r2, #2
+ 500 0034 DA60     		str	r2, [r3, #12]
+ 132:Core/Src/init.c ****     // прерывание будет срабатывать при переходе сигнал�
+ 133:Core/Src/init.c ****     NVIC_SetPriority(EXTI1_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0)); // зад�
+ 501              		.loc 1 133 5 view .LVU147
+ 502              	.LBB8:
+ 503              	.LBI8:
 1676:CMSIS/Include/core_cm4.h **** {
- 545              		.loc 2 1676 26 view .LVU178
- 546              	.LBB9:
+ 504              		.loc 2 1676 26 view .LVU148
+ 505              	.LBB9:
 1678:CMSIS/Include/core_cm4.h **** }
- 547              		.loc 2 1678 3 view .LVU179
+ 506              		.loc 2 1678 3 view .LVU149
 1678:CMSIS/Include/core_cm4.h **** }
- 548              		.loc 2 1678 26 is_stmt 0 view .LVU180
- 549 0036 0A4B     		ldr	r3, .L20+8
- 550 0038 D868     		ldr	r0, [r3, #12]
- 551              	.LBE9:
- 552              	.LBE8:
- 553              		.loc 1 169 5 discriminator 1 view .LVU181
- 554 003a 0022     		movs	r2, #0
- 555 003c 1146     		mov	r1, r2
- 556 003e C0F30220 		ubfx	r0, r0, #8, #3
- 557 0042 FFF7FEFF 		bl	NVIC_EncodePriority
- 558              	.LVL9:
- 559              	.LBB10:
- 560              	.LBI10:
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 45
+
+
+ 507              		.loc 2 1678 26 is_stmt 0 view .LVU150
+ 508 0036 0A4B     		ldr	r3, .L23+8
+ 509 0038 D868     		ldr	r0, [r3, #12]
+ 510              	.LBE9:
+ 511              	.LBE8:
+ 512              		.loc 1 133 5 discriminator 1 view .LVU151
+ 513 003a 0022     		movs	r2, #0
+ 514 003c 1146     		mov	r1, r2
+ 515 003e C0F30220 		ubfx	r0, r0, #8, #3
+ 516 0042 FFF7FEFF 		bl	NVIC_EncodePriority
+ 517              	.LVL9:
+ 518              	.LBB10:
+ 519              	.LBI10:
 1816:CMSIS/Include/core_cm4.h **** {
- 561              		.loc 2 1816 22 is_stmt 1 view .LVU182
- 562              	.LBB11:
+ 520              		.loc 2 1816 22 is_stmt 1 view .LVU152
+ 521              	.LBB11:
 1818:CMSIS/Include/core_cm4.h ****   {
- 563              		.loc 2 1818 3 view .LVU183
+ 522              		.loc 2 1818 3 view .LVU153
 1820:CMSIS/Include/core_cm4.h ****   }
- 564              		.loc 2 1820 5 view .LVU184
+ 523              		.loc 2 1820 5 view .LVU154
 1820:CMSIS/Include/core_cm4.h ****   }
- 565              		.loc 2 1820 48 is_stmt 0 view .LVU185
- 566 0046 0001     		lsls	r0, r0, #4
- 567              	.LVL10:
+ 524              		.loc 2 1820 48 is_stmt 0 view .LVU155
+ 525 0046 0001     		lsls	r0, r0, #4
+ 526              	.LVL10:
 1820:CMSIS/Include/core_cm4.h ****   }
- 568              		.loc 2 1820 48 view .LVU186
- 569 0048 C0B2     		uxtb	r0, r0
+ 527              		.loc 2 1820 48 view .LVU156
+ 528 0048 C0B2     		uxtb	r0, r0
 1820:CMSIS/Include/core_cm4.h ****   }
- 570              		.loc 2 1820 46 view .LVU187
- 571 004a 064B     		ldr	r3, .L20+12
- 572 004c 83F80703 		strb	r0, [r3, #775]
- 573              	.LVL11:
+ 529              		.loc 2 1820 46 view .LVU157
+ 530 004a 064B     		ldr	r3, .L23+12
+ 531 004c 83F80703 		strb	r0, [r3, #775]
+ 532              	.LVL11:
 1820:CMSIS/Include/core_cm4.h ****   }
- 574              		.loc 2 1820 46 view .LVU188
- 575              	.LBE11:
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 47
-
-
- 576              	.LBE10:
- 170:Core/Src/init.c ****     NVIC_EnableIRQ(EXTI1_IRQn); // разрешаем прерывания
- 577              		.loc 1 170 5 is_stmt 1 view .LVU189
- 578              	.LBB12:
- 579              	.LBI12:
+ 533              		.loc 2 1820 46 view .LVU158
+ 534              	.LBE11:
+ 535              	.LBE10:
+ 134:Core/Src/init.c ****     NVIC_EnableIRQ(EXTI1_IRQn); // разрешаем прерывания
+ 536              		.loc 1 134 5 is_stmt 1 view .LVU159
+ 537              	.LBB12:
+ 538              	.LBI12:
 1688:CMSIS/Include/core_cm4.h **** {
- 580              		.loc 2 1688 22 view .LVU190
- 581              	.LBB13:
+ 539              		.loc 2 1688 22 view .LVU160
+ 540              	.LBB13:
 1690:CMSIS/Include/core_cm4.h ****   {
- 582              		.loc 2 1690 3 view .LVU191
+ 541              		.loc 2 1690 3 view .LVU161
 1692:CMSIS/Include/core_cm4.h ****   }
- 583              		.loc 2 1692 5 view .LVU192
+ 542              		.loc 2 1692 5 view .LVU162
 1692:CMSIS/Include/core_cm4.h ****   }
- 584              		.loc 2 1692 43 is_stmt 0 view .LVU193
- 585 0050 8022     		movs	r2, #128
- 586 0052 1A60     		str	r2, [r3]
- 587              	.LVL12:
+ 543              		.loc 2 1692 43 is_stmt 0 view .LVU163
+ 544 0050 8022     		movs	r2, #128
+ 545 0052 1A60     		str	r2, [r3]
+ 546              	.LVL12:
 1692:CMSIS/Include/core_cm4.h ****   }
- 588              		.loc 2 1692 43 view .LVU194
- 589              	.LBE13:
- 590              	.LBE12:
- 171:Core/Src/init.c **** }...
- 591              		.loc 1 171 1 view .LVU195
- 592 0054 08BD     		pop	{r3, pc}
- 593              	.L21:
- 594 0056 00BF     		.align	2
- 595              	.L20:
- 596 0058 00380240 		.word	1073887232
- 597 005c 003C0140 		.word	1073822720
- 598 0060 00ED00E0 		.word	-536810240
- 599 0064 00E100E0 		.word	-536813312
- 600              		.cfi_endproc
- 601              	.LFE134:
- 603              		.text
- 604              	.Letext0:
- 605              		.file 3 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
- 606              		.file 4 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
- 607              		.file 5 "CMSIS/Devices/STM32F4xx/Inc/STM32F411xE/stm32f411xe.h"
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s 			page 48
+ 547              		.loc 2 1692 43 view .LVU164
+ 548              	.LBE13:
+ 549              	.LBE12:
+ 135:Core/Src/init.c **** }...
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 46
+
+
+ 550              		.loc 1 135 1 view .LVU165
+ 551 0054 08BD     		pop	{r3, pc}
+ 552              	.L24:
+ 553 0056 00BF     		.align	2
+ 554              	.L23:
+ 555 0058 00380240 		.word	1073887232
+ 556 005c 003C0140 		.word	1073822720
+ 557 0060 00ED00E0 		.word	-536810240
+ 558 0064 00E100E0 		.word	-536813312
+ 559              		.cfi_endproc
+ 560              	.LFE135:
+ 562              		.text
+ 563              	.Letext0:
+ 564              		.file 3 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 565              		.file 4 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 566              		.file 5 "CMSIS/Devices/STM32F4xx/Inc/STM32F411xE/stm32f411xe.h"
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s 			page 47
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 init.c
-C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s:21     .text.NVIC_EncodePriority:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s:26     .text.NVIC_EncodePriority:00000000 NVIC_EncodePriority
-C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s:89     .text.GPIO_Init:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s:95     .text.GPIO_Init:00000000 GPIO_Init
-C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s:133    .text.GPIO_Init:00000038 $d
-C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s:138    .text.GPIO_Init_with_CMSIS:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s:144    .text.GPIO_Init_with_CMSIS:00000000 GPIO_Init_with_CMSIS
-C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s:322    .text.GPIO_Init_with_CMSIS:000000e8 $d
-C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s:328    .text.GPIO_Init_with_my_macro:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s:334    .text.GPIO_Init_with_my_macro:00000000 GPIO_Init_with_my_macro
-C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s:452    .text.GPIO_Init_with_my_macro:000000bc $d
-C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s:459    .text.delay:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s:465    .text.delay:00000000 delay
-C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s:501    .text.ITR_Init:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s:507    .text.ITR_Init:00000000 ITR_Init
-C:\Users\pashk\AppData\Local\Temp\ccPXQBv1.s:596    .text.ITR_Init:00000058 $d
+C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s:21     .text.NVIC_EncodePriority:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s:26     .text.NVIC_EncodePriority:00000000 NVIC_EncodePriority
+C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s:89     .text.Init_with_memory_for_led3:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s:95     .text.Init_with_memory_for_led3:00000000 Init_with_memory_for_led3
+C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s:120    .text.Init_with_memory_for_led3:00000014 $d
+C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s:125    .text.GPIO_Init:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s:131    .text.GPIO_Init:00000000 GPIO_Init
+C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s:169    .text.GPIO_Init:00000038 $d
+C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s:174    .text.GPIO_Init_with_CMSIS:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s:180    .text.GPIO_Init_with_CMSIS:00000000 GPIO_Init_with_CMSIS
+C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s:286    .text.GPIO_Init_with_CMSIS:00000088 $d
+C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s:292    .text.GPIO_Init_with_my_macro:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s:298    .text.GPIO_Init_with_my_macro:00000000 GPIO_Init_with_my_macro
+C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s:411    .text.GPIO_Init_with_my_macro:000000b0 $d
+C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s:418    .text.delay:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s:424    .text.delay:00000000 delay
+C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s:460    .text.ITR_Init:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s:466    .text.ITR_Init:00000000 ITR_Init
+C:\Users\pashk\AppData\Local\Temp\ccBBCRhW.s:555    .text.ITR_Init:00000058 $d
 
 NO UNDEFINED SYMBOLS
