@@ -1,6 +1,6 @@
 #include "init.h"
 
-void Init_with_memory_for_led3(void)
+void Init_with_memory_for_led3(void) // PA11
 {
     *(uint32_t*)(0x40020000UL + 0x00UL) |= 0x400000UL; // определение режима работы
     *(uint32_t*)(0x40020000UL + 0x04UL) |= 0x0000UL; // выбираем тип выхода 
@@ -21,11 +21,11 @@ void GPIO_Init(void)
     CLEAR_BIT(GPIOA->AFR[1], GPIO_AFRH_AFSEL8); // выбираем тип альтернативной функции
 }
 
-void GPIO_Init_with_CMSIS(void)
+void GPIO_Init_with_CMSIS(void) // PA5
 {
     /////////////////////////////////////////////////////////////////////
 
-    // Включаем тактирование GPIOA и GPIOB (бит 0 в RCC->AHB1ENR)
+    // Включаем тактирование GPIOA GPIOB и GPIOC (бит 0 в RCC->AHB1ENR)
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN | RCC_AHB1ENR_GPIOCEN;
 
     /////////////////////////////////////////////////////////////////////
@@ -75,7 +75,7 @@ void GPIO_Init_with_CMSIS(void)
     /////////////////////////////////////////////////////////////////////
 }
 
-void GPIO_Init_with_my_macro(void)
+void GPIO_Init_with_my_macro(void) // PA10
 {
     /////////////////////////////////////////////////////////////////////
     
@@ -100,7 +100,7 @@ void GPIO_Init_with_my_macro(void)
 
     /////////////////////////////////////////////////////////////////////
 
-    // Настройка портов для внешнего светодиода
+    // Настройка пина для внешнего светодиода
 
     GPIOA_MODER |= GPIOA_MODE_PIN10_OUT;
     GPIOA_OTYPER |= GPIOA_OTYPE_PIN10_PP;

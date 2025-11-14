@@ -1,27 +1,28 @@
 #include "init.h"
 #include "it_handlers.h"
-//
+
+/* int main(void)
+{
+    while(1)
+    {
+        
+    }
+} */
+    
+int main(void) // ОСНОВНОЕ ЗАДАНИЕ
+{
     int counter = -1;
     uint8_t check_status10 = 1; // 0 - кнопка не нажата, 1 - кнопка нажата
     uint8_t check_status1 = 0;
     uint8_t check_status2 = 0;
     uint8_t check_status3 = 0;
     uint8_t flag = 0;
-
-int main(void) // ОСНОВНОЕ ЗАДАНИЕ
-{
-    /* int counter = -1;
-    uint8_t check_status10 = 1; // 0 - кнопка не нажата, 1 - кнопка нажата
-    uint8_t check_status1 = 0;
-    uint8_t check_status2 = 0;
-    uint8_t check_status3 = 0;
-    uint8_t flag = 0; */
     GPIO_Init_with_CMSIS();
     GPIO_Init_with_my_macro();
     Init_with_memory_for_led3();
     while (1)
     {
-        if ((*(uint32_t*)(0x40020800 + 0x10UL) & 0x400) != 0) // если главная кнопка нажата
+        if (READ_GPIO_C10 != 0) // если главная кнопка нажата
         {
             delay(300000);
             if((READ_GPIO_C10 != 0) && (check_status10 == 0)) // если главная кнопка нажата и до этого она была не нажата
@@ -70,13 +71,13 @@ int main(void) // ОСНОВНОЕ ЗАДАНИЕ
             switch (counter)
         {
         case 0: // первое нажатие
-            GPIOB_MODE_PIN1_IN; // переводим PB1 в состояние выхода
+            GPIOB_MODE_PIN1_IN; // переводим PB1 в состояние входа
             break;
         case 1: // второе нажатие
-            GPIOB_MODE_PIN2_IN; // переводим PB2 в состояние выхода
+            GPIOB_MODE_PIN2_IN; // переводим PB2 в состояние входа
             break;
         case 2: // третье нажатие
-            GPIOB_MODE_PIN3_IN; // переводим PB3 в состояние выхода
+            GPIOB_MODE_PIN3_IN; // переводим PB3 в состояние входа
             break;
         case 3: // четвёртое нажатие
             GPIOB_MODE_PIN1_IN; // переводим PB1 в состояние входа
@@ -103,11 +104,9 @@ int main(void) // ОСНОВНОЕ ЗАДАНИЕ
             {
                 SET_GPIO_A5; // типо жёлтый
                 delay(300000);
-                RESET_GPIO_B1;
             if((READ_GPIO_B1 != 0) && (check_status1 == 0)) // если кнопка нажата и до этого она была не нажата
             { 
                 check_status1 = 1;
-                RESET_GPIO_B1;
             }
             else
             {
@@ -128,20 +127,10 @@ int main(void) // ОСНОВНОЕ ЗАДАНИЕ
         if (READ_CONDITION_PORT_B1 == 1)  // если пин работает в режиме выхода
         {
             SET_GPIO_B1;
-            if (READ_GPIO_B1 != 0) // если кнопка нажата
-            {
-                delay(300000);
-            if((READ_GPIO_B1 != 0) && (check_status1 == 0)) // если кнопка нажата и до этого она была не нажата
-            {
-                check_status1 = 1;
-                SET_GPIO_B1;
-            }
-            }
-            else
-            {
-                check_status1 = 0; // сброс счётчика
-                RESET_GPIO_A5;
-            }
+        }
+        else
+        {
+            RESET_GPIO_B1;
         }
 
         /////////////////////////////////////////////////////////////////////
@@ -154,11 +143,9 @@ int main(void) // ОСНОВНОЕ ЗАДАНИЕ
             {
                 SET_GPIO_A10; // типо синий
                 delay(300000);
-                RESET_GPIO_B2;
             if((READ_GPIO_B2 != 0) && (check_status2 == 0)) // если кнопка нажата и до этого она была не нажата
             { 
                 check_status2 = 1;
-                RESET_GPIO_B2;
             }
             else
             {
@@ -179,20 +166,10 @@ int main(void) // ОСНОВНОЕ ЗАДАНИЕ
         if (READ_CONDITION_PORT_B2 == 1)  // если пин работает в режиме выхода
         {
             SET_GPIO_B2;
-            if (READ_GPIO_B2 != 0) // если кнопка нажата
-            {
-                delay(300000);
-            if((READ_GPIO_B2 != 0) && (check_status2 == 0)) // если кнопка нажата и до этого она была не нажата
-            {
-                check_status2 = 1;
-                SET_GPIO_B2;
-            }
-            }
-            else
-            {
-                check_status2 = 0; // сброс счётчика
-                RESET_GPIO_A10;
-            }
+        }
+        else
+        {
+            RESET_GPIO_B2;
         }
         
         /////////////////////////////////////////////////////////////////////
@@ -205,11 +182,9 @@ int main(void) // ОСНОВНОЕ ЗАДАНИЕ
             {
                 SET_GPIO_A11; // типо синий
                 delay(300000);
-                RESET_GPIO_B3;
             if((READ_GPIO_B3 != 0) && (check_status3 == 0)) // если кнопка нажата и до этого она была не нажата
             { 
                 check_status3 = 1;
-                RESET_GPIO_B3;
             }
             else
             {
@@ -230,20 +205,10 @@ int main(void) // ОСНОВНОЕ ЗАДАНИЕ
         if (READ_CONDITION_PORT_B3 == 1)  // если пин работает в режиме выхода
         {
             SET_GPIO_B3;
-            if (READ_GPIO_B3 != 0) // если кнопка нажата
-            {
-                delay(300000);
-            if((READ_GPIO_B3 != 0) && (check_status3 == 0)) // если кнопка нажата и до этого она была не нажата
-            {
-                check_status3 = 1;
-                SET_GPIO_B3;
-            }
-            }
-            else
-            {
-                check_status3 = 0; // сброс счётчика
-                RESET_GPIO_A11;
-            }
+        }
+        else
+        {
+            RESET_GPIO_B3;
         }
     }
 }
