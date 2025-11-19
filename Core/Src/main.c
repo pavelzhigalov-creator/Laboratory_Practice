@@ -1,738 +1,102 @@
 #include "init.h"
-#include "it_handlers.h"
 
-/* int main(void)
+// Глобальные переменные
+volatile uint32_t button_press_start_time = 0;
+volatile uint32_t button_press_duration = 0;
+volatile uint8_t button_state = 0;
+volatile uint32_t systick_counter = 0;
+
+// Переменные для управления светодиодами
+volatile uint8_t current_led = 0;        // Текущий горящий светодиод (0-5)
+volatile uint8_t blink_enabled = 1;      // 1 - мерцание, 0 - постоянное свечение
+volatile uint8_t blink_frequency = 0;    // 0: 0.4 Гц, 1: 1.1 Гц, 2: 1.9 Гц
+volatile uint8_t leds_enabled = 1;       // 1 - светодиоды включены, 0 - выключены
+volatile uint32_t last_blink_time = 0;   // Время последнего мигания
+
+// Периоды мерцания для разных частот (в мс)
+const uint32_t blink_periods[] = {2500, 909, 526}; // 0.4Гц, 1.1Гц, 1.9Гц
+
+int main(void)
 {
-    while(1)
-    {
-        
-    }
-} */
+    Clock_Init_HSI_PLL_100MHz(); // настройка частоты тактирования на 100 МГц
+    MCO_init(); // настройка вывода тактового сигнала на PC9
+    SysTick_Init(); // инициализация системного таймера
+    GPIO_Init(); // инициализируем порты
+
+    // Изначально выключаем все светодиоды
+    ClearAllLEDs();
+
+    // Включаем первый светодиод
+    SetLED(0);
     
-int main(void) // ОСНОВНОЕ ЗАДАНИЕ
-{
-    int counter = -1;
-    uint8_t check_status10 = 1; // 0 - кнопка не нажата, 1 - кнопка нажата
-    uint8_t check_status1 = 0;
-    uint8_t check_status2 = 0;
-    uint8_t check_status3 = 0;
-    uint8_t flag = 0;
-    GPIO_Init_with_CMSIS();
-    GPIO_Init_with_my_macro();
-    Init_with_memory_for_led3();
     while (1)
     {
-        if (READ_GPIO_C10 != 0) // если главная кнопка нажата
+        UpdateBlink(); // Обновляем мерцание
+        
+        if (button_press_duration > 0) // если кнопка нажата
         {
-            delay(300000);
-            if((READ_GPIO_C10 != 0) && (check_status10 == 0)) // если главная кнопка нажата и до этого она была не нажата
+            if (button_press_duration < 1000) // Функция 1: Кратковременное нажатие (< 1 сек)
             {
-                counter = (counter + 1) % 5; // 5 значений -- 0 1 2 3 4
-                check_status10 = 1;
+                if (leds_enabled) // если светодиоды включены
+                {
+                    current_led++; // переключаем на следующий светодиод
+                    if (current_led > 5) // если горел последний светодиод
+                    {
+                        current_led = 0; // выбираем первый светодиод светодиод
+                        leds_enabled = 0; // указываем что все светодиоды выключены
+                        ClearAllLEDs(); // выключаем все светодиоды
+                    }
+                    else // если горел не последний светодиод
+                    {
+                        SetLED(current_led); // Включаем следующий светодиод
+                    }
+                }
+                else // если светодиоды выключены
+                {
+                    leds_enabled = 1; // указываем что светодиоды включены
+                    current_led = 0; // выбираем первый светодиод
+                    SetLED(current_led); // и включаем его
+                }
             }
-        }
-        else
-        {
-            check_status10 = 0; // сброс счётчика
-        }
-
-        /////////////////////////////////////////////////////////////////////
-
-        if (flag == 0)
-        {
-            switch (counter)
-        {
-        case 0: // первое нажатие
-            GPIOB_MODE_PIN1_OUT; // переводим PB1 в состояние выхода
-            break;
-        case 1: // второе нажатие
-            GPIOB_MODE_PIN2_OUT; // переводим PB2 в состояние выхода
-            break;
-        case 2: // третье нажатие
-            GPIOB_MODE_PIN3_OUT; // переводим PB3 в состояние выхода
-            break;
-        case 3: // четвёртое нажатие
-            GPIOB_MODE_PIN1_IN; // переводим PB1 в состояние входа
-            GPIOB_MODE_PIN2_IN; // переводим PB2 в состояние входа
-            GPIOB_MODE_PIN3_IN; // переводим PB3 в состояние входа
-            break;
-        case 4: // пятое нажатие
-            GPIOB_MODE_PIN1_OUT; // переводим PB1 в состояние выхода
-            GPIOB_MODE_PIN2_OUT; // переводим PB2 в состояние выхода
-            GPIOB_MODE_PIN3_OUT; // переводим PB3 в состояние выхода
-            flag++;
-            break;
-        default:
-            break;
-        }
-        }
-        else
-        {
-            switch (counter)
-        {
-        case 0: // первое нажатие
-            GPIOB_MODE_PIN1_IN; // переводим PB1 в состояние входа
-            break;
-        case 1: // второе нажатие
-            GPIOB_MODE_PIN2_IN; // переводим PB2 в состояние входа
-            break;
-        case 2: // третье нажатие
-            GPIOB_MODE_PIN3_IN; // переводим PB3 в состояние входа
-            break;
-        case 3: // четвёртое нажатие
-            GPIOB_MODE_PIN1_IN; // переводим PB1 в состояние входа
-            GPIOB_MODE_PIN2_IN; // переводим PB2 в состояние входа
-            GPIOB_MODE_PIN3_IN; // переводим PB3 в состояние входа
-            break;
-        case 4: // пятое нажатие
-            GPIOB_MODE_PIN1_OUT; // переводим PB1 в состояние выхода
-            GPIOB_MODE_PIN2_OUT; // переводим PB2 в состояние выхода
-            GPIOB_MODE_PIN3_OUT; // переводим PB3 в состояние выхода
-            break;
-        default:
-            break;
-        }
-        }
-
-        /////////////////////////////////////////////////////////////////////
-
-        // ПЕРВАЯ КНОПКА РЕЖИМ ВХОДА
-
-        if (READ_CONDITION_PORT_B1 == 0) // если пин работает в режиме входа
-        {
-            if (READ_GPIO_B1 != 0) // если кнопка нажата
+            else if (button_press_duration >= 2000 && button_press_duration < 4000) // Функция 2: Удержание 2 секунды (изменение частоты мерцания)
             {
-                SET_GPIO_A5; // типо жёлтый
-                delay(300000);
-            if((READ_GPIO_B1 != 0) && (check_status1 == 0)) // если кнопка нажата и до этого она была не нажата
-            { 
-                check_status1 = 1;
+                if (blink_enabled) // Только если режим мерцания активен
+                {
+                    blink_frequency = (blink_frequency + 1) % 3; // выбираем следующий режим мерцания
+                    
+                    for (int i = 0; i < 3; i++) // Визуальное подтверждение - 3 быстрых мигания
+                    {
+                        ClearAllLEDs(); // выключаем все светодиоды
+                        for (volatile uint32_t j = 0; j < 1000000; j++); // Задержка для 100 МГц - 10 миллисекунд
+                        SetLED(current_led); // включаем этот светодиод
+                        for (volatile uint32_t j = 0; j < 1000000; j++); // Задержка для 100 МГц - 10 миллисекунд
+                    }
+                }
             }
-            else
+            else if (button_press_duration >= 4000) // Функция 3: Удержание 4 секунды (переключение режима мерцание/свечение)
             {
-                RESET_GPIO_A5;
+                blink_enabled = !blink_enabled; // переключаем режим мерцание/свечение
+                
+                if (!blink_enabled) // если выбран режим постоянного свечения
+                {
+                    SetLED(current_led); // включаем выбранный светодиод
+                }
+                
+                for (int i = 0; i < 3; i++) // Визуальное подтверждение - 3 быстрых мигания
+                {
+                    ClearAllLEDs(); // выключаем все светодиоды
+                    for (volatile uint32_t j = 0; j < 500000; j++); // Задержка для 100 МГц - 5 миллисекунд
+                    SetLED(current_led); // включаем этот светодиод
+                    for (volatile uint32_t j = 0; j < 500000; j++); // Задержка для 100 МГц - 5 миллисекунд
+                }
             }
-            }
-        }
-        else
-        {
-            check_status1 = 0; // сброс счётчика
-            RESET_GPIO_A5;
-        }
-
-        ///////
-
-        // ПЕРВАЯ КНОПКА РЕЖИМ ВЫХОДА
-
-        if (READ_CONDITION_PORT_B1 == 1)  // если пин работает в режиме выхода
-        {
-            SET_GPIO_B1;
-        }
-        else
-        {
-            RESET_GPIO_B1;
-        }
-
-        /////////////////////////////////////////////////////////////////////
-
-        // ВТОРАЯ КНОПКА РЕЖИМ ВХОДА
-
-        if (READ_CONDITION_PORT_B2 == 0) // если пин работает в режиме входа
-        {
-            if (READ_GPIO_B2 != 0) // если кнопка нажата
-            {
-                SET_GPIO_A10; // типо синий
-                delay(300000);
-            if((READ_GPIO_B2 != 0) && (check_status2 == 0)) // если кнопка нажата и до этого она была не нажата
-            { 
-                check_status2 = 1;
-            }
-            else
-            {
-                RESET_GPIO_A10;
-            }
-            }
-        }
-        else
-        {
-            check_status2 = 0; // сброс счётчика
-            RESET_GPIO_A10;
-        }
-
-        ///////
-
-        // ВТОРАЯ КНОПКА РЕЖИМ ВЫХОДА
-
-        if (READ_CONDITION_PORT_B2 == 1)  // если пин работает в режиме выхода
-        {
-            SET_GPIO_B2;
-        }
-        else
-        {
-            RESET_GPIO_B2;
+            
+            button_press_duration = 0; // указываем что кнопка больше не нажата
+            
+            for (volatile uint32_t i = 0; i < 1500000; i++); // защита от дребезга
         }
         
-        /////////////////////////////////////////////////////////////////////
-
-        // ТРЕТЬЯ КНОПКА РЕЖИМ ВХОДА
-
-        if (READ_CONDITION_PORT_B3 == 0) // если пин работает в режиме входа
-        {
-            if (READ_GPIO_B3 != 0) // если кнопка нажата
-            {
-                SET_GPIO_A11; // типо синий
-                delay(300000);
-            if((READ_GPIO_B3 != 0) && (check_status3 == 0)) // если кнопка нажата и до этого она была не нажата
-            { 
-                check_status3 = 1;
-            }
-            else
-            {
-                RESET_GPIO_A11;
-            }
-            }
-        }
-        else
-        {
-            check_status2 = 0; // сброс счётчика
-            RESET_GPIO_A11;
-        }
-
-        ///////
-
-        // ТРЕТЬЯ КНОПКА РЕЖИМ ВЫХОДА
-
-        if (READ_CONDITION_PORT_B3 == 1)  // если пин работает в режиме выхода
-        {
-            SET_GPIO_B3;
-        }
-        else
-        {
-            RESET_GPIO_B3;
-        }
+        // Небольшая пауза в основном цикле
+        for (volatile uint32_t i = 0; i < 50000; i++);
     }
 }
-
-/* int main(void) // ДОПОЛНИТЕЛЬНОЕ ЗАДАНИЕ
-{
-    int counter10 = 0; // счётчик для главной кнопки
-    int counter1 = -1; // счётчик для первой кнопки
-    int counter2 = -1; // счётчик для второй кнопки
-    int counter3 = -1; // счётчик для третьей кнопки
-    uint8_t check_status10 = 0; // 0 - кнопка не нажата, 1 - кнопка нажата
-    uint8_t check_status1 = 0;
-    uint8_t check_status2 = 0;
-    uint8_t check_status3 = 0;
-    GPIO_Init_with_my_macro();
-    while (1)
-    {
-        if ((*(uint32_t*)(0x40020800 + 0x10UL) & 0x400) != 0) // если главная кнопка нажата
-        {
-            delay(300000);
-            if((READ_GPIO_C10 != 0) && (check_status10 == 0)) // если кнопка нажата и до этого она была не нажата
-            {
-                counter10 = (counter10 + 1) % 3; // 3 значения -- 0 1 2
-                check_status10 = 1;
-            }
-        }
-        else
-        {
-            check_status10 = 0; // сброс счётчика
-        }
-
-        /////////////////////////////////////////////////////////////////////
-
-        if (READ_GPIO_B1 != 0) // если первая кнопка нажата
-        {
-            delay(300000);
-            if((READ_GPIO_B1 != 0) && (check_status1 == 0)) // если кнопка нажата и до этого она была не нажата
-            {
-                counter1 = (counter1 + 1) % 5; // 5 значений -- 0 1 2 3 4
-                check_status1 = 1;
-            }
-        }
-        else
-        {
-            check_status1 = 0; // сброс счётчика
-        }
-
-        /////////////////////////////////////////////////////////////////////
-
-        if (READ_GPIO_B2 != 0) // если вторая кнопка нажата
-        {
-            delay(300000);
-            if((READ_GPIO_B2 != 0) && (check_status2 == 0)) // если кнопка нажата и до этого она была не нажата
-            {
-                counter2 = (counter2 + 1) % 5; // 5 значений -- 0 1 2 3 4
-                check_status2 = 1;
-            }
-        }
-        else
-        {
-            check_status2 = 0; // сброс счётчика
-        }
-
-        /////////////////////////////////////////////////////////////////////
-
-        if (READ_GPIO_B3 != 0) // если третья кнопка нажата
-        {
-            delay(300000);
-            if((READ_GPIO_B3 != 0) && (check_status3 == 0)) // если кнопка нажата и до этого она была не нажата
-            {
-                counter3 = (counter3 + 1) % 5; // 5 значений -- 0 1 2 3 4
-                check_status3 = 1;
-            }
-        }
-        else
-        {
-            check_status3 = 0; // сброс счётчика
-        }
-
-        /////////////////////////////////////////////////////////////////////
-
-        if(counter10 == 0)
-        {
-            switch (counter1)
-        {
-        case 0:
-            SET_GPIO_A5;
-            break;
-        case 1:
-            SET_GPIO_A5;
-            delay(500000);
-            RESET_GPIO_A5;
-            delay(500000);
-            break;
-        case 2:
-            SET_GPIO_A5;
-            delay(250000);
-            RESET_GPIO_A5;
-            delay(250000);
-            SET_GPIO_A5;
-            delay(250000);
-            RESET_GPIO_A5;
-            delay(250000);
-            break;
-        case 3:
-            SET_GPIO_A5;
-            delay(125000);
-            RESET_GPIO_A5;
-            delay(125000);
-            SET_GPIO_A5;
-            delay(125000);
-            RESET_GPIO_A5;
-            delay(125000);
-            SET_GPIO_A5;
-            delay(125000);
-            RESET_GPIO_A5;
-            delay(125000);
-            SET_GPIO_A5;
-            delay(125000);
-            RESET_GPIO_A5;
-            delay(125000);
-            break;
-        case 4:
-            RESET_GPIO_A5;
-            break;
-        default:
-            break;
-        }
-
-        switch (counter2)
-        {
-        case 0:
-            SET_GPIO_A10;
-            break;
-        case 1:
-            SET_GPIO_A10;
-            delay(500000);
-            RESET_GPIO_A10;
-            delay(500000);
-            break;
-        case 2:
-            SET_GPIO_A10;
-            delay(250000);
-            RESET_GPIO_A10;
-            delay(250000);
-            SET_GPIO_A10;
-            delay(250000);
-            RESET_GPIO_A10;
-            delay(250000);
-            break;
-        case 3:
-            SET_GPIO_A10;
-            delay(125000);
-            RESET_GPIO_A10;
-            delay(125000);
-            SET_GPIO_A10;
-            delay(125000);
-            RESET_GPIO_A10;
-            delay(125000);
-            SET_GPIO_A10;
-            delay(125000);
-            RESET_GPIO_A10;
-            delay(125000);
-            SET_GPIO_A10;
-            delay(125000);
-            RESET_GPIO_A10;
-            delay(125000);
-            break;
-        case 4:
-            RESET_GPIO_A10;
-            break;
-        default:
-            break;
-        }
-
-        switch (counter3)
-        {
-        case 0:
-            SET_GPIO_A11;
-            break;
-        case 1:
-            SET_GPIO_A11;
-            delay(500000);
-            RESET_GPIO_A11;
-            delay(500000);
-            break;
-        case 2:
-            SET_GPIO_A11;
-            delay(250000);
-            RESET_GPIO_A11;
-            delay(250000);
-            SET_GPIO_A11;
-            delay(250000);
-            RESET_GPIO_A11;
-            delay(250000);
-            break;
-        case 3:
-            SET_GPIO_A11;
-            delay(125000);
-            RESET_GPIO_A11;
-            delay(125000);
-            SET_GPIO_A11;
-            delay(125000);
-            RESET_GPIO_A11;
-            delay(125000);
-            SET_GPIO_A11;
-            delay(125000);
-            RESET_GPIO_A11;
-            delay(125000);
-            SET_GPIO_A11;
-            delay(125000);
-            RESET_GPIO_A11;
-            delay(125000);
-            break;
-        case 4:
-            RESET_GPIO_A11;
-            break;
-        default:
-            break;
-        }
-        }
-
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-
-        if(counter10 == 1)
-        {
-            switch (counter2)
-        {
-        case 0:
-            SET_GPIO_A5;
-            break;
-        case 1:
-            SET_GPIO_A5;
-            delay(500000);
-            RESET_GPIO_A5;
-            delay(500000);
-            break;
-        case 2:
-            SET_GPIO_A5;
-            delay(250000);
-            RESET_GPIO_A5;
-            delay(250000);
-            SET_GPIO_A5;
-            delay(250000);
-            RESET_GPIO_A5;
-            delay(250000);
-            break;
-        case 3:
-            SET_GPIO_A5;
-            delay(125000);
-            RESET_GPIO_A5;
-            delay(125000);
-            SET_GPIO_A5;
-            delay(125000);
-            RESET_GPIO_A5;
-            delay(125000);
-            SET_GPIO_A5;
-            delay(125000);
-            RESET_GPIO_A5;
-            delay(125000);
-            SET_GPIO_A5;
-            delay(125000);
-            RESET_GPIO_A5;
-            delay(125000);
-            break;
-        case 4:
-            RESET_GPIO_A5;
-            break;
-        default:
-            break;
-        }
-
-        switch (counter3)
-        {
-        case 0:
-            SET_GPIO_A10;
-            break;
-        case 1:
-            SET_GPIO_A10;
-            delay(500000);
-            RESET_GPIO_A10;
-            delay(500000);
-            break;
-        case 2:
-            SET_GPIO_A10;
-            delay(250000);
-            RESET_GPIO_A10;
-            delay(250000);
-            SET_GPIO_A10;
-            delay(250000);
-            RESET_GPIO_A10;
-            delay(250000);
-            break;
-        case 3:
-            SET_GPIO_A10;
-            delay(125000);
-            RESET_GPIO_A10;
-            delay(125000);
-            SET_GPIO_A10;
-            delay(125000);
-            RESET_GPIO_A10;
-            delay(125000);
-            SET_GPIO_A10;
-            delay(125000);
-            RESET_GPIO_A10;
-            delay(125000);
-            SET_GPIO_A10;
-            delay(125000);
-            RESET_GPIO_A10;
-            delay(125000);
-            break;
-        case 4:
-            RESET_GPIO_A10;
-            break;
-        default:
-            break;
-        }
-
-        switch (counter1)
-        {
-        case 0:
-            SET_GPIO_A11;
-            break;
-        case 1:
-            SET_GPIO_A11;
-            delay(500000);
-            RESET_GPIO_A11;
-            delay(500000);
-            break;
-        case 2:
-            SET_GPIO_A11;
-            delay(250000);
-            RESET_GPIO_A11;
-            delay(250000);
-            SET_GPIO_A11;
-            delay(250000);
-            RESET_GPIO_A11;
-            delay(250000);
-            break;
-        case 3:
-            SET_GPIO_A11;
-            delay(125000);
-            RESET_GPIO_A11;
-            delay(125000);
-            SET_GPIO_A11;
-            delay(125000);
-            RESET_GPIO_A11;
-            delay(125000);
-            SET_GPIO_A11;
-            delay(125000);
-            RESET_GPIO_A11;
-            delay(125000);
-            SET_GPIO_A11;
-            delay(125000);
-            RESET_GPIO_A11;
-            delay(125000);
-            break;
-        case 4:
-            RESET_GPIO_A11;
-            break;
-        default:
-            break;
-        }
-        }
-
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-
-        if(counter10 == 2)
-        {
-            switch (counter3)
-        {
-        case 0:
-            SET_GPIO_A5;
-            break;
-        case 1:
-            SET_GPIO_A5;
-            delay(500000);
-            RESET_GPIO_A5;
-            delay(500000);
-            break;
-        case 2:
-            SET_GPIO_A5;
-            delay(250000);
-            RESET_GPIO_A5;
-            delay(250000);
-            SET_GPIO_A5;
-            delay(250000);
-            RESET_GPIO_A5;
-            delay(250000);
-            break;
-        case 3:
-            SET_GPIO_A5;
-            delay(125000);
-            RESET_GPIO_A5;
-            delay(125000);
-            SET_GPIO_A5;
-            delay(125000);
-            RESET_GPIO_A5;
-            delay(125000);
-            SET_GPIO_A5;
-            delay(125000);
-            RESET_GPIO_A5;
-            delay(125000);
-            SET_GPIO_A5;
-            delay(125000);
-            RESET_GPIO_A5;
-            delay(125000);
-            break;
-        case 4:
-            RESET_GPIO_A5;
-            break;
-        default:
-            break;
-        }
-
-        switch (counter1)
-        {
-        case 0:
-            SET_GPIO_A10;
-            break;
-        case 1:
-            SET_GPIO_A10;
-            delay(500000);
-            RESET_GPIO_A10;
-            delay(500000);
-            break;
-        case 2:
-            SET_GPIO_A10;
-            delay(250000);
-            RESET_GPIO_A10;
-            delay(250000);
-            SET_GPIO_A10;
-            delay(250000);
-            RESET_GPIO_A10;
-            delay(250000);
-            break;
-        case 3:
-            SET_GPIO_A10;
-            delay(125000);
-            RESET_GPIO_A10;
-            delay(125000);
-            SET_GPIO_A10;
-            delay(125000);
-            RESET_GPIO_A10;
-            delay(125000);
-            SET_GPIO_A10;
-            delay(125000);
-            RESET_GPIO_A10;
-            delay(125000);
-            SET_GPIO_A10;
-            delay(125000);
-            RESET_GPIO_A10;
-            delay(125000);
-            break;
-        case 4:
-            RESET_GPIO_A10;
-            break;
-        default:
-            break;
-        }
-
-        switch (counter2)
-        {
-        case 0:
-            SET_GPIO_A11;
-            break;
-        case 1:
-            SET_GPIO_A11;
-            delay(500000);
-            RESET_GPIO_A11;
-            delay(500000);
-            break;
-        case 2:
-            SET_GPIO_A11;
-            delay(250000);
-            RESET_GPIO_A11;
-            delay(250000);
-            SET_GPIO_A11;
-            delay(250000);
-            RESET_GPIO_A11;
-            delay(250000);
-            break;
-        case 3:
-            SET_GPIO_A11;
-            delay(125000);
-            RESET_GPIO_A11;
-            delay(125000);
-            SET_GPIO_A11;
-            delay(125000);
-            RESET_GPIO_A11;
-            delay(125000);
-            SET_GPIO_A11;
-            delay(125000);
-            RESET_GPIO_A11;
-            delay(125000);
-            SET_GPIO_A11;
-            delay(125000);
-            RESET_GPIO_A11;
-            delay(125000);
-            break;
-        case 4:
-            RESET_GPIO_A11;
-            break;
-        default:
-            break;
-        }
-        }
-    }
-} */
-
-/*
-    2 ЛАБОРАТОРНАЯ РАБОТА
-1. Нужно очистить все регистры которые используем
-2. Выключение HSI (внутреннего тактирования)
-3. Включить источник тактирования HSE и узнать какой там осциллятор
-4. 
-csson - система безопасности таймера
-pll - блок который умножает входную частоту
-*/
