@@ -1,13 +1,5 @@
 #include "init.h"
 
-void delay(volatile uint32_t count) // функция задержки
-{
-    for (; count > 0; count--)
-    {
-        // пустая итерация
-    }
-}
-
 void Clock_Init_HSI_PLL_100MHz(void) // настраиваем тактирование на 100 МГц
 
 {
@@ -24,7 +16,7 @@ void Clock_Init_HSI_PLL_100MHz(void) // настраиваем тактиров�
 
     // 3. Включаем HSI и ждём готовности
     SET_BIT(RCC->CR, RCC_CR_HSION);
-    while (READ_BIT(RCC->CR, RCC_CR_HSIRDY) == 0U)
+    while (READ_BIT(RCC->CR, RCC_CR_HSIRDY) == 0U)  
     {
         // ждём стабилизации HSI
     }
@@ -187,7 +179,7 @@ void EXTI15_10_IRQHandler(void) // Обработчик прерывания EXT
     {
         EXTI->PR = EXTI_PR_PR13; // сбрасываем флаг чтобы прерывание не вызывалось бесконечно
         
-        static uint32_t last_interrupt_time = 0; // static означает что переменная сохраняет своё значение между вызовами функци
+        static uint32_t last_interrupt_time = 0; // static означает что переменная сохраняет своё значение между вызовами функции
         uint32_t current_time = GetTick();
         
         // Защита от дребезга - 50 мс
@@ -211,7 +203,7 @@ void EXTI15_10_IRQHandler(void) // Обработчик прерывания EXT
             button_state = 1;
         }
         
-        last_interrupt_time = current_time; // обновлеяем время последнего прерывания
+        last_interrupt_time = current_time; // обновляем время последнего прерывания
     }
 }
 
