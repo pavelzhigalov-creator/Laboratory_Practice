@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s 			page 1
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -41,11 +41,12 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s 			page 1
   11:Core/Src/main.c **** volatile uint8_t  btn8_pressed = 0; // PB8 переключение LED
   12:Core/Src/main.c **** volatile uint32_t btn8_press_time = 0;
   13:Core/Src/main.c **** volatile uint8_t pwm_mode = 0;
-  14:Core/Src/main.c **** 
+  14:Core/Src/main.c **** volatile uint8_t counter = 0;
   15:Core/Src/main.c **** 
-  16:Core/Src/main.c **** int main(void)
-  17:Core/Src/main.c **** {
-  29              		.loc 1 17 1 view -0
+  16:Core/Src/main.c **** 
+  17:Core/Src/main.c **** int main(void)
+  18:Core/Src/main.c **** {
+  29              		.loc 1 18 1 view -0
   30              		.cfi_startproc
   31              		@ Volatile: function does not return.
   32              		@ args = 0, pretend = 0, frame = 0
@@ -55,103 +56,151 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s 			page 1
   36              		.cfi_def_cfa_offset 8
   37              		.cfi_offset 3, -8
   38              		.cfi_offset 14, -4
-  18:Core/Src/main.c ****     GPIO_Ini();
-  39              		.loc 1 18 5 view .LVU1
+  19:Core/Src/main.c ****     GPIO_Ini();
+  39              		.loc 1 19 5 view .LVU1
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s 			page 2
+
+
   40 0002 FFF7FEFF 		bl	GPIO_Ini
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s 			page 2
-
-
   41              	.LVL0:
-  19:Core/Src/main.c ****     //RCC_Init();
-  20:Core/Src/main.c ****     IRO_INInt();
-  42              		.loc 1 20 5 view .LVU2
+  20:Core/Src/main.c ****     //RCC_Init();
+  21:Core/Src/main.c ****     IRO_INInt();
+  42              		.loc 1 21 5 view .LVU2
   43 0006 FFF7FEFF 		bl	IRO_INInt
   44              	.LVL1:
-  21:Core/Src/main.c ****     TIM10_Init();
-  45              		.loc 1 21 5 view .LVU3
+  22:Core/Src/main.c ****     TIM10_Init();
+  45              		.loc 1 22 5 view .LVU3
   46 000a FFF7FEFF 		bl	TIM10_Init
   47              	.LVL2:
-  22:Core/Src/main.c ****     //TIM2_PWM_Init();
-  23:Core/Src/main.c ****     //TIM3_PWM_Init();
-  24:Core/Src/main.c ****     TIM1_PWM_Init();
-  48              		.loc 1 24 5 view .LVU4
+  23:Core/Src/main.c ****     //TIM2_PWM_Init();
+  24:Core/Src/main.c ****     //TIM3_PWM_Init();
+  25:Core/Src/main.c ****     TIM1_PWM_Init();
+  48              		.loc 1 25 5 view .LVU4
   49 000e FFF7FEFF 		bl	TIM1_PWM_Init
   50              	.LVL3:
-  51              	.L2:
-  25:Core/Src/main.c **** 
-  26:Core/Src/main.c ****     while (1)
-  52              		.loc 1 26 5 view .LVU5
+  51 0012 0CE0     		b	.L2
+  52              	.L6:
+  26:Core/Src/main.c **** 
+  27:Core/Src/main.c ****     while (1)
+  28:Core/Src/main.c ****     {
+  29:Core/Src/main.c ****         if (BUTTON_READ())
+  30:Core/Src/main.c ****         {
+  31:Core/Src/main.c ****             MODIFY_REG(TIM1->CCR1, TIM_CCR1_CCR1_Msk, 300UL); // ПЕРВЫЙ двигатель - 
+  53              		.loc 1 31 13 view .LVU5
+  54 0014 0D4A     		ldr	r2, .L7
+  55 0016 536B     		ldr	r3, [r2, #52]
+  56 0018 6FF30F03 		bfc	r3, #0, #16
+  57 001c 43F49673 		orr	r3, r3, #300
+  58 0020 5363     		str	r3, [r2, #52]
+  32:Core/Src/main.c ****             MODIFY_REG(TIM1->CCR4, TIM_CCR4_CCR4_Msk, 300UL); // Диапазон значений 
+  59              		.loc 1 32 13 view .LVU6
+  60 0022 136C     		ldr	r3, [r2, #64]
+  61 0024 6FF30F03 		bfc	r3, #0, #16
+  62 0028 43F49673 		orr	r3, r3, #300
+  63 002c 1364     		str	r3, [r2, #64]
+  64              	.L2:
   27:Core/Src/main.c ****     {
-  28:Core/Src/main.c ****        
-  29:Core/Src/main.c ****     // task1();
-  30:Core/Src/main.c ****      
-  31:Core/Src/main.c ****     }
-  53              		.loc 1 31 5 view .LVU6
-  26:Core/Src/main.c ****     {
-  54              		.loc 1 26 11 view .LVU7
-  55 0012 FEE7     		b	.L2
-  56              		.cfi_endproc
-  57              	.LFE130:
-  59              		.global	pwm_mode
-  60              		.section	.bss.pwm_mode,"aw",%nobits
-  63              	pwm_mode:
-  64 0000 00       		.space	1
-  65              		.global	btn8_press_time
-  66              		.section	.bss.btn8_press_time,"aw",%nobits
-  67              		.align	2
-  70              	btn8_press_time:
-  71 0000 00000000 		.space	4
-  72              		.global	btn8_pressed
-  73              		.section	.bss.btn8_pressed,"aw",%nobits
-  76              	btn8_pressed:
-  77 0000 00       		.space	1
-  78              		.global	counter1
-  79              		.section	.bss.counter1,"aw",%nobits
-  82              	counter1:
-  83 0000 00       		.space	1
-  84              		.global	btn9_press_time
-  85              		.section	.bss.btn9_press_time,"aw",%nobits
-  86              		.align	2
-  89              	btn9_press_time:
-  90 0000 00000000 		.space	4
-  91              		.global	btn9_pressed
-  92              		.section	.bss.btn9_pressed,"aw",%nobits
-  95              	btn9_pressed:
+  65              		.loc 1 27 5 view .LVU7
+  29:Core/Src/main.c ****         {
+  66              		.loc 1 29 9 view .LVU8
+  29:Core/Src/main.c ****         {
+  67              		.loc 1 29 13 is_stmt 0 view .LVU9
+  68 002e 084B     		ldr	r3, .L7+4
+  69 0030 1B69     		ldr	r3, [r3, #16]
+  29:Core/Src/main.c ****         {
+  70              		.loc 1 29 12 view .LVU10
+  71 0032 13F4005F 		tst	r3, #8192
+  72 0036 EDD0     		beq	.L6
+  33:Core/Src/main.c ****         }
+  34:Core/Src/main.c ****         else
+  35:Core/Src/main.c ****         {
+  36:Core/Src/main.c ****             MODIFY_REG(TIM1->CCR1, TIM_CCR1_CCR1_Msk, 0UL); // ПЕРВЫЙ двигатель - т
+  73              		.loc 1 36 13 is_stmt 1 view .LVU11
+  74 0038 044B     		ldr	r3, .L7
+  75 003a 5A6B     		ldr	r2, [r3, #52]
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s 			page 3
+
+
+  76 003c 6FF30F02 		bfc	r2, #0, #16
+  77 0040 5A63     		str	r2, [r3, #52]
+  37:Core/Src/main.c ****             MODIFY_REG(TIM1->CCR4, TIM_CCR4_CCR4_Msk, 0UL); // Диапазон значений о
+  78              		.loc 1 37 13 view .LVU12
+  79 0042 1A6C     		ldr	r2, [r3, #64]
+  80 0044 6FF30F02 		bfc	r2, #0, #16
+  81 0048 1A64     		str	r2, [r3, #64]
+  82 004a F0E7     		b	.L2
+  83              	.L8:
+  84              		.align	2
+  85              	.L7:
+  86 004c 00000140 		.word	1073807360
+  87 0050 00080240 		.word	1073874944
+  88              		.cfi_endproc
+  89              	.LFE130:
+  91              		.global	counter
+  92              		.section	.bss.counter,"aw",%nobits
+  95              	counter:
   96 0000 00       		.space	1
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s 			page 3
-
-
-  97              		.global	tick_count
-  98              		.section	.bss.tick_count,"aw",%nobits
-  99              		.align	2
- 102              	tick_count:
- 103 0000 00000000 		.space	4
- 104              		.text
- 105              	.Letext0:
- 106              		.file 2 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
- 107              		.file 3 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
- 108              		.file 4 "Core/Inc/init.h"
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s 			page 4
+  97              		.global	pwm_mode
+  98              		.section	.bss.pwm_mode,"aw",%nobits
+ 101              	pwm_mode:
+ 102 0000 00       		.space	1
+ 103              		.global	btn8_press_time
+ 104              		.section	.bss.btn8_press_time,"aw",%nobits
+ 105              		.align	2
+ 108              	btn8_press_time:
+ 109 0000 00000000 		.space	4
+ 110              		.global	btn8_pressed
+ 111              		.section	.bss.btn8_pressed,"aw",%nobits
+ 114              	btn8_pressed:
+ 115 0000 00       		.space	1
+ 116              		.global	counter1
+ 117              		.section	.bss.counter1,"aw",%nobits
+ 120              	counter1:
+ 121 0000 00       		.space	1
+ 122              		.global	btn9_press_time
+ 123              		.section	.bss.btn9_press_time,"aw",%nobits
+ 124              		.align	2
+ 127              	btn9_press_time:
+ 128 0000 00000000 		.space	4
+ 129              		.global	btn9_pressed
+ 130              		.section	.bss.btn9_pressed,"aw",%nobits
+ 133              	btn9_pressed:
+ 134 0000 00       		.space	1
+ 135              		.global	tick_count
+ 136              		.section	.bss.tick_count,"aw",%nobits
+ 137              		.align	2
+ 140              	tick_count:
+ 141 0000 00000000 		.space	4
+ 142              		.text
+ 143              	.Letext0:
+ 144              		.file 2 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 145              		.file 3 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 146              		.file 4 "CMSIS/Devices/STM32F4xx/Inc/STM32F411xE/stm32f411xe.h"
+ 147              		.file 5 "Core/Inc/init.h"
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s:21     .text.main:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s:27     .text.main:00000000 main
-C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s:63     .bss.pwm_mode:00000000 pwm_mode
-C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s:64     .bss.pwm_mode:00000000 $d
-C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s:70     .bss.btn8_press_time:00000000 btn8_press_time
-C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s:67     .bss.btn8_press_time:00000000 $d
-C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s:76     .bss.btn8_pressed:00000000 btn8_pressed
-C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s:77     .bss.btn8_pressed:00000000 $d
-C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s:82     .bss.counter1:00000000 counter1
-C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s:83     .bss.counter1:00000000 $d
-C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s:89     .bss.btn9_press_time:00000000 btn9_press_time
-C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s:86     .bss.btn9_press_time:00000000 $d
-C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s:95     .bss.btn9_pressed:00000000 btn9_pressed
-C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s:96     .bss.btn9_pressed:00000000 $d
-C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s:102    .bss.tick_count:00000000 tick_count
-C:\Users\pashk\AppData\Local\Temp\ccdpVp98.s:99     .bss.tick_count:00000000 $d
+C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s:21     .text.main:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s:27     .text.main:00000000 main
+C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s:86     .text.main:0000004c $d
+C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s:95     .bss.counter:00000000 counter
+C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s:96     .bss.counter:00000000 $d
+C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s:101    .bss.pwm_mode:00000000 pwm_mode
+C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s:102    .bss.pwm_mode:00000000 $d
+C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s:108    .bss.btn8_press_time:00000000 btn8_press_time
+C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s:105    .bss.btn8_press_time:00000000 $d
+C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s:114    .bss.btn8_pressed:00000000 btn8_pressed
+C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s:115    .bss.btn8_pressed:00000000 $d
+C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s:120    .bss.counter1:00000000 counter1
+C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s:121    .bss.counter1:00000000 $d
+C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s:127    .bss.btn9_press_time:00000000 btn9_press_time
+C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s:124    .bss.btn9_press_time:00000000 $d
+C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s:133    .bss.btn9_pressed:00000000 btn9_pressed
+C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s:134    .bss.btn9_pressed:00000000 $d
+C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s:140    .bss.tick_count:00000000 tick_count
+C:\Users\pashk\AppData\Local\Temp\ccvLAHMS.s:137    .bss.tick_count:00000000 $d
 
 UNDEFINED SYMBOLS
 GPIO_Ini

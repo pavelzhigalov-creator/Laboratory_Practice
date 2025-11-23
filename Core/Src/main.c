@@ -26,8 +26,15 @@ int main(void)
 
     while (1)
     {
-       
-    // task1();
-     
+        if (BUTTON_READ())
+        {
+            MODIFY_REG(TIM1->CCR1, TIM_CCR1_CCR1_Msk, 300UL); // ПЕРВЫЙ двигатель - тот что ближе к драйверу
+            MODIFY_REG(TIM1->CCR4, TIM_CCR4_CCR4_Msk, 300UL); // Диапазон значений от 0 до ARR (в данном случае ARR=999)
+        }
+        else
+        {
+            MODIFY_REG(TIM1->CCR1, TIM_CCR1_CCR1_Msk, 0UL); // ПЕРВЫЙ двигатель - тот что ближе к драйверу
+            MODIFY_REG(TIM1->CCR4, TIM_CCR4_CCR4_Msk, 0UL); // Диапазон значений от 0 до ARR (в данном случае ARR=999)
+        }
     }
 }
