@@ -11,6 +11,7 @@ volatile uint8_t counter1 = 0;
 volatile uint8_t  btn8_pressed = 0; // PB8 переключение LED
 volatile uint32_t btn8_press_time = 0;
 volatile uint8_t pwm_mode = 0;
+volatile uint8_t counter = 0;
 
 
 int main(void)

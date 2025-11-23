@@ -4,8 +4,13 @@ void GPIO_Ini(void)
 {
     // инициализация В порта через макросы
     SET_BIT(RCC->AHB1ENR, RCC_AHB1ENR_GPIOBEN); // включаем тактирование на  B  порте
-     GPIOB->MODER &= ~(GPIO_MODER_MODER8 | GPIO_MODER_MODER9);
-     SET_BIT(RCC->AHB1ENR, RCC_AHB1ENR_GPIOCEN);
+    GPIOB->MODER &= ~(GPIO_MODER_MODER8 | GPIO_MODER_MODER9);
+    SET_BIT(RCC->AHB1ENR, RCC_AHB1ENR_GPIOCEN);
+
+    // Настройка PC13 (кнопка) как входа с подтяжкой к питанию
+    GPIOC->MODER &= ~GPIO_MODER_MODER13;  // Режим входа
+    GPIOC->PUPDR &= ~GPIO_PUPDR_PUPDR13;
+     GPIOC->PUPDR |= GPIO_PUPDR_PUPDR13_0; // Подтяжка к питанию
 }
 
 /* void RCC_Init(void){
