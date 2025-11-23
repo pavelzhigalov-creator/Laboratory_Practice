@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s 			page 1
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s 			page 1
   28:Core/Src/task.c ****     // ВКЛЮЧАЕМ ТОЛЬКО ОДИН КАНАЛ
   29:Core/Src/task.c ****     switch(pwm_mode) {
   30:Core/Src/task.c ****         case 0: 
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s 			page 2
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s 			page 2
 
 
   31:Core/Src/task.c ****             SET_BIT(TIM2->CCER, TIM_CCER_CC1E);  
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s 			page 1
   50 0014 09E0     		b	.L7
   51              	.L6:
   64:Core/Src/task.c ****         case 0: 
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s 			page 3
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s 			page 3
 
 
   65:Core/Src/task.c ****             duty_cycle = 0;
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s 			page 1
   83 002c 4A6B     		ldr	r2, [r1, #52]
   84 002e 6FF30F02 		bfc	r2, #0, #16
   85 0032 1A43     		orrs	r2, r2, r3
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s 			page 4
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s 			page 4
 
 
   86 0034 4A63     		str	r2, [r1, #52]
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s 			page 1
  134              	.LFB131:
   21:Core/Src/task.c **** {
  135              		.loc 1 21 1 is_stmt 1 view -0
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s 			page 5
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s 			page 5
 
 
  136              		.cfi_startproc
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s 			page 1
  183 0044 FFF7FEFF 		bl	Set_All_LEDs_Brightness
  184              	.LVL6:
   56:Core/Src/task.c **** }
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s 			page 6
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s 			page 6
 
 
  185              		.loc 1 56 1 is_stmt 0 view .LVU32
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s 			page 1
  229              	.L22:
  230 0088 00040040 		.word	1073742848
  231 008c 00000000 		.word	pwm_mode
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s 			page 7
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s 			page 7
 
 
  232 0090 00000140 		.word	1073807360
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s 			page 1
  277 0016 134B     		ldr	r3, .L30+12
  278 0018 83FB0203 		smull	r0, r3, r3, r2
  279 001c 03EB4303 		add	r3, r3, r3, lsl #1
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s 			page 8
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s 			page 8
 
 
  280 0020 5800     		lsls	r0, r3, #1
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s 			page 1
  322 0058 00000000 		.word	btn9_pressed
  323 005c 00000000 		.word	btn8_pressed
  324 0060 00000000 		.word	pwm_mode
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s 			page 9
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s 			page 9
 
 
  325 0064 ABAAAA2A 		.word	715827883
@@ -493,24 +493,24 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s 			page 1
  335              		.file 4 "CMSIS/Devices/STM32F4xx/Inc/STM32F411xE/stm32f411xe.h"
  336              		.file 5 "Core/Inc/task.h"
  337              		.file 6 "Core/Inc/handlers.h"
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s 			page 10
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 task.c
-C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s:21     .text.Set_All_LEDs_Brightness:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s:27     .text.Set_All_LEDs_Brightness:00000000 Set_All_LEDs_Brightness
-C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s:43     .text.Set_All_LEDs_Brightness:0000000e $d
-C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s:47     .text.Set_All_LEDs_Brightness:00000012 $t
-C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s:121    .text.Set_All_LEDs_Brightness:00000074 $d
-C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s:127    .text.Switch_PWM:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s:133    .text.Switch_PWM:00000000 Switch_PWM
-C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s:167    .text.Switch_PWM:00000032 $d
-C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s:173    .text.Switch_PWM:00000038 $t
-C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s:230    .text.Switch_PWM:00000088 $d
-C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s:237    .text.task1:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s:243    .text.task1:00000000 task1
-C:\Users\pashk\AppData\Local\Temp\ccCbUdnp.s:322    .text.task1:00000058 $d
+C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s:21     .text.Set_All_LEDs_Brightness:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s:27     .text.Set_All_LEDs_Brightness:00000000 Set_All_LEDs_Brightness
+C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s:43     .text.Set_All_LEDs_Brightness:0000000e $d
+C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s:47     .text.Set_All_LEDs_Brightness:00000012 $t
+C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s:121    .text.Set_All_LEDs_Brightness:00000074 $d
+C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s:127    .text.Switch_PWM:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s:133    .text.Switch_PWM:00000000 Switch_PWM
+C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s:167    .text.Switch_PWM:00000032 $d
+C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s:173    .text.Switch_PWM:00000038 $t
+C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s:230    .text.Switch_PWM:00000088 $d
+C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s:237    .text.task1:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s:243    .text.task1:00000000 task1
+C:\Users\pashk\AppData\Local\Temp\ccF3YPOl.s:322    .text.task1:00000058 $d
 
 UNDEFINED SYMBOLS
 counter1

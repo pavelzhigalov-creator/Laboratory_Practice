@@ -1,6 +1,6 @@
 #include "init.h"
 
-void GPIO_Ini(void)
+/* void GPIO_Ini(void)
 {
     // инициализация В порта через макросы
     SET_BIT(RCC->AHB1ENR, RCC_AHB1ENR_GPIOBEN); // включаем тактирование на  B  порте
@@ -11,7 +11,7 @@ void GPIO_Ini(void)
     GPIOC->MODER &= ~GPIO_MODER_MODER13;  // Режим входа
     GPIOC->PUPDR &= ~GPIO_PUPDR_PUPDR13;
      GPIOC->PUPDR |= GPIO_PUPDR_PUPDR13_0; // Подтяжка к питанию
-}
+} */
 
 /* void RCC_Init(void){
     //предварительная очистка регистров RCC устанавливается внутренный высокочастотный генератор
@@ -48,7 +48,7 @@ void GPIO_Ini(void)
     SET_BIT(RCC->CR, RCC_CR_PLLON);//Запуск PLL
     while(READ_BIT(RCC->CR, RCC_CR_PLLRDY) == RESET);
 } */
-
+/* 
 void IRO_INInt(void){
     SET_BIT(RCC->APB2ENR, RCC_APB2ENR_SYSCFGEN);
     MODIFY_REG(SYSCFG->EXTICR[2], SYSCFG_EXTICR3_EXTI8_Msk |
@@ -225,3 +225,11 @@ void TIM1_PWM_Init(void)
     //Запускаем таймер
     SET_BIT(TIM1->CR1, TIM_CR1_CEN);
 }
+
+void delay(volatile uint32_t count)
+{
+    for (; count > 0; count--)
+    {
+        // пустая итерация
+    }
+} */

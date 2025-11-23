@@ -1,4 +1,4 @@
-build_F411RE/main.o: Core/Src/main.c Core/Inc/mpu6050.h \
+build_F411RE/mpu6050.o: Core/Src/mpu6050.c Core/Inc/mpu6050.h \
  CMSIS/Devices/STM32F4xx/Inc/stm32f4xx.h \
  CMSIS/Devices/STM32F4xx/Inc/STM32F411xE/stm32f411xe.h \
  CMSIS/Include/core_cm4.h CMSIS/Include/cmsis_version.h \

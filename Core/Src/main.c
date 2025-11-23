@@ -1,4 +1,4 @@
-#include "init.h"
+/* #include "init.h"
 //#include "task.h"
 //#include "handlers.h"
 #include <stdint.h>
@@ -28,13 +28,36 @@ int main(void)
     {
         if (BUTTON_READ())
         {
-            MODIFY_REG(TIM1->CCR1, TIM_CCR1_CCR1_Msk, 300UL); // ПЕРВЫЙ двигатель - тот что ближе к драйверу
-            MODIFY_REG(TIM1->CCR4, TIM_CCR4_CCR4_Msk, 300UL); // Диапазон значений от 0 до ARR (в данном случае ARR=999)
+            delay(1000000);
+            MODIFY_REG(TIM1->CCR1, TIM_CCR1_CCR1_Msk, 250UL); // ПЕРВЫЙ двигатель - тот что ближе к драйверу
+            MODIFY_REG(TIM1->CCR4, TIM_CCR4_CCR4_Msk, 250UL); // ВТОРОЙ двигатель - тот что ближе к преобразователю
+            delay(2000000);
         }
         else
         {
             MODIFY_REG(TIM1->CCR1, TIM_CCR1_CCR1_Msk, 0UL); // ПЕРВЫЙ двигатель - тот что ближе к драйверу
-            MODIFY_REG(TIM1->CCR4, TIM_CCR4_CCR4_Msk, 0UL); // Диапазон значений от 0 до ARR (в данном случае ARR=999)
+            MODIFY_REG(TIM1->CCR4, TIM_CCR4_CCR4_Msk, 0UL); // ВТОРОЙ двигатель - тот что ближе к преобразователю
         }
+    }
+}
+
+// второй двигатель крутится лучше */
+
+#include "mpu6050.h"
+
+MPU6050_Data mpu_data;
+
+int main(void) {
+    // Твоя инициализация системы с любой частотой
+    // Например: 84 MHz, 100 MHz, etc...
+    
+    // Инициализация MPU6050 
+    MPU6050_Init();  // Автоматически подстроится под твою частоту
+    
+    while(1) {
+        MPU6050_Read(&mpu_data);
+        // Используй данные...
+        
+        //delay_ms(100);
     }
 }

@@ -1,0 +1,896 @@
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"mpu6050.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/mpu6050.c"
+  20              		.section	.text.get_apb1_frequency,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	get_apb1_frequency:
+  27              	.LFB130:
+   1:Core/Src/mpu6050.c **** #include "mpu6050.h"
+   2:Core/Src/mpu6050.c **** 
+   3:Core/Src/mpu6050.c **** // Автоматическое определение частоты APB1
+   4:Core/Src/mpu6050.c **** static uint32_t get_apb1_frequency(void) {
+  28              		.loc 1 4 42 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+   5:Core/Src/mpu6050.c ****     return SystemCoreClock / (((RCC->CFGR >> 10) & 0x7) + 1);
+  33              		.loc 1 5 5 view .LVU1
+  34              		.loc 1 5 36 is_stmt 0 view .LVU2
+  35 0000 044B     		ldr	r3, .L2
+  36 0002 9B68     		ldr	r3, [r3, #8]
+  37              		.loc 1 5 50 view .LVU3
+  38 0004 C3F38223 		ubfx	r3, r3, #10, #3
+  39              		.loc 1 5 57 view .LVU4
+  40 0008 0133     		adds	r3, r3, #1
+  41              		.loc 1 5 28 view .LVU5
+  42 000a 034A     		ldr	r2, .L2+4
+  43 000c 1068     		ldr	r0, [r2]
+   6:Core/Src/mpu6050.c **** }
+  44              		.loc 1 6 1 view .LVU6
+  45 000e B0FBF3F0 		udiv	r0, r0, r3
+  46 0012 7047     		bx	lr
+  47              	.L3:
+  48              		.align	2
+  49              	.L2:
+  50 0014 00380240 		.word	1073887232
+  51 0018 00000000 		.word	SystemCoreClock
+  52              		.cfi_endproc
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s 			page 2
+
+
+  53              	.LFE130:
+  55              		.section	.text.I2C_WaitFlag,"ax",%progbits
+  56              		.align	1
+  57              		.syntax unified
+  58              		.thumb
+  59              		.thumb_func
+  61              	I2C_WaitFlag:
+  62              	.LVL0:
+  63              	.LFB132:
+   7:Core/Src/mpu6050.c **** 
+   8:Core/Src/mpu6050.c **** // Инициализация I2C1 с любой частотой
+   9:Core/Src/mpu6050.c **** void I2C1_Init(uint32_t i2c_speed_khz) {
+  10:Core/Src/mpu6050.c ****     uint32_t apb1_freq = get_apb1_frequency();
+  11:Core/Src/mpu6050.c ****     uint32_t ccr_value;
+  12:Core/Src/mpu6050.c ****     
+  13:Core/Src/mpu6050.c ****     // Включаем тактирование
+  14:Core/Src/mpu6050.c ****     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
+  15:Core/Src/mpu6050.c ****     RCC->APB1ENR |= RCC_APB1ENR_I2C1EN;
+  16:Core/Src/mpu6050.c ****     
+  17:Core/Src/mpu6050.c ****     // Настройка PB8 (SCL) и PB9 (SDA)
+  18:Core/Src/mpu6050.c ****     GPIOB->MODER &= ~(GPIO_MODER_MODER8 | GPIO_MODER_MODER9);
+  19:Core/Src/mpu6050.c ****     GPIOB->MODER |= (2 << GPIO_MODER_MODER8_Pos) | (2 << GPIO_MODER_MODER9_Pos);
+  20:Core/Src/mpu6050.c ****     GPIOB->OTYPER |= GPIO_OTYPER_OT_8 | GPIO_OTYPER_OT_9;
+  21:Core/Src/mpu6050.c ****     GPIOB->PUPDR |= (1 << (2 * 8)) | (1 << (2 * 9));
+  22:Core/Src/mpu6050.c ****     GPIOB->AFR[1] |= (4 << (4 * 0)) | (4 << (4 * 1));
+  23:Core/Src/mpu6050.c ****     
+  24:Core/Src/mpu6050.c ****     // Сброс I2C
+  25:Core/Src/mpu6050.c ****     I2C1->CR1 &= ~I2C_CR1_PE;
+  26:Core/Src/mpu6050.c ****     I2C1->CR1 = I2C_CR1_SWRST;
+  27:Core/Src/mpu6050.c ****     I2C1->CR1 = 0;
+  28:Core/Src/mpu6050.c ****     
+  29:Core/Src/mpu6050.c ****     // Настройка частоты I2C
+  30:Core/Src/mpu6050.c ****     I2C1->CR2 = (apb1_freq / 1000000) & I2C_CR2_FREQ;
+  31:Core/Src/mpu6050.c ****     
+  32:Core/Src/mpu6050.c ****     // Расчет CCR для Standard Mode (100 kHz)
+  33:Core/Src/mpu6050.c ****     ccr_value = apb1_freq / (i2c_speed_khz * 2000);
+  34:Core/Src/mpu6050.c ****     if(ccr_value < 4) ccr_value = 4;
+  35:Core/Src/mpu6050.c ****     I2C1->CCR = ccr_value;
+  36:Core/Src/mpu6050.c ****     
+  37:Core/Src/mpu6050.c ****     // Расчет TRISE
+  38:Core/Src/mpu6050.c ****     I2C1->TRISE = (apb1_freq / 1000000) + 1;
+  39:Core/Src/mpu6050.c ****     
+  40:Core/Src/mpu6050.c ****     // Включаем I2C
+  41:Core/Src/mpu6050.c ****     I2C1->CR1 |= I2C_CR1_PE;
+  42:Core/Src/mpu6050.c **** }
+  43:Core/Src/mpu6050.c **** 
+  44:Core/Src/mpu6050.c **** // Остальные функции остаются такими же...
+  45:Core/Src/mpu6050.c **** static void I2C_WaitFlag(uint32_t flag) {
+  64              		.loc 1 45 41 is_stmt 1 view -0
+  65              		.cfi_startproc
+  66              		@ args = 0, pretend = 0, frame = 0
+  67              		@ frame_needed = 0, uses_anonymous_args = 0
+  68              		@ link register save eliminated.
+  46:Core/Src/mpu6050.c ****     uint32_t timeout = 100000;
+  69              		.loc 1 46 5 view .LVU8
+  47:Core/Src/mpu6050.c ****     while(!(I2C1->SR1 & flag) && timeout--);
+  70              		.loc 1 47 5 view .LVU9
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s 			page 3
+
+
+  46:Core/Src/mpu6050.c ****     uint32_t timeout = 100000;
+  71              		.loc 1 46 14 is_stmt 0 view .LVU10
+  72 0000 054B     		ldr	r3, .L8
+  73              		.loc 1 47 10 view .LVU11
+  74 0002 00E0     		b	.L6
+  75              	.LVL1:
+  76              	.L7:
+  77              		.loc 1 47 41 discriminator 1 view .LVU12
+  78 0004 1346     		mov	r3, r2
+  79              	.LVL2:
+  80              	.L6:
+  81              		.loc 1 47 31 is_stmt 1 discriminator 2 view .LVU13
+  82              		.loc 1 47 17 is_stmt 0 discriminator 2 view .LVU14
+  83 0006 054A     		ldr	r2, .L8+4
+  84 0008 5269     		ldr	r2, [r2, #20]
+  85              		.loc 1 47 31 discriminator 2 view .LVU15
+  86 000a 0242     		tst	r2, r0
+  87 000c 02D1     		bne	.L4
+  88              		.loc 1 47 41 discriminator 1 view .LVU16
+  89 000e 5A1E     		subs	r2, r3, #1
+  90              	.LVL3:
+  91              		.loc 1 47 31 discriminator 1 view .LVU17
+  92 0010 002B     		cmp	r3, #0
+  93 0012 F7D1     		bne	.L7
+  94              	.LVL4:
+  95              	.L4:
+  48:Core/Src/mpu6050.c **** }
+  96              		.loc 1 48 1 view .LVU18
+  97 0014 7047     		bx	lr
+  98              	.L9:
+  99 0016 00BF     		.align	2
+ 100              	.L8:
+ 101 0018 A0860100 		.word	100000
+ 102 001c 00540040 		.word	1073763328
+ 103              		.cfi_endproc
+ 104              	.LFE132:
+ 106              		.section	.text.MPU6050_WriteReg,"ax",%progbits
+ 107              		.align	1
+ 108              		.syntax unified
+ 109              		.thumb
+ 110              		.thumb_func
+ 112              	MPU6050_WriteReg:
+ 113              	.LVL5:
+ 114              	.LFB133:
+  49:Core/Src/mpu6050.c **** 
+  50:Core/Src/mpu6050.c **** static void MPU6050_WriteReg(uint8_t reg, uint8_t value) {
+ 115              		.loc 1 50 58 is_stmt 1 view -0
+ 116              		.cfi_startproc
+ 117              		@ args = 0, pretend = 0, frame = 0
+ 118              		@ frame_needed = 0, uses_anonymous_args = 0
+ 119              		.loc 1 50 58 is_stmt 0 view .LVU20
+ 120 0000 70B5     		push	{r4, r5, r6, lr}
+ 121              	.LCFI0:
+ 122              		.cfi_def_cfa_offset 16
+ 123              		.cfi_offset 4, -16
+ 124              		.cfi_offset 5, -12
+ 125              		.cfi_offset 6, -8
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s 			page 4
+
+
+ 126              		.cfi_offset 14, -4
+ 127 0002 0646     		mov	r6, r0
+ 128 0004 0D46     		mov	r5, r1
+  51:Core/Src/mpu6050.c ****     I2C1->CR1 |= I2C_CR1_START;
+ 129              		.loc 1 51 5 is_stmt 1 view .LVU21
+ 130              		.loc 1 51 9 is_stmt 0 view .LVU22
+ 131 0006 0F4C     		ldr	r4, .L12
+ 132 0008 2368     		ldr	r3, [r4]
+ 133              		.loc 1 51 15 view .LVU23
+ 134 000a 43F48073 		orr	r3, r3, #256
+ 135 000e 2360     		str	r3, [r4]
+  52:Core/Src/mpu6050.c ****     I2C_WaitFlag(I2C_SR1_SB);
+ 136              		.loc 1 52 5 is_stmt 1 view .LVU24
+ 137 0010 0120     		movs	r0, #1
+ 138              	.LVL6:
+ 139              		.loc 1 52 5 is_stmt 0 view .LVU25
+ 140 0012 FFF7FEFF 		bl	I2C_WaitFlag
+ 141              	.LVL7:
+  53:Core/Src/mpu6050.c ****     I2C1->DR = MPU6050_ADDR << 1;
+ 142              		.loc 1 53 5 is_stmt 1 view .LVU26
+ 143              		.loc 1 53 14 is_stmt 0 view .LVU27
+ 144 0016 D023     		movs	r3, #208
+ 145 0018 2361     		str	r3, [r4, #16]
+  54:Core/Src/mpu6050.c ****     I2C_WaitFlag(I2C_SR1_ADDR);
+ 146              		.loc 1 54 5 is_stmt 1 view .LVU28
+ 147 001a 0220     		movs	r0, #2
+ 148 001c FFF7FEFF 		bl	I2C_WaitFlag
+ 149              	.LVL8:
+  55:Core/Src/mpu6050.c ****     (void)I2C1->SR2;
+ 150              		.loc 1 55 5 view .LVU29
+ 151 0020 A369     		ldr	r3, [r4, #24]
+  56:Core/Src/mpu6050.c ****     
+  57:Core/Src/mpu6050.c ****     I2C_WaitFlag(I2C_SR1_TXE);
+ 152              		.loc 1 57 5 view .LVU30
+ 153 0022 8020     		movs	r0, #128
+ 154 0024 FFF7FEFF 		bl	I2C_WaitFlag
+ 155              	.LVL9:
+  58:Core/Src/mpu6050.c ****     I2C1->DR = reg;
+ 156              		.loc 1 58 5 view .LVU31
+ 157              		.loc 1 58 14 is_stmt 0 view .LVU32
+ 158 0028 2661     		str	r6, [r4, #16]
+  59:Core/Src/mpu6050.c ****     
+  60:Core/Src/mpu6050.c ****     I2C_WaitFlag(I2C_SR1_TXE);
+ 159              		.loc 1 60 5 is_stmt 1 view .LVU33
+ 160 002a 8020     		movs	r0, #128
+ 161 002c FFF7FEFF 		bl	I2C_WaitFlag
+ 162              	.LVL10:
+  61:Core/Src/mpu6050.c ****     I2C1->DR = value;
+ 163              		.loc 1 61 5 view .LVU34
+ 164              		.loc 1 61 14 is_stmt 0 view .LVU35
+ 165 0030 2561     		str	r5, [r4, #16]
+  62:Core/Src/mpu6050.c ****     
+  63:Core/Src/mpu6050.c ****     I2C_WaitFlag(I2C_SR1_BTF);
+ 166              		.loc 1 63 5 is_stmt 1 view .LVU36
+ 167 0032 0420     		movs	r0, #4
+ 168 0034 FFF7FEFF 		bl	I2C_WaitFlag
+ 169              	.LVL11:
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s 			page 5
+
+
+  64:Core/Src/mpu6050.c ****     I2C1->CR1 |= I2C_CR1_STOP;
+ 170              		.loc 1 64 5 view .LVU37
+ 171              		.loc 1 64 9 is_stmt 0 view .LVU38
+ 172 0038 2368     		ldr	r3, [r4]
+ 173              		.loc 1 64 15 view .LVU39
+ 174 003a 43F40073 		orr	r3, r3, #512
+ 175 003e 2360     		str	r3, [r4]
+  65:Core/Src/mpu6050.c **** }
+ 176              		.loc 1 65 1 view .LVU40
+ 177 0040 70BD     		pop	{r4, r5, r6, pc}
+ 178              	.LVL12:
+ 179              	.L13:
+ 180              		.loc 1 65 1 view .LVU41
+ 181 0042 00BF     		.align	2
+ 182              	.L12:
+ 183 0044 00540040 		.word	1073763328
+ 184              		.cfi_endproc
+ 185              	.LFE133:
+ 187              		.section	.text.MPU6050_ReadBytes,"ax",%progbits
+ 188              		.align	1
+ 189              		.syntax unified
+ 190              		.thumb
+ 191              		.thumb_func
+ 193              	MPU6050_ReadBytes:
+ 194              	.LVL13:
+ 195              	.LFB134:
+  66:Core/Src/mpu6050.c **** 
+  67:Core/Src/mpu6050.c **** static void MPU6050_ReadBytes(uint8_t reg, uint8_t *data, uint8_t len) {
+ 196              		.loc 1 67 72 is_stmt 1 view -0
+ 197              		.cfi_startproc
+ 198              		@ args = 0, pretend = 0, frame = 0
+ 199              		@ frame_needed = 0, uses_anonymous_args = 0
+ 200              		.loc 1 67 72 is_stmt 0 view .LVU43
+ 201 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 202              	.LCFI1:
+ 203              		.cfi_def_cfa_offset 24
+ 204              		.cfi_offset 3, -24
+ 205              		.cfi_offset 4, -20
+ 206              		.cfi_offset 5, -16
+ 207              		.cfi_offset 6, -12
+ 208              		.cfi_offset 7, -8
+ 209              		.cfi_offset 14, -4
+ 210 0002 0546     		mov	r5, r0
+ 211 0004 0F46     		mov	r7, r1
+ 212 0006 1646     		mov	r6, r2
+  68:Core/Src/mpu6050.c ****     I2C1->CR1 |= I2C_CR1_START;
+ 213              		.loc 1 68 5 is_stmt 1 view .LVU44
+ 214              		.loc 1 68 9 is_stmt 0 view .LVU45
+ 215 0008 224C     		ldr	r4, .L22
+ 216 000a 2368     		ldr	r3, [r4]
+ 217              		.loc 1 68 15 view .LVU46
+ 218 000c 43F48073 		orr	r3, r3, #256
+ 219 0010 2360     		str	r3, [r4]
+  69:Core/Src/mpu6050.c ****     I2C_WaitFlag(I2C_SR1_SB);
+ 220              		.loc 1 69 5 is_stmt 1 view .LVU47
+ 221 0012 0120     		movs	r0, #1
+ 222              	.LVL14:
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s 			page 6
+
+
+ 223              		.loc 1 69 5 is_stmt 0 view .LVU48
+ 224 0014 FFF7FEFF 		bl	I2C_WaitFlag
+ 225              	.LVL15:
+  70:Core/Src/mpu6050.c ****     I2C1->DR = MPU6050_ADDR << 1;
+ 226              		.loc 1 70 5 is_stmt 1 view .LVU49
+ 227              		.loc 1 70 14 is_stmt 0 view .LVU50
+ 228 0018 D023     		movs	r3, #208
+ 229 001a 2361     		str	r3, [r4, #16]
+  71:Core/Src/mpu6050.c ****     I2C_WaitFlag(I2C_SR1_ADDR);
+ 230              		.loc 1 71 5 is_stmt 1 view .LVU51
+ 231 001c 0220     		movs	r0, #2
+ 232 001e FFF7FEFF 		bl	I2C_WaitFlag
+ 233              	.LVL16:
+  72:Core/Src/mpu6050.c ****     (void)I2C1->SR2;
+ 234              		.loc 1 72 5 view .LVU52
+ 235 0022 A369     		ldr	r3, [r4, #24]
+  73:Core/Src/mpu6050.c ****     
+  74:Core/Src/mpu6050.c ****     I2C_WaitFlag(I2C_SR1_TXE);
+ 236              		.loc 1 74 5 view .LVU53
+ 237 0024 8020     		movs	r0, #128
+ 238 0026 FFF7FEFF 		bl	I2C_WaitFlag
+ 239              	.LVL17:
+  75:Core/Src/mpu6050.c ****     I2C1->DR = reg;
+ 240              		.loc 1 75 5 view .LVU54
+ 241              		.loc 1 75 14 is_stmt 0 view .LVU55
+ 242 002a 2561     		str	r5, [r4, #16]
+  76:Core/Src/mpu6050.c ****     
+  77:Core/Src/mpu6050.c ****     I2C_WaitFlag(I2C_SR1_TXE);
+ 243              		.loc 1 77 5 is_stmt 1 view .LVU56
+ 244 002c 8020     		movs	r0, #128
+ 245 002e FFF7FEFF 		bl	I2C_WaitFlag
+ 246              	.LVL18:
+  78:Core/Src/mpu6050.c ****     I2C1->CR1 |= I2C_CR1_START;
+ 247              		.loc 1 78 5 view .LVU57
+ 248              		.loc 1 78 9 is_stmt 0 view .LVU58
+ 249 0032 2368     		ldr	r3, [r4]
+ 250              		.loc 1 78 15 view .LVU59
+ 251 0034 43F48073 		orr	r3, r3, #256
+ 252 0038 2360     		str	r3, [r4]
+  79:Core/Src/mpu6050.c ****     I2C_WaitFlag(I2C_SR1_SB);
+ 253              		.loc 1 79 5 is_stmt 1 view .LVU60
+ 254 003a 0120     		movs	r0, #1
+ 255 003c FFF7FEFF 		bl	I2C_WaitFlag
+ 256              	.LVL19:
+  80:Core/Src/mpu6050.c ****     I2C1->DR = (MPU6050_ADDR << 1) | 1;
+ 257              		.loc 1 80 5 view .LVU61
+ 258              		.loc 1 80 14 is_stmt 0 view .LVU62
+ 259 0040 D123     		movs	r3, #209
+ 260 0042 2361     		str	r3, [r4, #16]
+  81:Core/Src/mpu6050.c ****     I2C_WaitFlag(I2C_SR1_ADDR);
+ 261              		.loc 1 81 5 is_stmt 1 view .LVU63
+ 262 0044 0220     		movs	r0, #2
+ 263 0046 FFF7FEFF 		bl	I2C_WaitFlag
+ 264              	.LVL20:
+  82:Core/Src/mpu6050.c ****     (void)I2C1->SR2;
+ 265              		.loc 1 82 5 view .LVU64
+ 266 004a A369     		ldr	r3, [r4, #24]
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s 			page 7
+
+
+  83:Core/Src/mpu6050.c ****     
+  84:Core/Src/mpu6050.c ****     for(uint8_t i = 0; i < len; i++) {
+ 267              		.loc 1 84 5 view .LVU65
+ 268              	.LBB2:
+ 269              		.loc 1 84 9 view .LVU66
+ 270              	.LVL21:
+ 271              		.loc 1 84 17 is_stmt 0 view .LVU67
+ 272 004c 0024     		movs	r4, #0
+ 273              		.loc 1 84 5 view .LVU68
+ 274 004e 0FE0     		b	.L15
+ 275              	.LVL22:
+ 276              	.L21:
+  85:Core/Src/mpu6050.c ****         if(i == len - 1) {
+  86:Core/Src/mpu6050.c ****             I2C1->CR1 &= ~I2C_CR1_ACK;
+ 277              		.loc 1 86 13 is_stmt 1 view .LVU69
+ 278              		.loc 1 86 17 is_stmt 0 view .LVU70
+ 279 0050 104D     		ldr	r5, .L22
+ 280 0052 2B68     		ldr	r3, [r5]
+ 281              		.loc 1 86 23 view .LVU71
+ 282 0054 23F48063 		bic	r3, r3, #1024
+ 283 0058 2B60     		str	r3, [r5]
+  87:Core/Src/mpu6050.c ****             I2C_WaitFlag(I2C_SR1_RXNE);
+ 284              		.loc 1 87 13 is_stmt 1 view .LVU72
+ 285 005a 4020     		movs	r0, #64
+ 286 005c FFF7FEFF 		bl	I2C_WaitFlag
+ 287              	.LVL23:
+  88:Core/Src/mpu6050.c ****             data[i] = I2C1->DR;
+ 288              		.loc 1 88 13 view .LVU73
+ 289              		.loc 1 88 27 is_stmt 0 view .LVU74
+ 290 0060 2B69     		ldr	r3, [r5, #16]
+ 291              		.loc 1 88 21 view .LVU75
+ 292 0062 3B55     		strb	r3, [r7, r4]
+  89:Core/Src/mpu6050.c ****             I2C1->CR1 |= I2C_CR1_STOP;
+ 293              		.loc 1 89 13 is_stmt 1 view .LVU76
+ 294              		.loc 1 89 17 is_stmt 0 view .LVU77
+ 295 0064 2B68     		ldr	r3, [r5]
+ 296              		.loc 1 89 23 view .LVU78
+ 297 0066 43F40073 		orr	r3, r3, #512
+ 298 006a 2B60     		str	r3, [r5]
+ 299              	.L17:
+  84:Core/Src/mpu6050.c ****         if(i == len - 1) {
+ 300              		.loc 1 84 34 is_stmt 1 discriminator 2 view .LVU79
+ 301 006c 0134     		adds	r4, r4, #1
+ 302              	.LVL24:
+  84:Core/Src/mpu6050.c ****         if(i == len - 1) {
+ 303              		.loc 1 84 34 is_stmt 0 discriminator 2 view .LVU80
+ 304 006e E4B2     		uxtb	r4, r4
+ 305              	.LVL25:
+ 306              	.L15:
+  84:Core/Src/mpu6050.c ****         if(i == len - 1) {
+ 307              		.loc 1 84 26 is_stmt 1 discriminator 1 view .LVU81
+ 308 0070 B442     		cmp	r4, r6
+ 309 0072 09D2     		bcs	.L20
+  85:Core/Src/mpu6050.c ****             I2C1->CR1 &= ~I2C_CR1_ACK;
+ 310              		.loc 1 85 9 view .LVU82
+  85:Core/Src/mpu6050.c ****             I2C1->CR1 &= ~I2C_CR1_ACK;
+ 311              		.loc 1 85 21 is_stmt 0 view .LVU83
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s 			page 8
+
+
+ 312 0074 731E     		subs	r3, r6, #1
+  85:Core/Src/mpu6050.c ****             I2C1->CR1 &= ~I2C_CR1_ACK;
+ 313              		.loc 1 85 11 view .LVU84
+ 314 0076 9C42     		cmp	r4, r3
+ 315 0078 EAD0     		beq	.L21
+  90:Core/Src/mpu6050.c ****         } else {
+  91:Core/Src/mpu6050.c ****             I2C_WaitFlag(I2C_SR1_RXNE);
+ 316              		.loc 1 91 13 is_stmt 1 view .LVU85
+ 317 007a 4020     		movs	r0, #64
+ 318 007c FFF7FEFF 		bl	I2C_WaitFlag
+ 319              	.LVL26:
+  92:Core/Src/mpu6050.c ****             data[i] = I2C1->DR;
+ 320              		.loc 1 92 13 view .LVU86
+ 321              		.loc 1 92 27 is_stmt 0 view .LVU87
+ 322 0080 044B     		ldr	r3, .L22
+ 323 0082 1B69     		ldr	r3, [r3, #16]
+ 324              		.loc 1 92 21 view .LVU88
+ 325 0084 3B55     		strb	r3, [r7, r4]
+ 326 0086 F1E7     		b	.L17
+ 327              	.L20:
+ 328              		.loc 1 92 21 view .LVU89
+ 329              	.LBE2:
+  93:Core/Src/mpu6050.c ****         }
+  94:Core/Src/mpu6050.c ****     }
+  95:Core/Src/mpu6050.c ****     I2C1->CR1 |= I2C_CR1_ACK;
+ 330              		.loc 1 95 5 is_stmt 1 view .LVU90
+ 331              		.loc 1 95 9 is_stmt 0 view .LVU91
+ 332 0088 024A     		ldr	r2, .L22
+ 333 008a 1368     		ldr	r3, [r2]
+ 334              		.loc 1 95 15 view .LVU92
+ 335 008c 43F48063 		orr	r3, r3, #1024
+ 336 0090 1360     		str	r3, [r2]
+  96:Core/Src/mpu6050.c **** }
+ 337              		.loc 1 96 1 view .LVU93
+ 338 0092 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 339              	.LVL27:
+ 340              	.L23:
+ 341              		.loc 1 96 1 view .LVU94
+ 342              		.align	2
+ 343              	.L22:
+ 344 0094 00540040 		.word	1073763328
+ 345              		.cfi_endproc
+ 346              	.LFE134:
+ 348              		.section	.text.I2C1_Init,"ax",%progbits
+ 349              		.align	1
+ 350              		.global	I2C1_Init
+ 351              		.syntax unified
+ 352              		.thumb
+ 353              		.thumb_func
+ 355              	I2C1_Init:
+ 356              	.LVL28:
+ 357              	.LFB131:
+   9:Core/Src/mpu6050.c ****     uint32_t apb1_freq = get_apb1_frequency();
+ 358              		.loc 1 9 40 is_stmt 1 view -0
+ 359              		.cfi_startproc
+ 360              		@ args = 0, pretend = 0, frame = 0
+ 361              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s 			page 9
+
+
+   9:Core/Src/mpu6050.c ****     uint32_t apb1_freq = get_apb1_frequency();
+ 362              		.loc 1 9 40 is_stmt 0 view .LVU96
+ 363 0000 10B5     		push	{r4, lr}
+ 364              	.LCFI2:
+ 365              		.cfi_def_cfa_offset 8
+ 366              		.cfi_offset 4, -8
+ 367              		.cfi_offset 14, -4
+ 368 0002 0446     		mov	r4, r0
+  10:Core/Src/mpu6050.c ****     uint32_t ccr_value;
+ 369              		.loc 1 10 5 is_stmt 1 view .LVU97
+  10:Core/Src/mpu6050.c ****     uint32_t ccr_value;
+ 370              		.loc 1 10 26 is_stmt 0 view .LVU98
+ 371 0004 FFF7FEFF 		bl	get_apb1_frequency
+ 372              	.LVL29:
+  11:Core/Src/mpu6050.c ****     
+ 373              		.loc 1 11 5 is_stmt 1 view .LVU99
+  14:Core/Src/mpu6050.c ****     RCC->APB1ENR |= RCC_APB1ENR_I2C1EN;
+ 374              		.loc 1 14 5 view .LVU100
+  14:Core/Src/mpu6050.c ****     RCC->APB1ENR |= RCC_APB1ENR_I2C1EN;
+ 375              		.loc 1 14 8 is_stmt 0 view .LVU101
+ 376 0008 204B     		ldr	r3, .L28
+ 377 000a 1A6B     		ldr	r2, [r3, #48]
+  14:Core/Src/mpu6050.c ****     RCC->APB1ENR |= RCC_APB1ENR_I2C1EN;
+ 378              		.loc 1 14 18 view .LVU102
+ 379 000c 42F00202 		orr	r2, r2, #2
+ 380 0010 1A63     		str	r2, [r3, #48]
+  15:Core/Src/mpu6050.c ****     
+ 381              		.loc 1 15 5 is_stmt 1 view .LVU103
+  15:Core/Src/mpu6050.c ****     
+ 382              		.loc 1 15 8 is_stmt 0 view .LVU104
+ 383 0012 1A6C     		ldr	r2, [r3, #64]
+  15:Core/Src/mpu6050.c ****     
+ 384              		.loc 1 15 18 view .LVU105
+ 385 0014 42F40012 		orr	r2, r2, #2097152
+ 386 0018 1A64     		str	r2, [r3, #64]
+  18:Core/Src/mpu6050.c ****     GPIOB->MODER |= (2 << GPIO_MODER_MODER8_Pos) | (2 << GPIO_MODER_MODER9_Pos);
+ 387              		.loc 1 18 5 is_stmt 1 view .LVU106
+  18:Core/Src/mpu6050.c ****     GPIOB->MODER |= (2 << GPIO_MODER_MODER8_Pos) | (2 << GPIO_MODER_MODER9_Pos);
+ 388              		.loc 1 18 10 is_stmt 0 view .LVU107
+ 389 001a A3F55053 		sub	r3, r3, #13312
+ 390 001e 1A68     		ldr	r2, [r3]
+  18:Core/Src/mpu6050.c ****     GPIOB->MODER |= (2 << GPIO_MODER_MODER8_Pos) | (2 << GPIO_MODER_MODER9_Pos);
+ 391              		.loc 1 18 18 view .LVU108
+ 392 0020 22F47022 		bic	r2, r2, #983040
+ 393 0024 1A60     		str	r2, [r3]
+  19:Core/Src/mpu6050.c ****     GPIOB->OTYPER |= GPIO_OTYPER_OT_8 | GPIO_OTYPER_OT_9;
+ 394              		.loc 1 19 5 is_stmt 1 view .LVU109
+  19:Core/Src/mpu6050.c ****     GPIOB->OTYPER |= GPIO_OTYPER_OT_8 | GPIO_OTYPER_OT_9;
+ 395              		.loc 1 19 10 is_stmt 0 view .LVU110
+ 396 0026 1A68     		ldr	r2, [r3]
+  19:Core/Src/mpu6050.c ****     GPIOB->OTYPER |= GPIO_OTYPER_OT_8 | GPIO_OTYPER_OT_9;
+ 397              		.loc 1 19 18 view .LVU111
+ 398 0028 42F42022 		orr	r2, r2, #655360
+ 399 002c 1A60     		str	r2, [r3]
+  20:Core/Src/mpu6050.c ****     GPIOB->PUPDR |= (1 << (2 * 8)) | (1 << (2 * 9));
+ 400              		.loc 1 20 5 is_stmt 1 view .LVU112
+  20:Core/Src/mpu6050.c ****     GPIOB->PUPDR |= (1 << (2 * 8)) | (1 << (2 * 9));
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s 			page 10
+
+
+ 401              		.loc 1 20 10 is_stmt 0 view .LVU113
+ 402 002e 5A68     		ldr	r2, [r3, #4]
+  20:Core/Src/mpu6050.c ****     GPIOB->PUPDR |= (1 << (2 * 8)) | (1 << (2 * 9));
+ 403              		.loc 1 20 19 view .LVU114
+ 404 0030 42F44072 		orr	r2, r2, #768
+ 405 0034 5A60     		str	r2, [r3, #4]
+  21:Core/Src/mpu6050.c ****     GPIOB->AFR[1] |= (4 << (4 * 0)) | (4 << (4 * 1));
+ 406              		.loc 1 21 5 is_stmt 1 view .LVU115
+  21:Core/Src/mpu6050.c ****     GPIOB->AFR[1] |= (4 << (4 * 0)) | (4 << (4 * 1));
+ 407              		.loc 1 21 10 is_stmt 0 view .LVU116
+ 408 0036 DA68     		ldr	r2, [r3, #12]
+  21:Core/Src/mpu6050.c ****     GPIOB->AFR[1] |= (4 << (4 * 0)) | (4 << (4 * 1));
+ 409              		.loc 1 21 18 view .LVU117
+ 410 0038 42F4A022 		orr	r2, r2, #327680
+ 411 003c DA60     		str	r2, [r3, #12]
+  22:Core/Src/mpu6050.c ****     
+ 412              		.loc 1 22 5 is_stmt 1 view .LVU118
+  22:Core/Src/mpu6050.c ****     
+ 413              		.loc 1 22 15 is_stmt 0 view .LVU119
+ 414 003e 5A6A     		ldr	r2, [r3, #36]
+  22:Core/Src/mpu6050.c ****     
+ 415              		.loc 1 22 19 view .LVU120
+ 416 0040 42F04402 		orr	r2, r2, #68
+ 417 0044 5A62     		str	r2, [r3, #36]
+  25:Core/Src/mpu6050.c ****     I2C1->CR1 = I2C_CR1_SWRST;
+ 418              		.loc 1 25 5 is_stmt 1 view .LVU121
+  25:Core/Src/mpu6050.c ****     I2C1->CR1 = I2C_CR1_SWRST;
+ 419              		.loc 1 25 9 is_stmt 0 view .LVU122
+ 420 0046 124A     		ldr	r2, .L28+4
+ 421 0048 1368     		ldr	r3, [r2]
+  25:Core/Src/mpu6050.c ****     I2C1->CR1 = I2C_CR1_SWRST;
+ 422              		.loc 1 25 15 view .LVU123
+ 423 004a 23F00103 		bic	r3, r3, #1
+ 424 004e 1360     		str	r3, [r2]
+  26:Core/Src/mpu6050.c ****     I2C1->CR1 = 0;
+ 425              		.loc 1 26 5 is_stmt 1 view .LVU124
+  26:Core/Src/mpu6050.c ****     I2C1->CR1 = 0;
+ 426              		.loc 1 26 15 is_stmt 0 view .LVU125
+ 427 0050 4FF40043 		mov	r3, #32768
+ 428 0054 1360     		str	r3, [r2]
+  27:Core/Src/mpu6050.c ****     
+ 429              		.loc 1 27 5 is_stmt 1 view .LVU126
+  27:Core/Src/mpu6050.c ****     
+ 430              		.loc 1 27 15 is_stmt 0 view .LVU127
+ 431 0056 0023     		movs	r3, #0
+ 432 0058 1360     		str	r3, [r2]
+  30:Core/Src/mpu6050.c ****     
+ 433              		.loc 1 30 5 is_stmt 1 view .LVU128
+  30:Core/Src/mpu6050.c ****     
+ 434              		.loc 1 30 28 is_stmt 0 view .LVU129
+ 435 005a 0E4B     		ldr	r3, .L28+8
+ 436 005c A3FB0013 		umull	r1, r3, r3, r0
+ 437 0060 990C     		lsrs	r1, r3, #18
+  30:Core/Src/mpu6050.c ****     
+ 438              		.loc 1 30 39 view .LVU130
+ 439 0062 C3F38543 		ubfx	r3, r3, #18, #6
+  30:Core/Src/mpu6050.c ****     
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s 			page 11
+
+
+ 440              		.loc 1 30 15 view .LVU131
+ 441 0066 5360     		str	r3, [r2, #4]
+  33:Core/Src/mpu6050.c ****     if(ccr_value < 4) ccr_value = 4;
+ 442              		.loc 1 33 5 is_stmt 1 view .LVU132
+  33:Core/Src/mpu6050.c ****     if(ccr_value < 4) ccr_value = 4;
+ 443              		.loc 1 33 44 is_stmt 0 view .LVU133
+ 444 0068 4FF4FA63 		mov	r3, #2000
+ 445 006c 03FB04F4 		mul	r4, r3, r4
+ 446              	.LVL30:
+  33:Core/Src/mpu6050.c ****     if(ccr_value < 4) ccr_value = 4;
+ 447              		.loc 1 33 15 view .LVU134
+ 448 0070 B0FBF4F0 		udiv	r0, r0, r4
+ 449              	.LVL31:
+  34:Core/Src/mpu6050.c ****     I2C1->CCR = ccr_value;
+ 450              		.loc 1 34 5 is_stmt 1 view .LVU135
+  34:Core/Src/mpu6050.c ****     I2C1->CCR = ccr_value;
+ 451              		.loc 1 34 7 is_stmt 0 view .LVU136
+ 452 0074 0328     		cmp	r0, #3
+ 453 0076 00D8     		bhi	.L25
+  34:Core/Src/mpu6050.c ****     I2C1->CCR = ccr_value;
+ 454              		.loc 1 34 33 discriminator 1 view .LVU137
+ 455 0078 0420     		movs	r0, #4
+ 456              	.LVL32:
+ 457              	.L25:
+  35:Core/Src/mpu6050.c ****     
+ 458              		.loc 1 35 5 is_stmt 1 view .LVU138
+  35:Core/Src/mpu6050.c ****     
+ 459              		.loc 1 35 15 is_stmt 0 view .LVU139
+ 460 007a 054B     		ldr	r3, .L28+4
+ 461 007c D861     		str	r0, [r3, #28]
+  38:Core/Src/mpu6050.c ****     
+ 462              		.loc 1 38 5 is_stmt 1 view .LVU140
+  38:Core/Src/mpu6050.c ****     
+ 463              		.loc 1 38 41 is_stmt 0 view .LVU141
+ 464 007e 0131     		adds	r1, r1, #1
+  38:Core/Src/mpu6050.c ****     
+ 465              		.loc 1 38 17 view .LVU142
+ 466 0080 1962     		str	r1, [r3, #32]
+  41:Core/Src/mpu6050.c **** }
+ 467              		.loc 1 41 5 is_stmt 1 view .LVU143
+  41:Core/Src/mpu6050.c **** }
+ 468              		.loc 1 41 9 is_stmt 0 view .LVU144
+ 469 0082 1A68     		ldr	r2, [r3]
+  41:Core/Src/mpu6050.c **** }
+ 470              		.loc 1 41 15 view .LVU145
+ 471 0084 42F00102 		orr	r2, r2, #1
+ 472 0088 1A60     		str	r2, [r3]
+  42:Core/Src/mpu6050.c **** 
+ 473              		.loc 1 42 1 view .LVU146
+ 474 008a 10BD     		pop	{r4, pc}
+ 475              	.L29:
+ 476              		.align	2
+ 477              	.L28:
+ 478 008c 00380240 		.word	1073887232
+ 479 0090 00540040 		.word	1073763328
+ 480 0094 83DE1B43 		.word	1125899907
+ 481              		.cfi_endproc
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s 			page 12
+
+
+ 482              	.LFE131:
+ 484              		.section	.text.MPU6050_Init,"ax",%progbits
+ 485              		.align	1
+ 486              		.global	MPU6050_Init
+ 487              		.syntax unified
+ 488              		.thumb
+ 489              		.thumb_func
+ 491              	MPU6050_Init:
+ 492              	.LFB135:
+  97:Core/Src/mpu6050.c **** 
+  98:Core/Src/mpu6050.c **** void MPU6050_Init(void) {
+ 493              		.loc 1 98 25 is_stmt 1 view -0
+ 494              		.cfi_startproc
+ 495              		@ args = 0, pretend = 0, frame = 8
+ 496              		@ frame_needed = 0, uses_anonymous_args = 0
+ 497 0000 00B5     		push	{lr}
+ 498              	.LCFI3:
+ 499              		.cfi_def_cfa_offset 4
+ 500              		.cfi_offset 14, -4
+ 501 0002 83B0     		sub	sp, sp, #12
+ 502              	.LCFI4:
+ 503              		.cfi_def_cfa_offset 16
+  99:Core/Src/mpu6050.c ****     // Инициализация I2C на 100 kHz
+ 100:Core/Src/mpu6050.c ****     I2C1_Init(100);
+ 504              		.loc 1 100 5 view .LVU148
+ 505 0004 6420     		movs	r0, #100
+ 506 0006 FFF7FEFF 		bl	I2C1_Init
+ 507              	.LVL33:
+ 101:Core/Src/mpu6050.c ****     
+ 102:Core/Src/mpu6050.c ****     MPU6050_WriteReg(MPU6050_PWR_MGMT_1, 0x00);
+ 508              		.loc 1 102 5 view .LVU149
+ 509 000a 0021     		movs	r1, #0
+ 510 000c 6B20     		movs	r0, #107
+ 511 000e FFF7FEFF 		bl	MPU6050_WriteReg
+ 512              	.LVL34:
+ 103:Core/Src/mpu6050.c ****     MPU6050_WriteReg(MPU6050_GYRO_CONFIG, 0x08);
+ 513              		.loc 1 103 5 view .LVU150
+ 514 0012 0821     		movs	r1, #8
+ 515 0014 1B20     		movs	r0, #27
+ 516 0016 FFF7FEFF 		bl	MPU6050_WriteReg
+ 517              	.LVL35:
+ 104:Core/Src/mpu6050.c ****     MPU6050_WriteReg(MPU6050_ACCEL_CONFIG, 0x08);
+ 518              		.loc 1 104 5 view .LVU151
+ 519 001a 0821     		movs	r1, #8
+ 520 001c 1C20     		movs	r0, #28
+ 521 001e FFF7FEFF 		bl	MPU6050_WriteReg
+ 522              	.LVL36:
+ 105:Core/Src/mpu6050.c ****     
+ 106:Core/Src/mpu6050.c ****     for(volatile int i = 0; i < 100000; i++);
+ 523              		.loc 1 106 5 view .LVU152
+ 524              	.LBB3:
+ 525              		.loc 1 106 9 view .LVU153
+ 526              		.loc 1 106 22 is_stmt 0 view .LVU154
+ 527 0022 0023     		movs	r3, #0
+ 528 0024 0193     		str	r3, [sp, #4]
+ 529              		.loc 1 106 5 view .LVU155
+ 530 0026 02E0     		b	.L31
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s 			page 13
+
+
+ 531              	.L32:
+ 532              		.loc 1 106 42 is_stmt 1 discriminator 3 view .LVU156
+ 533 0028 019B     		ldr	r3, [sp, #4]
+ 534 002a 0133     		adds	r3, r3, #1
+ 535 002c 0193     		str	r3, [sp, #4]
+ 536              	.L31:
+ 537              		.loc 1 106 31 discriminator 1 view .LVU157
+ 538 002e 019A     		ldr	r2, [sp, #4]
+ 539 0030 024B     		ldr	r3, .L34
+ 540 0032 9A42     		cmp	r2, r3
+ 541 0034 F8DD     		ble	.L32
+ 542              	.LBE3:
+ 107:Core/Src/mpu6050.c **** }
+ 543              		.loc 1 107 1 is_stmt 0 view .LVU158
+ 544 0036 03B0     		add	sp, sp, #12
+ 545              	.LCFI5:
+ 546              		.cfi_def_cfa_offset 4
+ 547              		@ sp needed
+ 548 0038 5DF804FB 		ldr	pc, [sp], #4
+ 549              	.L35:
+ 550              		.align	2
+ 551              	.L34:
+ 552 003c 9F860100 		.word	99999
+ 553              		.cfi_endproc
+ 554              	.LFE135:
+ 556              		.section	.text.MPU6050_Read,"ax",%progbits
+ 557              		.align	1
+ 558              		.global	MPU6050_Read
+ 559              		.syntax unified
+ 560              		.thumb
+ 561              		.thumb_func
+ 563              	MPU6050_Read:
+ 564              	.LVL37:
+ 565              	.LFB136:
+ 108:Core/Src/mpu6050.c **** 
+ 109:Core/Src/mpu6050.c **** void MPU6050_Read(MPU6050_Data *data) {
+ 566              		.loc 1 109 39 is_stmt 1 view -0
+ 567              		.cfi_startproc
+ 568              		@ args = 0, pretend = 0, frame = 16
+ 569              		@ frame_needed = 0, uses_anonymous_args = 0
+ 570              		.loc 1 109 39 is_stmt 0 view .LVU160
+ 571 0000 10B5     		push	{r4, lr}
+ 572              	.LCFI6:
+ 573              		.cfi_def_cfa_offset 8
+ 574              		.cfi_offset 4, -8
+ 575              		.cfi_offset 14, -4
+ 576 0002 84B0     		sub	sp, sp, #16
+ 577              	.LCFI7:
+ 578              		.cfi_def_cfa_offset 24
+ 579 0004 0446     		mov	r4, r0
+ 110:Core/Src/mpu6050.c ****     uint8_t buffer[14];
+ 580              		.loc 1 110 5 is_stmt 1 view .LVU161
+ 111:Core/Src/mpu6050.c ****     MPU6050_ReadBytes(MPU6050_ACCEL_XOUT_H, buffer, 14);
+ 581              		.loc 1 111 5 view .LVU162
+ 582 0006 0E22     		movs	r2, #14
+ 583 0008 6946     		mov	r1, sp
+ 584 000a 3B20     		movs	r0, #59
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s 			page 14
+
+
+ 585              	.LVL38:
+ 586              		.loc 1 111 5 is_stmt 0 view .LVU163
+ 587 000c FFF7FEFF 		bl	MPU6050_ReadBytes
+ 588              	.LVL39:
+ 112:Core/Src/mpu6050.c ****     
+ 113:Core/Src/mpu6050.c ****     data->accel_x = (buffer[0] << 8) | buffer[1];
+ 589              		.loc 1 113 5 is_stmt 1 view .LVU164
+ 590              		.loc 1 113 28 is_stmt 0 view .LVU165
+ 591 0010 9DF80020 		ldrb	r2, [sp]	@ zero_extendqisi2
+ 592              		.loc 1 113 46 view .LVU166
+ 593 0014 9DF80130 		ldrb	r3, [sp, #1]	@ zero_extendqisi2
+ 594              		.loc 1 113 38 view .LVU167
+ 595 0018 43EA0223 		orr	r3, r3, r2, lsl #8
+ 596              		.loc 1 113 19 view .LVU168
+ 597 001c 2380     		strh	r3, [r4]	@ movhi
+ 114:Core/Src/mpu6050.c ****     data->accel_y = (buffer[2] << 8) | buffer[3];
+ 598              		.loc 1 114 5 is_stmt 1 view .LVU169
+ 599              		.loc 1 114 28 is_stmt 0 view .LVU170
+ 600 001e 9DF80220 		ldrb	r2, [sp, #2]	@ zero_extendqisi2
+ 601              		.loc 1 114 46 view .LVU171
+ 602 0022 9DF80330 		ldrb	r3, [sp, #3]	@ zero_extendqisi2
+ 603              		.loc 1 114 38 view .LVU172
+ 604 0026 43EA0223 		orr	r3, r3, r2, lsl #8
+ 605              		.loc 1 114 19 view .LVU173
+ 606 002a 6380     		strh	r3, [r4, #2]	@ movhi
+ 115:Core/Src/mpu6050.c ****     data->accel_z = (buffer[4] << 8) | buffer[5];
+ 607              		.loc 1 115 5 is_stmt 1 view .LVU174
+ 608              		.loc 1 115 28 is_stmt 0 view .LVU175
+ 609 002c 9DF80420 		ldrb	r2, [sp, #4]	@ zero_extendqisi2
+ 610              		.loc 1 115 46 view .LVU176
+ 611 0030 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 612              		.loc 1 115 38 view .LVU177
+ 613 0034 43EA0223 		orr	r3, r3, r2, lsl #8
+ 614              		.loc 1 115 19 view .LVU178
+ 615 0038 A380     		strh	r3, [r4, #4]	@ movhi
+ 116:Core/Src/mpu6050.c ****     data->gyro_x = (buffer[8] << 8) | buffer[9];
+ 616              		.loc 1 116 5 is_stmt 1 view .LVU179
+ 617              		.loc 1 116 27 is_stmt 0 view .LVU180
+ 618 003a 9DF80820 		ldrb	r2, [sp, #8]	@ zero_extendqisi2
+ 619              		.loc 1 116 45 view .LVU181
+ 620 003e 9DF80930 		ldrb	r3, [sp, #9]	@ zero_extendqisi2
+ 621              		.loc 1 116 37 view .LVU182
+ 622 0042 43EA0223 		orr	r3, r3, r2, lsl #8
+ 623              		.loc 1 116 18 view .LVU183
+ 624 0046 E380     		strh	r3, [r4, #6]	@ movhi
+ 117:Core/Src/mpu6050.c ****     data->gyro_y = (buffer[10] << 8) | buffer[11];
+ 625              		.loc 1 117 5 is_stmt 1 view .LVU184
+ 626              		.loc 1 117 27 is_stmt 0 view .LVU185
+ 627 0048 9DF80A20 		ldrb	r2, [sp, #10]	@ zero_extendqisi2
+ 628              		.loc 1 117 46 view .LVU186
+ 629 004c 9DF80B30 		ldrb	r3, [sp, #11]	@ zero_extendqisi2
+ 630              		.loc 1 117 38 view .LVU187
+ 631 0050 43EA0223 		orr	r3, r3, r2, lsl #8
+ 632              		.loc 1 117 18 view .LVU188
+ 633 0054 2381     		strh	r3, [r4, #8]	@ movhi
+ 118:Core/Src/mpu6050.c ****     data->gyro_z = (buffer[12] << 8) | buffer[13];
+ 634              		.loc 1 118 5 is_stmt 1 view .LVU189
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s 			page 15
+
+
+ 635              		.loc 1 118 27 is_stmt 0 view .LVU190
+ 636 0056 9DF80C20 		ldrb	r2, [sp, #12]	@ zero_extendqisi2
+ 637              		.loc 1 118 46 view .LVU191
+ 638 005a 9DF80D30 		ldrb	r3, [sp, #13]	@ zero_extendqisi2
+ 639              		.loc 1 118 38 view .LVU192
+ 640 005e 43EA0223 		orr	r3, r3, r2, lsl #8
+ 641              		.loc 1 118 18 view .LVU193
+ 642 0062 6381     		strh	r3, [r4, #10]	@ movhi
+ 119:Core/Src/mpu6050.c **** }...
+ 643              		.loc 1 119 1 view .LVU194
+ 644 0064 04B0     		add	sp, sp, #16
+ 645              	.LCFI8:
+ 646              		.cfi_def_cfa_offset 8
+ 647              		@ sp needed
+ 648 0066 10BD     		pop	{r4, pc}
+ 649              		.loc 1 119 1 view .LVU195
+ 650              		.cfi_endproc
+ 651              	.LFE136:
+ 653              		.text
+ 654              	.Letext0:
+ 655              		.file 2 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 656              		.file 3 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 657              		.file 4 "CMSIS/Devices/STM32F4xx/Inc/STM32F411xE/stm32f411xe.h"
+ 658              		.file 5 "Core/Inc/mpu6050.h"
+ 659              		.file 6 "CMSIS/Devices/STM32F4xx/Inc/system_stm32f4xx.h"
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s 			page 16
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 mpu6050.c
+C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s:21     .text.get_apb1_frequency:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s:26     .text.get_apb1_frequency:00000000 get_apb1_frequency
+C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s:50     .text.get_apb1_frequency:00000014 $d
+C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s:56     .text.I2C_WaitFlag:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s:61     .text.I2C_WaitFlag:00000000 I2C_WaitFlag
+C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s:101    .text.I2C_WaitFlag:00000018 $d
+C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s:107    .text.MPU6050_WriteReg:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s:112    .text.MPU6050_WriteReg:00000000 MPU6050_WriteReg
+C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s:183    .text.MPU6050_WriteReg:00000044 $d
+C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s:188    .text.MPU6050_ReadBytes:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s:193    .text.MPU6050_ReadBytes:00000000 MPU6050_ReadBytes
+C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s:344    .text.MPU6050_ReadBytes:00000094 $d
+C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s:349    .text.I2C1_Init:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s:355    .text.I2C1_Init:00000000 I2C1_Init
+C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s:478    .text.I2C1_Init:0000008c $d
+C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s:485    .text.MPU6050_Init:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s:491    .text.MPU6050_Init:00000000 MPU6050_Init
+C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s:552    .text.MPU6050_Init:0000003c $d
+C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s:557    .text.MPU6050_Read:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccYxxSPf.s:563    .text.MPU6050_Read:00000000 MPU6050_Read
+
+UNDEFINED SYMBOLS
+SystemCoreClock
