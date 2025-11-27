@@ -133,30 +133,6 @@ Discarded input sections
  .text          0x00000000        0x0 build_F411RE/main.o
  .data          0x00000000        0x0 build_F411RE/main.o
  .bss           0x00000000        0x0 build_F411RE/main.o
- .text          0x00000000        0x0 build_F411RE/init.o
- .data          0x00000000        0x0 build_F411RE/init.o
- .bss           0x00000000        0x0 build_F411RE/init.o
- .debug_line    0x00000000        0x0 build_F411RE/init.o
- .debug_str     0x00000000       0xd6 build_F411RE/init.o
- .comment       0x00000000       0x3a build_F411RE/init.o
- .ARM.attributes
-                0x00000000       0x34 build_F411RE/init.o
- .text          0x00000000        0x0 build_F411RE/handlers.o
- .data          0x00000000        0x0 build_F411RE/handlers.o
- .bss           0x00000000        0x0 build_F411RE/handlers.o
- .debug_line    0x00000000        0x0 build_F411RE/handlers.o
- .debug_str     0x00000000       0xda build_F411RE/handlers.o
- .comment       0x00000000       0x3a build_F411RE/handlers.o
- .ARM.attributes
-                0x00000000       0x34 build_F411RE/handlers.o
- .text          0x00000000        0x0 build_F411RE/task.o
- .data          0x00000000        0x0 build_F411RE/task.o
- .bss           0x00000000        0x0 build_F411RE/task.o
- .debug_line    0x00000000        0x0 build_F411RE/task.o
- .debug_str     0x00000000       0xd6 build_F411RE/task.o
- .comment       0x00000000       0x3a build_F411RE/task.o
- .ARM.attributes
-                0x00000000       0x34 build_F411RE/task.o
  .text          0x00000000        0x0 build_F411RE/core.o
  .data          0x00000000        0x0 build_F411RE/core.o
  .bss           0x00000000        0x0 build_F411RE/core.o
@@ -203,76 +179,6 @@ Discarded input sections
  .bss.A_Z_Bias  0x00000000        0x4 build_F411RE/MPU6050.o
  .bss.A_Y_Bias  0x00000000        0x4 build_F411RE/MPU6050.o
  .bss.A_X_Bias  0x00000000        0x4 build_F411RE/MPU6050.o
- .text          0x00000000        0x0 build_F411RE/sys_init.o
- .data          0x00000000        0x0 build_F411RE/sys_init.o
- .bss           0x00000000        0x0 build_F411RE/sys_init.o
- .text.SystemInit
-                0x00000000       0x14 build_F411RE/sys_init.o
- .debug_info    0x00000000      0x2a1 build_F411RE/sys_init.o
- .debug_abbrev  0x00000000       0xb5 build_F411RE/sys_init.o
- .debug_aranges
-                0x00000000       0x20 build_F411RE/sys_init.o
- .debug_ranges  0x00000000       0x10 build_F411RE/sys_init.o
- .debug_line    0x00000000      0x1b1 build_F411RE/sys_init.o
- .debug_str     0x00000000      0x1ed build_F411RE/sys_init.o
- .comment       0x00000000       0x3a build_F411RE/sys_init.o
- .debug_frame   0x00000000       0x20 build_F411RE/sys_init.o
- .ARM.attributes
-                0x00000000       0x34 build_F411RE/sys_init.o
- .text          0x00000000        0x0 build_F411RE/syscalls.o
- .data          0x00000000        0x0 build_F411RE/syscalls.o
- .bss           0x00000000        0x0 build_F411RE/syscalls.o
- .text.initialise_monitor_handles
-                0x00000000        0x2 build_F411RE/syscalls.o
- .text._getpid  0x00000000        0x4 build_F411RE/syscalls.o
- .text._kill    0x00000000       0x10 build_F411RE/syscalls.o
- .text._exit    0x00000000        0xc build_F411RE/syscalls.o
- .text._read    0x00000000       0x20 build_F411RE/syscalls.o
- .text._write   0x00000000       0x1c build_F411RE/syscalls.o
- .text._close   0x00000000        0x6 build_F411RE/syscalls.o
- .text._fstat   0x00000000        0xa build_F411RE/syscalls.o
- .text._isatty  0x00000000        0x4 build_F411RE/syscalls.o
- .text._lseek   0x00000000        0x4 build_F411RE/syscalls.o
- .text._open    0x00000000        0xa build_F411RE/syscalls.o
- .text._wait    0x00000000       0x10 build_F411RE/syscalls.o
- .text._unlink  0x00000000       0x10 build_F411RE/syscalls.o
- .text._times   0x00000000        0x6 build_F411RE/syscalls.o
- .text._stat    0x00000000        0xa build_F411RE/syscalls.o
- .text._link    0x00000000       0x10 build_F411RE/syscalls.o
- .text._fork    0x00000000       0x10 build_F411RE/syscalls.o
- .text._execve  0x00000000       0x10 build_F411RE/syscalls.o
- .data.environ  0x00000000        0x4 build_F411RE/syscalls.o
- .bss.__env     0x00000000        0x4 build_F411RE/syscalls.o
- .debug_info    0x00000000      0x848 build_F411RE/syscalls.o
- .debug_abbrev  0x00000000      0x1e3 build_F411RE/syscalls.o
- .debug_loc     0x00000000      0x583 build_F411RE/syscalls.o
- .debug_aranges
-                0x00000000       0xa8 build_F411RE/syscalls.o
- .debug_ranges  0x00000000       0x98 build_F411RE/syscalls.o
- .debug_line    0x00000000      0x469 build_F411RE/syscalls.o
- .debug_str     0x00000000      0x3dd build_F411RE/syscalls.o
- .comment       0x00000000       0x3a build_F411RE/syscalls.o
- .debug_frame   0x00000000      0x190 build_F411RE/syscalls.o
- .ARM.attributes
-                0x00000000       0x34 build_F411RE/syscalls.o
- .text          0x00000000        0x0 build_F411RE/sysmem.o
- .data          0x00000000        0x0 build_F411RE/sysmem.o
- .bss           0x00000000        0x0 build_F411RE/sysmem.o
- .text._sbrk    0x00000000       0x48 build_F411RE/sysmem.o
- .bss.__sbrk_heap_end
-                0x00000000        0x4 build_F411RE/sysmem.o
- .debug_info    0x00000000      0x18c build_F411RE/sysmem.o
- .debug_abbrev  0x00000000       0xeb build_F411RE/sysmem.o
- .debug_loc     0x00000000       0x90 build_F411RE/sysmem.o
- .debug_aranges
-                0x00000000       0x20 build_F411RE/sysmem.o
- .debug_ranges  0x00000000       0x10 build_F411RE/sysmem.o
- .debug_line    0x00000000      0x295 build_F411RE/sysmem.o
- .debug_str     0x00000000      0x209 build_F411RE/sysmem.o
- .comment       0x00000000       0x3a build_F411RE/sysmem.o
- .debug_frame   0x00000000       0x28 build_F411RE/sysmem.o
- .ARM.attributes
-                0x00000000       0x34 build_F411RE/sysmem.o
  .text          0x00000000        0x0 build_F411RE/time_base.o
  .data          0x00000000        0x0 build_F411RE/time_base.o
  .bss           0x00000000        0x0 build_F411RE/time_base.o
@@ -528,15 +434,9 @@ LOAD build_F411RE/system_stm32f4xx.o
 LOAD build_F411RE/syscalls.o
 LOAD build_F411RE/sysmem.o
 LOAD build_F411RE/main.o
-LOAD build_F411RE/init.o
-LOAD build_F411RE/handlers.o
-LOAD build_F411RE/task.o
 LOAD build_F411RE/core.o
 LOAD build_F411RE/i2c.o
 LOAD build_F411RE/MPU6050.o
-LOAD build_F411RE/sys_init.o
-LOAD build_F411RE/syscalls.o
-LOAD build_F411RE/sysmem.o
 LOAD build_F411RE/time_base.o
 LOAD build_F411RE/uart.o
 LOAD build_F411RE/startup_stm32f411xe.o
@@ -1141,29 +1041,29 @@ LOAD C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win3
  .comment       0x00000039       0x3a C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-isattyr.o)
  .comment       0x00000039       0x3a C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-sbrkr.o)
 
-.debug_info     0x00000000     0x2e0f
+.debug_info     0x00000000     0x2e0a
  .debug_info    0x00000000      0x5de build_F411RE/system_stm32f4xx.o
  .debug_info    0x000005de      0x848 build_F411RE/syscalls.o
  .debug_info    0x00000e26      0x18c build_F411RE/sysmem.o
  .debug_info    0x00000fb2      0x3e0 build_F411RE/main.o
  .debug_info    0x00001392      0x6e1 build_F411RE/i2c.o
- .debug_info    0x00001a73      0x824 build_F411RE/MPU6050.o
- .debug_info    0x00002297      0x4e7 build_F411RE/time_base.o
- .debug_info    0x0000277e      0x58e build_F411RE/uart.o
- .debug_info    0x00002d0c       0x30 build_F411RE/startup_stm32f411xe.o
- .debug_info    0x00002d3c       0xd3 C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a(_arm_addsubdf3.o)
+ .debug_info    0x00001a73      0x81f build_F411RE/MPU6050.o
+ .debug_info    0x00002292      0x4e7 build_F411RE/time_base.o
+ .debug_info    0x00002779      0x58e build_F411RE/uart.o
+ .debug_info    0x00002d07       0x30 build_F411RE/startup_stm32f411xe.o
+ .debug_info    0x00002d37       0xd3 C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a(_arm_addsubdf3.o)
 
-.debug_abbrev   0x00000000      0xc0d
+.debug_abbrev   0x00000000      0xc27
  .debug_abbrev  0x00000000      0x11b build_F411RE/system_stm32f4xx.o
  .debug_abbrev  0x0000011b      0x1e3 build_F411RE/syscalls.o
  .debug_abbrev  0x000002fe       0xeb build_F411RE/sysmem.o
  .debug_abbrev  0x000003e9      0x180 build_F411RE/main.o
  .debug_abbrev  0x00000569      0x193 build_F411RE/i2c.o
- .debug_abbrev  0x000006fc      0x19c build_F411RE/MPU6050.o
- .debug_abbrev  0x00000898      0x1b9 build_F411RE/time_base.o
- .debug_abbrev  0x00000a51      0x177 build_F411RE/uart.o
- .debug_abbrev  0x00000bc8       0x1d build_F411RE/startup_stm32f411xe.o
- .debug_abbrev  0x00000be5       0x28 C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a(_arm_addsubdf3.o)
+ .debug_abbrev  0x000006fc      0x1b6 build_F411RE/MPU6050.o
+ .debug_abbrev  0x000008b2      0x1b9 build_F411RE/time_base.o
+ .debug_abbrev  0x00000a6b      0x177 build_F411RE/uart.o
+ .debug_abbrev  0x00000be2       0x1d build_F411RE/startup_stm32f411xe.o
+ .debug_abbrev  0x00000bff       0x28 C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a(_arm_addsubdf3.o)
 
 .debug_loc      0x00000000     0x11ed
  .debug_loc     0x00000000      0x181 build_F411RE/system_stm32f4xx.o
@@ -1208,17 +1108,17 @@ LOAD C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win3
  .debug_ranges  0x000001a8       0x30 build_F411RE/uart.o
  .debug_ranges  0x000001d8       0x20 build_F411RE/startup_stm32f411xe.o
 
-.debug_line     0x00000000     0x2259
+.debug_line     0x00000000     0x224a
  .debug_line    0x00000000      0x2fb build_F411RE/system_stm32f4xx.o
  .debug_line    0x000002fb      0x469 build_F411RE/syscalls.o
  .debug_line    0x00000764      0x295 build_F411RE/sysmem.o
  .debug_line    0x000009f9      0x2bb build_F411RE/main.o
  .debug_line    0x00000cb4      0x915 build_F411RE/i2c.o
- .debug_line    0x000015c9      0x50a build_F411RE/MPU6050.o
- .debug_line    0x00001ad3      0x282 build_F411RE/time_base.o
- .debug_line    0x00001d55      0x30b build_F411RE/uart.o
- .debug_line    0x00002060       0x8a build_F411RE/startup_stm32f411xe.o
- .debug_line    0x000020ea      0x16f C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a(_arm_addsubdf3.o)
+ .debug_line    0x000015c9      0x4fb build_F411RE/MPU6050.o
+ .debug_line    0x00001ac4      0x282 build_F411RE/time_base.o
+ .debug_line    0x00001d46      0x30b build_F411RE/uart.o
+ .debug_line    0x00002051       0x8a build_F411RE/startup_stm32f411xe.o
+ .debug_line    0x000020db      0x16f C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a(_arm_addsubdf3.o)
 
 .debug_str      0x00000000     0x1214
  .debug_str     0x00000000     0x1214 build_F411RE/system_stm32f4xx.o
@@ -1227,7 +1127,7 @@ LOAD C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win3
  .debug_str     0x00001214      0x209 build_F411RE/sysmem.o
  .debug_str     0x00001214      0x40b build_F411RE/main.o
  .debug_str     0x00001214      0x36c build_F411RE/i2c.o
- .debug_str     0x00001214      0x518 build_F411RE/MPU6050.o
+ .debug_str     0x00001214      0x504 build_F411RE/MPU6050.o
  .debug_str     0x00001214      0x620 build_F411RE/time_base.o
  .debug_str     0x00001214      0x33a build_F411RE/uart.o
  .debug_str     0x00001214       0x74 build_F411RE/startup_stm32f411xe.o
@@ -1343,7 +1243,6 @@ UsageFault_Handler                                build_F411RE/startup_stm32f411
 WWDG_IRQHandler                                   build_F411RE/startup_stm32f411xe.o
 _Accel_Cali                                       build_F411RE/MPU6050.o
 _Min_Stack_Size                                   build_F411RE/sysmem.o
-                                                  build_F411RE/sysmem.o
 __adddf3                                          C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a(_arm_addsubdf3.o)
 __aeabi_dadd                                      C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a(_arm_addsubdf3.o)
 __aeabi_drsub                                     C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a(_arm_addsubdf3.o)
@@ -1371,8 +1270,6 @@ __env                                             build_F411RE/syscalls.o
 __errno                                           C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-errno.o)
                                                   build_F411RE/sysmem.o
                                                   build_F411RE/syscalls.o
-                                                  build_F411RE/sysmem.o
-                                                  build_F411RE/syscalls.o
 __extendsfdf2                                     C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a(_arm_addsubdf3.o)
 __fini_array_end                                  C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-fini.o)
 __fini_array_start                                C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-fini.o)
@@ -1385,9 +1282,7 @@ __fp_unlock_all                                   C:/Users/pashk/Desktop/ /tools
 __init_array_end                                  C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
 __init_array_start                                C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
 __io_getchar                                      build_F411RE/syscalls.o
-                                                  build_F411RE/syscalls.o
 __io_putchar                                      build_F411RE/uart.o
-                                                  build_F411RE/syscalls.o
                                                   build_F411RE/syscalls.o
 __libc_fini_array                                 C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-fini.o)
                                                   C:/Users/pashk/Desktop/ /tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o
@@ -1495,9 +1390,7 @@ _close_r                                          C:/Users/pashk/Desktop/ /tools
 _ebss                                             build_F411RE/startup_stm32f411xe.o
 _edata                                            build_F411RE/startup_stm32f411xe.o
 _end                                              build_F411RE/sysmem.o
-                                                  build_F411RE/sysmem.o
 _estack                                           build_F411RE/startup_stm32f411xe.o
-                                                  build_F411RE/sysmem.o
                                                   build_F411RE/sysmem.o
 _execve                                           build_F411RE/syscalls.o
 _exit                                             build_F411RE/syscalls.o
