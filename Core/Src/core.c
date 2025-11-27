@@ -4,9 +4,6 @@
 void SysClockConfig(void) //set the core frequency to 100MHz
 {
 	
-
-
-
 	SCB->CPACR |= ((3UL << 10*2)|(3UL << 11*2)); //enable FPU
 	#define PLL_M      4
 	#define PLL_N      200
