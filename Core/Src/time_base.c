@@ -9,6 +9,7 @@
 #include "time_base.h"
 
 #include "stm32f4xx.h"
+#include "stm32f411xe.h"
 
 
 volatile uint32_t current_ticks;

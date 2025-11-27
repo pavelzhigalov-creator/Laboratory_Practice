@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 1
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccFFXzxk.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -20,1325 +20,213 @@ ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 1
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
   19              		.file 1 "Core/Src/main.c"
-  20              		.section	.text.Delay,"ax",%progbits
-  21              		.align	1
-  22              		.global	Delay
-  23              		.syntax unified
-  24              		.thumb
-  25              		.thumb_func
-  27              	Delay:
-  28              	.LVL0:
-  29              	.LFB130:
-   1:Core/Src/main.c **** #include "init.h"
-   2:Core/Src/main.c **** 
-   3:Core/Src/main.c **** #include "stm32f4xx.h"
-   4:Core/Src/main.c **** 
-   5:Core/Src/main.c **** #define MPU6050_ADDR 0xD0 // 0x68 << 1
-   6:Core/Src/main.c **** #define WHO_AM_I 0x75
-   7:Core/Src/main.c **** #define PWR_MGMT_1 0x6B
-   8:Core/Src/main.c **** #define ACCEL_XOUT_H 0x3B
+  20              		.global	__aeabi_f2d
+  21              		.section	.rodata.main.str1.4,"aMS",%progbits,1
+  22              		.align	2
+  23              	.LC0:
+  24 0000 41636365 		.ascii	"Accel: X = %.2f Y = %.2f Z = %.2f\015\012\000"
+  24      6C3A2058 
+  24      203D2025 
+  24      2E326620 
+  24      59203D20 
+  25              		.align	2
+  26              	.LC1:
+  27 0024 3D3D3D3D 		.ascii	"==============================\015\000"
+  27      3D3D3D3D 
+  27      3D3D3D3D 
+  27      3D3D3D3D 
+  27      3D3D3D3D 
+  28              		.section	.text.main,"ax",%progbits
+  29              		.align	1
+  30              		.global	main
+  31              		.syntax unified
+  32              		.thumb
+  33              		.thumb_func
+  35              	main:
+  36              	.LFB133:
+   1:Core/Src/main.c **** #include "i2c.h"
+   2:Core/Src/main.c **** #include "time_base.h"
+   3:Core/Src/main.c **** #include "uart.h"
+   4:Core/Src/main.c **** #include "stdio.h"
+   5:Core/Src/main.c **** #include "MPU6050.h"
+   6:Core/Src/main.c **** 
+   7:Core/Src/main.c **** #define rate 300
+   8:Core/Src/main.c **** uint32_t previous;
    9:Core/Src/main.c **** 
-  10:Core/Src/main.c **** void Delay(uint32_t count) {
-  30              		.loc 1 10 28 view -0
-  31              		.cfi_startproc
-  32              		@ args = 0, pretend = 0, frame = 8
-  33              		@ frame_needed = 0, uses_anonymous_args = 0
-  34              		@ link register save eliminated.
-  35              		.loc 1 10 28 is_stmt 0 view .LVU1
-  36 0000 82B0     		sub	sp, sp, #8
-  37              	.LCFI0:
-  38              		.cfi_def_cfa_offset 8
-  11:Core/Src/main.c ****     for(volatile uint32_t i = 0; i < count; i++);
-  39              		.loc 1 11 5 is_stmt 1 view .LVU2
-  40              	.LBB2:
-  41              		.loc 1 11 9 view .LVU3
-  42              		.loc 1 11 27 is_stmt 0 view .LVU4
-  43 0002 0023     		movs	r3, #0
-  44 0004 0193     		str	r3, [sp, #4]
-  45              		.loc 1 11 5 view .LVU5
-  46 0006 02E0     		b	.L2
-  47              	.L3:
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 2
+  10:Core/Src/main.c **** 
+  11:Core/Src/main.c **** int main(void)
+  12:Core/Src/main.c **** {
+  37              		.loc 1 12 1 view -0
+  38              		.cfi_startproc
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccFFXzxk.s 			page 2
 
 
-  48              		.loc 1 11 46 is_stmt 1 discriminator 3 view .LVU6
-  49 0008 019B     		ldr	r3, [sp, #4]
-  50 000a 0133     		adds	r3, r3, #1
-  51 000c 0193     		str	r3, [sp, #4]
-  52              	.L2:
-  53              		.loc 1 11 36 discriminator 1 view .LVU7
-  54 000e 019B     		ldr	r3, [sp, #4]
-  55 0010 8342     		cmp	r3, r0
-  56 0012 F9D3     		bcc	.L3
-  57              	.LBE2:
-  12:Core/Src/main.c **** }
-  58              		.loc 1 12 1 is_stmt 0 view .LVU8
-  59 0014 02B0     		add	sp, sp, #8
-  60              	.LCFI1:
-  61              		.cfi_def_cfa_offset 0
-  62              		@ sp needed
-  63 0016 7047     		bx	lr
-  64              		.cfi_endproc
-  65              	.LFE130:
-  67              		.section	.text.LED_Init,"ax",%progbits
-  68              		.align	1
-  69              		.global	LED_Init
-  70              		.syntax unified
-  71              		.thumb
-  72              		.thumb_func
-  74              	LED_Init:
-  75              	.LFB131:
-  13:Core/Src/main.c **** 
-  14:Core/Src/main.c **** void LED_Init(void) {
-  76              		.loc 1 14 21 is_stmt 1 view -0
-  77              		.cfi_startproc
-  78              		@ args = 0, pretend = 0, frame = 0
-  79              		@ frame_needed = 0, uses_anonymous_args = 0
-  80              		@ link register save eliminated.
-  15:Core/Src/main.c ****     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
-  81              		.loc 1 15 5 view .LVU10
-  82              		.loc 1 15 8 is_stmt 0 view .LVU11
-  83 0000 074A     		ldr	r2, .L6
-  84 0002 136B     		ldr	r3, [r2, #48]
-  85              		.loc 1 15 18 view .LVU12
-  86 0004 43F00103 		orr	r3, r3, #1
-  87 0008 1363     		str	r3, [r2, #48]
-  16:Core/Src/main.c ****     GPIOA->MODER |= (1 << 10);
-  88              		.loc 1 16 5 is_stmt 1 view .LVU13
-  89              		.loc 1 16 10 is_stmt 0 view .LVU14
-  90 000a 064B     		ldr	r3, .L6+4
-  91 000c 1A68     		ldr	r2, [r3]
-  92              		.loc 1 16 18 view .LVU15
-  93 000e 42F48062 		orr	r2, r2, #1024
-  94 0012 1A60     		str	r2, [r3]
-  17:Core/Src/main.c ****     GPIOA->OTYPER &= ~(1 << 5);
-  95              		.loc 1 17 5 is_stmt 1 view .LVU16
-  96              		.loc 1 17 10 is_stmt 0 view .LVU17
-  97 0014 5A68     		ldr	r2, [r3, #4]
-  98              		.loc 1 17 19 view .LVU18
-  99 0016 22F02002 		bic	r2, r2, #32
- 100 001a 5A60     		str	r2, [r3, #4]
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 3
+  39              		@ Volatile: function does not return.
+  40              		@ args = 0, pretend = 0, frame = 24
+  41              		@ frame_needed = 0, uses_anonymous_args = 0
+  42 0000 00B5     		push	{lr}
+  43              	.LCFI0:
+  44              		.cfi_def_cfa_offset 4
+  45              		.cfi_offset 14, -4
+  46 0002 8BB0     		sub	sp, sp, #44
+  47              	.LCFI1:
+  48              		.cfi_def_cfa_offset 48
+  13:Core/Src/main.c **** 	Ticks_Init(16000000);
+  49              		.loc 1 13 2 view .LVU1
+  50 0004 1E48     		ldr	r0, .L5
+  51 0006 FFF7FEFF 		bl	Ticks_Init
+  52              	.LVL0:
+  14:Core/Src/main.c **** 
+  15:Core/Src/main.c **** 	uart2_rxtx_init();
+  53              		.loc 1 15 2 view .LVU2
+  54 000a FFF7FEFF 		bl	uart2_rxtx_init
+  55              	.LVL1:
+  16:Core/Src/main.c **** 
+  17:Core/Src/main.c **** 	i2c_init();
+  56              		.loc 1 17 2 view .LVU3
+  57 000e FFF7FEFF 		bl	i2c_init
+  58              	.LVL2:
+  18:Core/Src/main.c **** 
+  19:Core/Src/main.c **** 	MPU_ConfigTypeDef myConfig;
+  59              		.loc 1 19 2 view .LVU4
+  20:Core/Src/main.c **** 
+  21:Core/Src/main.c **** 	myConfig.Accel_Full_Scale = AFS_SEL_4g;
+  60              		.loc 1 21 2 view .LVU5
+  61              		.loc 1 21 28 is_stmt 0 view .LVU6
+  62 0012 0123     		movs	r3, #1
+  63 0014 8DF82230 		strb	r3, [sp, #34]
+  22:Core/Src/main.c **** 	myConfig.ClockSource = Internal_8MHz;
+  64              		.loc 1 22 2 is_stmt 1 view .LVU7
+  65              		.loc 1 22 23 is_stmt 0 view .LVU8
+  66 0018 0022     		movs	r2, #0
+  67 001a 8DF82020 		strb	r2, [sp, #32]
+  23:Core/Src/main.c **** 	myConfig.CONFIG_DLPF = DLPF_184A_188G_Hz;
+  68              		.loc 1 23 2 is_stmt 1 view .LVU9
+  69              		.loc 1 23 23 is_stmt 0 view .LVU10
+  70 001e 8DF82330 		strb	r3, [sp, #35]
+  24:Core/Src/main.c **** 	myConfig.Sleep_Mode_Bit = 0;
+  71              		.loc 1 24 2 is_stmt 1 view .LVU11
+  72              		.loc 1 24 26 is_stmt 0 view .LVU12
+  73 0022 8DF82420 		strb	r2, [sp, #36]
+  25:Core/Src/main.c **** 	myConfig.Gyro_Full_Scale = FS_SEL_500;
+  74              		.loc 1 25 2 is_stmt 1 view .LVU13
+  75              		.loc 1 25 27 is_stmt 0 view .LVU14
+  76 0026 8DF82130 		strb	r3, [sp, #33]
+  26:Core/Src/main.c **** 
+  27:Core/Src/main.c **** 	MPU6050_Config(&myConfig);
+  77              		.loc 1 27 2 is_stmt 1 view .LVU15
+  78 002a 08A8     		add	r0, sp, #32
+  79 002c FFF7FEFF 		bl	MPU6050_Config
+  80              	.LVL3:
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccFFXzxk.s 			page 3
 
 
-  18:Core/Src/main.c **** }
- 101              		.loc 1 18 1 view .LVU19
- 102 001c 7047     		bx	lr
- 103              	.L7:
- 104 001e 00BF     		.align	2
- 105              	.L6:
- 106 0020 00380240 		.word	1073887232
- 107 0024 00000240 		.word	1073872896
- 108              		.cfi_endproc
- 109              	.LFE131:
- 111              		.section	.text.LED_On,"ax",%progbits
- 112              		.align	1
- 113              		.global	LED_On
- 114              		.syntax unified
- 115              		.thumb
- 116              		.thumb_func
- 118              	LED_On:
- 119              	.LFB132:
-  19:Core/Src/main.c **** 
-  20:Core/Src/main.c **** void LED_On(void) { GPIOA->BSRR = (1 << 5); }
- 120              		.loc 1 20 19 is_stmt 1 view -0
- 121              		.cfi_startproc
- 122              		@ args = 0, pretend = 0, frame = 0
- 123              		@ frame_needed = 0, uses_anonymous_args = 0
- 124              		@ link register save eliminated.
- 125              		.loc 1 20 21 view .LVU21
- 126              		.loc 1 20 33 is_stmt 0 view .LVU22
- 127 0000 014B     		ldr	r3, .L9
- 128 0002 2022     		movs	r2, #32
- 129 0004 9A61     		str	r2, [r3, #24]
- 130              		.loc 1 20 45 view .LVU23
- 131 0006 7047     		bx	lr
- 132              	.L10:
- 133              		.align	2
- 134              	.L9:
- 135 0008 00000240 		.word	1073872896
- 136              		.cfi_endproc
- 137              	.LFE132:
- 139              		.section	.text.LED_Off,"ax",%progbits
- 140              		.align	1
- 141              		.global	LED_Off
- 142              		.syntax unified
- 143              		.thumb
- 144              		.thumb_func
- 146              	LED_Off:
- 147              	.LFB133:
-  21:Core/Src/main.c **** void LED_Off(void) { GPIOA->BSRR = (1 << (5 + 16)); }
- 148              		.loc 1 21 20 is_stmt 1 view -0
- 149              		.cfi_startproc
- 150              		@ args = 0, pretend = 0, frame = 0
- 151              		@ frame_needed = 0, uses_anonymous_args = 0
- 152              		@ link register save eliminated.
- 153              		.loc 1 21 22 view .LVU25
- 154              		.loc 1 21 34 is_stmt 0 view .LVU26
- 155 0000 024B     		ldr	r3, .L12
- 156 0002 4FF40012 		mov	r2, #2097152
- 157 0006 9A61     		str	r2, [r3, #24]
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 4
+  81              	.L2:
+  28:Core/Src/main.c **** 
+  29:Core/Src/main.c **** 	ScaledData_Def meAccel;
+  82              		.loc 1 29 2 view .LVU16
+  30:Core/Src/main.c **** 
+  31:Core/Src/main.c **** 	while(1)
+  83              		.loc 1 31 2 view .LVU17
+  32:Core/Src/main.c **** 	{
+  33:Core/Src/main.c **** 		MPU6050_Get_Accel_Scale(&meAccel);
+  84              		.loc 1 33 3 view .LVU18
+  85 0030 05A8     		add	r0, sp, #20
+  86 0032 FFF7FEFF 		bl	MPU6050_Get_Accel_Scale
+  87              	.LVL4:
+  34:Core/Src/main.c **** 		if(get_Ticks()-previous >rate)
+  88              		.loc 1 34 3 view .LVU19
+  89              		.loc 1 34 6 is_stmt 0 view .LVU20
+  90 0036 FFF7FEFF 		bl	get_Ticks
+  91              	.LVL5:
+  92              		.loc 1 34 17 discriminator 1 view .LVU21
+  93 003a 124B     		ldr	r3, .L5+4
+  94 003c 1B68     		ldr	r3, [r3]
+  95 003e C01A     		subs	r0, r0, r3
+  96              		.loc 1 34 5 discriminator 1 view .LVU22
+  97 0040 B0F5967F 		cmp	r0, #300
+  98 0044 F4D9     		bls	.L2
+  35:Core/Src/main.c **** 		{
+  36:Core/Src/main.c **** 		    printf("Accel: X = %.2f Y = %.2f Z = %.2f\r\n", meAccel.x, meAccel.y, meAccel.z);
+  99              		.loc 1 36 7 is_stmt 1 view .LVU23
+ 100 0046 0598     		ldr	r0, [sp, #20]	@ float
+ 101 0048 FFF7FEFF 		bl	__aeabi_f2d
+ 102              	.LVL6:
+ 103 004c 0446     		mov	r4, r0
+ 104 004e 0D46     		mov	r5, r1
+ 105 0050 0798     		ldr	r0, [sp, #28]	@ float
+ 106 0052 FFF7FEFF 		bl	__aeabi_f2d
+ 107              	.LVL7:
+ 108 0056 CDE90201 		strd	r0, [sp, #8]
+ 109 005a 0698     		ldr	r0, [sp, #24]	@ float
+ 110 005c FFF7FEFF 		bl	__aeabi_f2d
+ 111              	.LVL8:
+ 112 0060 CDE90001 		strd	r0, [sp]
+ 113 0064 2246     		mov	r2, r4
+ 114 0066 2B46     		mov	r3, r5
+ 115 0068 0748     		ldr	r0, .L5+8
+ 116 006a FFF7FEFF 		bl	printf
+ 117              	.LVL9:
+  37:Core/Src/main.c **** 		    printf("==============================\r\n");
+ 118              		.loc 1 37 7 view .LVU24
+ 119 006e 0748     		ldr	r0, .L5+12
+ 120 0070 FFF7FEFF 		bl	puts
+ 121              	.LVL10:
+  38:Core/Src/main.c **** 			previous=get_Ticks();
+ 122              		.loc 1 38 4 view .LVU25
+ 123              		.loc 1 38 13 is_stmt 0 view .LVU26
+ 124 0074 FFF7FEFF 		bl	get_Ticks
+ 125              	.LVL11:
+ 126              		.loc 1 38 12 discriminator 1 view .LVU27
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccFFXzxk.s 			page 4
 
 
- 158              		.loc 1 21 53 view .LVU27
- 159 0008 7047     		bx	lr
- 160              	.L13:
- 161 000a 00BF     		.align	2
- 162              	.L12:
- 163 000c 00000240 		.word	1073872896
- 164              		.cfi_endproc
- 165              	.LFE133:
- 167              		.section	.text.LED_Toggle,"ax",%progbits
- 168              		.align	1
- 169              		.global	LED_Toggle
- 170              		.syntax unified
- 171              		.thumb
- 172              		.thumb_func
- 174              	LED_Toggle:
- 175              	.LFB134:
-  22:Core/Src/main.c **** void LED_Toggle(void) { GPIOA->ODR ^= (1 << 5); }
- 176              		.loc 1 22 23 is_stmt 1 view -0
- 177              		.cfi_startproc
- 178              		@ args = 0, pretend = 0, frame = 0
- 179              		@ frame_needed = 0, uses_anonymous_args = 0
- 180              		@ link register save eliminated.
- 181              		.loc 1 22 25 view .LVU29
- 182              		.loc 1 22 30 is_stmt 0 view .LVU30
- 183 0000 024A     		ldr	r2, .L15
- 184 0002 5369     		ldr	r3, [r2, #20]
- 185              		.loc 1 22 36 view .LVU31
- 186 0004 83F02003 		eor	r3, r3, #32
- 187 0008 5361     		str	r3, [r2, #20]
- 188              		.loc 1 22 49 view .LVU32
- 189 000a 7047     		bx	lr
- 190              	.L16:
- 191              		.align	2
- 192              	.L15:
- 193 000c 00000240 		.word	1073872896
- 194              		.cfi_endproc
- 195              	.LFE134:
- 197              		.section	.text.I2C_CheckDevice,"ax",%progbits
- 198              		.align	1
- 199              		.global	I2C_CheckDevice
- 200              		.syntax unified
- 201              		.thumb
- 202              		.thumb_func
- 204              	I2C_CheckDevice:
- 205              	.LVL1:
- 206              	.LFB135:
-  23:Core/Src/main.c **** 
-  24:Core/Src/main.c **** uint8_t I2C_CheckDevice(uint8_t addr) {
- 207              		.loc 1 24 39 is_stmt 1 view -0
- 208              		.cfi_startproc
- 209              		@ args = 0, pretend = 0, frame = 8
- 210              		@ frame_needed = 0, uses_anonymous_args = 0
- 211              		@ link register save eliminated.
-  25:Core/Src/main.c ****     I2C1->CR1 |= I2C_CR1_START;
- 212              		.loc 1 25 5 view .LVU34
- 213              		.loc 1 25 9 is_stmt 0 view .LVU35
- 214 0000 154A     		ldr	r2, .L25
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 5
-
-
- 215 0002 1368     		ldr	r3, [r2]
- 216              		.loc 1 25 15 view .LVU36
- 217 0004 43F48073 		orr	r3, r3, #256
- 218 0008 1360     		str	r3, [r2]
-  26:Core/Src/main.c ****     while(!(I2C1->SR1 & I2C_SR1_SB));
- 219              		.loc 1 26 5 is_stmt 1 view .LVU37
- 220              	.L18:
- 221              		.loc 1 26 11 discriminator 1 view .LVU38
- 222              		.loc 1 26 17 is_stmt 0 discriminator 1 view .LVU39
- 223 000a 134B     		ldr	r3, .L25
- 224 000c 5B69     		ldr	r3, [r3, #20]
- 225              		.loc 1 26 11 discriminator 1 view .LVU40
- 226 000e 13F0010F 		tst	r3, #1
- 227 0012 FAD0     		beq	.L18
-  27:Core/Src/main.c ****     
-  28:Core/Src/main.c ****     I2C1->DR = addr;
- 228              		.loc 1 28 5 is_stmt 1 view .LVU41
- 229              		.loc 1 28 14 is_stmt 0 view .LVU42
- 230 0014 104B     		ldr	r3, .L25
- 231 0016 1861     		str	r0, [r3, #16]
-  29:Core/Src/main.c ****     if(I2C1->SR1 & I2C_SR1_AF) {
- 232              		.loc 1 29 5 is_stmt 1 view .LVU43
- 233              		.loc 1 29 12 is_stmt 0 view .LVU44
- 234 0018 5B69     		ldr	r3, [r3, #20]
- 235              		.loc 1 29 7 view .LVU45
- 236 001a 13F4806F 		tst	r3, #1024
- 237 001e 0FD1     		bne	.L24
-  24:Core/Src/main.c ****     I2C1->CR1 |= I2C_CR1_START;
- 238              		.loc 1 24 39 view .LVU46
- 239 0020 82B0     		sub	sp, sp, #8
- 240              	.LCFI2:
- 241              		.cfi_def_cfa_offset 8
- 242              	.L19:
-  30:Core/Src/main.c ****         I2C1->SR1 &= ~I2C_SR1_AF;
-  31:Core/Src/main.c ****         I2C1->CR1 |= I2C_CR1_STOP;
-  32:Core/Src/main.c ****         return 0;
-  33:Core/Src/main.c ****     }
-  34:Core/Src/main.c ****     
-  35:Core/Src/main.c ****     while(!(I2C1->SR1 & I2C_SR1_ADDR));
- 243              		.loc 1 35 11 is_stmt 1 discriminator 1 view .LVU47
- 244              		.loc 1 35 17 is_stmt 0 discriminator 1 view .LVU48
- 245 0022 0D4B     		ldr	r3, .L25
- 246 0024 5B69     		ldr	r3, [r3, #20]
- 247              		.loc 1 35 11 discriminator 1 view .LVU49
- 248 0026 13F0020F 		tst	r3, #2
- 249 002a FAD0     		beq	.L19
-  36:Core/Src/main.c ****     volatile uint32_t tmp = I2C1->SR2;
- 250              		.loc 1 36 5 is_stmt 1 view .LVU50
- 251              		.loc 1 36 33 is_stmt 0 view .LVU51
- 252 002c 0A4B     		ldr	r3, .L25
- 253 002e 9A69     		ldr	r2, [r3, #24]
- 254              		.loc 1 36 23 view .LVU52
- 255 0030 0192     		str	r2, [sp, #4]
-  37:Core/Src/main.c ****     
-  38:Core/Src/main.c ****     I2C1->CR1 |= I2C_CR1_STOP;
- 256              		.loc 1 38 5 is_stmt 1 view .LVU53
- 257              		.loc 1 38 9 is_stmt 0 view .LVU54
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 6
-
-
- 258 0032 1A68     		ldr	r2, [r3]
- 259              		.loc 1 38 15 view .LVU55
- 260 0034 42F40072 		orr	r2, r2, #512
- 261 0038 1A60     		str	r2, [r3]
-  39:Core/Src/main.c ****     return 1;
- 262              		.loc 1 39 5 is_stmt 1 view .LVU56
- 263              		.loc 1 39 12 is_stmt 0 view .LVU57
- 264 003a 0120     		movs	r0, #1
- 265              	.LVL2:
-  40:Core/Src/main.c **** }
- 266              		.loc 1 40 1 view .LVU58
- 267 003c 02B0     		add	sp, sp, #8
- 268              	.LCFI3:
- 269              		.cfi_def_cfa_offset 0
- 270              		@ sp needed
- 271 003e 7047     		bx	lr
- 272              	.LVL3:
- 273              	.L24:
-  30:Core/Src/main.c ****         I2C1->CR1 |= I2C_CR1_STOP;
- 274              		.loc 1 30 9 is_stmt 1 view .LVU59
-  30:Core/Src/main.c ****         I2C1->CR1 |= I2C_CR1_STOP;
- 275              		.loc 1 30 13 is_stmt 0 view .LVU60
- 276 0040 054B     		ldr	r3, .L25
- 277 0042 5A69     		ldr	r2, [r3, #20]
-  30:Core/Src/main.c ****         I2C1->CR1 |= I2C_CR1_STOP;
- 278              		.loc 1 30 19 view .LVU61
- 279 0044 22F48062 		bic	r2, r2, #1024
- 280 0048 5A61     		str	r2, [r3, #20]
-  31:Core/Src/main.c ****         return 0;
- 281              		.loc 1 31 9 is_stmt 1 view .LVU62
-  31:Core/Src/main.c ****         return 0;
- 282              		.loc 1 31 13 is_stmt 0 view .LVU63
- 283 004a 1A68     		ldr	r2, [r3]
-  31:Core/Src/main.c ****         return 0;
- 284              		.loc 1 31 19 view .LVU64
- 285 004c 42F40072 		orr	r2, r2, #512
- 286 0050 1A60     		str	r2, [r3]
-  32:Core/Src/main.c ****     }
- 287              		.loc 1 32 9 is_stmt 1 view .LVU65
-  32:Core/Src/main.c ****     }
- 288              		.loc 1 32 16 is_stmt 0 view .LVU66
- 289 0052 0020     		movs	r0, #0
- 290              	.LVL4:
- 291              		.loc 1 40 1 view .LVU67
- 292 0054 7047     		bx	lr
- 293              	.L26:
- 294 0056 00BF     		.align	2
- 295              	.L25:
- 296 0058 00540040 		.word	1073763328
- 297              		.cfi_endproc
- 298              	.LFE135:
- 300              		.section	.text.I2C_WriteByte,"ax",%progbits
- 301              		.align	1
- 302              		.global	I2C_WriteByte
- 303              		.syntax unified
- 304              		.thumb
- 305              		.thumb_func
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 7
-
-
- 307              	I2C_WriteByte:
- 308              	.LVL5:
- 309              	.LFB136:
-  41:Core/Src/main.c **** 
-  42:Core/Src/main.c **** void I2C_WriteByte(uint8_t devAddr, uint8_t regAddr, uint8_t data) {
- 310              		.loc 1 42 68 is_stmt 1 view -0
- 311              		.cfi_startproc
- 312              		@ args = 0, pretend = 0, frame = 8
- 313              		@ frame_needed = 0, uses_anonymous_args = 0
- 314              		@ link register save eliminated.
- 315              		.loc 1 42 68 is_stmt 0 view .LVU69
- 316 0000 10B4     		push	{r4}
- 317              	.LCFI4:
- 318              		.cfi_def_cfa_offset 4
- 319              		.cfi_offset 4, -4
- 320 0002 83B0     		sub	sp, sp, #12
- 321              	.LCFI5:
- 322              		.cfi_def_cfa_offset 16
-  43:Core/Src/main.c ****     I2C1->CR1 |= I2C_CR1_START;
- 323              		.loc 1 43 5 is_stmt 1 view .LVU70
- 324              		.loc 1 43 9 is_stmt 0 view .LVU71
- 325 0004 144C     		ldr	r4, .L33
- 326 0006 2368     		ldr	r3, [r4]
- 327              		.loc 1 43 15 view .LVU72
- 328 0008 43F48073 		orr	r3, r3, #256
- 329 000c 2360     		str	r3, [r4]
-  44:Core/Src/main.c ****     while(!(I2C1->SR1 & I2C_SR1_SB));
- 330              		.loc 1 44 5 is_stmt 1 view .LVU73
- 331              	.L28:
- 332              		.loc 1 44 11 discriminator 1 view .LVU74
- 333              		.loc 1 44 17 is_stmt 0 discriminator 1 view .LVU75
- 334 000e 124B     		ldr	r3, .L33
- 335 0010 5B69     		ldr	r3, [r3, #20]
- 336              		.loc 1 44 11 discriminator 1 view .LVU76
- 337 0012 13F0010F 		tst	r3, #1
- 338 0016 FAD0     		beq	.L28
-  45:Core/Src/main.c ****     
-  46:Core/Src/main.c ****     I2C1->DR = devAddr;
- 339              		.loc 1 46 5 is_stmt 1 view .LVU77
- 340              		.loc 1 46 14 is_stmt 0 view .LVU78
- 341 0018 0F4B     		ldr	r3, .L33
- 342 001a 1861     		str	r0, [r3, #16]
-  47:Core/Src/main.c ****     while(!(I2C1->SR1 & I2C_SR1_ADDR));
- 343              		.loc 1 47 5 is_stmt 1 view .LVU79
- 344              	.L29:
- 345              		.loc 1 47 11 discriminator 1 view .LVU80
- 346              		.loc 1 47 17 is_stmt 0 discriminator 1 view .LVU81
- 347 001c 0E4B     		ldr	r3, .L33
- 348 001e 5B69     		ldr	r3, [r3, #20]
- 349              		.loc 1 47 11 discriminator 1 view .LVU82
- 350 0020 13F0020F 		tst	r3, #2
- 351 0024 FAD0     		beq	.L29
-  48:Core/Src/main.c ****     volatile uint32_t tmp = I2C1->SR2;
- 352              		.loc 1 48 5 is_stmt 1 view .LVU83
- 353              		.loc 1 48 33 is_stmt 0 view .LVU84
- 354 0026 0C4B     		ldr	r3, .L33
- 355 0028 9869     		ldr	r0, [r3, #24]
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 8
-
-
- 356              	.LVL6:
- 357              		.loc 1 48 23 view .LVU85
- 358 002a 0190     		str	r0, [sp, #4]
-  49:Core/Src/main.c ****     
-  50:Core/Src/main.c ****     I2C1->DR = regAddr;
- 359              		.loc 1 50 5 is_stmt 1 view .LVU86
- 360              		.loc 1 50 14 is_stmt 0 view .LVU87
- 361 002c 1961     		str	r1, [r3, #16]
-  51:Core/Src/main.c ****     while(!(I2C1->SR1 & I2C_SR1_TXE));
- 362              		.loc 1 51 5 is_stmt 1 view .LVU88
- 363              	.L30:
- 364              		.loc 1 51 11 discriminator 1 view .LVU89
- 365              		.loc 1 51 17 is_stmt 0 discriminator 1 view .LVU90
- 366 002e 0A4B     		ldr	r3, .L33
- 367 0030 5B69     		ldr	r3, [r3, #20]
- 368              		.loc 1 51 11 discriminator 1 view .LVU91
- 369 0032 13F0800F 		tst	r3, #128
- 370 0036 FAD0     		beq	.L30
-  52:Core/Src/main.c ****     
-  53:Core/Src/main.c ****     I2C1->DR = data;
- 371              		.loc 1 53 5 is_stmt 1 view .LVU92
- 372              		.loc 1 53 14 is_stmt 0 view .LVU93
- 373 0038 074B     		ldr	r3, .L33
- 374 003a 1A61     		str	r2, [r3, #16]
-  54:Core/Src/main.c ****     while(!(I2C1->SR1 & I2C_SR1_BTF));
- 375              		.loc 1 54 5 is_stmt 1 view .LVU94
- 376              	.L31:
- 377              		.loc 1 54 11 discriminator 1 view .LVU95
- 378              		.loc 1 54 17 is_stmt 0 discriminator 1 view .LVU96
- 379 003c 064B     		ldr	r3, .L33
- 380 003e 5B69     		ldr	r3, [r3, #20]
- 381              		.loc 1 54 11 discriminator 1 view .LVU97
- 382 0040 13F0040F 		tst	r3, #4
- 383 0044 FAD0     		beq	.L31
-  55:Core/Src/main.c ****     
-  56:Core/Src/main.c ****     I2C1->CR1 |= I2C_CR1_STOP;
- 384              		.loc 1 56 5 is_stmt 1 view .LVU98
- 385              		.loc 1 56 9 is_stmt 0 view .LVU99
- 386 0046 044A     		ldr	r2, .L33
- 387              	.LVL7:
- 388              		.loc 1 56 9 view .LVU100
- 389 0048 1368     		ldr	r3, [r2]
- 390              		.loc 1 56 15 view .LVU101
- 391 004a 43F40073 		orr	r3, r3, #512
- 392 004e 1360     		str	r3, [r2]
-  57:Core/Src/main.c **** }
- 393              		.loc 1 57 1 view .LVU102
- 394 0050 03B0     		add	sp, sp, #12
- 395              	.LCFI6:
- 396              		.cfi_def_cfa_offset 4
- 397              		@ sp needed
- 398 0052 5DF8044B 		ldr	r4, [sp], #4
- 399              	.LCFI7:
- 400              		.cfi_restore 4
- 401              		.cfi_def_cfa_offset 0
- 402 0056 7047     		bx	lr
- 403              	.L34:
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 9
-
-
- 404              		.align	2
- 405              	.L33:
- 406 0058 00540040 		.word	1073763328
- 407              		.cfi_endproc
- 408              	.LFE136:
- 410              		.section	.text.I2C_ReadByte,"ax",%progbits
- 411              		.align	1
- 412              		.global	I2C_ReadByte
- 413              		.syntax unified
- 414              		.thumb
- 415              		.thumb_func
- 417              	I2C_ReadByte:
- 418              	.LVL8:
- 419              	.LFB137:
-  58:Core/Src/main.c **** 
-  59:Core/Src/main.c **** uint8_t I2C_ReadByte(uint8_t devAddr, uint8_t regAddr) {
- 420              		.loc 1 59 56 is_stmt 1 view -0
- 421              		.cfi_startproc
- 422              		@ args = 0, pretend = 0, frame = 8
- 423              		@ frame_needed = 0, uses_anonymous_args = 0
- 424              		@ link register save eliminated.
- 425              		.loc 1 59 56 is_stmt 0 view .LVU104
- 426 0000 82B0     		sub	sp, sp, #8
- 427              	.LCFI8:
- 428              		.cfi_def_cfa_offset 8
-  60:Core/Src/main.c ****     I2C1->CR1 |= I2C_CR1_START;
- 429              		.loc 1 60 5 is_stmt 1 view .LVU105
- 430              		.loc 1 60 9 is_stmt 0 view .LVU106
- 431 0002 214A     		ldr	r2, .L43
- 432 0004 1368     		ldr	r3, [r2]
- 433              		.loc 1 60 15 view .LVU107
- 434 0006 43F48073 		orr	r3, r3, #256
- 435 000a 1360     		str	r3, [r2]
-  61:Core/Src/main.c ****     while(!(I2C1->SR1 & I2C_SR1_SB));
- 436              		.loc 1 61 5 is_stmt 1 view .LVU108
- 437              	.L36:
- 438              		.loc 1 61 11 discriminator 1 view .LVU109
- 439              		.loc 1 61 17 is_stmt 0 discriminator 1 view .LVU110
- 440 000c 1E4B     		ldr	r3, .L43
- 441 000e 5B69     		ldr	r3, [r3, #20]
- 442              		.loc 1 61 11 discriminator 1 view .LVU111
- 443 0010 13F0010F 		tst	r3, #1
- 444 0014 FAD0     		beq	.L36
-  62:Core/Src/main.c ****     
-  63:Core/Src/main.c ****     I2C1->DR = devAddr;
- 445              		.loc 1 63 5 is_stmt 1 view .LVU112
- 446              		.loc 1 63 14 is_stmt 0 view .LVU113
- 447 0016 1C4B     		ldr	r3, .L43
- 448 0018 1861     		str	r0, [r3, #16]
-  64:Core/Src/main.c ****     while(!(I2C1->SR1 & I2C_SR1_ADDR));
- 449              		.loc 1 64 5 is_stmt 1 view .LVU114
- 450              	.L37:
- 451              		.loc 1 64 11 discriminator 1 view .LVU115
- 452              		.loc 1 64 17 is_stmt 0 discriminator 1 view .LVU116
- 453 001a 1B4B     		ldr	r3, .L43
- 454 001c 5B69     		ldr	r3, [r3, #20]
- 455              		.loc 1 64 11 discriminator 1 view .LVU117
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 10
-
-
- 456 001e 13F0020F 		tst	r3, #2
- 457 0022 FAD0     		beq	.L37
-  65:Core/Src/main.c ****     volatile uint32_t tmp = I2C1->SR2;
- 458              		.loc 1 65 5 is_stmt 1 view .LVU118
- 459              		.loc 1 65 33 is_stmt 0 view .LVU119
- 460 0024 184B     		ldr	r3, .L43
- 461 0026 9A69     		ldr	r2, [r3, #24]
- 462              		.loc 1 65 23 view .LVU120
- 463 0028 0192     		str	r2, [sp, #4]
-  66:Core/Src/main.c ****     
-  67:Core/Src/main.c ****     I2C1->DR = regAddr;
- 464              		.loc 1 67 5 is_stmt 1 view .LVU121
- 465              		.loc 1 67 14 is_stmt 0 view .LVU122
- 466 002a 1961     		str	r1, [r3, #16]
-  68:Core/Src/main.c ****     while(!(I2C1->SR1 & I2C_SR1_TXE));
- 467              		.loc 1 68 5 is_stmt 1 view .LVU123
- 468              	.L38:
- 469              		.loc 1 68 11 discriminator 1 view .LVU124
- 470              		.loc 1 68 17 is_stmt 0 discriminator 1 view .LVU125
- 471 002c 164B     		ldr	r3, .L43
- 472 002e 5B69     		ldr	r3, [r3, #20]
- 473              		.loc 1 68 11 discriminator 1 view .LVU126
- 474 0030 13F0800F 		tst	r3, #128
- 475 0034 FAD0     		beq	.L38
-  69:Core/Src/main.c ****     
-  70:Core/Src/main.c ****     I2C1->CR1 |= I2C_CR1_START;
- 476              		.loc 1 70 5 is_stmt 1 view .LVU127
- 477              		.loc 1 70 9 is_stmt 0 view .LVU128
- 478 0036 144A     		ldr	r2, .L43
- 479 0038 1368     		ldr	r3, [r2]
- 480              		.loc 1 70 15 view .LVU129
- 481 003a 43F48073 		orr	r3, r3, #256
- 482 003e 1360     		str	r3, [r2]
-  71:Core/Src/main.c ****     while(!(I2C1->SR1 & I2C_SR1_SB));
- 483              		.loc 1 71 5 is_stmt 1 view .LVU130
- 484              	.L39:
- 485              		.loc 1 71 11 discriminator 1 view .LVU131
- 486              		.loc 1 71 17 is_stmt 0 discriminator 1 view .LVU132
- 487 0040 114B     		ldr	r3, .L43
- 488 0042 5B69     		ldr	r3, [r3, #20]
- 489              		.loc 1 71 11 discriminator 1 view .LVU133
- 490 0044 13F0010F 		tst	r3, #1
- 491 0048 FAD0     		beq	.L39
-  72:Core/Src/main.c ****     
-  73:Core/Src/main.c ****     I2C1->DR = devAddr | 0x01;
- 492              		.loc 1 73 5 is_stmt 1 view .LVU134
- 493              		.loc 1 73 24 is_stmt 0 view .LVU135
- 494 004a 40F00100 		orr	r0, r0, #1
- 495              	.LVL9:
- 496              		.loc 1 73 14 view .LVU136
- 497 004e 0E4B     		ldr	r3, .L43
- 498 0050 1861     		str	r0, [r3, #16]
-  74:Core/Src/main.c ****     while(!(I2C1->SR1 & I2C_SR1_ADDR));
- 499              		.loc 1 74 5 is_stmt 1 view .LVU137
- 500              	.L40:
- 501              		.loc 1 74 11 discriminator 1 view .LVU138
- 502              		.loc 1 74 17 is_stmt 0 discriminator 1 view .LVU139
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 11
-
-
- 503 0052 0D4B     		ldr	r3, .L43
- 504 0054 5B69     		ldr	r3, [r3, #20]
- 505              		.loc 1 74 11 discriminator 1 view .LVU140
- 506 0056 13F0020F 		tst	r3, #2
- 507 005a FAD0     		beq	.L40
-  75:Core/Src/main.c ****     tmp = I2C1->SR2;
- 508              		.loc 1 75 5 is_stmt 1 view .LVU141
- 509              		.loc 1 75 15 is_stmt 0 view .LVU142
- 510 005c 0A4B     		ldr	r3, .L43
- 511 005e 9A69     		ldr	r2, [r3, #24]
- 512              		.loc 1 75 9 view .LVU143
- 513 0060 0192     		str	r2, [sp, #4]
-  76:Core/Src/main.c ****     
-  77:Core/Src/main.c ****     I2C1->CR1 &= ~I2C_CR1_ACK;
- 514              		.loc 1 77 5 is_stmt 1 view .LVU144
- 515              		.loc 1 77 9 is_stmt 0 view .LVU145
- 516 0062 1A68     		ldr	r2, [r3]
- 517              		.loc 1 77 15 view .LVU146
- 518 0064 22F48062 		bic	r2, r2, #1024
- 519 0068 1A60     		str	r2, [r3]
-  78:Core/Src/main.c ****     I2C1->CR1 |= I2C_CR1_STOP;
- 520              		.loc 1 78 5 is_stmt 1 view .LVU147
- 521              		.loc 1 78 9 is_stmt 0 view .LVU148
- 522 006a 1A68     		ldr	r2, [r3]
- 523              		.loc 1 78 15 view .LVU149
- 524 006c 42F40072 		orr	r2, r2, #512
- 525 0070 1A60     		str	r2, [r3]
-  79:Core/Src/main.c ****     
-  80:Core/Src/main.c ****     while(!(I2C1->SR1 & I2C_SR1_RXNE));
- 526              		.loc 1 80 5 is_stmt 1 view .LVU150
- 527              	.L41:
- 528              		.loc 1 80 11 discriminator 1 view .LVU151
- 529              		.loc 1 80 17 is_stmt 0 discriminator 1 view .LVU152
- 530 0072 054B     		ldr	r3, .L43
- 531 0074 5B69     		ldr	r3, [r3, #20]
- 532              		.loc 1 80 11 discriminator 1 view .LVU153
- 533 0076 13F0400F 		tst	r3, #64
- 534 007a FAD0     		beq	.L41
-  81:Core/Src/main.c ****     return I2C1->DR;
- 535              		.loc 1 81 5 is_stmt 1 view .LVU154
- 536              		.loc 1 81 16 is_stmt 0 view .LVU155
- 537 007c 024B     		ldr	r3, .L43
- 538 007e 1869     		ldr	r0, [r3, #16]
-  82:Core/Src/main.c **** }
- 539              		.loc 1 82 1 view .LVU156
- 540 0080 C0B2     		uxtb	r0, r0
- 541 0082 02B0     		add	sp, sp, #8
- 542              	.LCFI9:
- 543              		.cfi_def_cfa_offset 0
- 544              		@ sp needed
- 545 0084 7047     		bx	lr
- 546              	.L44:
- 547 0086 00BF     		.align	2
- 548              	.L43:
- 549 0088 00540040 		.word	1073763328
- 550              		.cfi_endproc
- 551              	.LFE137:
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 12
-
-
- 553              		.section	.text.I2C_ReadBytes,"ax",%progbits
- 554              		.align	1
- 555              		.global	I2C_ReadBytes
- 556              		.syntax unified
- 557              		.thumb
- 558              		.thumb_func
- 560              	I2C_ReadBytes:
- 561              	.LVL10:
- 562              	.LFB138:
-  83:Core/Src/main.c **** 
-  84:Core/Src/main.c **** void I2C_ReadBytes(uint8_t devAddr, uint8_t regAddr, uint8_t *data, uint8_t count) {
- 563              		.loc 1 84 84 is_stmt 1 view -0
- 564              		.cfi_startproc
- 565              		@ args = 0, pretend = 0, frame = 8
- 566              		@ frame_needed = 0, uses_anonymous_args = 0
- 567              		@ link register save eliminated.
- 568              		.loc 1 84 84 is_stmt 0 view .LVU158
- 569 0000 10B4     		push	{r4}
- 570              	.LCFI10:
- 571              		.cfi_def_cfa_offset 4
- 572              		.cfi_offset 4, -4
- 573 0002 83B0     		sub	sp, sp, #12
- 574              	.LCFI11:
- 575              		.cfi_def_cfa_offset 16
- 576 0004 9446     		mov	ip, r2
-  85:Core/Src/main.c ****     I2C1->CR1 |= I2C_CR1_START;
- 577              		.loc 1 85 5 is_stmt 1 view .LVU159
- 578              		.loc 1 85 9 is_stmt 0 view .LVU160
- 579 0006 2A4C     		ldr	r4, .L57
- 580 0008 2268     		ldr	r2, [r4]
- 581              	.LVL11:
- 582              		.loc 1 85 15 view .LVU161
- 583 000a 42F48072 		orr	r2, r2, #256
- 584 000e 2260     		str	r2, [r4]
-  86:Core/Src/main.c ****     while(!(I2C1->SR1 & I2C_SR1_SB));
- 585              		.loc 1 86 5 is_stmt 1 view .LVU162
- 586              	.L46:
- 587              		.loc 1 86 11 discriminator 1 view .LVU163
- 588              		.loc 1 86 17 is_stmt 0 discriminator 1 view .LVU164
- 589 0010 274A     		ldr	r2, .L57
- 590 0012 5269     		ldr	r2, [r2, #20]
- 591              		.loc 1 86 11 discriminator 1 view .LVU165
- 592 0014 12F0010F 		tst	r2, #1
- 593 0018 FAD0     		beq	.L46
-  87:Core/Src/main.c ****     
-  88:Core/Src/main.c ****     I2C1->DR = devAddr;
- 594              		.loc 1 88 5 is_stmt 1 view .LVU166
- 595              		.loc 1 88 14 is_stmt 0 view .LVU167
- 596 001a 254A     		ldr	r2, .L57
- 597 001c 1061     		str	r0, [r2, #16]
-  89:Core/Src/main.c ****     while(!(I2C1->SR1 & I2C_SR1_ADDR));
- 598              		.loc 1 89 5 is_stmt 1 view .LVU168
- 599              	.L47:
- 600              		.loc 1 89 11 discriminator 1 view .LVU169
- 601              		.loc 1 89 17 is_stmt 0 discriminator 1 view .LVU170
- 602 001e 244A     		ldr	r2, .L57
- 603 0020 5269     		ldr	r2, [r2, #20]
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 13
-
-
- 604              		.loc 1 89 11 discriminator 1 view .LVU171
- 605 0022 12F0020F 		tst	r2, #2
- 606 0026 FAD0     		beq	.L47
-  90:Core/Src/main.c ****     volatile uint32_t tmp = I2C1->SR2;
- 607              		.loc 1 90 5 is_stmt 1 view .LVU172
- 608              		.loc 1 90 33 is_stmt 0 view .LVU173
- 609 0028 214A     		ldr	r2, .L57
- 610 002a 9469     		ldr	r4, [r2, #24]
- 611              		.loc 1 90 23 view .LVU174
- 612 002c 0194     		str	r4, [sp, #4]
-  91:Core/Src/main.c ****     
-  92:Core/Src/main.c ****     I2C1->DR = regAddr;
- 613              		.loc 1 92 5 is_stmt 1 view .LVU175
- 614              		.loc 1 92 14 is_stmt 0 view .LVU176
- 615 002e 1161     		str	r1, [r2, #16]
-  93:Core/Src/main.c ****     while(!(I2C1->SR1 & I2C_SR1_TXE));
- 616              		.loc 1 93 5 is_stmt 1 view .LVU177
- 617              	.LVL12:
- 618              	.L48:
- 619              		.loc 1 93 11 discriminator 1 view .LVU178
- 620              		.loc 1 93 17 is_stmt 0 discriminator 1 view .LVU179
- 621 0030 1F49     		ldr	r1, .L57
- 622 0032 4969     		ldr	r1, [r1, #20]
- 623              		.loc 1 93 11 discriminator 1 view .LVU180
- 624 0034 11F0800F 		tst	r1, #128
- 625 0038 FAD0     		beq	.L48
-  94:Core/Src/main.c ****     
-  95:Core/Src/main.c ****     I2C1->CR1 |= I2C_CR1_START;
- 626              		.loc 1 95 5 is_stmt 1 view .LVU181
- 627              		.loc 1 95 9 is_stmt 0 view .LVU182
- 628 003a 1D49     		ldr	r1, .L57
- 629 003c 0A68     		ldr	r2, [r1]
- 630              		.loc 1 95 15 view .LVU183
- 631 003e 42F48072 		orr	r2, r2, #256
- 632 0042 0A60     		str	r2, [r1]
-  96:Core/Src/main.c ****     while(!(I2C1->SR1 & I2C_SR1_SB));
- 633              		.loc 1 96 5 is_stmt 1 view .LVU184
- 634              	.L49:
- 635              		.loc 1 96 11 discriminator 1 view .LVU185
- 636              		.loc 1 96 17 is_stmt 0 discriminator 1 view .LVU186
- 637 0044 1A49     		ldr	r1, .L57
- 638 0046 4969     		ldr	r1, [r1, #20]
- 639              		.loc 1 96 11 discriminator 1 view .LVU187
- 640 0048 11F0010F 		tst	r1, #1
- 641 004c FAD0     		beq	.L49
-  97:Core/Src/main.c ****     
-  98:Core/Src/main.c ****     I2C1->DR = devAddr | 0x01;
- 642              		.loc 1 98 5 is_stmt 1 view .LVU188
- 643              		.loc 1 98 24 is_stmt 0 view .LVU189
- 644 004e 40F00100 		orr	r0, r0, #1
- 645              	.LVL13:
- 646              		.loc 1 98 14 view .LVU190
- 647 0052 174A     		ldr	r2, .L57
- 648 0054 1061     		str	r0, [r2, #16]
-  99:Core/Src/main.c ****     while(!(I2C1->SR1 & I2C_SR1_ADDR));
- 649              		.loc 1 99 5 is_stmt 1 view .LVU191
- 650              	.L50:
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 14
-
-
- 651              		.loc 1 99 11 discriminator 1 view .LVU192
- 652              		.loc 1 99 17 is_stmt 0 discriminator 1 view .LVU193
- 653 0056 1649     		ldr	r1, .L57
- 654 0058 4969     		ldr	r1, [r1, #20]
- 655              		.loc 1 99 11 discriminator 1 view .LVU194
- 656 005a 11F0020F 		tst	r1, #2
- 657 005e FAD0     		beq	.L50
- 100:Core/Src/main.c ****     tmp = I2C1->SR2;
- 658              		.loc 1 100 5 is_stmt 1 view .LVU195
- 659              		.loc 1 100 15 is_stmt 0 view .LVU196
- 660 0060 134A     		ldr	r2, .L57
- 661 0062 9169     		ldr	r1, [r2, #24]
- 662              		.loc 1 100 9 view .LVU197
- 663 0064 0191     		str	r1, [sp, #4]
- 101:Core/Src/main.c ****     
- 102:Core/Src/main.c ****     I2C1->CR1 |= I2C_CR1_ACK;
- 664              		.loc 1 102 5 is_stmt 1 view .LVU198
- 665              		.loc 1 102 9 is_stmt 0 view .LVU199
- 666 0066 1168     		ldr	r1, [r2]
- 667              		.loc 1 102 15 view .LVU200
- 668 0068 41F48061 		orr	r1, r1, #1024
- 669 006c 1160     		str	r1, [r2]
- 103:Core/Src/main.c ****     
- 104:Core/Src/main.c ****     for(uint8_t i = 0; i < count; i++) {
- 670              		.loc 1 104 5 is_stmt 1 view .LVU201
- 671              	.LBB3:
- 672              		.loc 1 104 9 view .LVU202
- 673              	.LVL14:
- 674              		.loc 1 104 17 is_stmt 0 view .LVU203
- 675 006e 0020     		movs	r0, #0
- 676              		.loc 1 104 5 view .LVU204
- 677 0070 0AE0     		b	.L51
- 678              	.LVL15:
- 679              	.L53:
- 105:Core/Src/main.c ****         if(i == count - 1) {
- 106:Core/Src/main.c ****             I2C1->CR1 &= ~I2C_CR1_ACK;
- 107:Core/Src/main.c ****             I2C1->CR1 |= I2C_CR1_STOP;
- 108:Core/Src/main.c ****         }
- 109:Core/Src/main.c ****         while(!(I2C1->SR1 & I2C_SR1_RXNE));
- 680              		.loc 1 109 15 is_stmt 1 discriminator 1 view .LVU205
- 681              		.loc 1 109 21 is_stmt 0 discriminator 1 view .LVU206
- 682 0072 0F49     		ldr	r1, .L57
- 683 0074 4969     		ldr	r1, [r1, #20]
- 684              		.loc 1 109 15 discriminator 1 view .LVU207
- 685 0076 11F0400F 		tst	r1, #64
- 686 007a FAD0     		beq	.L53
- 110:Core/Src/main.c ****         data[i] = I2C1->DR;
- 687              		.loc 1 110 9 is_stmt 1 view .LVU208
- 688              		.loc 1 110 23 is_stmt 0 view .LVU209
- 689 007c 0C4A     		ldr	r2, .L57
- 690 007e 1269     		ldr	r2, [r2, #16]
- 691              		.loc 1 110 17 view .LVU210
- 692 0080 0CF80020 		strb	r2, [ip, r0]
- 104:Core/Src/main.c ****         if(i == count - 1) {
- 693              		.loc 1 104 36 is_stmt 1 discriminator 2 view .LVU211
- 694 0084 0130     		adds	r0, r0, #1
- 695              	.LVL16:
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 15
-
-
- 104:Core/Src/main.c ****         if(i == count - 1) {
- 696              		.loc 1 104 36 is_stmt 0 discriminator 2 view .LVU212
- 697 0086 C0B2     		uxtb	r0, r0
- 698              	.LVL17:
- 699              	.L51:
- 104:Core/Src/main.c ****         if(i == count - 1) {
- 700              		.loc 1 104 26 is_stmt 1 discriminator 1 view .LVU213
- 701 0088 9842     		cmp	r0, r3
- 702 008a 0CD2     		bcs	.L56
- 105:Core/Src/main.c ****         if(i == count - 1) {
- 703              		.loc 1 105 9 view .LVU214
- 105:Core/Src/main.c ****         if(i == count - 1) {
- 704              		.loc 1 105 23 is_stmt 0 view .LVU215
- 705 008c 5A1E     		subs	r2, r3, #1
- 105:Core/Src/main.c ****         if(i == count - 1) {
- 706              		.loc 1 105 11 view .LVU216
- 707 008e 9042     		cmp	r0, r2
- 708 0090 EFD1     		bne	.L53
- 106:Core/Src/main.c ****             I2C1->CR1 |= I2C_CR1_STOP;
- 709              		.loc 1 106 13 is_stmt 1 view .LVU217
- 106:Core/Src/main.c ****             I2C1->CR1 |= I2C_CR1_STOP;
- 710              		.loc 1 106 17 is_stmt 0 view .LVU218
- 711 0092 074A     		ldr	r2, .L57
- 712 0094 1168     		ldr	r1, [r2]
- 106:Core/Src/main.c ****             I2C1->CR1 |= I2C_CR1_STOP;
- 713              		.loc 1 106 23 view .LVU219
- 714 0096 21F48061 		bic	r1, r1, #1024
- 715 009a 1160     		str	r1, [r2]
- 107:Core/Src/main.c ****         }
- 716              		.loc 1 107 13 is_stmt 1 view .LVU220
- 107:Core/Src/main.c ****         }
- 717              		.loc 1 107 17 is_stmt 0 view .LVU221
- 718 009c 1168     		ldr	r1, [r2]
- 107:Core/Src/main.c ****         }
- 719              		.loc 1 107 23 view .LVU222
- 720 009e 41F40071 		orr	r1, r1, #512
- 721 00a2 1160     		str	r1, [r2]
- 722 00a4 E5E7     		b	.L53
- 723              	.L56:
- 724              	.LBE3:
- 111:Core/Src/main.c ****     }
- 112:Core/Src/main.c **** }
- 725              		.loc 1 112 1 view .LVU223
- 726 00a6 03B0     		add	sp, sp, #12
- 727              	.LCFI12:
- 728              		.cfi_def_cfa_offset 4
- 729              		@ sp needed
- 730 00a8 5DF8044B 		ldr	r4, [sp], #4
- 731              	.LCFI13:
- 732              		.cfi_restore 4
- 733              		.cfi_def_cfa_offset 0
- 734 00ac 7047     		bx	lr
- 735              	.L58:
- 736 00ae 00BF     		.align	2
- 737              	.L57:
- 738 00b0 00540040 		.word	1073763328
- 739              		.cfi_endproc
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 16
-
-
- 740              	.LFE138:
- 742              		.section	.text.I2C_Init,"ax",%progbits
- 743              		.align	1
- 744              		.global	I2C_Init
- 745              		.syntax unified
- 746              		.thumb
- 747              		.thumb_func
- 749              	I2C_Init:
- 750              	.LFB139:
- 113:Core/Src/main.c **** 
- 114:Core/Src/main.c **** void I2C_Init(void) {
- 751              		.loc 1 114 21 is_stmt 1 view -0
- 752              		.cfi_startproc
- 753              		@ args = 0, pretend = 0, frame = 0
- 754              		@ frame_needed = 0, uses_anonymous_args = 0
- 755 0000 10B5     		push	{r4, lr}
- 756              	.LCFI14:
- 757              		.cfi_def_cfa_offset 8
- 758              		.cfi_offset 4, -8
- 759              		.cfi_offset 14, -4
- 115:Core/Src/main.c ****     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
- 760              		.loc 1 115 5 view .LVU225
- 761              		.loc 1 115 8 is_stmt 0 view .LVU226
- 762 0002 194B     		ldr	r3, .L61
- 763 0004 1A6B     		ldr	r2, [r3, #48]
- 764              		.loc 1 115 18 view .LVU227
- 765 0006 42F00202 		orr	r2, r2, #2
- 766 000a 1A63     		str	r2, [r3, #48]
- 116:Core/Src/main.c ****     RCC->APB1ENR |= RCC_APB1ENR_I2C1EN;
- 767              		.loc 1 116 5 is_stmt 1 view .LVU228
- 768              		.loc 1 116 8 is_stmt 0 view .LVU229
- 769 000c 1A6C     		ldr	r2, [r3, #64]
- 770              		.loc 1 116 18 view .LVU230
- 771 000e 42F40012 		orr	r2, r2, #2097152
- 772 0012 1A64     		str	r2, [r3, #64]
- 117:Core/Src/main.c ****     
- 118:Core/Src/main.c ****     GPIOB->MODER |= (2 << 12) | (2 << 14);
- 773              		.loc 1 118 5 is_stmt 1 view .LVU231
- 774              		.loc 1 118 10 is_stmt 0 view .LVU232
- 775 0014 A3F55053 		sub	r3, r3, #13312
- 776 0018 1A68     		ldr	r2, [r3]
- 777              		.loc 1 118 18 view .LVU233
- 778 001a 42F42042 		orr	r2, r2, #40960
- 779 001e 1A60     		str	r2, [r3]
- 119:Core/Src/main.c ****     GPIOB->OTYPER |= (1 << 6) | (1 << 7);
- 780              		.loc 1 119 5 is_stmt 1 view .LVU234
- 781              		.loc 1 119 10 is_stmt 0 view .LVU235
- 782 0020 5A68     		ldr	r2, [r3, #4]
- 783              		.loc 1 119 19 view .LVU236
- 784 0022 42F0C002 		orr	r2, r2, #192
- 785 0026 5A60     		str	r2, [r3, #4]
- 120:Core/Src/main.c ****     GPIOB->PUPDR |= (1 << 12) | (1 << 14);
- 786              		.loc 1 120 5 is_stmt 1 view .LVU237
- 787              		.loc 1 120 10 is_stmt 0 view .LVU238
- 788 0028 DA68     		ldr	r2, [r3, #12]
- 789              		.loc 1 120 18 view .LVU239
- 790 002a 42F4A042 		orr	r2, r2, #20480
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 17
-
-
- 791 002e DA60     		str	r2, [r3, #12]
- 121:Core/Src/main.c ****     GPIOB->AFR[0] |= (4 << 24) | (4 << 28);
- 792              		.loc 1 121 5 is_stmt 1 view .LVU240
- 793              		.loc 1 121 15 is_stmt 0 view .LVU241
- 794 0030 1A6A     		ldr	r2, [r3, #32]
- 795              		.loc 1 121 19 view .LVU242
- 796 0032 42F08842 		orr	r2, r2, #1140850688
- 797 0036 1A62     		str	r2, [r3, #32]
- 122:Core/Src/main.c ****     
- 123:Core/Src/main.c ****     I2C1->CR1 |= I2C_CR1_SWRST;
- 798              		.loc 1 123 5 is_stmt 1 view .LVU243
- 799              		.loc 1 123 9 is_stmt 0 view .LVU244
- 800 0038 0C4C     		ldr	r4, .L61+4
- 801 003a 2368     		ldr	r3, [r4]
- 802              		.loc 1 123 15 view .LVU245
- 803 003c 43F40043 		orr	r3, r3, #32768
- 804 0040 2360     		str	r3, [r4]
- 124:Core/Src/main.c ****     Delay(1000);
- 805              		.loc 1 124 5 is_stmt 1 view .LVU246
- 806 0042 4FF47A70 		mov	r0, #1000
- 807 0046 FFF7FEFF 		bl	Delay
- 808              	.LVL18:
- 125:Core/Src/main.c ****     I2C1->CR1 &= ~I2C_CR1_SWRST;
- 809              		.loc 1 125 5 view .LVU247
- 810              		.loc 1 125 9 is_stmt 0 view .LVU248
- 811 004a 2368     		ldr	r3, [r4]
- 812              		.loc 1 125 15 view .LVU249
- 813 004c 23F40043 		bic	r3, r3, #32768
- 814 0050 2360     		str	r3, [r4]
- 126:Core/Src/main.c ****     
- 127:Core/Src/main.c ****     I2C1->CR2 = 16;
- 815              		.loc 1 127 5 is_stmt 1 view .LVU250
- 816              		.loc 1 127 15 is_stmt 0 view .LVU251
- 817 0052 1023     		movs	r3, #16
- 818 0054 6360     		str	r3, [r4, #4]
- 128:Core/Src/main.c ****     I2C1->CCR = 80;
- 819              		.loc 1 128 5 is_stmt 1 view .LVU252
- 820              		.loc 1 128 15 is_stmt 0 view .LVU253
- 821 0056 5023     		movs	r3, #80
- 822 0058 E361     		str	r3, [r4, #28]
- 129:Core/Src/main.c ****     I2C1->TRISE = 17;
- 823              		.loc 1 129 5 is_stmt 1 view .LVU254
- 824              		.loc 1 129 17 is_stmt 0 view .LVU255
- 825 005a 1123     		movs	r3, #17
- 826 005c 2362     		str	r3, [r4, #32]
- 130:Core/Src/main.c ****     I2C1->CR1 |= I2C_CR1_PE;
- 827              		.loc 1 130 5 is_stmt 1 view .LVU256
- 828              		.loc 1 130 9 is_stmt 0 view .LVU257
- 829 005e 2368     		ldr	r3, [r4]
- 830              		.loc 1 130 15 view .LVU258
- 831 0060 43F00103 		orr	r3, r3, #1
- 832 0064 2360     		str	r3, [r4]
- 131:Core/Src/main.c **** }
- 833              		.loc 1 131 1 view .LVU259
- 834 0066 10BD     		pop	{r4, pc}
- 835              	.L62:
- 836              		.align	2
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 18
-
-
- 837              	.L61:
- 838 0068 00380240 		.word	1073887232
- 839 006c 00540040 		.word	1073763328
- 840              		.cfi_endproc
- 841              	.LFE139:
- 843              		.section	.text.MPU6050_Init,"ax",%progbits
- 844              		.align	1
- 845              		.global	MPU6050_Init
- 846              		.syntax unified
- 847              		.thumb
- 848              		.thumb_func
- 850              	MPU6050_Init:
- 851              	.LFB140:
- 132:Core/Src/main.c **** 
- 133:Core/Src/main.c **** uint8_t MPU6050_Init(void) {
- 852              		.loc 1 133 28 is_stmt 1 view -0
- 853              		.cfi_startproc
- 854              		@ args = 0, pretend = 0, frame = 0
- 855              		@ frame_needed = 0, uses_anonymous_args = 0
- 856 0000 08B5     		push	{r3, lr}
- 857              	.LCFI15:
- 858              		.cfi_def_cfa_offset 8
- 859              		.cfi_offset 3, -8
- 860              		.cfi_offset 14, -4
- 134:Core/Src/main.c ****     Delay(100000);
- 861              		.loc 1 134 5 view .LVU261
- 862 0002 0D48     		ldr	r0, .L68
- 863 0004 FFF7FEFF 		bl	Delay
- 864              	.LVL19:
- 135:Core/Src/main.c ****     
- 136:Core/Src/main.c ****     // Check if device responds
- 137:Core/Src/main.c ****     if(!I2C_CheckDevice(MPU6050_ADDR)) {
- 865              		.loc 1 137 5 view .LVU262
- 866              		.loc 1 137 9 is_stmt 0 view .LVU263
- 867 0008 D020     		movs	r0, #208
- 868 000a FFF7FEFF 		bl	I2C_CheckDevice
- 869              	.LVL20:
- 870              		.loc 1 137 7 discriminator 1 view .LVU264
- 871 000e 00B9     		cbnz	r0, .L67
- 872              	.L64:
- 138:Core/Src/main.c ****         return 0;
- 139:Core/Src/main.c ****     }
- 140:Core/Src/main.c ****     
- 141:Core/Src/main.c ****     // Wake up MPU6050
- 142:Core/Src/main.c ****     I2C_WriteByte(MPU6050_ADDR, PWR_MGMT_1, 0x00);
- 143:Core/Src/main.c ****     Delay(100000);
- 144:Core/Src/main.c ****     
- 145:Core/Src/main.c ****     // Check WHO_AM_I
- 146:Core/Src/main.c ****     uint8_t whoami = I2C_ReadByte(MPU6050_ADDR, WHO_AM_I);
- 147:Core/Src/main.c ****     if(whoami != 0x68) {
- 148:Core/Src/main.c ****         return 0;
- 149:Core/Src/main.c ****     }
- 150:Core/Src/main.c ****     
- 151:Core/Src/main.c ****     return 1;
- 152:Core/Src/main.c **** }
- 873              		.loc 1 152 1 view .LVU265
- 874 0010 08BD     		pop	{r3, pc}
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 19
-
-
- 875              	.L67:
- 142:Core/Src/main.c ****     Delay(100000);
- 876              		.loc 1 142 5 is_stmt 1 view .LVU266
- 877 0012 0022     		movs	r2, #0
- 878 0014 6B21     		movs	r1, #107
- 879 0016 D020     		movs	r0, #208
- 880 0018 FFF7FEFF 		bl	I2C_WriteByte
- 881              	.LVL21:
- 143:Core/Src/main.c ****     
- 882              		.loc 1 143 5 view .LVU267
- 883 001c 0648     		ldr	r0, .L68
- 884 001e FFF7FEFF 		bl	Delay
- 885              	.LVL22:
- 146:Core/Src/main.c ****     if(whoami != 0x68) {
- 886              		.loc 1 146 5 view .LVU268
- 146:Core/Src/main.c ****     if(whoami != 0x68) {
- 887              		.loc 1 146 22 is_stmt 0 view .LVU269
- 888 0022 7521     		movs	r1, #117
- 889 0024 D020     		movs	r0, #208
- 890 0026 FFF7FEFF 		bl	I2C_ReadByte
- 891              	.LVL23:
- 147:Core/Src/main.c ****         return 0;
- 892              		.loc 1 147 5 is_stmt 1 view .LVU270
- 147:Core/Src/main.c ****         return 0;
- 893              		.loc 1 147 7 is_stmt 0 view .LVU271
- 894 002a 6828     		cmp	r0, #104
- 895 002c 01D1     		bne	.L65
- 151:Core/Src/main.c **** }
- 896              		.loc 1 151 12 view .LVU272
- 897 002e 0120     		movs	r0, #1
- 898              	.LVL24:
- 151:Core/Src/main.c **** }
- 899              		.loc 1 151 12 view .LVU273
- 900 0030 EEE7     		b	.L64
- 901              	.LVL25:
- 902              	.L65:
- 148:Core/Src/main.c ****     }
- 903              		.loc 1 148 16 view .LVU274
- 904 0032 0020     		movs	r0, #0
- 905              	.LVL26:
- 148:Core/Src/main.c ****     }
- 906              		.loc 1 148 16 view .LVU275
- 907 0034 ECE7     		b	.L64
- 908              	.L69:
- 909 0036 00BF     		.align	2
- 910              	.L68:
- 911 0038 A0860100 		.word	100000
- 912              		.cfi_endproc
- 913              	.LFE140:
- 915              		.section	.text.MPU6050_ReadAccel,"ax",%progbits
- 916              		.align	1
- 917              		.global	MPU6050_ReadAccel
- 918              		.syntax unified
- 919              		.thumb
- 920              		.thumb_func
- 922              	MPU6050_ReadAccel:
- 923              	.LVL27:
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 20
-
-
- 924              	.LFB141:
- 153:Core/Src/main.c **** 
- 154:Core/Src/main.c **** void MPU6050_ReadAccel(int16_t *x, int16_t *y, int16_t *z) {
- 925              		.loc 1 154 60 is_stmt 1 view -0
- 926              		.cfi_startproc
- 927              		@ args = 0, pretend = 0, frame = 8
- 928              		@ frame_needed = 0, uses_anonymous_args = 0
- 929              		.loc 1 154 60 is_stmt 0 view .LVU277
- 930 0000 70B5     		push	{r4, r5, r6, lr}
- 931              	.LCFI16:
- 932              		.cfi_def_cfa_offset 16
- 933              		.cfi_offset 4, -16
- 934              		.cfi_offset 5, -12
- 935              		.cfi_offset 6, -8
- 936              		.cfi_offset 14, -4
- 937 0002 82B0     		sub	sp, sp, #8
- 938              	.LCFI17:
- 939              		.cfi_def_cfa_offset 24
- 940 0004 0646     		mov	r6, r0
- 941 0006 0D46     		mov	r5, r1
- 942 0008 1446     		mov	r4, r2
- 155:Core/Src/main.c ****     uint8_t data[6];
- 943              		.loc 1 155 5 is_stmt 1 view .LVU278
- 156:Core/Src/main.c ****     I2C_ReadBytes(MPU6050_ADDR, ACCEL_XOUT_H, data, 6);
- 944              		.loc 1 156 5 view .LVU279
- 945 000a 0623     		movs	r3, #6
- 946 000c 6A46     		mov	r2, sp
- 947              	.LVL28:
- 948              		.loc 1 156 5 is_stmt 0 view .LVU280
- 949 000e 3B21     		movs	r1, #59
- 950              	.LVL29:
- 951              		.loc 1 156 5 view .LVU281
- 952 0010 D020     		movs	r0, #208
- 953              	.LVL30:
- 954              		.loc 1 156 5 view .LVU282
- 955 0012 FFF7FEFF 		bl	I2C_ReadBytes
- 956              	.LVL31:
- 157:Core/Src/main.c ****     
- 158:Core/Src/main.c ****     *x = (int16_t)((data[0] << 8) | data[1]);
- 957              		.loc 1 158 5 is_stmt 1 view .LVU283
- 958              		.loc 1 158 25 is_stmt 0 view .LVU284
- 959 0016 9DF80020 		ldrb	r2, [sp]	@ zero_extendqisi2
- 960              		.loc 1 158 41 view .LVU285
- 961 001a 9DF80130 		ldrb	r3, [sp, #1]	@ zero_extendqisi2
- 962              		.loc 1 158 10 view .LVU286
- 963 001e 43EA0223 		orr	r3, r3, r2, lsl #8
- 964              		.loc 1 158 8 view .LVU287
- 965 0022 3380     		strh	r3, [r6]	@ movhi
- 159:Core/Src/main.c ****     *y = (int16_t)((data[2] << 8) | data[3]);
- 966              		.loc 1 159 5 is_stmt 1 view .LVU288
- 967              		.loc 1 159 25 is_stmt 0 view .LVU289
- 968 0024 9DF80220 		ldrb	r2, [sp, #2]	@ zero_extendqisi2
- 969              		.loc 1 159 41 view .LVU290
- 970 0028 9DF80330 		ldrb	r3, [sp, #3]	@ zero_extendqisi2
- 971              		.loc 1 159 10 view .LVU291
- 972 002c 43EA0223 		orr	r3, r3, r2, lsl #8
- 973              		.loc 1 159 8 view .LVU292
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 21
-
-
- 974 0030 2B80     		strh	r3, [r5]	@ movhi
- 160:Core/Src/main.c ****     *z = (int16_t)((data[4] << 8) | data[5]);
- 975              		.loc 1 160 5 is_stmt 1 view .LVU293
- 976              		.loc 1 160 25 is_stmt 0 view .LVU294
- 977 0032 9DF80420 		ldrb	r2, [sp, #4]	@ zero_extendqisi2
- 978              		.loc 1 160 41 view .LVU295
- 979 0036 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
- 980              		.loc 1 160 10 view .LVU296
- 981 003a 43EA0223 		orr	r3, r3, r2, lsl #8
- 982              		.loc 1 160 8 view .LVU297
- 983 003e 2380     		strh	r3, [r4]	@ movhi
- 161:Core/Src/main.c **** }
- 984              		.loc 1 161 1 view .LVU298
- 985 0040 02B0     		add	sp, sp, #8
- 986              	.LCFI18:
- 987              		.cfi_def_cfa_offset 16
- 988              		@ sp needed
- 989 0042 70BD     		pop	{r4, r5, r6, pc}
- 990              		.loc 1 161 1 view .LVU299
- 991              		.cfi_endproc
- 992              	.LFE141:
- 994              		.section	.text.main,"ax",%progbits
- 995              		.align	1
- 996              		.global	main
- 997              		.syntax unified
- 998              		.thumb
- 999              		.thumb_func
- 1001              	main:
- 1002              	.LFB142:
- 162:Core/Src/main.c **** 
- 163:Core/Src/main.c **** int main(void) {
- 1003              		.loc 1 163 16 is_stmt 1 view -0
- 1004              		.cfi_startproc
- 1005              		@ Volatile: function does not return.
- 1006              		@ args = 0, pretend = 0, frame = 0
- 1007              		@ frame_needed = 0, uses_anonymous_args = 0
- 1008 0000 08B5     		push	{r3, lr}
- 1009              	.LCFI19:
- 1010              		.cfi_def_cfa_offset 8
- 1011              		.cfi_offset 3, -8
- 1012              		.cfi_offset 14, -4
- 164:Core/Src/main.c ****     LED_Init();
- 1013              		.loc 1 164 5 view .LVU301
- 1014 0002 FFF7FEFF 		bl	LED_Init
- 1015              	.LVL32:
- 165:Core/Src/main.c ****     I2C_Init();
- 1016              		.loc 1 165 5 view .LVU302
- 1017 0006 FFF7FEFF 		bl	I2C_Init
- 1018              	.LVL33:
- 166:Core/Src/main.c ****     
- 167:Core/Src/main.c ****     // Wait for power stabilization
- 168:Core/Src/main.c ****     Delay(1000);
- 1019              		.loc 1 168 5 view .LVU303
- 1020 000a 4FF47A70 		mov	r0, #1000
- 1021 000e FFF7FEFF 		bl	Delay
- 1022              	.LVL34:
- 169:Core/Src/main.c ****     
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 22
-
-
- 170:Core/Src/main.c ****     if(MPU6050_Init()) {
- 1023              		.loc 1 170 5 view .LVU304
- 1024              		.loc 1 170 8 is_stmt 0 view .LVU305
- 1025 0012 FFF7FEFF 		bl	MPU6050_Init
- 1026              	.LVL35:
- 1027              		.loc 1 170 7 discriminator 1 view .LVU306
- 1028 0016 10B1     		cbz	r0, .L73
- 1029              	.L74:
- 171:Core/Src/main.c ****         // MPU6050 found - fast blink
- 172:Core/Src/main.c ****         while(1) {
- 1030              		.loc 1 172 9 is_stmt 1 view .LVU307
- 173:Core/Src/main.c ****             LED_On();
- 1031              		.loc 1 173 13 discriminator 1 view .LVU308
- 1032 0018 FFF7FEFF 		bl	LED_On
- 1033              	.LVL36:
- 172:Core/Src/main.c ****             LED_On();
- 1034              		.loc 1 172 14 view .LVU309
- 1035 001c FCE7     		b	.L74
- 1036              	.L73:
- 174:Core/Src/main.c ****         }
- 175:Core/Src/main.c ****     } else {
- 176:Core/Src/main.c ****         // MPU6050 not found - slow blink
- 177:Core/Src/main.c ****         while(1) {
- 1037              		.loc 1 177 9 view .LVU310
- 178:Core/Src/main.c ****             LED_On();
- 1038              		.loc 1 178 13 discriminator 1 view .LVU311
- 1039 001e FFF7FEFF 		bl	LED_On
- 1040              	.LVL37:
- 177:Core/Src/main.c ****             LED_On();
- 1041              		.loc 1 177 14 view .LVU312
- 1042 0022 FCE7     		b	.L73
- 1043              		.cfi_endproc
- 1044              	.LFE142:
- 1046              		.text
- 1047              	.Letext0:
- 1048              		.file 2 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
- 1049              		.file 3 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
- 1050              		.file 4 "CMSIS/Devices/STM32F4xx/Inc/STM32F411xE/stm32f411xe.h"
-ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s 			page 23
+ 127 0078 024B     		ldr	r3, .L5+4
+ 128 007a 1860     		str	r0, [r3]
+ 129 007c D8E7     		b	.L2
+ 130              	.L6:
+ 131 007e 00BF     		.align	2
+ 132              	.L5:
+ 133 0080 0024F400 		.word	16000000
+ 134 0084 00000000 		.word	previous
+ 135 0088 00000000 		.word	.LC0
+ 136 008c 24000000 		.word	.LC1
+ 137              		.cfi_endproc
+ 138              	.LFE133:
+ 140              		.global	previous
+ 141              		.section	.bss.previous,"aw",%nobits
+ 142              		.align	2
+ 145              	previous:
+ 146 0000 00000000 		.space	4
+ 147              		.text
+ 148              	.Letext0:
+ 149              		.file 2 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 150              		.file 3 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 151              		.file 4 "Core/Inc/MPU6050.h"
+ 152              		.file 5 "Core/Inc/time_base.h"
+ 153              		.file 6 "Core/Inc/i2c.h"
+ 154              		.file 7 "Core/Inc/uart.h"
+ 155              		.file 8 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 156              		.file 9 "<built-in>"
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccFFXzxk.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:21     .text.Delay:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:27     .text.Delay:00000000 Delay
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:68     .text.LED_Init:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:74     .text.LED_Init:00000000 LED_Init
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:106    .text.LED_Init:00000020 $d
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:112    .text.LED_On:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:118    .text.LED_On:00000000 LED_On
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:135    .text.LED_On:00000008 $d
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:140    .text.LED_Off:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:146    .text.LED_Off:00000000 LED_Off
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:163    .text.LED_Off:0000000c $d
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:168    .text.LED_Toggle:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:174    .text.LED_Toggle:00000000 LED_Toggle
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:193    .text.LED_Toggle:0000000c $d
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:198    .text.I2C_CheckDevice:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:204    .text.I2C_CheckDevice:00000000 I2C_CheckDevice
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:296    .text.I2C_CheckDevice:00000058 $d
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:301    .text.I2C_WriteByte:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:307    .text.I2C_WriteByte:00000000 I2C_WriteByte
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:406    .text.I2C_WriteByte:00000058 $d
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:411    .text.I2C_ReadByte:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:417    .text.I2C_ReadByte:00000000 I2C_ReadByte
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:549    .text.I2C_ReadByte:00000088 $d
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:554    .text.I2C_ReadBytes:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:560    .text.I2C_ReadBytes:00000000 I2C_ReadBytes
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:738    .text.I2C_ReadBytes:000000b0 $d
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:743    .text.I2C_Init:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:749    .text.I2C_Init:00000000 I2C_Init
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:838    .text.I2C_Init:00000068 $d
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:844    .text.MPU6050_Init:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:850    .text.MPU6050_Init:00000000 MPU6050_Init
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:911    .text.MPU6050_Init:00000038 $d
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:916    .text.MPU6050_ReadAccel:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:922    .text.MPU6050_ReadAccel:00000000 MPU6050_ReadAccel
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:995    .text.main:00000000 $t
-C:\Users\pashk\AppData\Local\Temp\ccjAmFFD.s:1001   .text.main:00000000 main
+C:\Users\pashk\AppData\Local\Temp\ccFFXzxk.s:22     .rodata.main.str1.4:00000000 $d
+C:\Users\pashk\AppData\Local\Temp\ccFFXzxk.s:29     .text.main:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccFFXzxk.s:35     .text.main:00000000 main
+C:\Users\pashk\AppData\Local\Temp\ccFFXzxk.s:133    .text.main:00000080 $d
+C:\Users\pashk\AppData\Local\Temp\ccFFXzxk.s:145    .bss.previous:00000000 previous
+C:\Users\pashk\AppData\Local\Temp\ccFFXzxk.s:142    .bss.previous:00000000 $d
 
-NO UNDEFINED SYMBOLS
+UNDEFINED SYMBOLS
+__aeabi_f2d
+Ticks_Init
+uart2_rxtx_init
+i2c_init
+MPU6050_Config
+MPU6050_Get_Accel_Scale
+get_Ticks
+printf
+puts

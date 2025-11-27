@@ -1,11 +1,10 @@
-build_F411RE/main.o: Core/Src/main.c Core/Inc/i2c.h \
+build_F411RE/uart.o: Core/Src/uart.c Core/Inc/uart.h \
  CMSIS/Devices/STM32F4xx/Inc/stm32f4xx.h \
  CMSIS/Devices/STM32F4xx/Inc/STM32F411xE/stm32f411xe.h \
  CMSIS/Include/core_cm4.h CMSIS/Include/cmsis_version.h \
  CMSIS/Include/cmsis_compiler.h CMSIS/Include/cmsis_gcc.h \
- CMSIS/Include/mpu_armv7.h CMSIS/Devices/STM32F4xx/Inc/system_stm32f4xx.h \
- Core/Inc/time_base.h Core/Inc/uart.h Core/Inc/MPU6050.h Core/Inc/i2c.h
-Core/Inc/i2c.h:
+ CMSIS/Include/mpu_armv7.h CMSIS/Devices/STM32F4xx/Inc/system_stm32f4xx.h
+Core/Inc/uart.h:
 CMSIS/Devices/STM32F4xx/Inc/stm32f4xx.h:
 CMSIS/Devices/STM32F4xx/Inc/STM32F411xE/stm32f411xe.h:
 CMSIS/Include/core_cm4.h:
@@ -14,7 +13,3 @@ CMSIS/Include/cmsis_compiler.h:
 CMSIS/Include/cmsis_gcc.h:
 CMSIS/Include/mpu_armv7.h:
 CMSIS/Devices/STM32F4xx/Inc/system_stm32f4xx.h:
-Core/Inc/time_base.h:
-Core/Inc/uart.h:
-Core/Inc/MPU6050.h:
-Core/Inc/i2c.h:

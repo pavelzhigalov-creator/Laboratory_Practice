@@ -8,6 +8,7 @@
 #include "uart.h"
 
 #include "stm32f4xx.h"
+#include "stm32f411xe.h"
 #define GPIOAEN			(1U<<0)
 #define UART2EN			(1U<<17)
 

@@ -1,0 +1,272 @@
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\cc64ir9f.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"time_base.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/time_base.c"
+  20              		.section	.text.Ticks_Init,"ax",%progbits
+  21              		.align	1
+  22              		.global	Ticks_Init
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	Ticks_Init:
+  28              	.LVL0:
+  29              	.LFB130:
+   1:Core/Src/time_base.c **** /*
+   2:Core/Src/time_base.c ****  * time_base.c
+   3:Core/Src/time_base.c ****  *
+   4:Core/Src/time_base.c ****  *  Created on: May 28, 2023
+   5:Core/Src/time_base.c ****  *      Author: hussamaldean
+   6:Core/Src/time_base.c ****  */
+   7:Core/Src/time_base.c **** 
+   8:Core/Src/time_base.c **** 
+   9:Core/Src/time_base.c **** #include "time_base.h"
+  10:Core/Src/time_base.c **** 
+  11:Core/Src/time_base.c **** #include "stm32f4xx.h"
+  12:Core/Src/time_base.c **** #include "stm32f411xe.h"
+  13:Core/Src/time_base.c **** 
+  14:Core/Src/time_base.c **** 
+  15:Core/Src/time_base.c **** volatile uint32_t current_ticks;
+  16:Core/Src/time_base.c **** 
+  17:Core/Src/time_base.c **** void Ticks_Init(uint32_t freq)
+  18:Core/Src/time_base.c **** {
+  30              		.loc 1 18 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  19:Core/Src/time_base.c **** 	/*Load the SysTick value to be the core frequency over 1000
+  20:Core/Src/time_base.c **** 	 *
+  21:Core/Src/time_base.c **** 	 * Since th core frequency is in MHz, dividing it by 1000 will get 1ms period
+  22:Core/Src/time_base.c **** 	 * */
+  23:Core/Src/time_base.c **** 	SysTick->LOAD=(freq/1000)-1;
+  35              		.loc 1 23 2 view .LVU1
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\cc64ir9f.s 			page 2
+
+
+  36              		.loc 1 23 21 is_stmt 0 view .LVU2
+  37 0000 094B     		ldr	r3, .L2
+  38 0002 A3FB0023 		umull	r2, r3, r3, r0
+  39 0006 9B09     		lsrs	r3, r3, #6
+  40              		.loc 1 23 27 view .LVU3
+  41 0008 013B     		subs	r3, r3, #1
+  42              		.loc 1 23 15 view .LVU4
+  43 000a 4FF0E022 		mov	r2, #-536813568
+  44 000e 5361     		str	r3, [r2, #20]
+  24:Core/Src/time_base.c **** 
+  25:Core/Src/time_base.c **** 	/*Set the source to be internal core clock*/
+  26:Core/Src/time_base.c **** 	SysTick->CTRL=(1<<SysTick_CTRL_CLKSOURCE_Pos);
+  45              		.loc 1 26 2 is_stmt 1 view .LVU5
+  46              		.loc 1 26 15 is_stmt 0 view .LVU6
+  47 0010 0423     		movs	r3, #4
+  48 0012 1361     		str	r3, [r2, #16]
+  27:Core/Src/time_base.c **** 
+  28:Core/Src/time_base.c **** 	/*Enable The interrupt */
+  29:Core/Src/time_base.c **** 
+  30:Core/Src/time_base.c **** 	SysTick->CTRL|=(1<<SysTick_CTRL_TICKINT_Pos);
+  49              		.loc 1 30 2 is_stmt 1 view .LVU7
+  50              		.loc 1 30 9 is_stmt 0 view .LVU8
+  51 0014 1369     		ldr	r3, [r2, #16]
+  52              		.loc 1 30 15 view .LVU9
+  53 0016 43F00203 		orr	r3, r3, #2
+  54 001a 1361     		str	r3, [r2, #16]
+  31:Core/Src/time_base.c **** 
+  32:Core/Src/time_base.c **** 	/*Enable Systick Interrupt in NIVC*/
+  33:Core/Src/time_base.c **** 
+  34:Core/Src/time_base.c **** 	NVIC_EnableIRQ(SysTick_IRQn);
+  55              		.loc 1 34 2 is_stmt 1 view .LVU10
+  35:Core/Src/time_base.c **** 
+  36:Core/Src/time_base.c **** 	/*Enable Systick*/
+  37:Core/Src/time_base.c **** 	SysTick->CTRL|=(1<<SysTick_CTRL_ENABLE_Pos);
+  56              		.loc 1 37 2 view .LVU11
+  57              		.loc 1 37 9 is_stmt 0 view .LVU12
+  58 001c 1369     		ldr	r3, [r2, #16]
+  59              		.loc 1 37 15 view .LVU13
+  60 001e 43F00103 		orr	r3, r3, #1
+  61 0022 1361     		str	r3, [r2, #16]
+  38:Core/Src/time_base.c **** 
+  39:Core/Src/time_base.c **** 
+  40:Core/Src/time_base.c **** }
+  62              		.loc 1 40 1 view .LVU14
+  63 0024 7047     		bx	lr
+  64              	.L3:
+  65 0026 00BF     		.align	2
+  66              	.L2:
+  67 0028 D34D6210 		.word	274877907
+  68              		.cfi_endproc
+  69              	.LFE130:
+  71              		.section	.text.SysTick_Handler,"ax",%progbits
+  72              		.align	1
+  73              		.global	SysTick_Handler
+  74              		.syntax unified
+  75              		.thumb
+  76              		.thumb_func
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\cc64ir9f.s 			page 3
+
+
+  78              	SysTick_Handler:
+  79              	.LFB131:
+  41:Core/Src/time_base.c **** 
+  42:Core/Src/time_base.c **** void SysTick_Handler()
+  43:Core/Src/time_base.c **** {
+  80              		.loc 1 43 1 is_stmt 1 view -0
+  81              		.cfi_startproc
+  82              		@ args = 0, pretend = 0, frame = 0
+  83              		@ frame_needed = 0, uses_anonymous_args = 0
+  84              		@ link register save eliminated.
+  44:Core/Src/time_base.c **** 	/*Increment the counter*/
+  45:Core/Src/time_base.c **** 	current_ticks++;
+  85              		.loc 1 45 2 view .LVU16
+  86              		.loc 1 45 15 is_stmt 0 view .LVU17
+  87 0000 024A     		ldr	r2, .L5
+  88 0002 1368     		ldr	r3, [r2]
+  89 0004 0133     		adds	r3, r3, #1
+  90 0006 1360     		str	r3, [r2]
+  46:Core/Src/time_base.c **** }
+  91              		.loc 1 46 1 view .LVU18
+  92 0008 7047     		bx	lr
+  93              	.L6:
+  94 000a 00BF     		.align	2
+  95              	.L5:
+  96 000c 00000000 		.word	current_ticks
+  97              		.cfi_endproc
+  98              	.LFE131:
+ 100              		.section	.text.get_Ticks,"ax",%progbits
+ 101              		.align	1
+ 102              		.global	get_Ticks
+ 103              		.syntax unified
+ 104              		.thumb
+ 105              		.thumb_func
+ 107              	get_Ticks:
+ 108              	.LFB132:
+  47:Core/Src/time_base.c **** 
+  48:Core/Src/time_base.c **** uint32_t get_Ticks()
+  49:Core/Src/time_base.c **** {
+ 109              		.loc 1 49 1 is_stmt 1 view -0
+ 110              		.cfi_startproc
+ 111              		@ args = 0, pretend = 0, frame = 0
+ 112              		@ frame_needed = 0, uses_anonymous_args = 0
+ 113              		@ link register save eliminated.
+  50:Core/Src/time_base.c **** 	/*Return the counter value*/
+  51:Core/Src/time_base.c **** 	return current_ticks;
+ 114              		.loc 1 51 2 view .LVU20
+ 115              		.loc 1 51 9 is_stmt 0 view .LVU21
+ 116 0000 014B     		ldr	r3, .L8
+ 117 0002 1868     		ldr	r0, [r3]
+  52:Core/Src/time_base.c **** }
+ 118              		.loc 1 52 1 view .LVU22
+ 119 0004 7047     		bx	lr
+ 120              	.L9:
+ 121 0006 00BF     		.align	2
+ 122              	.L8:
+ 123 0008 00000000 		.word	current_ticks
+ 124              		.cfi_endproc
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\cc64ir9f.s 			page 4
+
+
+ 125              	.LFE132:
+ 127              		.section	.text.delay,"ax",%progbits
+ 128              		.align	1
+ 129              		.global	delay
+ 130              		.syntax unified
+ 131              		.thumb
+ 132              		.thumb_func
+ 134              	delay:
+ 135              	.LVL1:
+ 136              	.LFB133:
+  53:Core/Src/time_base.c **** 
+  54:Core/Src/time_base.c **** /*Spin lock the CPU to force delay*/
+  55:Core/Src/time_base.c **** void delay(uint32_t delay_ms)
+  56:Core/Src/time_base.c **** {
+ 137              		.loc 1 56 1 is_stmt 1 view -0
+ 138              		.cfi_startproc
+ 139              		@ args = 0, pretend = 0, frame = 0
+ 140              		@ frame_needed = 0, uses_anonymous_args = 0
+ 141              		.loc 1 56 1 is_stmt 0 view .LVU24
+ 142 0000 38B5     		push	{r3, r4, r5, lr}
+ 143              	.LCFI0:
+ 144              		.cfi_def_cfa_offset 16
+ 145              		.cfi_offset 3, -16
+ 146              		.cfi_offset 4, -12
+ 147              		.cfi_offset 5, -8
+ 148              		.cfi_offset 14, -4
+ 149 0002 0546     		mov	r5, r0
+  57:Core/Src/time_base.c **** 
+  58:Core/Src/time_base.c **** 	uint32_t ticks_start=get_Ticks();
+ 150              		.loc 1 58 2 is_stmt 1 view .LVU25
+ 151              		.loc 1 58 23 is_stmt 0 view .LVU26
+ 152 0004 FFF7FEFF 		bl	get_Ticks
+ 153              	.LVL2:
+ 154              		.loc 1 58 23 view .LVU27
+ 155 0008 0446     		mov	r4, r0
+ 156              	.LVL3:
+  59:Core/Src/time_base.c **** 
+  60:Core/Src/time_base.c **** 	while(get_Ticks()-ticks_start<delay_ms);
+ 157              		.loc 1 60 2 is_stmt 1 view .LVU28
+ 158              	.L11:
+ 159              		.loc 1 60 31 discriminator 1 view .LVU29
+ 160              		.loc 1 60 8 is_stmt 0 discriminator 1 view .LVU30
+ 161 000a FFF7FEFF 		bl	get_Ticks
+ 162              	.LVL4:
+ 163              		.loc 1 60 19 discriminator 1 view .LVU31
+ 164 000e 001B     		subs	r0, r0, r4
+ 165              		.loc 1 60 31 discriminator 1 view .LVU32
+ 166 0010 A842     		cmp	r0, r5
+ 167 0012 FAD3     		bcc	.L11
+  61:Core/Src/time_base.c **** }
+ 168              		.loc 1 61 1 view .LVU33
+ 169 0014 38BD     		pop	{r3, r4, r5, pc}
+ 170              		.loc 1 61 1 view .LVU34
+ 171              		.cfi_endproc
+ 172              	.LFE133:
+ 174              		.global	current_ticks
+ 175              		.section	.bss.current_ticks,"aw",%nobits
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\cc64ir9f.s 			page 5
+
+
+ 176              		.align	2
+ 179              	current_ticks:
+ 180 0000 00000000 		.space	4
+ 181              		.text
+ 182              	.Letext0:
+ 183              		.file 2 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 184              		.file 3 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 185              		.file 4 "CMSIS/Devices/STM32F4xx/Inc/STM32F411xE/stm32f411xe.h"
+ 186              		.file 5 "CMSIS/Include/core_cm4.h"
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\cc64ir9f.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 time_base.c
+C:\Users\pashk\AppData\Local\Temp\cc64ir9f.s:21     .text.Ticks_Init:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\cc64ir9f.s:27     .text.Ticks_Init:00000000 Ticks_Init
+C:\Users\pashk\AppData\Local\Temp\cc64ir9f.s:67     .text.Ticks_Init:00000028 $d
+C:\Users\pashk\AppData\Local\Temp\cc64ir9f.s:72     .text.SysTick_Handler:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\cc64ir9f.s:78     .text.SysTick_Handler:00000000 SysTick_Handler
+C:\Users\pashk\AppData\Local\Temp\cc64ir9f.s:96     .text.SysTick_Handler:0000000c $d
+C:\Users\pashk\AppData\Local\Temp\cc64ir9f.s:179    .bss.current_ticks:00000000 current_ticks
+C:\Users\pashk\AppData\Local\Temp\cc64ir9f.s:101    .text.get_Ticks:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\cc64ir9f.s:107    .text.get_Ticks:00000000 get_Ticks
+C:\Users\pashk\AppData\Local\Temp\cc64ir9f.s:123    .text.get_Ticks:00000008 $d
+C:\Users\pashk\AppData\Local\Temp\cc64ir9f.s:128    .text.delay:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\cc64ir9f.s:134    .text.delay:00000000 delay
+C:\Users\pashk\AppData\Local\Temp\cc64ir9f.s:176    .bss.current_ticks:00000000 $d
+
+NO UNDEFINED SYMBOLS

@@ -28,6 +28,7 @@
 //#include "stm32f7xx.h"                  // Device header
 
 #include "stm32f4xx.h"                  // Device header
+#include "stm32f411xe.h"
 #include <stdint.h>
 #include "stdio.h"
 

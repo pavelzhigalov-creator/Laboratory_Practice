@@ -1,0 +1,363 @@
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccdnxx2O.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"core.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/core.c"
+  20              		.section	.text.SysClockConfig,"ax",%progbits
+  21              		.align	1
+  22              		.global	SysClockConfig
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	SysClockConfig:
+  28              	.LFB130:
+   1:Core/Src/core.c **** #include "stm32f4xx.h"                  // Device header
+   2:Core/Src/core.c **** 
+   3:Core/Src/core.c **** void SysClockConfig(void) //set the core frequency to 100MHz
+   4:Core/Src/core.c **** {
+  29              		.loc 1 4 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 8
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34 0000 82B0     		sub	sp, sp, #8
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 8
+   5:Core/Src/core.c **** 	
+   6:Core/Src/core.c **** 
+   7:Core/Src/core.c **** 
+   8:Core/Src/core.c **** 
+   9:Core/Src/core.c **** 	SCB->CPACR |= ((3UL << 10*2)|(3UL << 11*2)); //enable FPU
+  37              		.loc 1 9 2 view .LVU1
+  38              		.loc 1 9 5 is_stmt 0 view .LVU2
+  39 0002 2F4A     		ldr	r2, .L11
+  40 0004 D2F88830 		ldr	r3, [r2, #136]
+  41              		.loc 1 9 13 view .LVU3
+  42 0008 43F47003 		orr	r3, r3, #15728640
+  43 000c C2F88830 		str	r3, [r2, #136]
+  10:Core/Src/core.c **** 	#define PLL_M      4
+  11:Core/Src/core.c **** 	#define PLL_N      200
+  12:Core/Src/core.c **** 	#define PLL_P      4
+  13:Core/Src/core.c **** 	#define PLL_Q      2
+  14:Core/Src/core.c **** 
+  15:Core/Src/core.c **** 	__IO uint32_t StartUpCounter = 0, HSEStatus = 0;
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccdnxx2O.s 			page 2
+
+
+  44              		.loc 1 15 2 is_stmt 1 view .LVU4
+  45              		.loc 1 15 16 is_stmt 0 view .LVU5
+  46 0010 0023     		movs	r3, #0
+  47 0012 0193     		str	r3, [sp, #4]
+  48              		.loc 1 15 36 view .LVU6
+  49 0014 0093     		str	r3, [sp]
+  16:Core/Src/core.c ****   
+  17:Core/Src/core.c **** 
+  18:Core/Src/core.c ****   RCC->CR |= ((uint32_t)RCC_CR_HSEON);
+  50              		.loc 1 18 3 is_stmt 1 view .LVU7
+  51              		.loc 1 18 6 is_stmt 0 view .LVU8
+  52 0016 2B4A     		ldr	r2, .L11+4
+  53 0018 1368     		ldr	r3, [r2]
+  54              		.loc 1 18 11 view .LVU9
+  55 001a 43F48033 		orr	r3, r3, #65536
+  56 001e 1360     		str	r3, [r2]
+  57              	.L3:
+  19:Core/Src/core.c ****  
+  20:Core/Src/core.c **** 
+  21:Core/Src/core.c ****   do
+  58              		.loc 1 21 3 is_stmt 1 view .LVU10
+  22:Core/Src/core.c ****   {
+  23:Core/Src/core.c ****     HSEStatus = RCC->CR & RCC_CR_HSERDY;
+  59              		.loc 1 23 5 view .LVU11
+  60              		.loc 1 23 20 is_stmt 0 view .LVU12
+  61 0020 284B     		ldr	r3, .L11+4
+  62 0022 1B68     		ldr	r3, [r3]
+  63              		.loc 1 23 25 view .LVU13
+  64 0024 03F40033 		and	r3, r3, #131072
+  65              		.loc 1 23 15 view .LVU14
+  66 0028 0093     		str	r3, [sp]
+  24:Core/Src/core.c ****     StartUpCounter++;
+  67              		.loc 1 24 5 is_stmt 1 view .LVU15
+  68              		.loc 1 24 19 is_stmt 0 view .LVU16
+  69 002a 019B     		ldr	r3, [sp, #4]
+  70 002c 0133     		adds	r3, r3, #1
+  71 002e 0193     		str	r3, [sp, #4]
+  25:Core/Src/core.c ****   } while((HSEStatus == 0) && (StartUpCounter != 3000));
+  72              		.loc 1 25 28 is_stmt 1 discriminator 2 view .LVU17
+  73              		.loc 1 25 22 is_stmt 0 discriminator 2 view .LVU18
+  74 0030 009B     		ldr	r3, [sp]
+  75              		.loc 1 25 28 discriminator 2 view .LVU19
+  76 0032 23B9     		cbnz	r3, .L2
+  77              		.loc 1 25 47 discriminator 1 view .LVU20
+  78 0034 019A     		ldr	r2, [sp, #4]
+  79              		.loc 1 25 28 discriminator 1 view .LVU21
+  80 0036 40F6B833 		movw	r3, #3000
+  81 003a 9A42     		cmp	r2, r3
+  82 003c F0D1     		bne	.L3
+  83              	.L2:
+  26:Core/Src/core.c **** 
+  27:Core/Src/core.c ****   if ((RCC->CR & RCC_CR_HSERDY) != RESET)
+  84              		.loc 1 27 3 is_stmt 1 view .LVU22
+  85              		.loc 1 27 11 is_stmt 0 view .LVU23
+  86 003e 214B     		ldr	r3, .L11+4
+  87 0040 1B68     		ldr	r3, [r3]
+  88              		.loc 1 27 6 view .LVU24
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccdnxx2O.s 			page 3
+
+
+  89 0042 13F4003F 		tst	r3, #131072
+  90 0046 06D0     		beq	.L4
+  28:Core/Src/core.c ****   {
+  29:Core/Src/core.c ****     HSEStatus = (uint32_t)0x01;
+  91              		.loc 1 29 5 is_stmt 1 view .LVU25
+  92              		.loc 1 29 15 is_stmt 0 view .LVU26
+  93 0048 0123     		movs	r3, #1
+  94 004a 0093     		str	r3, [sp]
+  95              	.L5:
+  30:Core/Src/core.c ****   }
+  31:Core/Src/core.c ****   else
+  32:Core/Src/core.c ****   {
+  33:Core/Src/core.c ****     HSEStatus = (uint32_t)0x00;
+  34:Core/Src/core.c ****   }
+  35:Core/Src/core.c **** 
+  36:Core/Src/core.c ****   if (HSEStatus == (uint32_t)0x01)
+  96              		.loc 1 36 3 is_stmt 1 view .LVU27
+  97              		.loc 1 36 17 is_stmt 0 view .LVU28
+  98 004c 009B     		ldr	r3, [sp]
+  99              		.loc 1 36 6 view .LVU29
+ 100 004e 012B     		cmp	r3, #1
+ 101 0050 04D0     		beq	.L10
+ 102              	.L1:
+  37:Core/Src/core.c ****   {
+  38:Core/Src/core.c ****  
+  39:Core/Src/core.c ****     RCC->APB1ENR |= RCC_APB1ENR_PWREN;
+  40:Core/Src/core.c ****     PWR->CR &= (uint32_t)~(PWR_CR_VOS);
+  41:Core/Src/core.c **** 
+  42:Core/Src/core.c **** 
+  43:Core/Src/core.c ****     RCC->CFGR |= RCC_CFGR_HPRE_DIV1;
+  44:Core/Src/core.c ****       
+  45:Core/Src/core.c **** 
+  46:Core/Src/core.c ****     RCC->CFGR |= RCC_CFGR_PPRE2_DIV1;
+  47:Core/Src/core.c ****     
+  48:Core/Src/core.c **** 
+  49:Core/Src/core.c ****     RCC->CFGR |= RCC_CFGR_PPRE1_DIV2;
+  50:Core/Src/core.c **** 
+  51:Core/Src/core.c **** 
+  52:Core/Src/core.c ****     RCC->PLLCFGR = PLL_M | (PLL_N << 6) | (((PLL_P >> 1) -1) << 16) |
+  53:Core/Src/core.c ****                    (RCC_PLLCFGR_PLLSRC_HSE) | (PLL_Q << 24);
+  54:Core/Src/core.c **** 
+  55:Core/Src/core.c **** 
+  56:Core/Src/core.c ****     RCC->CR |= RCC_CR_PLLON;
+  57:Core/Src/core.c **** 
+  58:Core/Src/core.c ****     
+  59:Core/Src/core.c ****     while((RCC->CR & RCC_CR_PLLRDY) == 0)
+  60:Core/Src/core.c ****     {
+  61:Core/Src/core.c ****     }
+  62:Core/Src/core.c ****    
+  63:Core/Src/core.c ****     /* Configure Flash prefetch, Instruction cache, Data cache and wait state */
+  64:Core/Src/core.c ****     FLASH->ACR = FLASH_ACR_ICEN |FLASH_ACR_DCEN |FLASH_ACR_LATENCY_3WS;
+  65:Core/Src/core.c **** 
+  66:Core/Src/core.c ****     /* Select the main PLL as system clock source */
+  67:Core/Src/core.c ****     RCC->CFGR &= (uint32_t)((uint32_t)~(RCC_CFGR_SW));
+  68:Core/Src/core.c ****     RCC->CFGR |= RCC_CFGR_SW_PLL;
+  69:Core/Src/core.c **** 
+  70:Core/Src/core.c ****     /* Wait till the main PLL is used as system clock source */
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccdnxx2O.s 			page 4
+
+
+  71:Core/Src/core.c ****     while ((RCC->CFGR & (uint32_t)RCC_CFGR_SWS ) != RCC_CFGR_SWS_PLL)
+  72:Core/Src/core.c ****     {;}
+  73:Core/Src/core.c ****   }
+  74:Core/Src/core.c ****   else
+  75:Core/Src/core.c ****   { /* If HSE fails to start-up, the application will have wrong clock
+  76:Core/Src/core.c ****          configuration. User can add here some code to deal with this error */
+  77:Core/Src/core.c ****   }
+  78:Core/Src/core.c **** 
+  79:Core/Src/core.c **** }
+ 103              		.loc 1 79 1 view .LVU30
+ 104 0052 02B0     		add	sp, sp, #8
+ 105              	.LCFI1:
+ 106              		.cfi_remember_state
+ 107              		.cfi_def_cfa_offset 0
+ 108              		@ sp needed
+ 109 0054 7047     		bx	lr
+ 110              	.L4:
+ 111              	.LCFI2:
+ 112              		.cfi_restore_state
+  33:Core/Src/core.c ****   }
+ 113              		.loc 1 33 5 is_stmt 1 view .LVU31
+  33:Core/Src/core.c ****   }
+ 114              		.loc 1 33 15 is_stmt 0 view .LVU32
+ 115 0056 0023     		movs	r3, #0
+ 116 0058 0093     		str	r3, [sp]
+ 117 005a F7E7     		b	.L5
+ 118              	.L10:
+  39:Core/Src/core.c ****     PWR->CR &= (uint32_t)~(PWR_CR_VOS);
+ 119              		.loc 1 39 5 is_stmt 1 view .LVU33
+  39:Core/Src/core.c ****     PWR->CR &= (uint32_t)~(PWR_CR_VOS);
+ 120              		.loc 1 39 8 is_stmt 0 view .LVU34
+ 121 005c 194B     		ldr	r3, .L11+4
+ 122 005e 1A6C     		ldr	r2, [r3, #64]
+  39:Core/Src/core.c ****     PWR->CR &= (uint32_t)~(PWR_CR_VOS);
+ 123              		.loc 1 39 18 view .LVU35
+ 124 0060 42F08052 		orr	r2, r2, #268435456
+ 125 0064 1A64     		str	r2, [r3, #64]
+  40:Core/Src/core.c **** 
+ 126              		.loc 1 40 5 is_stmt 1 view .LVU36
+  40:Core/Src/core.c **** 
+ 127              		.loc 1 40 8 is_stmt 0 view .LVU37
+ 128 0066 1849     		ldr	r1, .L11+8
+ 129 0068 0A68     		ldr	r2, [r1]
+  40:Core/Src/core.c **** 
+ 130              		.loc 1 40 13 view .LVU38
+ 131 006a 22F44042 		bic	r2, r2, #49152
+ 132 006e 0A60     		str	r2, [r1]
+  43:Core/Src/core.c ****       
+ 133              		.loc 1 43 5 is_stmt 1 view .LVU39
+  43:Core/Src/core.c ****       
+ 134              		.loc 1 43 8 is_stmt 0 view .LVU40
+ 135 0070 9A68     		ldr	r2, [r3, #8]
+  43:Core/Src/core.c ****       
+ 136              		.loc 1 43 15 view .LVU41
+ 137 0072 9A60     		str	r2, [r3, #8]
+  46:Core/Src/core.c ****     
+ 138              		.loc 1 46 5 is_stmt 1 view .LVU42
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccdnxx2O.s 			page 5
+
+
+  46:Core/Src/core.c ****     
+ 139              		.loc 1 46 8 is_stmt 0 view .LVU43
+ 140 0074 9A68     		ldr	r2, [r3, #8]
+  46:Core/Src/core.c ****     
+ 141              		.loc 1 46 15 view .LVU44
+ 142 0076 9A60     		str	r2, [r3, #8]
+  49:Core/Src/core.c **** 
+ 143              		.loc 1 49 5 is_stmt 1 view .LVU45
+  49:Core/Src/core.c **** 
+ 144              		.loc 1 49 8 is_stmt 0 view .LVU46
+ 145 0078 9A68     		ldr	r2, [r3, #8]
+  49:Core/Src/core.c **** 
+ 146              		.loc 1 49 15 view .LVU47
+ 147 007a 42F48052 		orr	r2, r2, #4096
+ 148 007e 9A60     		str	r2, [r3, #8]
+  52:Core/Src/core.c ****                    (RCC_PLLCFGR_PLLSRC_HSE) | (PLL_Q << 24);
+ 149              		.loc 1 52 5 is_stmt 1 view .LVU48
+  52:Core/Src/core.c ****                    (RCC_PLLCFGR_PLLSRC_HSE) | (PLL_Q << 24);
+ 150              		.loc 1 52 18 is_stmt 0 view .LVU49
+ 151 0080 124A     		ldr	r2, .L11+12
+ 152 0082 5A60     		str	r2, [r3, #4]
+  56:Core/Src/core.c **** 
+ 153              		.loc 1 56 5 is_stmt 1 view .LVU50
+  56:Core/Src/core.c **** 
+ 154              		.loc 1 56 8 is_stmt 0 view .LVU51
+ 155 0084 1A68     		ldr	r2, [r3]
+  56:Core/Src/core.c **** 
+ 156              		.loc 1 56 13 view .LVU52
+ 157 0086 42F08072 		orr	r2, r2, #16777216
+ 158 008a 1A60     		str	r2, [r3]
+  59:Core/Src/core.c ****     {
+ 159              		.loc 1 59 5 is_stmt 1 view .LVU53
+ 160              	.L7:
+  61:Core/Src/core.c ****    
+ 161              		.loc 1 61 5 view .LVU54
+  59:Core/Src/core.c ****     {
+ 162              		.loc 1 59 37 discriminator 1 view .LVU55
+  59:Core/Src/core.c ****     {
+ 163              		.loc 1 59 15 is_stmt 0 discriminator 1 view .LVU56
+ 164 008c 0D4B     		ldr	r3, .L11+4
+ 165 008e 1B68     		ldr	r3, [r3]
+  59:Core/Src/core.c ****     {
+ 166              		.loc 1 59 37 discriminator 1 view .LVU57
+ 167 0090 13F0007F 		tst	r3, #33554432
+ 168 0094 FAD0     		beq	.L7
+  64:Core/Src/core.c **** 
+ 169              		.loc 1 64 5 is_stmt 1 view .LVU58
+  64:Core/Src/core.c **** 
+ 170              		.loc 1 64 16 is_stmt 0 view .LVU59
+ 171 0096 0E4B     		ldr	r3, .L11+16
+ 172 0098 40F20362 		movw	r2, #1539
+ 173 009c 1A60     		str	r2, [r3]
+  67:Core/Src/core.c ****     RCC->CFGR |= RCC_CFGR_SW_PLL;
+ 174              		.loc 1 67 5 is_stmt 1 view .LVU60
+  67:Core/Src/core.c ****     RCC->CFGR |= RCC_CFGR_SW_PLL;
+ 175              		.loc 1 67 8 is_stmt 0 view .LVU61
+ 176 009e A3F58063 		sub	r3, r3, #1024
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccdnxx2O.s 			page 6
+
+
+ 177 00a2 9A68     		ldr	r2, [r3, #8]
+  67:Core/Src/core.c ****     RCC->CFGR |= RCC_CFGR_SW_PLL;
+ 178              		.loc 1 67 15 view .LVU62
+ 179 00a4 22F00302 		bic	r2, r2, #3
+ 180 00a8 9A60     		str	r2, [r3, #8]
+  68:Core/Src/core.c **** 
+ 181              		.loc 1 68 5 is_stmt 1 view .LVU63
+  68:Core/Src/core.c **** 
+ 182              		.loc 1 68 8 is_stmt 0 view .LVU64
+ 183 00aa 9A68     		ldr	r2, [r3, #8]
+  68:Core/Src/core.c **** 
+ 184              		.loc 1 68 15 view .LVU65
+ 185 00ac 42F00202 		orr	r2, r2, #2
+ 186 00b0 9A60     		str	r2, [r3, #8]
+  71:Core/Src/core.c ****     {;}
+ 187              		.loc 1 71 5 is_stmt 1 view .LVU66
+ 188              	.L8:
+  72:Core/Src/core.c ****   }
+ 189              		.loc 1 72 6 view .LVU67
+  71:Core/Src/core.c ****     {;}
+ 190              		.loc 1 71 50 discriminator 1 view .LVU68
+  71:Core/Src/core.c ****     {;}
+ 191              		.loc 1 71 16 is_stmt 0 discriminator 1 view .LVU69
+ 192 00b2 044B     		ldr	r3, .L11+4
+ 193 00b4 9B68     		ldr	r3, [r3, #8]
+  71:Core/Src/core.c ****     {;}
+ 194              		.loc 1 71 23 discriminator 1 view .LVU70
+ 195 00b6 03F00C03 		and	r3, r3, #12
+  71:Core/Src/core.c ****     {;}
+ 196              		.loc 1 71 50 discriminator 1 view .LVU71
+ 197 00ba 082B     		cmp	r3, #8
+ 198 00bc F9D1     		bne	.L8
+ 199 00be C8E7     		b	.L1
+ 200              	.L12:
+ 201              		.align	2
+ 202              	.L11:
+ 203 00c0 00ED00E0 		.word	-536810240
+ 204 00c4 00380240 		.word	1073887232
+ 205 00c8 00700040 		.word	1073770496
+ 206 00cc 04324102 		.word	37827076
+ 207 00d0 003C0240 		.word	1073888256
+ 208              		.cfi_endproc
+ 209              	.LFE130:
+ 211              		.text
+ 212              	.Letext0:
+ 213              		.file 2 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 214              		.file 3 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 215              		.file 4 "CMSIS/Include/core_cm4.h"
+ 216              		.file 5 "CMSIS/Devices/STM32F4xx/Inc/STM32F411xE/stm32f411xe.h"
+ 217              		.file 6 "CMSIS/Devices/STM32F4xx/Inc/stm32f4xx.h"
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccdnxx2O.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 core.c
+C:\Users\pashk\AppData\Local\Temp\ccdnxx2O.s:21     .text.SysClockConfig:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccdnxx2O.s:27     .text.SysClockConfig:00000000 SysClockConfig
+C:\Users\pashk\AppData\Local\Temp\ccdnxx2O.s:203    .text.SysClockConfig:000000c0 $d
+
+NO UNDEFINED SYMBOLS

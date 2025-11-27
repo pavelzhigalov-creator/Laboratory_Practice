@@ -1,0 +1,433 @@
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccso2xhq.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"uart.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/uart.c"
+  20              		.section	.text.compute_uart_bd,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	compute_uart_bd:
+  27              	.LVL0:
+  28              	.LFB130:
+   1:Core/Src/uart.c **** /*
+   2:Core/Src/uart.c ****  * uart.c
+   3:Core/Src/uart.c ****  *
+   4:Core/Src/uart.c ****  *  Created on: Oct 23, 2022
+   5:Core/Src/uart.c ****  *      Author: hussamaldean
+   6:Core/Src/uart.c ****  */
+   7:Core/Src/uart.c **** 
+   8:Core/Src/uart.c **** #include "uart.h"
+   9:Core/Src/uart.c **** 
+  10:Core/Src/uart.c **** #include "stm32f4xx.h"
+  11:Core/Src/uart.c **** #include "stm32f411xe.h"
+  12:Core/Src/uart.c **** #define GPIOAEN			(1U<<0)
+  13:Core/Src/uart.c **** #define UART2EN			(1U<<17)
+  14:Core/Src/uart.c **** 
+  15:Core/Src/uart.c **** #define CR1_TE			(1U<<3)
+  16:Core/Src/uart.c **** #define CR1_RE			(1U<<2)
+  17:Core/Src/uart.c **** 
+  18:Core/Src/uart.c **** #define CR1_UE			(1U<<13)
+  19:Core/Src/uart.c **** #define SR_TXE			(1U<<7)
+  20:Core/Src/uart.c **** #define CR1_RXNEIE		(1U<<5)
+  21:Core/Src/uart.c **** 
+  22:Core/Src/uart.c **** 
+  23:Core/Src/uart.c **** #define	DMA1EN						(1U<<21)
+  24:Core/Src/uart.c **** #define CHSEL4						(1U<<27)
+  25:Core/Src/uart.c **** #define DMA_MEM_INC					(1U<<10)
+  26:Core/Src/uart.c **** #define DMA_DIR_MEM_TO_PERIPH		(1U<<6)
+  27:Core/Src/uart.c **** #define DMA_CR_TCIE				    (1U<<4)
+  28:Core/Src/uart.c **** #define DMA_CR_EN				     (1U<<0)
+  29:Core/Src/uart.c **** #define UART_CR3_DMAT				 (1U<<7)
+  30:Core/Src/uart.c **** 
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccso2xhq.s 			page 2
+
+
+  31:Core/Src/uart.c **** #define SYS_FREQ		16000000
+  32:Core/Src/uart.c **** #define APB1_CLK		SYS_FREQ
+  33:Core/Src/uart.c **** 
+  34:Core/Src/uart.c **** #define UART_BAUDRATE		115200
+  35:Core/Src/uart.c **** 
+  36:Core/Src/uart.c **** static uint16_t compute_uart_bd(uint32_t PeriphClk, uint32_t BaudRate)
+  37:Core/Src/uart.c **** {
+  29              		.loc 1 37 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  38:Core/Src/uart.c **** 	return ((PeriphClk + (BaudRate/2U))/BaudRate);
+  34              		.loc 1 38 2 view .LVU1
+  35              		.loc 1 38 21 is_stmt 0 view .LVU2
+  36 0000 00EB5100 		add	r0, r0, r1, lsr #1
+  37              	.LVL1:
+  38              		.loc 1 38 37 view .LVU3
+  39 0004 B0FBF1F0 		udiv	r0, r0, r1
+  39:Core/Src/uart.c **** }
+  40              		.loc 1 39 1 view .LVU4
+  41 0008 80B2     		uxth	r0, r0
+  42 000a 7047     		bx	lr
+  43              		.cfi_endproc
+  44              	.LFE130:
+  46              		.section	.text.uart_set_baudrate,"ax",%progbits
+  47              		.align	1
+  48              		.syntax unified
+  49              		.thumb
+  50              		.thumb_func
+  52              	uart_set_baudrate:
+  53              	.LVL2:
+  54              	.LFB131:
+  40:Core/Src/uart.c **** 
+  41:Core/Src/uart.c **** 
+  42:Core/Src/uart.c **** static void uart_set_baudrate(USART_TypeDef *USARTx, uint32_t PeriphClk,  uint32_t BaudRate)
+  43:Core/Src/uart.c **** {
+  55              		.loc 1 43 1 is_stmt 1 view -0
+  56              		.cfi_startproc
+  57              		@ args = 0, pretend = 0, frame = 0
+  58              		@ frame_needed = 0, uses_anonymous_args = 0
+  59              		.loc 1 43 1 is_stmt 0 view .LVU6
+  60 0000 10B5     		push	{r4, lr}
+  61              	.LCFI0:
+  62              		.cfi_def_cfa_offset 8
+  63              		.cfi_offset 4, -8
+  64              		.cfi_offset 14, -4
+  65 0002 0446     		mov	r4, r0
+  66 0004 0846     		mov	r0, r1
+  67              	.LVL3:
+  44:Core/Src/uart.c **** 	USARTx->BRR =  compute_uart_bd(PeriphClk,BaudRate);
+  68              		.loc 1 44 2 is_stmt 1 view .LVU7
+  69              		.loc 1 44 17 is_stmt 0 view .LVU8
+  70 0006 1146     		mov	r1, r2
+  71              	.LVL4:
+  72              		.loc 1 44 17 view .LVU9
+  73 0008 FFF7FEFF 		bl	compute_uart_bd
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccso2xhq.s 			page 3
+
+
+  74              	.LVL5:
+  75              		.loc 1 44 14 discriminator 1 view .LVU10
+  76 000c A060     		str	r0, [r4, #8]
+  45:Core/Src/uart.c **** }
+  77              		.loc 1 45 1 view .LVU11
+  78 000e 10BD     		pop	{r4, pc}
+  79              		.loc 1 45 1 view .LVU12
+  80              		.cfi_endproc
+  81              	.LFE131:
+  83              		.section	.text.uart2_rxtx_init,"ax",%progbits
+  84              		.align	1
+  85              		.global	uart2_rxtx_init
+  86              		.syntax unified
+  87              		.thumb
+  88              		.thumb_func
+  90              	uart2_rxtx_init:
+  91              	.LFB132:
+  46:Core/Src/uart.c **** 
+  47:Core/Src/uart.c **** 
+  48:Core/Src/uart.c **** 
+  49:Core/Src/uart.c **** void uart2_rxtx_init(void)
+  50:Core/Src/uart.c **** {
+  92              		.loc 1 50 1 is_stmt 1 view -0
+  93              		.cfi_startproc
+  94              		@ args = 0, pretend = 0, frame = 0
+  95              		@ frame_needed = 0, uses_anonymous_args = 0
+  96 0000 10B5     		push	{r4, lr}
+  97              	.LCFI1:
+  98              		.cfi_def_cfa_offset 8
+  99              		.cfi_offset 4, -8
+ 100              		.cfi_offset 14, -4
+  51:Core/Src/uart.c **** 	/****************Configure uart gpio pin***************/
+  52:Core/Src/uart.c **** 	/*Enable clock access to gpioa */
+  53:Core/Src/uart.c **** 	RCC->AHB1ENR |= GPIOAEN;
+ 101              		.loc 1 53 2 view .LVU14
+ 102              		.loc 1 53 5 is_stmt 0 view .LVU15
+ 103 0002 244A     		ldr	r2, .L6
+ 104 0004 136B     		ldr	r3, [r2, #48]
+ 105              		.loc 1 53 15 view .LVU16
+ 106 0006 43F00103 		orr	r3, r3, #1
+ 107 000a 1363     		str	r3, [r2, #48]
+  54:Core/Src/uart.c **** 
+  55:Core/Src/uart.c **** 	/*Set PA2 mode to alternate function mode*/
+  56:Core/Src/uart.c **** 	GPIOA->MODER &=~(1U<<4);
+ 108              		.loc 1 56 2 is_stmt 1 view .LVU17
+ 109              		.loc 1 56 7 is_stmt 0 view .LVU18
+ 110 000c 224B     		ldr	r3, .L6+4
+ 111 000e 1968     		ldr	r1, [r3]
+ 112              		.loc 1 56 15 view .LVU19
+ 113 0010 21F01001 		bic	r1, r1, #16
+ 114 0014 1960     		str	r1, [r3]
+  57:Core/Src/uart.c **** 	GPIOA->MODER |= (1U<<5);
+ 115              		.loc 1 57 2 is_stmt 1 view .LVU20
+ 116              		.loc 1 57 7 is_stmt 0 view .LVU21
+ 117 0016 1968     		ldr	r1, [r3]
+ 118              		.loc 1 57 15 view .LVU22
+ 119 0018 41F02001 		orr	r1, r1, #32
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccso2xhq.s 			page 4
+
+
+ 120 001c 1960     		str	r1, [r3]
+  58:Core/Src/uart.c **** 
+  59:Core/Src/uart.c **** 	/*Set PA2 alternate function type to UART_TX (AF07)*/
+  60:Core/Src/uart.c **** 	GPIOA->AFR[0] |= (1U<<8);
+ 121              		.loc 1 60 2 is_stmt 1 view .LVU23
+ 122              		.loc 1 60 12 is_stmt 0 view .LVU24
+ 123 001e 196A     		ldr	r1, [r3, #32]
+ 124              		.loc 1 60 16 view .LVU25
+ 125 0020 41F48071 		orr	r1, r1, #256
+ 126 0024 1962     		str	r1, [r3, #32]
+  61:Core/Src/uart.c **** 	GPIOA->AFR[0] |= (1U<<9);
+ 127              		.loc 1 61 2 is_stmt 1 view .LVU26
+ 128              		.loc 1 61 12 is_stmt 0 view .LVU27
+ 129 0026 196A     		ldr	r1, [r3, #32]
+ 130              		.loc 1 61 16 view .LVU28
+ 131 0028 41F40071 		orr	r1, r1, #512
+ 132 002c 1962     		str	r1, [r3, #32]
+  62:Core/Src/uart.c **** 	GPIOA->AFR[0] |= (1U<<10);
+ 133              		.loc 1 62 2 is_stmt 1 view .LVU29
+ 134              		.loc 1 62 12 is_stmt 0 view .LVU30
+ 135 002e 196A     		ldr	r1, [r3, #32]
+ 136              		.loc 1 62 16 view .LVU31
+ 137 0030 41F48061 		orr	r1, r1, #1024
+ 138 0034 1962     		str	r1, [r3, #32]
+  63:Core/Src/uart.c **** 	GPIOA->AFR[0] &= ~(1U<<11);
+ 139              		.loc 1 63 2 is_stmt 1 view .LVU32
+ 140              		.loc 1 63 12 is_stmt 0 view .LVU33
+ 141 0036 196A     		ldr	r1, [r3, #32]
+ 142              		.loc 1 63 16 view .LVU34
+ 143 0038 21F40061 		bic	r1, r1, #2048
+ 144 003c 1962     		str	r1, [r3, #32]
+  64:Core/Src/uart.c **** 
+  65:Core/Src/uart.c **** 
+  66:Core/Src/uart.c **** 	/*Set PA3 mode to alternate function mode*/
+  67:Core/Src/uart.c **** 	GPIOA->MODER &=~(1U<<6);
+ 145              		.loc 1 67 2 is_stmt 1 view .LVU35
+ 146              		.loc 1 67 7 is_stmt 0 view .LVU36
+ 147 003e 1968     		ldr	r1, [r3]
+ 148              		.loc 1 67 15 view .LVU37
+ 149 0040 21F04001 		bic	r1, r1, #64
+ 150 0044 1960     		str	r1, [r3]
+  68:Core/Src/uart.c **** 	GPIOA->MODER |= (1U<<7);
+ 151              		.loc 1 68 2 is_stmt 1 view .LVU38
+ 152              		.loc 1 68 7 is_stmt 0 view .LVU39
+ 153 0046 1968     		ldr	r1, [r3]
+ 154              		.loc 1 68 15 view .LVU40
+ 155 0048 41F08001 		orr	r1, r1, #128
+ 156 004c 1960     		str	r1, [r3]
+  69:Core/Src/uart.c **** 
+  70:Core/Src/uart.c **** 	/*Set PA3 alternate function type to UART_RX (AF07)*/
+  71:Core/Src/uart.c **** 	GPIOA->AFR[0] |= (1U<<12);
+ 157              		.loc 1 71 2 is_stmt 1 view .LVU41
+ 158              		.loc 1 71 12 is_stmt 0 view .LVU42
+ 159 004e 196A     		ldr	r1, [r3, #32]
+ 160              		.loc 1 71 16 view .LVU43
+ 161 0050 41F48051 		orr	r1, r1, #4096
+ 162 0054 1962     		str	r1, [r3, #32]
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccso2xhq.s 			page 5
+
+
+  72:Core/Src/uart.c **** 	GPIOA->AFR[0] |= (1U<<13);
+ 163              		.loc 1 72 2 is_stmt 1 view .LVU44
+ 164              		.loc 1 72 12 is_stmt 0 view .LVU45
+ 165 0056 196A     		ldr	r1, [r3, #32]
+ 166              		.loc 1 72 16 view .LVU46
+ 167 0058 41F40051 		orr	r1, r1, #8192
+ 168 005c 1962     		str	r1, [r3, #32]
+  73:Core/Src/uart.c **** 	GPIOA->AFR[0] |= (1U<<14);
+ 169              		.loc 1 73 2 is_stmt 1 view .LVU47
+ 170              		.loc 1 73 12 is_stmt 0 view .LVU48
+ 171 005e 196A     		ldr	r1, [r3, #32]
+ 172              		.loc 1 73 16 view .LVU49
+ 173 0060 41F48041 		orr	r1, r1, #16384
+ 174 0064 1962     		str	r1, [r3, #32]
+  74:Core/Src/uart.c **** 	GPIOA->AFR[0] &= ~(1U<<15);
+ 175              		.loc 1 74 2 is_stmt 1 view .LVU50
+ 176              		.loc 1 74 12 is_stmt 0 view .LVU51
+ 177 0066 196A     		ldr	r1, [r3, #32]
+ 178              		.loc 1 74 16 view .LVU52
+ 179 0068 21F40041 		bic	r1, r1, #32768
+ 180 006c 1962     		str	r1, [r3, #32]
+  75:Core/Src/uart.c **** 
+  76:Core/Src/uart.c **** 
+  77:Core/Src/uart.c **** 
+  78:Core/Src/uart.c **** 
+  79:Core/Src/uart.c **** 	/****************Configure uart module ***************/
+  80:Core/Src/uart.c **** 	/*Enable clock access to uart2 */
+  81:Core/Src/uart.c **** 	RCC->APB1ENR |= UART2EN;
+ 181              		.loc 1 81 2 is_stmt 1 view .LVU53
+ 182              		.loc 1 81 5 is_stmt 0 view .LVU54
+ 183 006e 136C     		ldr	r3, [r2, #64]
+ 184              		.loc 1 81 15 view .LVU55
+ 185 0070 43F40033 		orr	r3, r3, #131072
+ 186 0074 1364     		str	r3, [r2, #64]
+  82:Core/Src/uart.c **** 
+  83:Core/Src/uart.c **** 	/*Configure baudrate*/
+  84:Core/Src/uart.c **** 	uart_set_baudrate(USART2,APB1_CLK,UART_BAUDRATE);
+ 187              		.loc 1 84 2 is_stmt 1 view .LVU56
+ 188 0076 094C     		ldr	r4, .L6+8
+ 189 0078 4FF4E132 		mov	r2, #115200
+ 190 007c 0849     		ldr	r1, .L6+12
+ 191 007e 2046     		mov	r0, r4
+ 192 0080 FFF7FEFF 		bl	uart_set_baudrate
+ 193              	.LVL6:
+  85:Core/Src/uart.c **** 
+  86:Core/Src/uart.c **** 	/*Configure the transfer direction*/
+  87:Core/Src/uart.c **** 	 USART2->CR1 =  (CR1_TE | CR1_RE);
+ 194              		.loc 1 87 3 view .LVU57
+ 195              		.loc 1 87 15 is_stmt 0 view .LVU58
+ 196 0084 0C23     		movs	r3, #12
+ 197 0086 E360     		str	r3, [r4, #12]
+  88:Core/Src/uart.c **** 
+  89:Core/Src/uart.c **** 	/*Enable uart module*/
+  90:Core/Src/uart.c **** 	 USART2->CR1 |= CR1_UE;
+ 198              		.loc 1 90 3 is_stmt 1 view .LVU59
+ 199              		.loc 1 90 9 is_stmt 0 view .LVU60
+ 200 0088 E368     		ldr	r3, [r4, #12]
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccso2xhq.s 			page 6
+
+
+ 201              		.loc 1 90 15 view .LVU61
+ 202 008a 43F40053 		orr	r3, r3, #8192
+ 203 008e E360     		str	r3, [r4, #12]
+  91:Core/Src/uart.c **** 
+  92:Core/Src/uart.c **** 
+  93:Core/Src/uart.c **** }
+ 204              		.loc 1 93 1 view .LVU62
+ 205 0090 10BD     		pop	{r4, pc}
+ 206              	.L7:
+ 207 0092 00BF     		.align	2
+ 208              	.L6:
+ 209 0094 00380240 		.word	1073887232
+ 210 0098 00000240 		.word	1073872896
+ 211 009c 00440040 		.word	1073759232
+ 212 00a0 0024F400 		.word	16000000
+ 213              		.cfi_endproc
+ 214              	.LFE132:
+ 216              		.section	.text.uart2_write,"ax",%progbits
+ 217              		.align	1
+ 218              		.global	uart2_write
+ 219              		.syntax unified
+ 220              		.thumb
+ 221              		.thumb_func
+ 223              	uart2_write:
+ 224              	.LFB133:
+  94:Core/Src/uart.c **** 
+  95:Core/Src/uart.c **** 
+  96:Core/Src/uart.c **** void uart2_write(int ch)
+  97:Core/Src/uart.c **** {
+ 225              		.loc 1 97 1 is_stmt 1 view -0
+ 226              		.cfi_startproc
+ 227              		@ args = 0, pretend = 0, frame = 0
+ 228              		@ frame_needed = 0, uses_anonymous_args = 0
+ 229              		@ link register save eliminated.
+ 230              	.LVL7:
+ 231              	.L9:
+  98:Core/Src/uart.c ****   /*Make sure the transmit data register is empty*/
+  99:Core/Src/uart.c **** 	while(!(USART2->SR & SR_TXE)){}
+ 232              		.loc 1 99 32 discriminator 1 view .LVU64
+ 233              		.loc 1 99 8 discriminator 1 view .LVU65
+ 234              		.loc 1 99 16 is_stmt 0 discriminator 1 view .LVU66
+ 235 0000 044B     		ldr	r3, .L10
+ 236 0002 1B68     		ldr	r3, [r3]
+ 237              		.loc 1 99 8 discriminator 1 view .LVU67
+ 238 0004 13F0800F 		tst	r3, #128
+ 239 0008 FAD0     		beq	.L9
+ 100:Core/Src/uart.c **** 
+ 101:Core/Src/uart.c ****   /*Write to transmit data register*/
+ 102:Core/Src/uart.c **** 	USART2->DR	=  (ch & 0xFF);
+ 240              		.loc 1 102 2 is_stmt 1 view .LVU68
+ 241              		.loc 1 102 20 is_stmt 0 view .LVU69
+ 242 000a C0B2     		uxtb	r0, r0
+ 243              	.LVL8:
+ 244              		.loc 1 102 13 view .LVU70
+ 245 000c 014B     		ldr	r3, .L10
+ 246 000e 5860     		str	r0, [r3, #4]
+ 103:Core/Src/uart.c **** }
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccso2xhq.s 			page 7
+
+
+ 247              		.loc 1 103 1 view .LVU71
+ 248 0010 7047     		bx	lr
+ 249              	.L11:
+ 250 0012 00BF     		.align	2
+ 251              	.L10:
+ 252 0014 00440040 		.word	1073759232
+ 253              		.cfi_endproc
+ 254              	.LFE133:
+ 256              		.section	.text.__io_putchar,"ax",%progbits
+ 257              		.align	1
+ 258              		.global	__io_putchar
+ 259              		.syntax unified
+ 260              		.thumb
+ 261              		.thumb_func
+ 263              	__io_putchar:
+ 264              	.LVL9:
+ 265              	.LFB134:
+ 104:Core/Src/uart.c **** 
+ 105:Core/Src/uart.c **** 
+ 106:Core/Src/uart.c **** 
+ 107:Core/Src/uart.c **** int __io_putchar(int ch)
+ 108:Core/Src/uart.c **** {
+ 266              		.loc 1 108 1 is_stmt 1 view -0
+ 267              		.cfi_startproc
+ 268              		@ args = 0, pretend = 0, frame = 0
+ 269              		@ frame_needed = 0, uses_anonymous_args = 0
+ 270              		.loc 1 108 1 is_stmt 0 view .LVU73
+ 271 0000 10B5     		push	{r4, lr}
+ 272              	.LCFI2:
+ 273              		.cfi_def_cfa_offset 8
+ 274              		.cfi_offset 4, -8
+ 275              		.cfi_offset 14, -4
+ 276 0002 0446     		mov	r4, r0
+ 109:Core/Src/uart.c **** 	uart2_write(ch);
+ 277              		.loc 1 109 2 is_stmt 1 view .LVU74
+ 278 0004 FFF7FEFF 		bl	uart2_write
+ 279              	.LVL10:
+ 110:Core/Src/uart.c **** 	return ch;
+ 280              		.loc 1 110 2 view .LVU75
+ 111:Core/Src/uart.c **** }
+ 281              		.loc 1 111 1 is_stmt 0 view .LVU76
+ 282 0008 2046     		mov	r0, r4
+ 283 000a 10BD     		pop	{r4, pc}
+ 284              		.loc 1 111 1 view .LVU77
+ 285              		.cfi_endproc
+ 286              	.LFE134:
+ 288              		.text
+ 289              	.Letext0:
+ 290              		.file 2 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 291              		.file 3 "C:/Users/pashk/Desktop/\302\240/tools/Make/xpack-arm-none-eabi-gcc-13.2.1-1.1-win32-x64/x
+ 292              		.file 4 "CMSIS/Devices/STM32F4xx/Inc/STM32F411xE/stm32f411xe.h"
+ARM GAS  C:\Users\pashk\AppData\Local\Temp\ccso2xhq.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 uart.c
+C:\Users\pashk\AppData\Local\Temp\ccso2xhq.s:21     .text.compute_uart_bd:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccso2xhq.s:26     .text.compute_uart_bd:00000000 compute_uart_bd
+C:\Users\pashk\AppData\Local\Temp\ccso2xhq.s:47     .text.uart_set_baudrate:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccso2xhq.s:52     .text.uart_set_baudrate:00000000 uart_set_baudrate
+C:\Users\pashk\AppData\Local\Temp\ccso2xhq.s:84     .text.uart2_rxtx_init:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccso2xhq.s:90     .text.uart2_rxtx_init:00000000 uart2_rxtx_init
+C:\Users\pashk\AppData\Local\Temp\ccso2xhq.s:209    .text.uart2_rxtx_init:00000094 $d
+C:\Users\pashk\AppData\Local\Temp\ccso2xhq.s:217    .text.uart2_write:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccso2xhq.s:223    .text.uart2_write:00000000 uart2_write
+C:\Users\pashk\AppData\Local\Temp\ccso2xhq.s:252    .text.uart2_write:00000014 $d
+C:\Users\pashk\AppData\Local\Temp\ccso2xhq.s:257    .text.__io_putchar:00000000 $t
+C:\Users\pashk\AppData\Local\Temp\ccso2xhq.s:263    .text.__io_putchar:00000000 __io_putchar
+
+NO UNDEFINED SYMBOLS
