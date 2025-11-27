@@ -138,7 +138,14 @@ Core/Src/main.c \
 Core/Src/init.c \
 Core/Src/handlers.c \
 Core/Src/task.c \
-Core/Src/mpu6050.c \
+Core/Src/core.c \
+Core/Src/i2c.c \
+Core/Src/MPU6050.c \
+Core/Src/sys_init.c \
+Core/Src/syscalls.c \
+Core/Src/sysmem.c \
+Core/Src/time_base.c \
+Core/Src/uart.c \
 # ASM sources
 ASM_SOURCES =  \
 $(ASM)

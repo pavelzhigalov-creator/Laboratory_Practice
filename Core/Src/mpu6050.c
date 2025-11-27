@@ -1,119 +1,252 @@
-#include "mpu6050.h"
+/*
+library name: 	MPU6050 6 axis module
+written by: 		T.Jaber
+Date Written: 	27 Jul 2019
+Last Modified: 	28 July 2021 by Hussam Aldean
+Description: 		MPU6050 Module Basic Functions Device Driver library that use HAL libraries.
+References:			
+								- MPU6050 Registers map: https://www.invensense.com/wp-content/uploads/2015/02/MPU-6000-Register-Map1.pdf
+								- Jeff Rowberg MPU6050 library: https://github.com/jrowberg/i2cdevlib/tree/master/Arduino/MPU6050
+								
+* Copyright (C) 2019 - T. Jaber
+   This is a free software under the GNU license, you can redistribute it and/or modify it under the terms
+   of the GNU General Public Licenseversion 3 as published by the Free Software Foundation.
+	
+   This software library is shared with puplic for educational purposes, without WARRANTY and Author is not liable for any damages caused directly
+   or indirectly by this software, read more about this on the GNU General Public License.
 
-// Автоматическое определение частоты APB1
-static uint32_t get_apb1_frequency(void) {
-    return SystemCoreClock / (((RCC->CFGR >> 10) & 0x7) + 1);
+*/
+
+//Header files
+#include "MPU6050.h"
+#include "i2c.h"
+#include "time_base.h"
+
+
+//Library Variable
+//2- Accel & Gyro Scaling Factor
+static float accelScalingFactor, gyroScalingFactor;
+//3- Bias variables
+static float A_X_Bias = 0.0f;
+static float A_Y_Bias = 0.0f;
+static float A_Z_Bias = 0.0f;
+
+static int16_t GyroRW[3];
+
+
+
+
+//4- MPU6050 Initialaztion Configuration 
+void MPU6050_Config(MPU_ConfigTypeDef *config)
+{
+	uint8_t Buffer = 0;
+	//Clock Source 
+	//Reset Device
+
+	i2c_writeByte(MPU_ADDR, PWR_MAGT_1_REG, 0x80);
+
+	delay(100);
+
+	Buffer = config ->ClockSource & 0x07; //change the 7th bits of register
+
+	Buffer |= (config ->Sleep_Mode_Bit << 6) &0x40; // change only the 7th bit in the register
+	
+	i2c_writeByte(MPU_ADDR,PWR_MAGT_1_REG, Buffer);
+
+	delay(100); // should wait 10ms after changeing the clock setting.
+
+	//Set the Digital Low Pass Filter
+	Buffer = 0;
+
+	Buffer = config->CONFIG_DLPF & 0x07;
+	
+	i2c_writeByte(MPU_ADDR,CONFIG_REG, Buffer);
+
+	//Select the Gyroscope Full Scale Range
+	Buffer = 0;
+
+	Buffer = (config->Gyro_Full_Scale << 3) & 0x18;
+	
+	i2c_writeByte(MPU_ADDR,GYRO_CONFIG_REG, Buffer);
+
+	//Select the Accelerometer Full Scale Range 
+	Buffer = 0; 
+
+	Buffer = (config->Accel_Full_Scale << 3) & 0x18;
+
+	i2c_writeByte(MPU_ADDR,ACCEL_CONFIG_REG, Buffer);
+
+	//Set SRD To Default
+	MPU6050_Set_SMPRT_DIV(0x04);
+	
+	
+	//Accelerometer Scaling Factor, Set the Accelerometer and Gyroscope Scaling Factor
+	switch (config->Accel_Full_Scale)
+	{
+		case AFS_SEL_2g:
+			accelScalingFactor = (2000.0f/32768.0f);
+			break;
+		
+		case AFS_SEL_4g:
+			accelScalingFactor = (4000.0f/32768.0f);
+				break;
+		
+		case AFS_SEL_8g:
+			accelScalingFactor = (8000.0f/32768.0f);
+			break;
+		
+		case AFS_SEL_16g:
+			accelScalingFactor = (16000.0f/32768.0f);
+			break;
+		
+		default:
+			break;
+	}
+	//Gyroscope Scaling Factor 
+	switch (config->Gyro_Full_Scale)
+	{
+		case FS_SEL_250:
+			gyroScalingFactor = 250.0f/32768.0f;
+			break;
+		
+		case FS_SEL_500:
+				gyroScalingFactor = 500.0f/32768.0f;
+				break;
+		
+		case FS_SEL_1000:
+			gyroScalingFactor = 1000.0f/32768.0f;
+			break;
+		
+		case FS_SEL_2000:
+			gyroScalingFactor = 2000.0f/32768.0f;
+			break;
+		
+		default:
+			break;
+	}
+	
 }
 
-// Инициализация I2C1 с любой частотой
-void I2C1_Init(uint32_t i2c_speed_khz) {
-    uint32_t apb1_freq = get_apb1_frequency();
-    uint32_t ccr_value;
-    
-    // Включаем тактирование
-    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
-    RCC->APB1ENR |= RCC_APB1ENR_I2C1EN;
-    
-    // Настройка PB8 (SCL) и PB9 (SDA)
-    GPIOB->MODER &= ~(GPIO_MODER_MODER8 | GPIO_MODER_MODER9);
-    GPIOB->MODER |= (2 << GPIO_MODER_MODER8_Pos) | (2 << GPIO_MODER_MODER9_Pos);
-    GPIOB->OTYPER |= GPIO_OTYPER_OT_8 | GPIO_OTYPER_OT_9;
-    GPIOB->PUPDR |= (1 << (2 * 8)) | (1 << (2 * 9));
-    GPIOB->AFR[1] |= (4 << (4 * 0)) | (4 << (4 * 1));
-    
-    // Сброс I2C
-    I2C1->CR1 &= ~I2C_CR1_PE;
-    I2C1->CR1 = I2C_CR1_SWRST;
-    I2C1->CR1 = 0;
-    
-    // Настройка частоты I2C
-    I2C1->CR2 = (apb1_freq / 1000000) & I2C_CR2_FREQ;
-    
-    // Расчет CCR для Standard Mode (100 kHz)
-    ccr_value = apb1_freq / (i2c_speed_khz * 2000);
-    if(ccr_value < 4) ccr_value = 4;
-    I2C1->CCR = ccr_value;
-    
-    // Расчет TRISE
-    I2C1->TRISE = (apb1_freq / 1000000) + 1;
-    
-    // Включаем I2C
-    I2C1->CR1 |= I2C_CR1_PE;
+//5- Get Sample Rate Divider
+uint8_t MPU6050_Get_SMPRT_DIV(void)
+{
+	uint8_t Buffer = 0;
+	
+	i2c_readByte(MPU_ADDR,SMPLRT_DIV_REG,&Buffer);
+
+	return Buffer;
 }
 
-// Остальные функции остаются такими же...
-static void I2C_WaitFlag(uint32_t flag) {
-    uint32_t timeout = 100000;
-    while(!(I2C1->SR1 & flag) && timeout--);
+//6- Set Sample Rate Divider
+void MPU6050_Set_SMPRT_DIV(uint8_t SMPRTvalue)
+{
+	i2c_writeByte(MPU_ADDR,SMPLRT_DIV_REG, SMPRTvalue);
 }
 
-static void MPU6050_WriteReg(uint8_t reg, uint8_t value) {
-    I2C1->CR1 |= I2C_CR1_START;
-    I2C_WaitFlag(I2C_SR1_SB);
-    I2C1->DR = MPU6050_ADDR << 1;
-    I2C_WaitFlag(I2C_SR1_ADDR);
-    (void)I2C1->SR2;
-    
-    I2C_WaitFlag(I2C_SR1_TXE);
-    I2C1->DR = reg;
-    
-    I2C_WaitFlag(I2C_SR1_TXE);
-    I2C1->DR = value;
-    
-    I2C_WaitFlag(I2C_SR1_BTF);
-    I2C1->CR1 |= I2C_CR1_STOP;
+//7- Get External Frame Sync.
+uint8_t MPU6050_Get_FSYNC(void)
+{
+	uint8_t Buffer = 0;
+	
+	i2c_readByte(MPU_ADDR,CONFIG_REG, &Buffer);
+	Buffer &= 0x38; 
+	return (Buffer>>3);
 }
 
-static void MPU6050_ReadBytes(uint8_t reg, uint8_t *data, uint8_t len) {
-    I2C1->CR1 |= I2C_CR1_START;
-    I2C_WaitFlag(I2C_SR1_SB);
-    I2C1->DR = MPU6050_ADDR << 1;
-    I2C_WaitFlag(I2C_SR1_ADDR);
-    (void)I2C1->SR2;
-    
-    I2C_WaitFlag(I2C_SR1_TXE);
-    I2C1->DR = reg;
-    
-    I2C_WaitFlag(I2C_SR1_TXE);
-    I2C1->CR1 |= I2C_CR1_START;
-    I2C_WaitFlag(I2C_SR1_SB);
-    I2C1->DR = (MPU6050_ADDR << 1) | 1;
-    I2C_WaitFlag(I2C_SR1_ADDR);
-    (void)I2C1->SR2;
-    
-    for(uint8_t i = 0; i < len; i++) {
-        if(i == len - 1) {
-            I2C1->CR1 &= ~I2C_CR1_ACK;
-            I2C_WaitFlag(I2C_SR1_RXNE);
-            data[i] = I2C1->DR;
-            I2C1->CR1 |= I2C_CR1_STOP;
-        } else {
-            I2C_WaitFlag(I2C_SR1_RXNE);
-            data[i] = I2C1->DR;
-        }
-    }
-    I2C1->CR1 |= I2C_CR1_ACK;
+//8- Set External Frame Sync. 
+void MPU6050_Set_FSYNC(enum EXT_SYNC_SET_ENUM ext_Sync)
+{
+	uint8_t Buffer = 0;
+	i2c_readByte(MPU_ADDR,CONFIG_REG, &Buffer);
+	Buffer &= ~0x38;
+	
+	Buffer |= (ext_Sync <<3); 
+	i2c_writeByte(MPU_ADDR,CONFIG_REG, Buffer);
+	
 }
 
-void MPU6050_Init(void) {
-    // Инициализация I2C на 100 kHz
-    I2C1_Init(100);
-    
-    MPU6050_WriteReg(MPU6050_PWR_MGMT_1, 0x00);
-    MPU6050_WriteReg(MPU6050_GYRO_CONFIG, 0x08);
-    MPU6050_WriteReg(MPU6050_ACCEL_CONFIG, 0x08);
-    
-    for(volatile int i = 0; i < 100000; i++);
+//9- Get Accel Raw Data
+void MPU6050_Get_Accel_RawData(RawData_Def *rawDef)
+{
+	uint8_t state;
+	uint8_t AcceArr[6], GyroArr[6];
+	
+	i2c_readByte(MPU_ADDR,INT_STATUS_REG, &state);
+
+
+	if((state&&0x01))
+	{
+		i2c_ReadMulti(MPU_ADDR,ACCEL_XOUT_H_REG, 6,AcceArr);
+		
+		//Accel Raw Data
+		rawDef->x = ((AcceArr[0]<<8) + AcceArr[1]); // x-Axis
+		rawDef->y = ((AcceArr[2]<<8) + AcceArr[3]); // y-Axis
+		rawDef->z = ((AcceArr[4]<<8) + AcceArr[5]); // z-Axis
+		//Gyro Raw Data
+		i2c_ReadMulti(MPU_ADDR,GYRO_XOUT_H_REG, 6,GyroArr);
+		GyroRW[0] = ((GyroArr[0]<<8) + GyroArr[1]);
+		GyroRW[1] = (GyroArr[2]<<8) + GyroArr[3];
+		GyroRW[2] = ((GyroArr[4]<<8) + GyroArr[5]);
+	}
 }
 
-void MPU6050_Read(MPU6050_Data *data) {
-    uint8_t buffer[14];
-    MPU6050_ReadBytes(MPU6050_ACCEL_XOUT_H, buffer, 14);
-    
-    data->accel_x = (buffer[0] << 8) | buffer[1];
-    data->accel_y = (buffer[2] << 8) | buffer[3];
-    data->accel_z = (buffer[4] << 8) | buffer[5];
-    data->gyro_x = (buffer[8] << 8) | buffer[9];
-    data->gyro_y = (buffer[10] << 8) | buffer[11];
-    data->gyro_z = (buffer[12] << 8) | buffer[13];
+//10- Get Accel scaled data (g unit of gravity, 1g = 9.81m/s2)
+void MPU6050_Get_Accel_Scale(ScaledData_Def *scaledDef)
+{
+
+	RawData_Def AccelRData;
+	MPU6050_Get_Accel_RawData(&AccelRData);
+	
+	//Accel Scale data 
+	scaledDef->x = ((AccelRData.x+0.0f)*accelScalingFactor)/1000;
+	scaledDef->y = ((AccelRData.y+0.0f)*accelScalingFactor)/1000;
+	scaledDef->z = ((AccelRData.z+0.0f)*accelScalingFactor)/1000;
+}
+
+//11- Get Accel calibrated data
+void MPU6050_Get_Accel_Cali(ScaledData_Def *CaliDef)
+{
+	ScaledData_Def AccelScaled;
+	MPU6050_Get_Accel_Scale(&AccelScaled);
+	
+	//Accel Scale data 
+	CaliDef->x = (AccelScaled.x) - A_X_Bias; // x-Axis
+	CaliDef->y = (AccelScaled.y) - A_Y_Bias;// y-Axis
+	CaliDef->z = (AccelScaled.z) - A_Z_Bias;// z-Axis
+}
+
+//12- Get Gyro Raw Data
+void MPU6050_Get_Gyro_RawData(RawData_Def *rawDef)
+{
+	
+	//Accel Raw Data
+	rawDef->x = GyroRW[0];
+	rawDef->y = GyroRW[1];
+	rawDef->z = GyroRW[2];
+	
+}
+
+//13- Get Gyro scaled data
+void MPU6050_Get_Gyro_Scale(ScaledData_Def *scaledDef)
+{
+	RawData_Def myGyroRaw;
+	MPU6050_Get_Gyro_RawData(&myGyroRaw);
+	
+	//Gyro Scale data 
+	scaledDef->x = (myGyroRaw.x)*gyroScalingFactor; // x-Axis
+	scaledDef->y = (myGyroRaw.y)*gyroScalingFactor; // y-Axis
+	scaledDef->z = (myGyroRaw.z)*gyroScalingFactor; // z-Axis
+}
+
+//14- Accel Calibration
+void _Accel_Cali(float x_min, float x_max, float y_min, float y_max, float z_min, float z_max)
+{
+	//1* X-Axis calibrate
+	A_X_Bias		= (x_max + x_min)/2.0f;
+	
+	//2* Y-Axis calibrate
+	A_Y_Bias		= (y_max + y_min)/2.0f;
+	
+	//3* Z-Axis calibrate
+	A_Z_Bias		= (z_max + z_min)/2.0f;
 }

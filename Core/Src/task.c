@@ -1,4 +1,4 @@
-#include "task.h"
+/* #include "task.h"
 #include "handlers.h"
 
 
@@ -22,7 +22,7 @@ void Switch_PWM(void)
     // ВЫКЛЮЧАЕМ ВСЕ КАНАЛЫ
     CLEAR_BIT(TIM3->CCER, TIM_CCER_CC1E | TIM_CCER_CC2E);
     CLEAR_BIT(TIM2->CCER, TIM_CCER_CC1E | TIM_CCER_CC2E);
-     CLEAR_BIT(TIM1->CCER, TIM_CCER_CC1E | TIM_CCER_CC2E);
+    CLEAR_BIT(TIM1->CCER, TIM_CCER_CC1E | TIM_CCER_CC2E);
     
     
     // ВКЛЮЧАЕМ ТОЛЬКО ОДИН КАНАЛ
@@ -88,4 +88,4 @@ void Set_All_LEDs_Brightness(void)
     
     MODIFY_REG(TIM1->CCR1, TIM_CCR1_CCR1_Msk, duty_cycle);
     MODIFY_REG(TIM1->CCR2, TIM_CCR2_CCR2_Msk, duty_cycle);
-}
+} */

@@ -1,4 +1,4 @@
-#include "handlers.h"
+/* #include "handlers.h"
 
 void TIM1_UP_TIM10_IRQHandler(void){
     if (TIM10->SR & TIM_SR_UIF){       // Проверка флага обновления
@@ -43,4 +43,4 @@ void EXTI9_5_IRQHandler(void){
             btn9_press_time = 0;
         }
     }
-}
+} */
